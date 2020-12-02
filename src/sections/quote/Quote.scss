@@ -1,0 +1,43 @@
+@import "../../styles/global/variables.scss";
+
+.quote {
+  background-color: $primary-cover;
+  border-bottom: 1px solid $border-color;
+  border-top: 1px solid $border-color;
+
+  &-img {
+    width: 192px;
+    height: auto;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+
+  &-inner {
+    max-width: 475px;
+    margin: 0 auto;
+    position: relative;
+    text-align: center;
+  }
+
+  &-icon {
+    font-size: 11rem;
+    color: $primary;
+    opacity: 0.5;
+    line-height: 1;
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-family: $font-family-advanced;
+  }
+  
+
+  @include media-breakpoint-down(md) {
+    &-inner {
+      padding: 0 2rem;
+    }
+
+    &-img {
+      width: 100px;
+    }
+  }
+}

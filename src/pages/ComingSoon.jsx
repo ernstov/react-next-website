@@ -1,0 +1,31 @@
+import React from "react";
+import Seo from "../components/seo";
+import {settings} from "../data/settings";
+import VisibilitySensor from '../utils/react-visibility-sensor';
+import Footer from "../sections/footer";
+import Coming from "../sections/coming"
+import {page} from "../data/pages/coming";
+import { isWrap } from "../utils";
+
+const ComingSoon = () => {
+
+  const sections = [
+    { component: Coming, props: { data: page.comingSoon } },
+    { component: Footer, props: { data: {...settings.footer, ...page.footer} } },
+  ]
+
+  if(!isWrap()) sections.pop();
+
+  return <div>
+    <Seo seo={settings.seo} />
+    {sections.map((section, i) => (
+      <VisibilitySensor partialVisibility={true} once={true} key={`p-${i}`}>
+        {({ isVisible }) =>
+          React.createElement(section.component, { ...section.props, key: `s-${i}`, isVisible: isVisible })
+        }
+      </VisibilitySensor>
+    ))}
+  </div>
+}
+
+export default ComingSoon;

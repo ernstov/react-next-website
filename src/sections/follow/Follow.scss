@@ -1,0 +1,127 @@
+@import "../../styles/global/variables.scss";
+
+.follow {
+  padding: 3rem 0;
+  background-color: $primary-cover;
+  border-top: 1px solid $border-color;
+
+  &-title {
+    font-size: $font-family-heavy;
+    font-size: 1.25rem;
+    font-weight: 900;
+    margin-right: 2rem;
+  }
+
+  &-form {
+    transition: opacity $transition ease;
+
+    &.hide {
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+
+  &-message {
+    position: absolute;
+    top: 50%;
+    transform: translateY(20px);
+    opacity: 0;
+    width: 100%;
+    text-align: center;
+    color: $secondary;
+    font-family: $font-family-secondary;
+    transition: all $transition ease;
+
+    &.show {
+      transform: translateY(-50%);
+      transition-delay: $transition*2;
+      opacity: 1;
+    }
+  }
+
+  &-notification {
+    font-size: 0.75rem;
+    position: absolute;
+    bottom: -40px;
+    color: $danger;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all $transition ease;
+
+    &.active {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  &-loader {
+    position: absolute;
+    top: 50%;
+    right: -50px;
+    transform: translateY(-50%);
+  }
+
+  form {
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    margin: 0 auto;
+    max-width: 100%;
+  }
+
+  &-input-container{
+    border: 1px solid $border-color;
+    padding: 0.7rem 1.6rem;
+    border-radius: 25px;
+    display: flex;
+    position: relative;
+    align-items: center;
+
+    input {
+      background-color: transparent;
+      border: none;
+      outline: none;
+      font-weight: 500;
+    }
+
+    button {
+      background-color: transparent;
+      border: none;
+      outline: none;
+      color: $secondary;
+      text-decoration: underline;
+      font-family: $font-family-secondary;
+
+      &[disabled] {
+        pointer-events: none;
+        opacity: 0.5;
+      }
+
+      &:hover{
+        text-decoration: none;
+      }
+    }
+  }
+
+  @include media-breakpoint-down(sm) {
+    form {
+      flex-direction: column;
+    }
+
+    &-notification {
+      width: 100%;
+      text-align: center;
+      left: 0;
+    }
+
+    &-message {
+      left: 0;
+    }
+
+    &-title {
+      margin-bottom: 1rem;
+      margin-right: 0;
+    }
+  }
+
+}

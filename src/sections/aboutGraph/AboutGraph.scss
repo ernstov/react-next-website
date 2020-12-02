@@ -1,0 +1,99 @@
+@import "../../styles/global/variables.scss";
+
+.about-graph {
+  background-color: $black;
+  padding: 4rem 0;
+  width: 100vw;
+  text-align: center;
+
+  &-inner {
+    display: inline-block;
+    max-width: calc(100vw - #{$gutter/2});
+    overflow: hidden;
+    position: relative;
+  }
+
+  &-chart {
+    width: 840px;
+  }
+
+  &-swipe {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 68px;
+    width: auto;
+    display: none;
+    transform: translateX(100%);
+    transition: transform $transition $transition-timing;
+
+    &.active {
+      transform: translateX(0);
+    }
+  }
+
+  h2 {
+    opacity: 0.8;
+    position: relative;
+    padding: 0 100px;
+    display: inline-block;
+    margin-bottom: 3rem;
+
+    &::after{
+      content: '';
+      display: block;
+      width: 80px;
+      height: 1px;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      background-color: $gray-4;
+    }
+
+    &::before{
+      content: '';
+      display: block;
+      width: 80px;
+      height: 1px;
+      position: absolute;
+      top: 50%;
+      right: 0;
+      transform: translateY(-50%);
+      background-color: $gray-4;
+    }
+  }
+
+  &-source {
+    font-size: 0.75rem;
+    color: $light;
+    opacity: 0.4;
+    margin-top: 2rem;
+    text-align: left;
+  }
+
+  @include media-breakpoint-down(sm) {
+    h2 {
+      padding: 0;
+      margin-bottom: 4rem;
+  
+      &::after{
+        width: 80px;
+        height: 1px;
+        top: auto;
+        bottom: -20px;
+        left: 50%;
+        transform: translateY(0) translateX(-50%);
+      }
+  
+      &::before{
+        display: none;
+      }
+    }
+
+    &-swipe {
+      display: block;
+      pointer-events: none;
+    }
+  }
+}

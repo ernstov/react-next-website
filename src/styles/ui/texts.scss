@@ -1,0 +1,158 @@
+@import "../global/variables.scss";
+
+.text-lh-tiny {
+  line-height: 1.04;
+}
+
+.text-title-light {
+  font-size: 2.5rem;
+  color: $light;
+}
+
+.text-title {
+  color: $dark;
+  font-weight: 600;
+
+  span {
+    position: relative;
+    display: inline-block;
+
+    &::after{
+      content: '';
+      display: block;
+      width: calc(100% + 4px);
+      margin-left: -4px;
+      height: 10px;
+      position: absolute;
+      bottom: 5px;
+      left: 0;
+      background-color: rgba($primary, 0.3);
+      z-index: -1;
+    }
+  }
+}
+
+.text-label {
+  font-family: $font-family-base;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  font-weight: 500;
+  letter-spacing: 0.05rem;
+  color: rgba($black, 0.4);
+}
+
+.text-title-lg {
+  font-size: 2rem;
+  font-family: $font-family-heavy;
+}
+
+.text-title-sm {
+  font-family: $font-family-heavy;
+  font-size: 1.25rem;
+}
+
+.text-title-smd {
+  font-family: $font-family-heavy;
+  font-size: 1.125rem;
+}
+
+.text-sub-title {
+  font-size: 1.3125rem;
+  line-height: 1.04;
+}
+
+.text-small {
+  font-size: 0.8125rem;
+  color: $lgray;
+  font-weight: 500;
+}
+
+.text-small-link {
+  color: $secondary;
+  font-size: 0.75rem;
+  font-family: $font-family-secondary;
+  text-decoration: underline;
+  transition: color $transition ease;
+
+  &:hover {
+    text-decoration: none;
+    color: $black;
+  }
+}
+
+.text-small-2 {
+  font-size: 0.75rem;
+  color: $lgray;
+  font-weight: 500;
+}
+
+.text-tiny {
+  font-family: $font-family-secondary;
+  font-size: 0.625rem;
+  color: $lgray;
+}
+
+.text-medium-reg {
+  font-size: 0.9375rem;
+}
+
+.text-title-white {
+  color: $light;
+  font-size: 1.4375rem;
+  font-family: $font-family-base;
+  font-weight: 500;
+}
+
+.text-medium {
+  font-size: 0.9375rem;
+  font-family: $font-family-secondary;
+}
+
+.text-title-semi {
+  font-size: 1.875rem;
+  font-family: $font-family-advanced;
+  font-weight: 500;
+}
+
+.text-title-md {
+  font-size: 1.125rem;
+  font-family: $font-family-secondary;
+}
+
+.text-sub-md {
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+
+.text-roman {
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+
+.text-roman-sm {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+@include media-breakpoint-down(lg) {
+  .text-title-light {font-size: 2rem;}
+  .text-sub-title {font-size: 1.125rem;}
+  .text-title-sm {font-size: 1.125rem;}
+  .text-roman {font-size: 1rem;}
+  .text-sub-md {font-size: 1rem;}
+  .text-title-lg {font-size: 1.625rem;}
+}
+
+@include media-breakpoint-down(md) {
+  .text-title-light {font-size: 1.9375rem;}
+  h1 {font-size: 1.9375rem;}
+  .text-sub-title {font-size: 1.0625rem;}
+
+  .text-title {
+    span {
+      &::after{
+        bottom: 0px;
+      }
+    }
+  }
+}

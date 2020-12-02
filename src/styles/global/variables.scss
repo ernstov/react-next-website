@@ -1,0 +1,113 @@
+@import "../../../node_modules/bootstrap/scss/functions";
+@import "../../../node_modules/bootstrap/scss/variables";
+@import "../../../node_modules/bootstrap/scss/mixins";
+
+$primary:                   #F9C035;
+$primary-cover:             #FDFBF5;
+$secondary:                 #227C9D;
+$white:                     #ffffff;
+$black:                     #272727;
+$black-cover:               #6B6B6B;
+$gray:                      #E2E2E2;
+$color-dark:                #1a1a1a;
+$light:                     #FDF9ED;
+$info:                      #D2CEC4;
+$lgray:                     #999999;
+$cover-primary:             #FCF8EB;
+$primary-cover-2:           #FFF9E0;
+$gray-2:                    #D3D3D3;
+$gray-3:                    #D8D8D8;
+$gray-4:                    #979797;
+$pink:                      #FEEBE7;
+
+$theme-colors: ();
+
+$theme-colors: map-merge(
+  (
+    "primary":    $primary,
+    "secondary":  $secondary,
+    "light":      $light,
+    "info":       $info,
+    "cover":      rgba($black, 0.08),
+  ),
+  $theme-colors
+);
+
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 820px,
+  xl: 1080px
+);
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 880px,
+  xl: 1140px
+);
+
+$body-bg:                     $light;
+$body-color:                  $black;
+$border-color:                $gray;
+
+$header-height:               96px;
+$header-height-md:            60px;
+
+$transition:                  300ms;
+
+$font-family-base:            'Avenir Next', verdana;
+$font-family-secondary:       'Avenir Next Demi', verdana;
+$font-family-advanced:        'Playfair Display', verdana;
+$font-family-heavy:           'Avenir Heavy', verdana;
+
+$headings-font-family:        $font-family-advanced;
+$headings-font-weight:        600;
+$line-height:                 1.5;
+$line-height-base:            1.33;
+
+$headings-line-height:        1.2;
+$font-size-base:              1rem;
+
+$h1-font-size:                $font-size-base * 3;
+$h2-font-size:                $font-size-base * 2.5;
+$h3-font-size:                $font-size-base * 2;
+$h4-font-size:                $font-size-base * 1.5;
+$h5-font-size:                $font-size-base * 1.25;
+$h6-font-size:                $font-size-base;
+
+$badge-font-size:                   0.875rem;
+$badge-font-weight:                 $font-weight-bold;
+$badge-padding-y:                   .5em;
+$badge-padding-x:                   .9em;
+$badge-border-radius:               20px;
+
+$badge-transition:                  $btn-transition !default;
+$badge-focus-width:                 $input-btn-focus-width !default;
+
+$section-spacer:              60px;
+$section-spacer-lg:           100px;
+
+$btn-padding-y:               0;
+$btn-line-height:             2.75rem;
+
+$btn-border-radius:           5rem;
+
+$gutter:                      30px;
+
+$project-gutter:              10px;
+
+$transition-timing:           cubic-bezier(.76,0,.175,1);
+
+$project-preview:             50vw;
+
+$tooltip-font-size:             1rem;
+$tooltip-bg:                    $primary-cover-2;
+$tooltip-border-radius:         0;
+$tooltip-arrow-color:           $tooltip-bg;
+$tooltip-padding-y:             .5rem;
+$tooltip-padding-x:             1rem;
+$tooltip-margin:                0 0.5rem;
+$tooltip-color:                 $black;
+$tooltip-arrow-width:           .8rem;

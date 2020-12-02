@@ -1,0 +1,42 @@
+@import "../global/variables.scss";
+
+.btn {
+  
+  &.btn-primary {
+    font-size: 1.125rem;
+    font-family: $font-family-secondary;
+    color: $white;
+
+    &:hover {
+      background-color: transparent;
+      color: $primary;
+    }
+  }
+
+  &.btn-outline-info {
+    font-size: 0.875rem;
+    color: $black;
+    font-weight: 500;
+  }
+
+  &.btn-spec {
+    background-color: $pink;
+    color: $black;
+    font-family: $font-family-secondary;
+    white-space: nowrap;
+    border-radius: 4px;
+    border: 1px solid $gray-2;
+    display: flex;
+    align-items: center;
+    line-height: 2rem;
+
+    .app-icon {
+      margin-right: 0.5rem;
+      font-size: 0.6rem;
+    }
+
+    &:hover {
+      background-color: transparent;
+    }
+  }
+}

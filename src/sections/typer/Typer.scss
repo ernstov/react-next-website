@@ -1,0 +1,46 @@
+@import "../../styles/global/variables.scss";
+
+.typer {
+  &-container {
+    padding: 2rem 4rem;
+    background-color: $primary-cover-2;
+    border: 1px solid $border-color;
+    border-radius: 10px;
+    display: inline-block;
+    overflow: hidden;
+
+    ul {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      margin-top: 0.5rem;
+
+      li {
+        line-height: 1.6;
+      }
+    }
+  }
+
+  &-img {
+    width: 170px;
+    height: auto;
+  }
+
+  @include media-breakpoint-down(md) {
+    &-img {
+      margin-bottom: 2rem;
+    }
+
+    &-container {
+      padding: 2rem 2rem;
+
+      ul {
+        li {
+          span {
+            font-size: 0.875rem;
+          }
+        }
+      }
+    }
+  }
+}
