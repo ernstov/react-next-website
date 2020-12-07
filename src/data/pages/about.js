@@ -69,14 +69,14 @@ export const page = {
   },
   carousel: {
     img: "printing-press.svg",
-    title: "Transforming the news experience",
+    title: "Unbreaking news",
     description: "We’re unraveling echo chambers and giving you new tools to stay informed, mindfully:",
     variant: "fluid",
     columns: [
-      {title: "Browse", description: "News from 150 media sources of all types", img: "browse-img.png", imgClass: "fluid", additional: "US, World, Politics, Sports, Tech, Entertainment, Science, Business, Lifestyle + more"},
+      {title: "Browse", description: "News as it happens, from over 150 media sources of all types", img: "browse-img.png", imgClass: "fluid", additional: "US, World, Politics, Sports, Tech, Entertainment, Science, Business, Lifestyle + more"},
       {title: "Filter", description: "Decipher between news and noise", img: "filter-img.svg"},
-      {title: "Read", description: "Mobile, tablet, bright, dark, web or reader", img: "read-img.png", imgClass: "img-bottom"},
-      {title: "Compare", description: "See how different sources cover the same story and compare fact checks across the web", img: "compare-img.png"},
+      {title: "Read", description: "Mobile, tablet, light, dark, web or reader modes", img: "read-img.png", imgClass: "img-bottom"},
+      {title: "Compare", description: "See how different sources cover the same story and compare fact checks across the web", img: "compare-img.png", imgClass: "img-bottom"},
       {title: "Review", description: "Help improve the news by reviewing media coverage on its fairness, accuracy & quality", img: "review-img.png"},
     ]
   },
