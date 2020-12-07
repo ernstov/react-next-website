@@ -36,7 +36,7 @@ const Sidebar = ({ data, isVisible }) => {
             <Col>
               <div className="d-flex align-items-center">
                 <div className="sidebar-logo">
-                  <img src={`./assets/img/${data.img}`} alt="" />
+                  <img src={`../assets/img/${data.img}`} alt="" />
                 </div>
                 <div>
                   <div className="sidebar-title"><span>{data.title}</span></div>

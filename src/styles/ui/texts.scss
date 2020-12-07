@@ -96,6 +96,11 @@
   font-size: 0.9375rem;
 }
 
+.text-medium-lgt {
+  font-size: 0.9375rem;
+  color: $gray-5;
+}
+
 .text-title-white {
   color: $light;
   font-size: 1.4375rem;
@@ -132,6 +137,11 @@
 .text-roman-sm {
   font-size: 0.875rem;
   font-weight: 500;
+}
+
+.text-book {
+  font-size: 0.875rem;
+  color: $gray-5;
 }
 
 @include media-breakpoint-down(lg) {

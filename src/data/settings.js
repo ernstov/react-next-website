@@ -15,7 +15,10 @@ export const settings = {
 
   texts: {
     said: "said",
-    InaccurateInfo: "Inaccurate info"
+    InaccurateInfo: "Inaccurate info",
+    Morelikethis: "More like this",
+    Sharethis: "Share this",
+    Thepostnotfound: "The post not found",
   },
 
   header: {
@@ -36,6 +39,7 @@ export const settings = {
     { name: "Privacy", link: "/privacy", component: "Privacy",  excludeNav: true },
     { name: "Coming Soon", link: "/support", component: "ComingSoon",  excludeNav: true },
     { name: "Contact us", link: "/contact", component: "Contact",  excludeNav: true },
+    { name: "Post", link: "/wire/:postName", component: "Post", excludeNav: true },
   ],
 
   navigationAdditional: {
@@ -118,4 +122,22 @@ export const settings = {
     ],
     copyright: "© 2020 Gawq. All rights reserved.",
   },
+
+  blog: [
+    {
+      alias: "the-post-name",
+      title: "This is the headline of an article post",
+      subTitle: "This is a secondary headline - lorem ipsum day ellium.",
+      author: "John Smith",
+      authorImg: "john-smith.png",
+      content: "# Article title font here \n Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sed vestibulum ante. Pellentesque fermentum scelerisque libero, vel tristique massa sodales non. Fusce quis diam condimentum, congue massa tincidunt, aliquet mauris. Aliquam vestibulum an example link here eros a cursus. Mauris gravida mattis diam, a mattis arcu auctor sed.",
+      tags: ["Media", "Topics Tagged", "Topic XY", "Categories"]
+    }
+  ],
+
+  share: [
+    {name: "twitter", isText: true, link: "https://twitter.com/intent/tweet?url=", icon: "twitter"},
+    {name: "facebook", link: "https://www.facebook.com/sharer/sharer.php?u=", icon: "square-facebook"},
+    {name: "printerest", link: "http://pinterest.com/pin/create/link/?url=", icon: "printerest"},
+  ]
 }

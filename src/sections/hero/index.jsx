@@ -16,7 +16,7 @@ const Hero = ({ data, isVisible }) => {
   }, [isVisible])
 
   return (
-    <div className={`hero ${visible ? "active" : ""}`}>
+    <div className={`hero ${data.variant ? data.variant : ""} ${visible ? "active" : ""}`}>
       <div className="hero-inner">
         {data.img &&
           <img className="hero-img entry-1" src={`/assets/img/${data.img}`} />

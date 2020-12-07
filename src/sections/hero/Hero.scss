@@ -10,6 +10,12 @@
   padding-left: $gutter/2;
   padding-right: $gutter/2;
 
+  &.blog {
+    .text-sub-title {
+      color: $gray-5;
+    }
+  }
+
   &-img {
     max-width: 300px;
     max-height: 240px;
