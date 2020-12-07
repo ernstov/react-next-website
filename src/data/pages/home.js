@@ -28,10 +28,11 @@ export const page = {
       { name: "No in-stream ads" },
       { name: "Filter opinions, celebrity, or paid news" },
       { name: "Disable sources with paywalls" },
-      { name: "Compare coverage on the same story" },
+      { name: "Compare 360 coverage across sources" },
       { name: "Follow or mute topics" },
+      { name: "Clean reader mode" },
       { name: "Bookmark stories for later" },
-      { name: "Review media coverage" },
+      { name: "Review media credibility" },
       { name: "Comment and discuss" },
       { name: "Compare fact checks across the web" },
       { name: "Dark mode option" },
@@ -96,7 +97,7 @@ export const page = {
     description: "User reviews on quality of coverage",
     link: {
       name: "How?",
-      link: "/"
+      link: "/about"
     },
     content: [
       {
@@ -140,7 +141,7 @@ export const page = {
     ]
   },
   about: {
-    title: "News served without black box algorithms",
+    title: "Break free from echo chambers. This is news served without an agenda.",
     button: {
       name: "Learn more about Gawq",
       link: "/about",

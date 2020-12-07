@@ -1,7 +1,7 @@
 export const page = {
   hero: {
     title: "<span>Contact</span> us",
-    description: "This is a secondary headline - lorem ipsum day ellium.",
+    description: "We're happy to hear from you.",
     descriptionCL: "mw-600",
     img: "speech-bubbles.svg",
   },
@@ -17,18 +17,20 @@ export const page = {
   },
 
   contact: {
-    title: "How’s Gawq different?",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sed vestibulum ante. Pellentesque fermentum scelerisque libero, vel tristique massa sodales non. Fusce quis diam condimentum, congue massa tincidunt, aliquet mauris. Aliquam vestibulum an <a href='/about'>example link here</a> eros a cursus. Mauris gravida mattis diam, a mattis arcu auctor sed.",
+    title: "Support using the app",
+    description: "Please make sure that you have the latest version of Gawq installed. If you continue to have issues, please follow these instructions. We'll do our best to respond within two business days.",
     list: {
-      title: "Here’s what a bulleted list looks like:",
+      title: "Send an email to support@gawq.com and include the following information:",
       options: [
-        {name: "One bulleted item"},
-        {name: "Second one here"},
-        {name: "And yet another"},
-        {name: "Fourth point, another example"},
+        {name: "The email used to register your Gawq account"},
+        {name: "Details on the issue that you're experiencing"},
+        {name: "The app version you're using (You can find this at the bottom of the 'Edit profile' section)"},
+        {name: "Your device type (Apple/iOS or Android)"},
+        {name: "Please specify whether you're using a mobile phone or tablet (including the model is helpful)"},
       ]
     }
   },
+  
 
   footer: {
     variant: "simple",
