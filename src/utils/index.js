@@ -11,12 +11,22 @@ export const getUrlParam = (paramName) => {
 
 export const isWrap = () => {
   const wrap = getUrlParam("wrap");
-  
+
   if (wrap) {
     return JSON.parse(wrap);
-  }else {
+  } else {
     return true;
   }
+}
+
+export const cutOffString = (text) => {
+  if (text.length <= 100) return text
+  return text.slice(0, 100) + "..."
+}
+
+export const diffTimeString = (text) => {
+  let newText = text.replace(' hours', 'h').replace(' minutes', 'm').replace(' days', 'd')
+  return newText
 }
 
 export const validateEmail = (email) => {

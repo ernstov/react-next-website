@@ -134,7 +134,7 @@ const Tranding = ({ data, isVisible }) => {
         <Row className="mb-4 mt-s">
           <Col>
             <h3 className="text-title-sm mb-1 entry-3">{data.titleContent}</h3>
-            <div className="d-flex align-items-center entry-4"><p className="text-small mb-0">{data.description}</p><a className="text-small-link ml-2" href={data.link.link}>{data.link.name}</a></div>
+            <div className="d-flex align-items-center entry-4"><p className="text-small mb-0">{data.description}</p></div>
           </Col>
         </Row>
       </Container>

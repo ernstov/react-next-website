@@ -16,9 +16,9 @@ const Block = ({ data, i, variant }) => {
             {data.description && <p className="text-medium-reg mb-0">{data.description}</p>}
           </div>
 
-          {data.img && 
+          {data.img &&
             <div className={`block-img ${data.imgClass ? data.imgClass : ""}`}>
-              <img src={`/assets/img/${data.img}`} alt=""/>
+              <img src={data.img} alt="" />
             </div>
           }
 
@@ -31,13 +31,13 @@ const Block = ({ data, i, variant }) => {
         </div>
       default:
         return <div className="block">
-          <div className="block-img" style={{ background: `url(./assets/img/${data.img})` }}>
+          <div className="block-img" style={{ background: `url(${data.img})` }}>
             {data.label && <div className="block-label">{data.label}</div>}
           </div>
           <div className="block-content">
             <div className="block-source">
               <div className="d-flex align-items-center text-tiny">
-                <img className="mr-2" src={`./assets/img/${data.sourceLogo}`} alt="" />
+                <img className="mr-2" src={data.sourceLogo} alt="" />
                 <span>{data.source}</span>
               </div>
               <div>
@@ -45,13 +45,14 @@ const Block = ({ data, i, variant }) => {
               </div>
             </div>
             <div className="mt-2">
-              <span className="text-medium">{data.title}</span>
+              <a href={data.url} target="_blank" ><span className="text-medium">{data.title}</span></a>
             </div>
           </div>
-          <div className="block-tooltip">
+          { /*
+            <div className="block-tooltip">
             <div className="block-tooltip-title">
               <div className="block-tooltip-avatar">
-                <img src={`./assets/img/${data.comment.avatar}`} alt="" />
+                <img src={`${data.comment.avatar}`} alt="" />
               </div>
               <div className="block-tooltip-author">
                 {data.comment.author}
@@ -64,6 +65,7 @@ const Block = ({ data, i, variant }) => {
               <Button className="mt-3" variant="spec"><Icon variant="flag" />{settings.texts.InaccurateInfo}</Button>
             </div>
           </div>
+          */ }
         </div>
     }
   }
