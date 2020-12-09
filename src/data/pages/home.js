@@ -3,8 +3,8 @@ export const page = {
     title: "Stay informed, <span>mindfully</span>.",
     description: "Compare the news, mute the noise, and read beyond the headlines.",
     markets: [
-      {img: "logo-apple.png", link: "#"},
-      {img: "logo-android.png", link: "#"}
+      { img: "logo-apple.png", link: "#" },
+      { img: "logo-android.png", link: "#" }
     ],
     buttons: [
       {
@@ -59,42 +59,42 @@ export const page = {
       {
         name: "People",
         items: [
-          {name: "Trump"},
-          {name: "Joe Biden"},
-          {name: "Johnny Depp"},
-          {name: "Steve Cohen"},
+          { name: "Trump" },
+          { name: "Joe Biden" },
+          { name: "Johnny Depp" },
+          { name: "Steve Cohen" },
         ]
       },
       {
         name: "Events",
         items: [
-          {name: "2020 Elections"},
-          {name: "Halloween"},
-          {name: "Prime Day"},
-          {name: "Super Bowl"},
+          { name: "2020 Elections" },
+          { name: "Halloween" },
+          { name: "Prime Day" },
+          { name: "Super Bowl" },
         ]
       },
       {
         name: "Companies",
         items: [
-          {name: "Apple"},
-          {name: "Facebook"},
-          {name: "Wal-mart"},
-          {name: "Trader Joe’s"},
+          { name: "Apple" },
+          { name: "Facebook" },
+          { name: "Wal-mart" },
+          { name: "Trader Joe’s" },
         ]
       },
       {
         name: "Topics",
         items: [
-          {name: "Media"},
-          {name: "Sports Figures"},
-          {name: "Cannabis"},
-          {name: "Movies"},
+          { name: "Media" },
+          { name: "Sports Figures" },
+          { name: "Cannabis" },
+          { name: "Movies" },
         ]
       },
     ],
-    titleContent: "Content reviews",
-    description: "User reviews on quality of coverage",
+    titleContent: "Current headlines",
+    description: "Today's stories with the most media coverage",
     link: {
       name: "How?",
       link: "/about"
@@ -113,31 +113,6 @@ export const page = {
           content: "",
         }
       },
-      {
-        title: "Lorem ipsum headline here, this one wraps down to 2 lines",
-        date: "May 15 ‧ 9:32am",
-        source: "NBC News",
-        sourceLogo: "nbc-news.png",
-        img: "street.jpg",
-        comment: {
-          author: "Jon Stewart",
-          avatar: "jon-stewart.png",
-          content: "",
-        }
-      },
-      {
-        title: "Lorem ipsum headline here, this one wraps down to 2 lines",
-        date: "May 15 ‧ 9:32am",
-        source: "Fox News",
-        sourceLogo: "fox-news.png",
-        img: "street.jpg",
-        label: "Opinion",
-        comment: {
-          author: "Jon Stewart",
-          avatar: "jon-stewart.png",
-          content: "",
-        }
-      }
     ]
   },
   about: {

@@ -52,19 +52,19 @@ export const page = {
     img: "hand-phone-g.svg",
     title: "What we ask of you",
     list: [
-      {name: "<span class='mr-2'>○</span> Ask questions"},
-      {name: "<span class='mr-2'>○</span> Read beyond the headlines"},
-      {name: "<span class='mr-2'>○</span> Consider perspective"},
-      {name: "<span class='mr-2'>○</span> Support great content creators"},
-      {name: "<span class='mr-2'>○</span> Be kind"},
+      { name: "<span class='mr-2'>○</span> Ask questions" },
+      { name: "<span class='mr-2'>○</span> Read beyond the headlines" },
+      { name: "<span class='mr-2'>○</span> Consider perspective" },
+      { name: "<span class='mr-2'>○</span> Support great content creators" },
+      { name: "<span class='mr-2'>○</span> Be kind" },
     ]
   },
   footer: {
     variant: "simple",
     additional: "Use of Gawq is subject to our <a href='/terms'>Terms</a> & <a href='/privacy'>Privacy Policy</a>.",
     stores: [
-      {img: "app-store-badge.png", link: "#"},
-      {img: "google-play-badge.png", link: "#"},
+      { img: "app-store-badge.png", link: "#" },
+      { img: "google-play-badge.png", link: "#" },
     ]
   },
   carousel: {
@@ -73,11 +73,11 @@ export const page = {
     description: "We’re unraveling echo chambers and giving you new tools to stay informed, mindfully:",
     variant: "fluid",
     columns: [
-      {title: "Browse", description: "News as it happens, from over 150 media sources of all types", img: "browse-img.png", imgClass: "fluid", additional: "US, World, Politics, Sports, Tech, Entertainment, Science, Business, Lifestyle + more"},
-      {title: "Filter", description: "Decipher between news and noise", img: "filter-img.svg"},
-      {title: "Read", description: "Mobile, tablet, light, dark, web or reader modes", img: "read-img.png", imgClass: "img-bottom"},
-      {title: "Compare", description: "See how different sources cover the same story and compare fact checks across the web", img: "compare-img.png", imgClass: "img-bottom"},
-      {title: "Review", description: "Help improve the news by reviewing media coverage on its fairness, accuracy & quality", img: "review-img.png"},
+      { title: "Browse", description: "News as it happens, from over 150 media sources of all types", img: "/assets/img/browse-img.png", imgClass: "fluid", additional: "US, World, Politics, Sports, Tech, Entertainment, Science, Business, Lifestyle + more" },
+      { title: "Filter", description: "Decipher between news and noise", img: "/assets/img/filter-img.svg" },
+      { title: "Read", description: "Mobile, tablet, light, dark, web or reader modes", img: "/assets/img/read-img.png", imgClass: "img-bottom" },
+      { title: "Compare", description: "See how different sources cover the same story and compare fact checks across the web", img: "/assets/img/compare-img.png", imgClass: "img-bottom" },
+      { title: "Review", description: "Help improve the news by reviewing media coverage on its fairness, accuracy & quality", img: "/assets/img/review-img.png" },
     ]
   },
 
