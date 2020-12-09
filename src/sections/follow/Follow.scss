@@ -1,7 +1,7 @@
 @import "../../styles/global/variables.scss";
 
 .follow {
-  padding: 3rem 0;
+  padding: 32px 0;
   background-color: $primary-cover;
   border-top: 1px solid $border-color;
 
@@ -104,6 +104,8 @@
   }
 
   @include media-breakpoint-down(sm) {
+    padding: 24px 0 28px;
+
     form {
       flex-direction: column;
     }
@@ -124,4 +126,82 @@
     }
   }
 
+}
+
+
+.subscribe-form {
+  display: flex;
+  justify-content: space-between;
+  height: 46px;
+  background: #FFFFFF;
+  border: 1px solid #D2CEC4;
+  border-radius: 23px;
+  padding-left: 23px;
+  padding-right: 22px;
+  overflow: hidden;
+
+  &.hide {
+    display: none;
+  }
+
+  &__input {
+    border: none;
+    outline: none;
+    max-width: 180px;
+    font-family: "Avenir Next";
+    font-weight: 500;
+    font-size: 14px;
+    color: #818181; 
+    padding-right: 10px;
+
+    &::placeholder {
+      font-family: "Avenir Next";
+      font-weight: 500;
+      font-size: 14px;
+      color: #818181; 
+    }
+  }
+
+  &__submit {
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 16px;
+    color: #227C9D;
+    opacity: 0.9;
+    color: $secondary;
+    text-decoration: underline;
+    font-family: $font-family-secondary;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  &__loader-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__notification {
+    margin-top: 10px;
+    font-size: 13px;
+
+    &.error {
+      color: red;
+    }
+
+    &.success {
+      color: #227C9D;
+    }
+  }
+
+  @include media-breakpoint-down(sm) {
+    padding: 0 15px;
+
+    &__input {
+      max-width: 120px;
+    }
+  }
 }

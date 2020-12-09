@@ -59,14 +59,6 @@ export const page = {
       { name: "<span class='mr-2'>○</span> Be kind" },
     ]
   },
-  footer: {
-    variant: "simple",
-    additional: "Use of Gawq is subject to our <a href='/terms'>Terms</a> & <a href='/privacy'>Privacy Policy</a>.",
-    stores: [
-      { img: "app-store-badge.png", link: "#" },
-      { img: "google-play-badge.png", link: "#" },
-    ]
-  },
   carousel: {
     img: "printing-press.svg",
     title: "Unbreaking news",

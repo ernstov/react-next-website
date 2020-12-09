@@ -32,6 +32,7 @@
     "autoprefixer": "^10.0.2",
     "axios": "^0.19.2",
     "bootstrap": "^4.5.3",
+    "lodash.uniqby": "^4.7.0",
     "lottie-web": "^5.7.4",
     "moment": "^2.29.1",
     "node-sass": "^4.12.0",
@@ -53,7 +54,8 @@
     "remark-gfm": "^1.0.0",
     "sass-loader": "^7.3.1",
     "smooth-scrollbar": "^8.5.3",
-    "swiper": "^5.4.5"
+    "swiper": "^5.4.5",
+    "uuid": "^8.3.2"
   },
   "browserslist": [
     "> 1%",

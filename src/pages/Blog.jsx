@@ -1,29 +1,28 @@
 import React from "react";
 import Seo from "../components/seo";
-import {settings} from "../data/settings";
+import { settings } from "../data/settings";
 import VisibilitySensor from '../utils/react-visibility-sensor';
-import Hero from "../sections/hero";
 import Footer from "../sections/footer";
-import FaqViewer from "../sections/faq-viewer";
 import Follow from "../sections/follow";
-import {page} from "../data/pages/faq";
+import PostList from "../sections/blog/postlist"
+import { page as comingPage } from "../data/pages/coming";
+import { page as blogPage } from "../data/pages/blog";
 import { isWrap } from "../utils";
 
-const Faq = () => {
+const Blog = () => {
 
   const sections = [
-    { component: Hero, props: { data: page.hero } },
-    { component: FaqViewer, props: { data: page.faq } },
+    { component: PostList, props: { data: blogPage.blog } },
     { component: Follow, props: { data: settings.follow } },
-    { component: Footer, props: { data: {...settings.footer, ...settings.simpleFooter} } },
+    { component: Footer, props: { data: { ...settings.footer, ...comingPage.footer } } },
   ]
 
-  if(!isWrap()) sections.pop();
+  if (!isWrap()) sections.pop();
 
   return <div>
-    <Seo seo={page.seo} />
+    <Seo seo={settings.seo} />
     {sections.map((section, i) => (
-      <VisibilitySensor minTopValue={100} partialVisibility={true} once={true} key={`p-${i}`}>
+      <VisibilitySensor partialVisibility={true} once={true} key={`p-${i}`}>
         {({ isVisible }) =>
           React.createElement(section.component, { ...section.props, key: `s-${i}`, isVisible: isVisible })
         }
@@ -32,4 +31,4 @@ const Faq = () => {
   </div>
 }
 
-export default Faq;
+export default Blog;

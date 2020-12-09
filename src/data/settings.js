@@ -1,6 +1,6 @@
 export const settings = {
   projectName: "Gawq",
-  api: "https://app.gawq.com",
+  api: "https://app.gawq.com", 
   preloaderTime: 700,
 
   seo: {
@@ -24,7 +24,7 @@ export const settings = {
   header: {
     button: {
       name: "Get the app",
-      link: "#",
+      link: "/download",
       exclude: ["/"]
     }
   },
@@ -33,15 +33,16 @@ export const settings = {
     { name: "Home", link: "/", component: "Home", excludeNav: true },
     { name: "About", link: "/about", component: "About" },
     { name: "FAQs", link: "/faqs", component: "Faq" },
-    { name: "The Wire blog", link: "/wire", component: "ComingSoon" },
+    { name: "The Wire blog", link: "/wire", component: "Blog" },
     { name: "Join us", link: "/apply", component: "ComingSoon" },
     { name: "Terms", link: "/terms", component: "Terms",  excludeNav: true },
     { name: "Privacy", link: "/privacy", component: "Privacy",  excludeNav: true },
     { name: "Coming Soon", link: "/support", component: "ComingSoon",  excludeNav: true },
     { name: "Contact us", link: "/contact", component: "Contact",  excludeNav: true },
+    { name: "Download", link: "/download", component: "Download",  excludeNav: true },
     { name: "Post", link: "/wire/:postName", component: "Post", excludeNav: true },
   ],
-
+ 
   navigationAdditional: {
     stores: [
       {img: "app-store-badge.png", link: "#"},

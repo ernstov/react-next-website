@@ -12,4 +12,13 @@ export const page = {
       {img: "google-play-badge.png", link: "#"},
     ]
   },
+  blog: {
+    tagsText: 'Frequent topics',
+    subscribeForm: {
+      title: 'Follow along and get content from the Wire delivered straight to your inbox:',
+    },
+    pageTitle: 'This is the Wire',
+    pageSubtitle: 'Gawq’s journey toward a better media landscape',
+    articlesTitle: 'Recent post',
+  },
 }

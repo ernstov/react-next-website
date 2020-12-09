@@ -9,7 +9,7 @@ export const page = {
     buttons: [
       {
         name: "Get the app, free",
-        link: "/",
+        link: "/download",
         variant: "primary",
       },
       {

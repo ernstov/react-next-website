@@ -13,7 +13,7 @@ const Privacy = () => {
   const sections = [
     { component: Hero, props: { data: page.hero } },
     { component: HtmlViewer, props: { data: page.privacy } },
-    { component: Footer, props: { data: {...settings.footer, ...page.footer} } },
+    { component: Footer, props: { data: {...settings.footer, ...settings.simpleFooter} } },
   ]
 
   if(!isWrap()) sections.pop();

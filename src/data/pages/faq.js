@@ -14,14 +14,6 @@ export const page = {
       { "property": "og:image", "content": "logo.svg" }
     ]
   },
-  footer: {
-    variant: "simple",
-    additional: "Use of Gawq is subject to our <a href='/terms'>Terms</a> & <a href='/privacy'>Privacy Policy</a>.",
-    stores: [
-      { img: "app-store-badge.png", link: "#" },
-      { img: "google-play-badge.png", link: "#" },
-    ]
-  },
   faq: [
     { question: "How’s Gawq different?", answer: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minus facilis similique possimus nesciunt, doloribus ullam perferendis necessitatibus quos deleniti placeat cumque eius nam vitae esse inventore. Ullam sit aperiam deleniti!" },
     { question: "Is Gawq free?", answer: "Yes, Gawq is entirely free. Version one is available for both Apple iOS and Android. The app is optimized for mobile and tablet devices." },

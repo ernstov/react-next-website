@@ -13,7 +13,7 @@ const Terms = () => {
   const sections = [
     { component: Hero, props: { data: page.hero } },
     { component: HtmlViewer, props: { data: page.terms } },
-    { component: Footer, props: { data: {...settings.footer, ...page.footer} } },
+    { component: Footer, props: { data: {...settings.footer, ...settings.simpleFooter} } },
   ]
 
   if(!isWrap()) sections.pop();

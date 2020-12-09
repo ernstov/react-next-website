@@ -23,7 +23,7 @@ const About = () => {
     { component: Blocks, props: { data: page.cooperation } },
     { component: Typer, props: { data: page.whatWeAsk } },
     { component: Follow, props: { data: settings.follow } },
-    { component: Footer, props: { data: {...settings.footer, ...page.footer} } },
+    { component: Footer, props: { data: {...settings.footer, ...settings.simpleFooter} } },
   ]
 
   if(!isWrap()) sections.pop();
