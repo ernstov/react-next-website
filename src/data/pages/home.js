@@ -117,6 +117,7 @@ export const page = {
   },
   about: {
     title: "Break free from echo chambers. This is news served without an agenda.",
+    titleCL: "mw-550",
     button: {
       name: "Learn more about Gawq",
       link: "/about",

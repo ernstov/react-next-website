@@ -46,7 +46,9 @@ const PostList = (props) => {
 
   return (
     <>
-      <div className="blog-header"></div>
+      <div className="blog-header">
+        <img src={`/assets/img/wire-img.svg`} alt=""/>
+      </div>
       <header className="blog-header-wrapper">
         <h1 className="blog-page-title text-title">{data?.pageTitle}</h1>
         <p className="blog-subtitle text-sub-title">{data?.pageSubtitle}</p>

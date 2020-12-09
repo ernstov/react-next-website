@@ -10,14 +10,16 @@ export const getPreviewUrl = (text) => {
 }
 
 export const ArticlePreview = React.memo((props) => {
-  const { title, subTitle, created_at, alias, body } = props
+  const { title, subTitle, created_at, alias, body, timeToRead } = props
+
+  console.log(props)
 
   return (
     <article className="blog-article-wrapper">
       <div className="blog-article__title-wrapper">
         <div className="blog-article__date">
           <span className="text-medium-lgt">{created_at && moment(created_at).format('MMM D, YYYY')}</span>
-          <span className="blog-article__time-read text-medium-lgt">3m read</span>
+          <span className="blog-article__time-read text-medium-lgt">{timeToRead ? timeToRead : 1}m read</span>
         </div>
         <Link className="blog-article__title" to={`/wire/${alias}`}>
           <h3 className="blog-article__title">{title}</h3>

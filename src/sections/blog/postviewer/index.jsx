@@ -6,7 +6,7 @@ import BlogShare from "../../../components/blog/BlogShare";
 import ReactMarkdown from 'react-markdown';
 import gfm from 'remark-gfm';
 import { dateFormat, isObjectEmpty } from "../../../utils";
-import {settings} from "../../../data/settings";
+import { settings } from "../../../data/settings";
 
 import "./PostViewer.scss";
 
@@ -29,8 +29,8 @@ const PostViewer = ({ isVisible, data }) => {
           <Row>
             <Col md={12}>
               <div className="blog-post-title">
-                <BlogAuthor data={data.authors} />
-                <div className="mb-4"><span className="text-medium-lgt">{dateFormat(data.created_at, "mmm dd, yyyy")}</span></div>
+                {data.blogAuthor && <BlogAuthor data={data.blogAuthor} />}
+                <div className="mb-4"><span className="text-medium-lgt">{dateFormat(data.created_at, "mmm dd, yyyy")}</span><span className="text-medium-lgt dot-before">{data.timeToRead ? data.timeToRead : "1"}{settings.texts.m} {settings.texts.read}</span></div>
               </div>
             </Col>
           </Row>
@@ -57,12 +57,12 @@ const PostViewer = ({ isVisible, data }) => {
               </div>
             </Col>
           </Row> </> :
-            <Row>
-              <Col md={12}>
-                <h2 className="text-center mb-5">{settings.texts.Thepostnotfound}</h2>
-              </Col>
-            </Row>
-            }
+          <Row>
+            <Col md={12}>
+              <h2 className="text-center mb-5">{settings.texts.Thepostnotfound}</h2>
+            </Col>
+          </Row>
+        }
       </Container>
     </div >
   );

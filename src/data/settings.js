@@ -19,6 +19,8 @@ export const settings = {
     Morelikethis: "More like this",
     Sharethis: "Share this",
     Thepostnotfound: "The post not found",
+    read: "read",
+    m: "m",
   },
 
   header: {

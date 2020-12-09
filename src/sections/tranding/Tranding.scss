@@ -4,6 +4,14 @@
   padding: $section-spacer * 1.5 0;
   padding-bottom: 0;
 
+  .badge {
+    cursor: pointer;
+
+    &:hover {
+      background-color: rgba($dark, 0.15);
+    }
+  }
+
   .tranding-swiper-overflow {
     width: 100vw;
     overflow: hidden;
