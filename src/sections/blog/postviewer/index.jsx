@@ -23,7 +23,7 @@ const PostViewer = ({ isVisible, data }) => {
   }, [isVisible])
 
   return (
-    <div className={`blog-post mt-5 ${data.className ? data.className : ""} mb-5 ${visible ? "active" : ''}`}>
+    <div className={`blog-post mt-0 mt-md-4 ${data.className ? data.className : ""} mb-5 ${visible ? "active" : ''}`}>
       <Container fluid className="entry-4">
         {!isObjectEmpty(data) ? <>
           <Row>
@@ -47,7 +47,7 @@ const PostViewer = ({ isVisible, data }) => {
                 <Container className="p-0" fluid>
                   <Row>
                     <Col md={8}>
-                      <BlogTags data={data.blogTags} />
+                      {data.blogTags && <BlogTags data={data.blogTags} />}
                     </Col>
                     <Col md={4}>
                       <BlogShare data={data} />

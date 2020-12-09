@@ -31,6 +31,10 @@ $blog-container-spacer: 2rem;
   border-top: 1px solid $border-color;
   border-bottom: 1px solid $border-color;
 
+  a {
+    color: $secondary;
+  }
+
   ul {
     list-style: none;
     font-weight: 500;
@@ -92,7 +96,7 @@ $blog-container-spacer: 2rem;
   }
 
   p {
-    font-size: 0.9375rem;
+    font-size: 1rem;
     line-height: 1.33;
     margin-bottom: $blog-spacer;
 
@@ -111,16 +115,16 @@ $blog-container-spacer: 2rem;
   }
 
   h3 {
-    font-size: 1.125rem;
+    font-size: 1.1875rem;
   }
 
   @include media-breakpoint-down(lg) {
     p {
-      font-size: 0.9375rem;
+      font-size: 1rem;
     }
   
     h3 {
-      font-size: 1.125rem;
+      font-size: 1.1875rem;
       margin-top: 2rem;
       margin-bottom: 1rem;
     }

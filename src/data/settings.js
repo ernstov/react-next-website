@@ -21,6 +21,7 @@ export const settings = {
     Thepostnotfound: "The post not found",
     read: "read",
     m: "m",
+    Filedunder: "Filed under",
   },
 
   header: {
