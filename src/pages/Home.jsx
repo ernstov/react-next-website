@@ -21,7 +21,7 @@ const Home = () => {
 
   const fetchContent = async () => {
     const endTime = moment.utc().format('YYYY-MM-DDTHH:mm:ss')
-    const startTime = moment.utc().subtract(8, "hours").format('YYYY-MM-DDTHH:mm:SS')
+    const startTime = moment.utc().subtract(8, "hours").format('YYYY-MM-DDTHH:mm:ss')
 
     setLoading(true)
     try {

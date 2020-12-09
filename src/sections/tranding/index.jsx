@@ -143,7 +143,7 @@ const Tranding = ({ data, isVisible }) => {
           <Row>
             <Col>
               <Swiper {...options} ref={swiperRef}>
-                {data.content.map((item, i) => (
+                {data.content && data.content.map((item, i) => (
                   <div key={`bi-${i}`}>
                     <Block data={item} />
                   </div>
