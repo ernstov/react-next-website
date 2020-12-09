@@ -34,7 +34,7 @@ export const settings = {
     { name: "About", link: "/about", component: "About" },
     { name: "FAQs", link: "/faqs", component: "Faq" },
     { name: "The Wire blog", link: "/wire", component: "Blog" },
-    { name: "Join us", link: "/apply", component: "ComingSoon" },
+    { name: "Join us", link: "/apply", component: "JoinUs" },
     { name: "Terms", link: "/terms", component: "Terms",  excludeNav: true },
     { name: "Privacy", link: "/privacy", component: "Privacy",  excludeNav: true },
     { name: "Coming Soon", link: "/support", component: "ComingSoon",  excludeNav: true },
@@ -114,7 +114,7 @@ export const settings = {
       },
       {
         name: "FAQs",
-        link: "/faq"
+        link: "/faqs"
       },
       {
         name: "The Wire",
@@ -122,6 +122,15 @@ export const settings = {
       }
     ],
     copyright: "© 2020 Gawq. All rights reserved.",
+  },
+
+  simpleFooter: {
+    variant: "simple",
+    additional: "Use of Gawq is subject to our <a href='/terms'>Terms</a> & <a href='/privacy'>Privacy Policy</a>.",
+    stores: [
+      { img: "app-store-badge.png", link: "#" },
+      { img: "google-play-badge.png", link: "#" },
+    ]
   },
 
   blog: [

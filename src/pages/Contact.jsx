@@ -13,7 +13,7 @@ const Contact = () => {
   const sections = [
     { component: Hero, props: { data: page.hero } },
     { component: ContactViewer, props: { data: page.contact } },
-    { component: Footer, props: { data: {...settings.footer, ...page.footer} } },
+    { component: Footer, props: { data: {...settings.footer, ...settings.simpleFooter} } },
   ]
 
   if(!isWrap()) sections.pop();

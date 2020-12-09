@@ -19,7 +19,7 @@ const Hero = ({ data, isVisible }) => {
     <div className={`hero ${data.variant ? data.variant : ""} ${visible ? "active" : ""}`}>
       <div className="hero-inner">
         {data.img &&
-          <img className="hero-img entry-1" src={`/assets/img/${data.img}`} />
+          <img className={`hero-img entry-1 ${data.imgCL ? data.imgCL : ""}`} src={`/assets/img/${data.img}`} />
         }
         <h1 className={`text-title mb-4 mb-md-5 entry-1 mx-auto ${data.titleCL ? data.titleCL : "mw-410"}`} dangerouslySetInnerHTML={{ __html: data.title }}></h1>
         <p className={`text-sub-title entry-2 mx-auto ${data.descriptionCL ? data.descriptionCL : "mw-410"}`} dangerouslySetInnerHTML={{ __html: data.description }}></p>
