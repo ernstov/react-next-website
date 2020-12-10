@@ -1,6 +1,6 @@
 import React from "react";
 import Seo from "../components/seo";
-import {settings} from "../data/settings";
+import { settings } from "../data/settings";
 import VisibilitySensor from '../utils/react-visibility-sensor';
 import Hero from "../sections/hero";
 import Footer from "../sections/footer";
@@ -9,12 +9,24 @@ import Blocks from "../sections/blocks";
 import Carousel from "../sections/carousel";
 import AboutGraph from "../sections/aboutGraph";
 import Typer from "../sections/typer";
-import {page} from "../data/pages/about";
+import { page } from "../data/pages/about";
 import Follow from "../sections/follow";
 import { isWrap } from "../utils";
 import SEO from "../data/seo.json";
+import TagManager from 'react-gtm-module'
+import { gtmDataLayerName, gtmId } from "../const";
 
-const About = ({path}) => {
+const tagManagerArgs = {
+  gtmId: gtmId,
+  dataLayerName: gtmDataLayerName,
+  dataLayer: {
+    page: 'About'
+  },
+}
+
+const About = ({ path }) => {
+
+  TagManager.dataLayer(tagManagerArgs)
 
   const sections = [
     { component: Hero, props: { data: page.hero } },
@@ -24,10 +36,10 @@ const About = ({path}) => {
     { component: Blocks, props: { data: page.cooperation } },
     { component: Typer, props: { data: page.whatWeAsk } },
     { component: Follow, props: { data: settings.follow } },
-    { component: Footer, props: { data: {...settings.footer, ...settings.simpleFooter} } },
+    { component: Footer, props: { data: { ...settings.footer, ...settings.simpleFooter } } },
   ]
 
-  if(!isWrap()) sections.pop();
+  if (!isWrap()) sections.pop();
 
   return <div>
     <Seo seo={SEO[path] ? SEO[path] : SEO["/"]} />

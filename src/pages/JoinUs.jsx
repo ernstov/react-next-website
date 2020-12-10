@@ -9,8 +9,20 @@ import JoinUsContent from "../sections/join-us";
 import { page } from "../data/pages/join-us";
 import { isWrap } from "../utils";
 import SEO from "../data/seo.json";
+import TagManager from 'react-gtm-module'
+import { gtmDataLayerName, gtmId } from "../const";
 
-const JoinUs = ({path}) => {
+const tagManagerArgs = {
+  gtmId: gtmId,
+  dataLayerName: gtmDataLayerName,
+  dataLayer: {
+    page: 'JoinUs'
+  },
+}
+
+const JoinUs = ({ path }) => {
+
+  TagManager.dataLayer(tagManagerArgs)
 
   const sections = [
     { component: Hero, props: { data: page.hero } },

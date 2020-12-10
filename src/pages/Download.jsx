@@ -10,8 +10,20 @@ import { page as comingPage } from "../data/pages/coming";
 import { page as downloadPage } from "../data/pages/download";
 import { isWrap } from "../utils";
 import SEO from "../data/seo.json";
+import TagManager from 'react-gtm-module'
+import { gtmDataLayerName, gtmId } from "../const";
 
-const Download = ({path}) => {
+const tagManagerArgs = {
+  gtmId: gtmId,
+  dataLayerName: gtmDataLayerName,
+  dataLayer: {
+    page: 'Download'
+  },
+}
+
+const Download = ({ path }) => {
+
+  TagManager.dataLayer(tagManagerArgs)
 
   const sections = [
     { component: Hero, props: { data: downloadPage.hero } },

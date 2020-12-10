@@ -7,12 +7,24 @@ import Hero from "../sections/hero";
 import { settings } from "../data/settings";
 import { isWrap } from "../utils";
 import { Context } from '../context/context';
-import {filterIt} from "../utils";
+import { filterIt } from "../utils";
 import SEO from "../data/seo.json";
 
 import VisibilitySensor from '../utils/react-visibility-sensor';
+import TagManager from 'react-gtm-module'
+import { gtmDataLayerName, gtmId } from "../const";
 
-const Post = ({path}) => {
+const tagManagerArgs = {
+  gtmId: gtmId,
+  dataLayerName: gtmDataLayerName,
+  dataLayer: {
+    page: 'Post'
+  },
+}
+
+const Post = ({ path }) => {
+
+  TagManager.dataLayer(tagManagerArgs)
 
   const temp = window.location.href.split("/");
   const postId = temp[temp.length - 1].split("?")[0];
@@ -21,15 +33,15 @@ const Post = ({path}) => {
   const [post, setPost] = useState(p.length > 0 ? p[0] : {});
 
   const sections = [
-    { component: Hero, props: { data: {...page.hero, title: post.title, description: post.subTitle} } },
-    { component: PostViewer, props:{data: post} },
-    { component: Footer, props: { data: {...settings.footer, ...page.footer} } },
+    { component: Hero, props: { data: { ...page.hero, title: post.title, description: post.subTitle } } },
+    { component: PostViewer, props: { data: post } },
+    { component: Footer, props: { data: { ...settings.footer, ...page.footer } } },
   ]
 
-  if(!isWrap()) sections.pop();
+  if (!isWrap()) sections.pop();
 
   return <div>
-    <Seo seo={{...page.seo, title: `${settings.projectName} - ${post.title}`}} />
+    <Seo seo={{ ...page.seo, title: `${settings.projectName} - ${post.title}` }} />
     {sections.map((section, i) => (
       <VisibilitySensor minTopValue={100} partialVisibility={true} once={true} key={`p-${i}`}>
         {({ isVisible }) =>
