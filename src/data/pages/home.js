@@ -3,8 +3,8 @@ export const page = {
     title: "Stay informed, <span>mindfully</span>.",
     description: "Compare the news, mute the noise, and read beyond the headlines.",
     markets: [
-      { img: "logo-apple.png", link: "#" },
-      { img: "logo-android.png", link: "#" }
+      { img: "logo-apple.png", link: "/download" },
+      { img: "logo-android.png", link: "/download" }
     ],
     buttons: [
       {

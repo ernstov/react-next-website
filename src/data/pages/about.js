@@ -10,7 +10,7 @@ export const page = {
     "meta": [
       { "name": "description", "content": "Gawq - About" },
       { "property": "og:title", "content": "Gawq - About" },
-      { "property": "og:description", "content": "Gawq - About" },
+      { "property": "og:description", "content": "Learn more about Gawq and how mission to fight misinformation and improve the new media landscape." },
       { "property": "og:image", "content": "logo.svg" }
     ]
   },
