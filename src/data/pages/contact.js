@@ -5,17 +5,6 @@ export const page = {
     descriptionCL: "mw-600",
     img: "speech-bubbles.svg",
   },
-
-  seo: {
-    "title": "Gawq - Contact",
-    "meta": [
-      { "name": "description", "content": "Gawq - Contact" },
-      { "property": "og:title", "content": "Gawq - Contact" },
-      { "property": "og:description", "content": "Gawq - Contact" },
-      { "property": "og:image", "content": "logo.svg" }
-    ]
-  },
-
   contact: {
     title: "Support using the app",
     description: "Please make sure that you have the latest version of Gawq installed. If you continue to have issues, please follow these instructions. We'll do our best to respond within two business days.",
@@ -29,15 +18,5 @@ export const page = {
         {name: "Please specify whether you're using a mobile phone or tablet (including the model is helpful)"},
       ]
     }
-  },
-  
-
-  footer: {
-    variant: "simple",
-    additional: "Use of Gawq is subject to our <a href='/terms'>Terms</a> & <a href='/privacy'>Privacy Policy</a>.",
-    stores: [
-      { img: "app-store-badge.png", link: "#" },
-      { img: "google-play-badge.png", link: "#" },
-    ]
   },
 }

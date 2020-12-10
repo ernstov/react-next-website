@@ -5,15 +5,6 @@ export const page = {
     descriptionCL: "mw-600",
     img: "about-hero.svg",
   },
-  seo: {
-    "title": "Gawq - About",
-    "meta": [
-      { "name": "description", "content": "Gawq - About" },
-      { "property": "og:title", "content": "Gawq - About" },
-      { "property": "og:description", "content": "Gawq - About" },
-      { "property": "og:image", "content": "logo.svg" }
-    ]
-  },
   quote: {
     description: "The tools that we use to consume media are fundamentally flawed — programmed to fuel clicks over quality. Our goal is to establish trust by using technology in a way that helps people cut through the noise, understand perspective, and realize the world around us.",
     author: {
@@ -57,14 +48,6 @@ export const page = {
       { name: "<span class='mr-2'>○</span> Consider perspective" },
       { name: "<span class='mr-2'>○</span> Support great content creators" },
       { name: "<span class='mr-2'>○</span> Be kind" },
-    ]
-  },
-  footer: {
-    variant: "simple",
-    additional: "Use of Gawq is subject to our <a href='/terms'>Terms</a> & <a href='/privacy'>Privacy Policy</a>.",
-    stores: [
-      { img: "app-store-badge.png", link: "#" },
-      { img: "google-play-badge.png", link: "#" },
     ]
   },
   carousel: {

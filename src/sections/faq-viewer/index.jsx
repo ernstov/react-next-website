@@ -29,7 +29,7 @@ const FaqViewer = ({ data, isVisible }) => {
                   {question.question}<Icon variant={`${question.link ? "arrow-right" : "arrow-down"}`} />
                 </Card.Header>
                 {question.answer && <Collapse in={open == i}>
-                  <div><Card.Body>{question.answer}</Card.Body></div>
+                  <div><Card.Body dangerouslySetInnerHTML={{ __html: question.answer }}></Card.Body></div>
                 </Collapse>}
               </Card>
             ))}

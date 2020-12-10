@@ -54,6 +54,7 @@
 .text-title-smd {
   font-family: $font-family-heavy;
   font-size: 1.125rem;
+  margin-bottom: 1rem;
 }
 
 .text-sub-title {
@@ -96,6 +97,11 @@
   font-size: 0.9375rem;
 }
 
+.text-medium-lgt {
+  font-size: 0.9375rem;
+  color: $gray-5;
+}
+
 .text-title-white {
   color: $light;
   font-size: 1.4375rem;
@@ -132,6 +138,11 @@
 .text-roman-sm {
   font-size: 0.875rem;
   font-weight: 500;
+}
+
+.text-book {
+  font-size: 0.875rem;
+  color: $gray-5;
 }
 
 @include media-breakpoint-down(lg) {

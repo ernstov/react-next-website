@@ -21,7 +21,7 @@ const About = ({ data, isVisible }) => {
       <Container>
         <Row>
           <Col lg={6}>
-            <h2 className="text-title-light entry-1">{data.title}</h2>
+            <h2 className={`text-title-light entry-1 ${data.titleCL ? data.titleCL : "mw-450"}`}>{data.title}</h2>
           </Col>
           <Col lg={6} className="about-button entry-2">
             <div><Link className={`btn w-100 btn-${data.button.variant}`} to={data.button.link}>{data.button.name}</Link></div>

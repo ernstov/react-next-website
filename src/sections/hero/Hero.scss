@@ -10,6 +10,12 @@
   padding-left: $gutter/2;
   padding-right: $gutter/2;
 
+  &.blog {
+    .text-sub-title {
+      color: $gray-5;
+    }
+  }
+
   &-img {
     max-width: 300px;
     max-height: 240px;
@@ -38,7 +44,6 @@
       max-height: 1.875rem;
       transition: opacity $transition ease;
 
-
       &:hover {
         opacity: 1;
       }
@@ -46,10 +51,14 @@
   }
 
   @include media-breakpoint-down(md) {
+    &-img {
+      max-width: 100% !important;
+    }
+
     &-inner {
       max-width: 280px;
       text-align: center;
-    } 
+    }
 
     &-apps-markets {
       margin-top: 2rem;

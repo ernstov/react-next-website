@@ -1,6 +1,6 @@
 export const settings = {
   projectName: "Gawq",
-  api: "https://app.gawq.com",
+  api: "https://app.gawq.com", 
   preloaderTime: 700,
 
   seo: {
@@ -15,13 +15,20 @@ export const settings = {
 
   texts: {
     said: "said",
-    InaccurateInfo: "Inaccurate info"
+    InaccurateInfo: "Inaccurate info",
+    Morelikethis: "More like this",
+    Sharethis: "Share this",
+    Thepostnotfound: "The post not found",
+    read: "read",
+    m: "m",
+    Filedunder: "Filed under",
+    Postsnotfound: "Posts not found",
   },
 
   header: {
     button: {
       name: "Get the app",
-      link: "#",
+      link: "/download",
       exclude: ["/"]
     }
   },
@@ -30,14 +37,16 @@ export const settings = {
     { name: "Home", link: "/", component: "Home", excludeNav: true },
     { name: "About", link: "/about", component: "About" },
     { name: "FAQs", link: "/faqs", component: "Faq" },
-    { name: "The Wire blog", link: "/wire", component: "ComingSoon" },
-    { name: "Join us", link: "/apply", component: "ComingSoon" },
+    { name: "The Wire blog", link: "/wire", component: "Blog" },
+    { name: "Join us", link: "/apply", component: "JoinUs" },
     { name: "Terms", link: "/terms", component: "Terms",  excludeNav: true },
     { name: "Privacy", link: "/privacy", component: "Privacy",  excludeNav: true },
     { name: "Coming Soon", link: "/support", component: "ComingSoon",  excludeNav: true },
     { name: "Contact us", link: "/contact", component: "Contact",  excludeNav: true },
+    { name: "Download", link: "/download", component: "Download",  excludeNav: true },
+    { name: "Post", link: "/wire/:postName", component: "Post", excludeNav: true },
   ],
-
+ 
   navigationAdditional: {
     stores: [
       {img: "app-store-badge.png", link: "#"},
@@ -109,7 +118,7 @@ export const settings = {
       },
       {
         name: "FAQs",
-        link: "/faq"
+        link: "/faqs"
       },
       {
         name: "The Wire",
@@ -118,4 +127,31 @@ export const settings = {
     ],
     copyright: "© 2020 Gawq. All rights reserved.",
   },
+
+  simpleFooter: {
+    variant: "simple",
+    additional: "Use of Gawq is subject to our <a href='/terms'>Terms</a> & <a href='/privacy'>Privacy Policy</a>.",
+    stores: [
+      { img: "app-store-badge.png", link: "#" },
+      { img: "google-play-badge.png", link: "#" },
+    ]
+  },
+
+  blog: [
+    {
+      alias: "the-post-name",
+      title: "This is the headline of an article post",
+      subTitle: "This is a secondary headline - lorem ipsum day ellium.",
+      author: "John Smith",
+      authorImg: "john-smith.png",
+      content: "# Article title font here \n Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sed vestibulum ante. Pellentesque fermentum scelerisque libero, vel tristique massa sodales non. Fusce quis diam condimentum, congue massa tincidunt, aliquet mauris. Aliquam vestibulum an example link here eros a cursus. Mauris gravida mattis diam, a mattis arcu auctor sed.",
+      tags: ["Media", "Topics Tagged", "Topic XY", "Categories"]
+    }
+  ],
+
+  share: [
+    {name: "twitter", isText: true, link: "https://twitter.com/intent/tweet?url=", icon: "twitter"},
+    {name: "facebook", link: "https://www.facebook.com/sharer/sharer.php?u=", icon: "square-facebook"},
+    {name: "printerest", link: "http://pinterest.com/pin/create/link/?url=", icon: "printerest"},
+  ]
 }

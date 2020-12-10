@@ -5,6 +5,7 @@ import Scrollbar from 'react-smooth-scrollbar';
 import Block from "../../components/block";
 import Swiper from 'react-id-swiper';
 import { Context } from '../../context/context';
+import {navigate} from "@reach/router";
 
 import 'swiper/swiper.scss'
 import './Tranding.scss';
@@ -117,10 +118,10 @@ const Tranding = ({ data, isVisible }) => {
                     <div className="tranding-tags-container">
                       {trandData.data.map((item, i) => (
                         window.innerWidth < 767 ?
-                          <Badge key={`bi-${i}`} className="mr-2 mb-0 mb-md-2" variant="cover">{item.name}</Badge>
+                          <Badge onClick={()=>navigate("/download")} key={`bi-${i}`} className="mr-2 mb-0 mb-md-2" variant="cover">{item.name}</Badge>
                           :
                           i < data.limitDesktop &&
-                          <Badge key={`bi-${i}`} className="mr-2 mb-0 mb-md-2" variant="cover">{item.name}</Badge>
+                          <Badge onClick={()=>navigate("/download")} key={`bi-${i}`} className="mr-2 mb-0 mb-md-2" variant="cover">{item.name}</Badge>
                       ))}
                     </div>
                   </Scrollbar>

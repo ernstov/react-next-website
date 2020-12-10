@@ -1,0 +1,163 @@
+@import "../../styles/global/variables.scss";
+
+.blog-author {
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  margin-bottom: 0.8rem;
+
+  &-img {
+    width: 30px;
+    height: 30px;
+    background-position: center center;
+    background-size: cover;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 0.5rem;
+  }
+
+  @include media-breakpoint-down(md) {
+
+  }
+}
+
+.blog-tags {
+  padding: 2rem 0;
+  
+  &-inner {
+    display: flex;
+    flex-wrap: wrap;
+
+    >* {
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  @include media-breakpoint-down(md) {
+    &-inner {
+      flex-direction: column;
+    }
+  }
+}
+
+.blog-share {
+  padding: 2rem 0;
+  display: flex;
+  justify-content: flex-end;
+
+  > div {
+    display: inline-block;
+  }
+
+  a {
+    font-size: 1.425rem;
+    color: $black;
+    margin-left: 0.8rem;
+    transition: opacity $transition ease;
+
+    &:hover {
+      opacity: 0.6;
+    }
+    
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+
+  &-inner {
+    display: inline-flex;
+  }
+
+  @include media-breakpoint-down(md) {
+    padding-top: 0;
+    justify-content: flex-start;
+  }
+}
+
+.blog-article-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px 30px;
+  border-bottom: 1px solid #E2E2E2;
+
+  &:last-child {
+    border: none;
+    padding-bottom: 50px;
+  }
+
+  @include media-breakpoint-down(sm) {
+    flex-wrap: wrap;
+    flex-direction: column-reverse;
+    padding: 20px 15px;
+  }
+}
+
+.blog-article {
+
+  &__title-wrapper {
+    max-width: 450px;
+    padding-right: 20px;
+    width: 100%;
+  }
+
+  &__title {
+    font-family: 'Avenir';
+    font-weight: 800;
+    font-size: 18px;
+    line-height: 22px;
+    color: #272727;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  &__description {
+    font-size: 15px;
+    color: #818181;
+  }
+
+  &__cover {
+    width: 208px;
+  }
+
+  &__date {
+    margin-bottom: 20px;
+  }
+
+  &__time-read {
+    
+    &:before {
+      content: '•';
+      display: inline-block;
+      margin: 0 10px;
+      color: #F9C035;
+    }
+  }
+
+  @include media-breakpoint-down(sm) {
+    &__title-wrapper {
+      max-width: 100%;
+      padding: 0;
+    }
+
+    &__cover-wrapper {
+      width: 100%;
+      margin-bottom: 15px;
+    }
+
+    &__cover {
+      width: 100%;
+    }
+
+    &__date {
+      margin-bottom: 10px;
+    }
+
+    &__description {
+      display: none;
+    }
+  }
+  
+}

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { settings } from '../data/settings';
 
-export const ApiService = {
+export const ApiService = { 
 
   get(action) {
     return axios.get(settings.api + action, this.getAuthHeaders());

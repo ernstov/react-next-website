@@ -85,7 +85,7 @@ const Header = () => {
   return (
     <div className={`header fixed ${isVisible ? "visible" : ""} ${isCenter ? "center-logo" : ""}`}>
       <Link onClick={() => hideAll(true)} to="/"><div className="header-animation-svg" ref={handAnimationContainer}></div></Link>
-      {(settings.header.button && settings.header.button.exclude.indexOf(page.currentPage) == -1) && <a className="header-button btn btn-primary" href={settings.header.button.link}>{settings.header.button.name}</a>}
+      {(settings.header.button && settings.header.button.exclude.indexOf(page.currentPage) == -1) && <Link className="header-button btn btn-primary" to={settings.header.button.link}>{settings.header.button.name}</Link>}
       <div className={`menu-toggler ${isActiveMobile ? "is-menu-open" : ""}`} onClick={() => setIsActiveMobile(!isActiveMobile)}>
         <div className="bars"><span></span><span></span><span></span>
           <div className="other-bar"></div>

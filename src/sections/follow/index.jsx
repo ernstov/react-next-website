@@ -8,12 +8,12 @@ import MailchimpSubscribe from "react-mailchimp-subscribe";
 
 import './Follow.scss';
 
-const Follow = ({ data, isVisible }) => {
+const Follow = ({ data, isVisible, variant }) => {
 
   const [visible, setVisible] = useState(false);
   const [value, setValue] = useState("");
 
-  const Form = () => <MailchimpSubscribe url={data.button.action}/>
+  const Form = () => <MailchimpSubscribe url={data.button.action} />
 
   useEffect(() => {
     if (isVisible) {
@@ -38,33 +38,62 @@ const Follow = ({ data, isVisible }) => {
     subscribe(fields);
   }
 
-  return (
-    <div className={`follow ${visible ? "active" : ""}`}>
-      <Container>
-        <Row>
-          <Col lg={12} className="text-center position-relative entry-1">
-            <MailchimpSubscribe
-              url={data.button.action}
-              render={({ subscribe, status, message }) => (
-                <div>
-                  <form onSubmit={(e) => onSubmit(e, subscribe)} className={`follow-form ${status === "success" ? "hide" : ""}`}>
-                    <div className="follow-title">{data.title}</div>
-                    <div className="follow-input-container">
-                      <input name="EMAIL" type="email" required placeholder={data.placeholder} />
-                      <button disabled={status === "sending"} type="submit">{data.button.name}</button>
-                      <div className={`follow-notification ${status === "error" ? "active" : ""}`} dangerouslySetInnerHTML={{ __html: message }}></div>
-                    </div>
-                    {status === "sending" && <div className="follow-loader"><Icon variant="loader" /></div>}
-                  </form>
-                  <div className={`follow-message ${status === "success" ? "show" : ""}`}>{data.message}</div>
-                </div>
-              )}
-            />
-          </Col>
-        </Row>
-      </Container>
-    </div>
-  );
+  if (variant === 'form-only') {
+    return (
+      <MailchimpSubscribe
+        url={data.button.action}
+        render={({ subscribe, status, message }) => (
+          <>
+            <form onSubmit={(e) => onSubmit(e, subscribe)}
+              className={`subscribe-form ${status === "success" ? "hide" : ""}`}>
+              <input
+                className="subscribe-form__input"
+                placeholder={data.placeholder}
+                name="EMAIL"
+                type="email"
+                required
+              />
+              {status === "sending" ?
+                <span className="subscribe-form__loader-wrapper"><Icon variant="loader" /></span> :
+                <button className="subscribe-form__submit" type="submit">{data.button.name}</button>
+              }
+            </form>
+            <div className={(status === 'error') ? 'subscribe-form__notification error' : 'subscribe-form__notification success'}
+              dangerouslySetInnerHTML={{ __html: message }}></div>
+          </>
+        )}
+      />
+    )
+  } else {
+    return (
+      <div className={`follow ${visible ? "active" : ""}`}>
+        <Container>
+          <Row>
+            <Col lg={12} className="text-center position-relative entry-1">
+              <MailchimpSubscribe
+                url={data.button.action}
+                render={({ subscribe, status, message }) => (
+                  <div>
+                    <form onSubmit={(e) => onSubmit(e, subscribe)} className={`follow-form ${status === "success" ? "hide" : ""}`}>
+                      <div className="follow-title">{data.title}</div>
+                      <div className="follow-input-container">
+                        <input name="EMAIL" type="email" required placeholder={data.placeholder} />
+                        <button disabled={status === "sending"} type="submit">{data.button.name}</button>
+                        <div className={`follow-notification ${status === "error" ? "active" : ""}`} dangerouslySetInnerHTML={{ __html: message }}></div>
+                      </div>
+                      {status === "sending" && <div className="follow-loader"><Icon variant="loader" /></div>}
+                    </form>
+                    <div className={`follow-message ${status === "success" ? "show" : ""}`}>{data.message}</div>
+                  </div>
+                )}
+              />
+            </Col>
+          </Row>
+        </Container>
+      </div>
+    )
+  }
+
 }
 
 export default Follow;
