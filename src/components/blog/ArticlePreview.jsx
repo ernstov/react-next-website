@@ -12,8 +12,6 @@ export const getPreviewUrl = (text) => {
 export const ArticlePreview = React.memo((props) => {
   const { title, subTitle, created_at, alias, body, timeToRead } = props
 
-  console.log(props)
-
   return (
     <article className="blog-article-wrapper">
       <div className="blog-article__title-wrapper">

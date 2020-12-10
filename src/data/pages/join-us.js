@@ -5,15 +5,6 @@ export const page = {
     img: "join-us-hero.svg",
     imgCL: "mw-520",
   },
-  seo: {
-    "title": "Gawq - Join Us",
-    "meta": [
-      { "name": "description", "content": "Gawq - Join Us" },
-      { "property": "og:title", "content": "Gawq - Join Us" },
-      { "property": "og:description", "content": "Gawq - Join Us" },
-      { "property": "og:image", "content": "logo.svg" }
-    ]
-  },
   joinUs: {
     title: "Become a Moderator",
     description: "Help improve the quality of information for all by moderating activity on the Gawq platform.",

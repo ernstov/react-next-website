@@ -5,17 +5,6 @@ export const page = {
     descriptionCL: "mw-600",
     img: "speech-bubbles.svg",
   },
-
-  seo: {
-    "title": "Gawq - Contact",
-    "meta": [
-      { "name": "description", "content": "Gawq - Contact" },
-      { "property": "og:title", "content": "Gawq - Contact" },
-      { "property": "og:description", "content": "Gawq - Contact" },
-      { "property": "og:image", "content": "logo.svg" }
-    ]
-  },
-
   contact: {
     title: "Support using the app",
     description: "Please make sure that you have the latest version of Gawq installed. If you continue to have issues, please follow these instructions. We'll do our best to respond within two business days.",

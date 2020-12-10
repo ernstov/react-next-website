@@ -5,15 +5,6 @@ export const page = {
     descriptionCL: "mw-600",
     img: "about-hero.svg",
   },
-  seo: {
-    "title": "Gawq - About",
-    "meta": [
-      { "name": "description", "content": "Gawq - About" },
-      { "property": "og:title", "content": "Gawq - About" },
-      { "property": "og:description", "content": "Gawq - About" },
-      { "property": "og:image", "content": "logo.svg" }
-    ]
-  },
   quote: {
     description: "The tools that we use to consume media are fundamentally flawed — programmed to fuel clicks over quality. Our goal is to establish trust by using technology in a way that helps people cut through the noise, understand perspective, and realize the world around us.",
     author: {

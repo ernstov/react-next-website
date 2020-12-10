@@ -10,8 +10,9 @@ import Tranding from "../sections/tranding";
 import { page } from "../data/pages/home";
 import { cutOffString, diffTimeString, isWrap } from "../utils";
 import moment from 'moment';
+import SEO from "../data/seo.json";
 
-const Home = () => {
+const Home = ({path}) => {
   const [trandingContents, setContents] = useState([])
   const [loading, setLoading] = useState(true)
 
@@ -63,7 +64,7 @@ const Home = () => {
   if (!isWrap()) sections.pop();
 
   return !loading && <div>
-    <Seo seo={settings.seo} />
+    <Seo seo={SEO[path] ? SEO[path] : SEO["/"]} />
     {sections.map((section, i) => (
       <VisibilitySensor partialVisibility={true} once={true} key={`p-${i}`}>
         {({ isVisible }) =>

@@ -8,8 +8,9 @@ import PostList from "../sections/blog/postlist"
 import { page as comingPage } from "../data/pages/coming";
 import { page as blogPage } from "../data/pages/blog";
 import { isWrap } from "../utils";
+import SEO from "../data/seo.json";
 
-const Blog = () => {
+const Blog = ({path}) => {
 
   const sections = [
     { component: PostList, props: { data: blogPage.blog } },
@@ -20,7 +21,7 @@ const Blog = () => {
   if (!isWrap()) sections.pop();
 
   return <div>
-    <Seo seo={settings.seo} />
+    <Seo seo={SEO[path] ? SEO[path] : SEO["/"]} />
     {sections.map((section, i) => (
       <VisibilitySensor partialVisibility={true} once={true} key={`p-${i}`}>
         {({ isVisible }) =>

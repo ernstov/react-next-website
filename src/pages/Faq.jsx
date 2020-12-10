@@ -8,8 +8,9 @@ import FaqViewer from "../sections/faq-viewer";
 import Follow from "../sections/follow";
 import {page} from "../data/pages/faq";
 import { isWrap } from "../utils";
+import SEO from "../data/seo.json";
 
-const Faq = () => {
+const Faq = ({path}) => {
 
   const sections = [
     { component: Hero, props: { data: page.hero } },
@@ -21,7 +22,7 @@ const Faq = () => {
   if(!isWrap()) sections.pop();
 
   return <div>
-    <Seo seo={page.seo} />
+    <Seo seo={SEO[path] ? SEO[path] : SEO["/"]} />
     {sections.map((section, i) => (
       <VisibilitySensor minTopValue={100} partialVisibility={true} once={true} key={`p-${i}`}>
         {({ isVisible }) =>

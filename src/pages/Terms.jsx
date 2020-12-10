@@ -7,8 +7,9 @@ import Footer from "../sections/footer";
 import HtmlViewer from "../sections/html-viewer";
 import {page} from "../data/pages/terms";
 import { isWrap } from "../utils";
+import SEO from "../data/seo.json";
 
-const Terms = () => {
+const Terms = ({path}) => {
 
   const sections = [
     { component: Hero, props: { data: page.hero } },
@@ -19,7 +20,7 @@ const Terms = () => {
   if(!isWrap()) sections.pop();
 
   return <div>
-    <Seo seo={page.seo} />
+    <Seo seo={SEO[path] ? SEO[path] : SEO["/"]} />
     {sections.map((section, i) => (
       <VisibilitySensor minTopValue={100} partialVisibility={true} once={true} key={`p-${i}`}>
         {({ isVisible }) =>
