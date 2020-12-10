@@ -4,7 +4,7 @@
     "meta": [
       { "name": "description", "content": "Gawq" },
       { "property": "og:title", "content": "Gawq" },
-      { "property": "og:description", "content": "Gawq"},
+      { "property": "og:description", "content": "Unbreaking news. Get 360 coverage on today's top stories. Download the Gawq mobile app, free!"},
       { "property": "og:image", "content": "logo-thumb.png" }
     ]
   },
@@ -13,7 +13,7 @@
     "meta": [
       { "name": "description", "content": "People before technology" },
       { "property": "og:title", "content": "Gawq - About" },
-      { "property": "og:description", "content": "People before technology"},
+      { "property": "og:description", "content": "Learn more about Gawq and our mission to improve the modern media landscape."},
       { "property": "og:image", "content": "about-thumb.png" }
     ]
   },
@@ -22,7 +22,7 @@
     "meta": [
       { "name": "description", "content": "Frequently asked questions" },
       { "property": "og:title", "content": "Gawq - FAQs" },
-      { "property": "og:description", "content": "Frequently asked questions"},
+      { "property": "og:description", "content": "Learn how to make the most out of Gawq"},
       { "property": "og:image", "content": "faqs-thumb.png" }
     ]
   },
@@ -40,7 +40,7 @@
     "meta": [
       { "name": "description", "content": "We're happy to hear from you." },
       { "property": "og:title", "content": "Gawq - Contact" },
-      { "property": "og:description", "content": "We're happy to hear from you."},
+      { "property": "og:description", "content": "We're happy to hear from you"},
       { "property": "og:image", "content": "contact-thumb.png" }
     ]
   },
@@ -58,7 +58,7 @@
     "meta": [
       { "name": "description", "content": "Gawq’s journey toward a better media landscape" },
       { "property": "og:title", "content": "Gawq - Blog" },
-      { "property": "og:description", "content": "Gawq’s journey toward a better media landscape"},
+      { "property": "og:description", "content": "Gawq’s journey toward a better media landscape in the digital age."},
       { "property": "og:image", "content": "wire-thumb.png" }
     ]
   },
@@ -67,7 +67,7 @@
     "meta": [
       { "name": "description", "content": "Terms of Service" },
       { "property": "og:title", "content": "Gawq - Terms of Service" },
-      { "property": "og:description", "content": "Terms of Service"},
+      { "property": "og:description", "content": "Use of Gawq is subject to our Terms and Conditions."},
       { "property": "og:image", "content": "logo-thumb.png" }
     ]
   },
@@ -76,7 +76,7 @@
     "meta": [
       { "name": "description", "content": "Privacy Policy" },
       { "property": "og:title", "content": "Gawq - Privacy Policy" },
-      { "property": "og:description", "content": "Privacy Policy"},
+      { "property": "og:description", "content": "Use of Gawq is subject to our Privacy Policy."},
       { "property": "og:image", "content": "logo-thumb.png" }
     ]
   },
