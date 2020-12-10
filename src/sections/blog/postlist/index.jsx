@@ -6,12 +6,14 @@ import { v4 as uuidv4 } from 'uuid'
 import uniqBy from 'lodash.uniqby'
 import { settings } from "../../../data/settings"
 import Follow from "../../follow";
+import { filterIt } from "../../../utils";
 
 import "./PostList.scss";
 
 const PostList = (props) => {
   const [articlesList, setArticlesList] = useState(null)
   const [tags, setTags] = useState(null)
+  const [selectedTag, setSelectedTag] = useState(null)
   const { data } = props
 
   const getArticlesRequest = () => {
@@ -42,12 +44,27 @@ const PostList = (props) => {
       getTags(articlesList)
     }
 
-  }, [articlesList, tags])
+  }, [articlesList, tags]);
+
+  const renderArticles = () => {
+    let articles = [];
+
+    articlesList.forEach((article) => {
+      if (selectedTag != null) {
+        const stags = filterIt(article.blogTags, tags[selectedTag].name, "name");
+        if (stags.length > 0) articles.push(<ArticlePreview {...article} key={uuidv4()} />);
+      } else {
+        articles.push(<ArticlePreview {...article} key={uuidv4()} />);
+      }
+    })
+
+    return articles?.length ? articles : <div className="text-center p-4"><span className="">{settings.texts.Postsnotfound}</span></div>;
+  }
 
   return (
-    <>
+    <div className="blog">
       <div className="blog-header">
-        <img src={`/assets/img/wire-img.svg`} alt=""/>
+        <img src={`/assets/img/wire-img.svg`} alt="" />
       </div>
       <header className="blog-header-wrapper">
         <h1 className="blog-page-title text-title">{data?.pageTitle}</h1>
@@ -57,7 +74,7 @@ const PostList = (props) => {
         <div className="tags-wrapper">
           <h3 className="tags-wrapper__title">{data?.tagsText}</h3>
           {
-            tags?.length && tags.map(item => <Badge className="mr-2 mb-2" variant="cover" key={uuidv4()}>{item?.name}</Badge>)
+            tags?.length && tags.map((item, i) => <Badge onClick={() => setSelectedTag(i == selectedTag ? null : i)} className={`mr-2 mb-2 ${i == selectedTag ? "active" : ""}`} variant="cover" key={uuidv4()}>{item?.name}</Badge>)
           }
         </div>
         <div className="subscribe-wrapper">
@@ -67,13 +84,13 @@ const PostList = (props) => {
       </div>
       <section className="blog-container">
         <div className="blog-section-title-wrapper">
-          <h2 className="blog-section-title">{data?.articlesTitle}</h2>
+          <h2 className="blog-section-title">{selectedTag != null ? tags[selectedTag].name : data?.articlesTitle}</h2>
         </div>
         {
-          articlesList?.length && articlesList.map(item => <ArticlePreview {...item} key={uuidv4()} />)
+          articlesList?.length && renderArticles()
         }
       </section>
-    </>
+    </div>
   );
 }
 

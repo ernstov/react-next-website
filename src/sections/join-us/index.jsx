@@ -25,13 +25,13 @@ const JoinUs = ({ data, isVisible }) => {
               <Container fluid>
                 <Row>
                   <Col md={7}>
-                    <h4 className="text-title-smd">{data.title}</h4>
-                    <p>{data.description}</p>
+                    <h4 className="text-title-smd" dangerouslySetInnerHTML={{ __html: data.title }}></h4>
+                    <p dangerouslySetInnerHTML={{ __html: data.description }}></p>
                     {data.list &&
                       <>
                         <div>{data.list.title}</div>
                         <ul className="list-primary p-0 mt-2">{data.list.items.map((item, i) => (
-                          <li key={`li-${i}`}>{item}</li>
+                          <li key={`li-${i}`} dangerouslySetInnerHTML={{ __html: item }}></li>
                         ))}
                         </ul>
                       </>
@@ -47,8 +47,8 @@ const JoinUs = ({ data, isVisible }) => {
               <Container fluid>
                 <Row>
                   <Col md={12}>
-                    <h4 className="text-title-smd">{data.footer.title}</h4>
-                    <p>{data.footer.description}</p>
+                    <h4 className="text-title-smd" dangerouslySetInnerHTML={{ __html: data.footer.title }}></h4>
+                    <p dangerouslySetInnerHTML={{ __html: data.footer.description }}></p>
                   </Col>
                 </Row>
               </Container>

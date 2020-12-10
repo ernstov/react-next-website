@@ -9,8 +9,9 @@ import Stores from "../sections/stores";
 import { page as comingPage } from "../data/pages/coming";
 import { page as downloadPage } from "../data/pages/download";
 import { isWrap } from "../utils";
+import SEO from "../data/seo.json";
 
-const Download = () => {
+const Download = ({path}) => {
 
   const sections = [
     { component: Hero, props: { data: downloadPage.hero } },
@@ -22,7 +23,7 @@ const Download = () => {
   if (!isWrap()) sections.pop();
 
   return <div>
-    <Seo seo={settings.seo} />
+    <Seo seo={SEO[path] ? SEO[path] : SEO["/"]} />
     {sections.map((section, i) => (
       <VisibilitySensor partialVisibility={true} once={true} key={`p-${i}`}>
         {({ isVisible }) =>

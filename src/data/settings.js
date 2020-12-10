@@ -22,6 +22,7 @@ export const settings = {
     read: "read",
     m: "m",
     Filedunder: "Filed under",
+    Postsnotfound: "Posts not found",
   },
 
   header: {

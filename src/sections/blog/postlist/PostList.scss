@@ -1,5 +1,24 @@
 @import "../../../styles/global/variables.scss";
 
+.blog {
+  .badge {
+    cursor: pointer;
+    transition: background-color $transition ease;
+
+    &.active {
+      background-color: $primary;
+
+      &:hover {
+        background-color: $primary;
+      }
+    }
+
+    &:hover {
+      background-color: rgba($dark, 0.15);
+    }
+  }
+}
+
 .blog-header {
   width: 100%;
   height: 220px;

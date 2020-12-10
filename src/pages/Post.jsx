@@ -8,6 +8,7 @@ import { settings } from "../data/settings";
 import { isWrap } from "../utils";
 import { Context } from '../context/context';
 import {filterIt} from "../utils";
+import SEO from "../data/seo.json";
 
 import VisibilitySensor from '../utils/react-visibility-sensor';
 

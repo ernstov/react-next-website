@@ -5,15 +5,6 @@ export const page = {
     descriptionCL: "mw-600",
     img: "question-marks.svg",
   },
-  seo: {
-    "title": "Gawq - FAQs",
-    "meta": [
-      { "name": "description", "content": "Gawq - FAQs" },
-      { "property": "og:title", "content": "Gawq - FAQs" },
-      { "property": "og:description", "content": "Gawq - FAQs" },
-      { "property": "og:image", "content": "logo.svg" }
-    ]
-  },
   faq: [
     { question: "How’s Gawq different?", answer: "The spirit of Gawq (and the reason we exist) is to help solve the problem of misinformation in the digital age. We believe that the modern social media news feed is fundamentally broken, and we want to be a part of the solution.<p><p>To that end,  Gawq is different in the following key ways:<p><p><b>Ratings & reviews.</b> Gawq is the only mobile news app where you can react to media coverage based on the fairness, accuracy & quality of the story itself. Our system empowers you to rate journalists based on the truthfulness of their work, not on individual partisan leanings or how many eyeballs the story gets. Your participation helps to build a better media landscape for all.<p><b>Anti-echo chamber.</b> Unlike most major news feeds, the stories you read today won’t impact what you see tomorrow. We believe that algorithms foster confirmation bias, limit your view of the world, and give you only one side of the complex issues facing our world today.<p><b>Clearer, smarter labels.</b> We've put significant resources toward building intelligent labels that filter opinion-based articles, non-news, celebrity gossip, and more. Articles in Gawq are clearly labeled to ensure that you stay aware of biases and misinformation in the stories you read." },
     { question: "Is Gawq free?", answer: "Yes, Gawq is entirely free. Version one is available for both Apple iOS and Android. The app is optimized for mobile and tablet devices." },

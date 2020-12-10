@@ -1,0 +1,136 @@
+<?php 
+
+$string = file_get_contents("./seo.json");
+$seo = '';
+$siteURL='http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['HTTP_HOST'].'/';
+$blogAPI = "https://app.gawq.com/blogs";
+$p = substr($_SERVER['REQUEST_URI'], 1);
+$blogPaths = explode("wire/", $p);
+$post = new stdClass();
+$projectName = "Gawq";
+
+if($blogPaths[1]) {
+  $ch = curl_init();
+  curl_setopt($ch, CURLOPT_URL, $blogAPI);
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+  curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+  curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+  curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
+  curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+  
+  $httpCode = curl_getinfo($ch , CURLINFO_HTTP_CODE);
+  $response = curl_exec($ch);
+  
+  if ($response === false) {
+    $response = curl_error($ch);
+  }else {
+    $blogs = json_decode($response);
+
+    foreach ($blogs as $pst) {
+      if($pst->alias === $blogPaths[1]) {
+        $post = $pst;
+      }
+    }
+
+    $seo .= '<title>'.$projectName.' - '.$post->title.'</title>';
+    $seo .= '<meta name="description" content="'.$post->subTitle.'" />';
+    $seo .= '<meta property="og:description" content="'.$post->subTitle.'" />';
+    $seo .= '<meta property="og:title" content="'.$post->title.'" />';
+    $seo .= '<meta property="og:image" content="'.$siteURL.'assets/img/'.$post->thumbnail->url.'" />';
+
+  }
+  curl_close($ch);
+}else {
+  if ($string != false) {
+    $json_a = json_decode($string, true);
+    if ($json_a !== null) {
+      $path = "/";
+  
+      if($json_a[$_SERVER['REQUEST_URI']]) {
+        $path = $_SERVER['REQUEST_URI'];
+      }
+  
+      foreach ($json_a[$path] as $key => $value) {
+        if($key === "title") {$seo .= '<title>'.$value.'</title>';}
+        
+        if($key === "meta") {
+          foreach ($value as $pk => $pkv) 
+          {
+            $seo .= '<meta ';
+            foreach ($pkv as $property => $property_value) 
+            {
+              if(strpos($property_value, '.svg') || strpos($property_value, '.png') || strpos($property_value, '.jpg')) {
+                $seo .= $property.'="'.$siteURL.'assets/img/'.$property_value.'" id="og"';
+              }else {
+                $seo .= $property.'="'.$property_value.'" ';
+              }
+            }
+            $seo .='>';
+          }
+        }
+    }
+  }
+  }
+}
+
+$seo .= '<meta property="og:url" content="'.$siteURL.$p.'">';
+
+?>
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="icon" type="image/x-icon" href="../assets/img/favicon.ico">
+  <?php echo $seo; ?>
+  <script>
+    var vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+  </script>
+  <style>
+    body {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    body::-webkit-scrollbar {
+      display: none;
+    }
+
+    .loader-inner.hide {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .loader-inner {
+    width:100vw;
+    height:100vh;
+    height: calc(var(--vh, 1vh) * 100);
+    position:fixed;
+    z-index: 2000;
+    top:0;
+    left:0;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 600ms;
+  }
+  .loader-inner img{height: 60px;width: auto;}
+  </style>
+</head>
+
+<body>
+<div id="loader-bg" style="position: fixed;width:100vw;height:100vh;top:0;left:0;background-color:#272727;z-index:999;"></div>
+  <div class="loader-inner"><img src="../assets/img/loader.svg" alt=""></div>
+  <div id="app"></div>
+  <noscript>
+    You need to enable JavaScript to run this app.
+  </noscript>
+  <script src="../assets/bundle.js"></script>
+</body>
+
+</html>
+
+<?php ?>
