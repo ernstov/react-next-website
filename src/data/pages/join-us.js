@@ -7,20 +7,20 @@ export const page = {
   },
   joinUs: {
     title: "Become a Moderator",
-    description: "Help improve the quality of information for all by moderating activity on the Gawq platform.",
+    description: "Help improve the quality of information for all by moderating activity on the Gawq platform. Moderators have a strong sense of curiosity, enjoy reading, and have a natural interest in knowing the very latest on trends or newsworthy events. Becoming a Moderator at Gawq means that you'll be joining a community of people that share your passion for great content, and directly contributing toward the transformation of modern media. This is an unpaid volunteer role. There's no time commitment, but we do ask for your commitment toward the values and mission of Gawq. To apply, please email mod@gawq.com.",
     img: "join-us-img.png",
     list: {
-      title: "Here’s what a bulleted list looks like:",
+      title: "Moderator responsibilities include:",
       items: [
-        "One bulleted item",
-        "Second one here",
-        "And yet another",
-        "Fourth point, another example"
+        "Monitoring user-generated reviews and comments",
+        "Flagging inappropriate content",
+        "Improving the accuracy of content categorization",
+        "Generating new content reviews and ratings"
       ]
     },
     footer: {
       title: "Careers",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sed vestibulum ante. Pellentesque fermentum scelerisque libero, vel tristique massa sodales non. Fusce quis diam condimentum, congue massa tincidunt, aliquet mauris. Aliquam vestibulum faucibus eros a cursus. Mauris gravida mattis diam, a mattis arcu auctor sed."
+      description: "Check again soon for job openings."
     }
   }
 }
