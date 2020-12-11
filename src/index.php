@@ -87,7 +87,7 @@ $seo .= '<meta property="og:url" content="'.$siteURL.$p.'">';
   <link rel="shortcut icon" sizes="32x32" type="image/x-icon" href=" href="https://storage.googleapis.com/dev-dispatch-276213.appspot.com/Fav_Icon32x32_c34452691d/Fav_Icon32x32_c34452691d.png" />
   <link rel="shortcut icon" sizes="76x76" type="image/x-icon" href=" href="https://storage.googleapis.com/dev-dispatch-276213.appspot.com/Fav_Icon76x76_6b35f1529b/Fav_Icon76x76_6b35f1529b.png" />
   <link rel="apple-touch-icon-precomposed" href="https://storage.googleapis.com/dev-dispatch-276213.appspot.com/apple_touch_icon_0d0c8d42fe/apple_touch_icon_0d0c8d42fe.png" />
-  <link rel="icon" type="image/x-icon" href="../assets/img/favicon.ico">
+  <link rel="icon" type="image/png" href="../assets/img/favicon.png" data-react-helmet="true">
   <?php echo $seo; ?>
   <script>
     var vh = window.innerHeight * 0.01;
