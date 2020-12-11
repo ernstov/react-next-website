@@ -9,8 +9,21 @@ import { page as comingPage } from "../data/pages/coming";
 import { page as blogPage } from "../data/pages/blog";
 import { isWrap } from "../utils";
 import SEO from "../data/seo.json";
+import TagManager from 'react-gtm-module'
+import { gtmDataLayerName, gtmId } from "../const";
 
-const Blog = ({path}) => {
+const tagManagerArgs = {
+  gtmId: gtmId,
+  dataLayerName: gtmDataLayerName,
+  dataLayer: {
+    page: 'Blog'
+  },
+}
+
+
+const Blog = ({ path }) => {
+
+  TagManager.dataLayer(tagManagerArgs)
 
   const sections = [
     { component: PostList, props: { data: blogPage.blog } },

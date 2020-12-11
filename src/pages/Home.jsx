@@ -11,8 +11,22 @@ import { page } from "../data/pages/home";
 import { cutOffString, diffTimeString, isWrap } from "../utils";
 import moment from 'moment';
 import SEO from "../data/seo.json";
+import TagManager from 'react-gtm-module'
+import { gtmDataLayerName, gtmId } from "../const";
 
-const Home = ({path}) => {
+const tagManagerArgs = {
+  gtmId: gtmId,
+  dataLayerName: gtmDataLayerName,
+  dataLayer: {
+    page: 'Home'
+  },
+}
+
+
+const Home = ({ path }) => {
+
+  TagManager.dataLayer(tagManagerArgs)
+
   const [trandingContents, setContents] = useState([])
   const [loading, setLoading] = useState(true)
 

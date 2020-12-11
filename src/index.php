@@ -83,6 +83,12 @@ $seo .= '<meta property="og:url" content="'.$siteURL.$p.'">';
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta property="og:title" content="Gawq - Unbreaking News" />
+  <meta property="og:image" content="https://storage.googleapis.com/dev-dispatch-276213.appspot.com/Gawq_Open_Graph_40c540a280/Gawq_Open_Graph_40c540a280.png" />
+  <link rel="shortcut icon" sizes="16x16" type="image/x-icon" href=" href="https://storage.googleapis.com/dev-dispatch-276213.appspot.com/Fav_Icon16x16_c417f9b7e1/Fav_Icon16x16_c417f9b7e1.png" />
+  <link rel="shortcut icon" sizes="32x32" type="image/x-icon" href=" href="https://storage.googleapis.com/dev-dispatch-276213.appspot.com/Fav_Icon32x32_c34452691d/Fav_Icon32x32_c34452691d.png" />
+  <link rel="shortcut icon" sizes="76x76" type="image/x-icon" href=" href="https://storage.googleapis.com/dev-dispatch-276213.appspot.com/Fav_Icon76x76_6b35f1529b/Fav_Icon76x76_6b35f1529b.png" />
+  <link rel="apple-touch-icon-precomposed" href="https://storage.googleapis.com/dev-dispatch-276213.appspot.com/apple_touch_icon_0d0c8d42fe/apple_touch_icon_0d0c8d42fe.png" />
   <link rel="icon" type="image/x-icon" href="../assets/img/favicon.ico">
   <?php echo $seo; ?>
   <script>
