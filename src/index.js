@@ -2,10 +2,10 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./containers/App.jsx";
 import TagManager from 'react-gtm-module'
-import { gtmDataLayerName, gtmId } from "./const/index.js";
+import { settings } from "./data/settings";
 
 const tagManagerArgs = {
-  gtmId: gtmId,
+  gtmId: settings.gtmId,
   // dataLayerName: gtmDataLayerName
 }
 

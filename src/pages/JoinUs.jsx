@@ -10,11 +10,10 @@ import { page } from "../data/pages/join-us";
 import { isWrap } from "../utils";
 import SEO from "../data/seo.json";
 import TagManager from 'react-gtm-module'
-import { gtmDataLayerName, gtmId } from "../const";
 
 const tagManagerArgs = {
-  gtmId: gtmId,
-  dataLayerName: gtmDataLayerName,
+  gtmId: settings.gtmId,
+  dataLayerName: settings.gtmDataLayerName,
   dataLayer: {
     page: 'JoinUs'
   },

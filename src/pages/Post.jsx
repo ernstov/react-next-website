@@ -12,11 +12,10 @@ import SEO from "../data/seo.json";
 
 import VisibilitySensor from '../utils/react-visibility-sensor';
 import TagManager from 'react-gtm-module'
-import { gtmDataLayerName, gtmId } from "../const";
 
 const tagManagerArgs = {
-  gtmId: gtmId,
-  dataLayerName: gtmDataLayerName,
+  gtmId: settings.gtmId,
+  dataLayerName: settings.gtmDataLayerName,
   dataLayer: {
     page: 'Post'
   },

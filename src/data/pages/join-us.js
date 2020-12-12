@@ -7,7 +7,7 @@ export const page = {
   },
   joinUs: {
     title: "Become a Moderator",
-    description: "Help improve the quality of information for all by moderating activity on the Gawq platform. Moderators have a strong sense of curiosity, enjoy reading, and have a natural interest in knowing the very latest on trends or newsworthy events. Becoming a Moderator at Gawq means that you'll be joining a community of people that share your passion for great content, and directly contributing toward the transformation of modern media. This is an unpaid volunteer role. There's no time commitment, but we do ask for your commitment toward the values and mission of Gawq. To apply, please email mod@gawq.com.",
+    description: "Help improve the quality of information for all by moderating activity on the Gawq platform. Moderators have a strong sense of curiosity, enjoy reading, and have a natural interest in knowing the very latest on trends or newsworthy events. Becoming a Moderator at Gawq means that you'll be joining a community of people that share your passion for great content, and directly contributing toward the transformation of modern media. This is an unpaid volunteer role. There's no time commitment, but we do ask for your commitment toward the values and mission of Gawq. <a href='https://forms.gle/NvMZ8KDo76sHcRJF6' target='blank'>Click here</a> to apply to be a Moderator.",
     img: "join-us-img.png",
     list: {
       title: "Moderator responsibilities include:",

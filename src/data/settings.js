@@ -2,6 +2,10 @@ export const settings = {
   projectName: "Gawq",
   api: "https://app.gawq.com", 
   preloaderTime: 700,
+  gtmId:"GTM-KS798VW",
+  gtmDataLayerName:"PageDataLayer",
+  headerHeight: 96,
+  headerHeightMd: 60,
 
   seo: {
     "title": "Gawq",
