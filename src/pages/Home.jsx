@@ -57,7 +57,7 @@ const Home = ({ path }) => {
             content: "",
           }
         }
-      })
+      }).filter(item => item.img && item)
 
       setContents(contents ?? [])
       setLoading(false)
