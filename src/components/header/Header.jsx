@@ -98,7 +98,7 @@ const Header = () => {
           </div>
           <div className="menu-container-stores">
             {settings.navigationAdditional.stores && settings.navigationAdditional.stores.map((store, i) => (
-              <a key={`sti-${i}`} href={store.link}><img className="footer-store ml-2 mr-2" src={`/assets/img/${store.img}`} alt="" /></a>
+              <a key={`sti-${i}`} target="blank" href={store.link}><img className="footer-store ml-2 mr-2" src={`/assets/img/${store.img}`} alt="" /></a>
             ))}
           </div>
           <ul>

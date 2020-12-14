@@ -22,7 +22,7 @@ const Stores = ({ data, isVisible }) => {
           <Col>
             <div className="stores-wrapper entry-2">
               {data.stores.map((item, i) => (
-                <a key={`si-${i}`} href={item.link}>
+                <a target="blank" key={`si-${i}`} href={item.link}>
                   <img className="stores-wrapper__item" src={`/assets/img/${item.img}`} alt="app" />
                 </a>
               ))}
