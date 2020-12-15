@@ -86,7 +86,6 @@ module.exports = {
   plugins: [
     new CopyWebpackPlugin([
       { from: path.resolve('src/assets'), to: path.resolve('dist/assets') },
-      { from: path.resolve('src/index.html'), to: path.resolve('dist/index.html') },
       { from: path.resolve('src/index.php'), to: path.resolve('dist/index.php') },
       { from: path.resolve('src/data/seo.json'), to: path.resolve('dist/seo.json') },
     ]),
