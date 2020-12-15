@@ -38,7 +38,7 @@ const Footer = ({ data, isVisible }) => {
             </Col>
             <Col md={6} className="footer-stores-container">
             {data.stores && data.stores.map((store, i)=>(
-              <a key={`si-${i}`} className={`entry-${i+1}`} href={store.link}><img className="footer-store mr-3" src={`/assets/img/${store.img}`} alt=""/></a>
+              <a key={`si-${i}`} target="blank" className={`entry-${i+1}`} href={store.link}><img className="footer-store mr-3" src={`/assets/img/${store.img}`} alt=""/></a>
             ))}
             </Col>
           </Row>

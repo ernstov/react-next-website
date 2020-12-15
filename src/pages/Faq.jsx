@@ -10,24 +10,25 @@ import { page } from "../data/pages/faq";
 import { isWrap } from "../utils";
 import SEO from "../data/seo.json";
 import TagManager from 'react-gtm-module'
-import { gtmDataLayerName, gtmId } from "../const";
+import {getUrlParam} from "../utils/index";
 
 const tagManagerArgs = {
-  gtmId: gtmId,
-  dataLayerName: gtmDataLayerName,
+  gtmId: settings.gtmId,
+  dataLayerName: settings.gtmDataLayerName,
   dataLayer: {
     page: 'Faq'
   },
 }
 
-
 const Faq = ({ path }) => {
 
   TagManager.dataLayer(tagManagerArgs)
 
+  const question = getUrlParam("q");
+
   const sections = [
     { component: Hero, props: { data: page.hero } },
-    { component: FaqViewer, props: { data: page.faq } },
+    { component: FaqViewer, props: { data: page.faq, question: question, isWrap: isWrap() } },
     { component: Follow, props: { data: settings.follow } },
     { component: Footer, props: { data: { ...settings.footer, ...settings.simpleFooter } } },
   ]

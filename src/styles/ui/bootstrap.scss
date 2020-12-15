@@ -104,7 +104,7 @@ p {
 .list-primary {
   list-style: none;
   font-weight: 500;
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
 
   a {
     color: $secondary;
@@ -157,3 +157,20 @@ p {
 .mw-800 {max-width: 800px !important;}
 .mw-900 {max-width: 900px !important;}
 .mw-1000 {max-width: 1000px !important;}
+
+.content {
+  a {
+    font-family: $font-family-heavy;
+    text-decoration: none;
+    transition: color $transition ease;
+    font-size: 0.9375rem;
+
+    &:hover {
+      color: $dark;
+    }
+  }
+
+  p {
+    font-size: 0.9375rem;
+  }
+}

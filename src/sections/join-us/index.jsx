@@ -17,7 +17,7 @@ const JoinUs = ({ data, isVisible }) => {
   }, [isVisible])
 
   return (
-    <div className={`join-us ${visible ? "active" : ""}`}>
+    <div className={`join-us content ${visible ? "active" : ""}`}>
       <Container>
         <Row>
           <Col lg={12}>

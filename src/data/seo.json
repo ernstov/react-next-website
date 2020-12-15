@@ -54,10 +54,10 @@
     ]
   },
   "/wire": {
-    "title": "Gawq - Blog",
+    "title": "Gawq - The Wire",
     "meta": [
       { "name": "description", "content": "Gawq’s journey toward a better media landscape" },
-      { "property": "og:title", "content": "Gawq - Blog" },
+      { "property": "og:title", "content": "Gawq - The Wire" },
       { "property": "og:description", "content": "Gawq’s journey toward a better media landscape in the digital age."},
       { "property": "og:image", "content": "wire-thumb.png" }
     ]

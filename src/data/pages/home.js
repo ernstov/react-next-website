@@ -3,8 +3,8 @@ export const page = {
     title: "Stay informed, <span>mindfully</span>.",
     description: "Compare the news, mute the noise, and read beyond the headlines.",
     markets: [
-      { img: "logo-apple.png", link: "/download" },
-      { img: "logo-android.png", link: "/download" }
+      { img: "logo-apple.png", link: "https://apps.apple.com/us/app/gawq-unbreaking-news/id1514212857" },
+      { img: "logo-android.png", link: "https://play.google.com/store/apps/details?id=com.gawq" }
     ],
     buttons: [
       {

@@ -3,14 +3,8 @@ import moment from 'moment'
 import { Link } from "@reach/router";
 import "./Blog.scss"
 
-export const getPreviewUrl = (text) => {
-  const pattern = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,4}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g
-  const result = pattern.exec(text)
-  return result?.length && result[0]
-}
-
 export const ArticlePreview = React.memo((props) => {
-  const { title, subTitle, created_at, alias, body, timeToRead } = props
+  const { title, subTitle, created_at, alias, body, timeToRead, thumbnail:{url} } = props
 
   return (
     <article className="blog-article-wrapper">
@@ -25,7 +19,7 @@ export const ArticlePreview = React.memo((props) => {
         <p className="blog-article__description">{subTitle}</p>
       </div>
       <Link to={`/wire/${alias}`} className="blog-article__cover-wrapper">
-        {getPreviewUrl(body) && <img className="blog-article__cover" src={getPreviewUrl(body)} alt="cover" />}
+        {url && <img className="blog-article__cover" src={url} alt="cover" />}
       </Link>
     </article>
   )
