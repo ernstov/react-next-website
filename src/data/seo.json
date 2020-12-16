@@ -2,7 +2,7 @@
   "/": {
     "title": "Gawq",
     "meta": [
-      { "name": "description", "content": "Gawq" },
+      { "name": "description", "content": "Unbreaking news. Get 360 coverage on today's top stories. Download the Gawq mobile app, free!" },
       { "property": "og:title", "content": "Gawq" },
       { "property": "og:description", "content": "Unbreaking news. Get 360 coverage on today's top stories. Download the Gawq mobile app, free!"},
       { "property": "og:image", "content": "logo-thumb.png" }
