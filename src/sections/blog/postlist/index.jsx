@@ -17,7 +17,7 @@ const PostList = (props) => {
   const { data } = props
 
   const getArticlesRequest = () => {
-    ApiService.get('/blogs').then(response => {
+    ApiService.get('/blogs?_sort=created_at:DESC').then(response => {
       if (response?.data) {
         setArticlesList(response.data)
       }
