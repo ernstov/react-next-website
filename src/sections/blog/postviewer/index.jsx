@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import BlogAuthor from "../../../components/blog/BlogAuthor";
 import BlogTags from "../../../components/blog/BlogTags";
@@ -7,12 +7,15 @@ import ReactMarkdown from 'react-markdown';
 import gfm from 'remark-gfm';
 import { dateFormat, isObjectEmpty } from "../../../utils";
 import { settings } from "../../../data/settings";
+import {navigate} from "@reach/router";
+import {Context} from "../../../context/context";
 
 import "./PostViewer.scss";
 
 const PostViewer = ({ isVisible, data }) => {
 
   const [visible, setVisible] = useState(false);
+  const {dispatchPages} = useContext(Context);
 
   useEffect(() => {
     if (isVisible) {
@@ -21,6 +24,11 @@ const PostViewer = ({ isVisible, data }) => {
       }, 1000)
     }
   }, [isVisible])
+
+  const onTagChange = (e) => {
+    dispatchPages({ type: "SET_APP_VALUES", data: { tag: e } });
+    navigate("/wire");
+  }
 
   return (
     <div className={`blog-post mt-0 mt-md-4 ${data.className ? data.className : ""} mb-5 ${visible ? "active" : ''}`}>
@@ -47,7 +55,7 @@ const PostViewer = ({ isVisible, data }) => {
                 <Container className="p-0" fluid>
                   <Row>
                     <Col md={8}>
-                      {data.blogTags && <BlogTags data={data.blogTags} />}
+                      {data.blogTags && <BlogTags onChange={onTagChange} data={data.blogTags} />}
                     </Col>
                     <Col md={4}>
                       <BlogShare data={data} />

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Badge } from "react-bootstrap";
 import { ApiService } from '../../../services/ApiService'
 import { ArticlePreview } from '../../../components/blog/ArticlePreview'
@@ -7,13 +7,15 @@ import uniqBy from 'lodash.uniqby'
 import { settings } from "../../../data/settings"
 import Follow from "../../follow";
 import { filterIt } from "../../../utils";
+import {Context} from "../../../context/context";
 
 import "./PostList.scss";
 
 const PostList = (props) => {
+  const {pages} = useContext(Context)
   const [articlesList, setArticlesList] = useState(null)
   const [tags, setTags] = useState(null)
-  const [selectedTag, setSelectedTag] = useState(null)
+  const [selectedTag, setSelectedTag] = useState(pages.tag ? pages.tag : null)
   const { data } = props
 
   const getArticlesRequest = () => {
@@ -51,7 +53,7 @@ const PostList = (props) => {
 
     articlesList.forEach((article) => {
       if (selectedTag != null) {
-        const stags = filterIt(article.blogTags, tags[selectedTag].name, "name");
+        const stags = filterIt(article.blogTags, selectedTag, "name");
         if (stags.length > 0) articles.push(<ArticlePreview {...article} key={uuidv4()} />);
       } else {
         articles.push(<ArticlePreview {...article} key={uuidv4()} />);
@@ -74,7 +76,7 @@ const PostList = (props) => {
         <div className="tags-wrapper">
           <h3 className="tags-wrapper__title">{data?.tagsText}</h3>
           {
-            tags?.length && tags.map((item, i) => <Badge onClick={() => setSelectedTag(i == selectedTag ? null : i)} className={`mr-2 mb-2 ${i == selectedTag ? "active" : ""}`} variant="cover" key={uuidv4()}>{item?.name}</Badge>)
+            tags?.length && tags.map((item, i) => <Badge onClick={() => setSelectedTag(item.name == selectedTag ? null : item.name)} className={`mr-2 mb-2 ${item.name == selectedTag ? "active" : ""}`} variant="cover" key={uuidv4()}>{item?.name}</Badge>)
           }
         </div>
         <div className="subscribe-wrapper">
@@ -84,7 +86,7 @@ const PostList = (props) => {
       </div>
       <section className="blog-container">
         <div className="blog-section-title-wrapper">
-          <h2 className="blog-section-title">{selectedTag != null ? tags[selectedTag].name : data?.articlesTitle}</h2>
+          <h2 className="blog-section-title">{selectedTag != null ? selectedTag : data?.articlesTitle}</h2>
         </div>
         {
           articlesList?.length && renderArticles()

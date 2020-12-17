@@ -5,6 +5,11 @@ export default function (state, action) {
         ...state,
         ...action.data
       }
+    case 'SET_APP_VALUES':
+      return {
+        ...state,
+        ...action.data
+      }
     default:
       return state;
   }

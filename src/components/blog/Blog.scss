@@ -30,6 +30,12 @@
 
     >* {
       margin-bottom: 0.5rem;
+      cursor: pointer;
+      transition: all $transition ease;
+
+      &:hover {
+        background-color: rgba($dark, 0.15);
+      }
     }
   }
 
