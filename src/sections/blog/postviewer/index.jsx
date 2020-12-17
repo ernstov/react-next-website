@@ -37,7 +37,7 @@ const PostViewer = ({ isVisible, data }) => {
           <Row>
             <Col md={12}>
               <div className="blog-post-title">
-                {data.blogAuthor && <BlogAuthor data={data.blogAuthor} />}
+                {data.blog_author && <BlogAuthor data={data.blog_author} />}
                 <div className="mb-4"><span className="text-medium-lgt">{dateFormat(data.created_at, "mmm dd, yyyy")}</span><span className="text-medium-lgt dot-before">{data.timeToRead ? data.timeToRead : "1"}{settings.texts.m} {settings.texts.read}</span></div>
               </div>
             </Col>
