@@ -30,6 +30,7 @@ $blog-container-spacer: 2rem;
   padding: $blog-container-spacer $blog-container-spacer;
   border-top: 1px solid $border-color;
   border-bottom: 1px solid $border-color;
+  font-size: 1.15rem;
 
   a {
     color: $secondary;
@@ -130,7 +131,7 @@ $blog-container-spacer: 2rem;
   }
 
   p {
-    font-size: 1rem;
+    font-size: 1.15rem;
     line-height: 1.33;
     margin-bottom: $blog-spacer;
 
@@ -156,10 +157,6 @@ $blog-container-spacer: 2rem;
     font-size: 1.15rem;
 
     ul {
-      font-size: 1.15rem;
-    }
-
-    p {
       font-size: 1.15rem;
     }
 
