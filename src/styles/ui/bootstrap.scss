@@ -120,8 +120,15 @@ p {
   
   li {
     padding: 0.4rem 0;
+    padding-left: 1.4rem;
+    position: relative;
   }
-  li::before {content: "•"; color: $primary;margin-right: 0.7rem;}
+  li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: $primary;
+  }
 }
 
 .sect-spacer-lg {
@@ -172,5 +179,31 @@ p {
 
   p {
     font-size: 0.9375rem;
+  }
+}
+
+.block-advanced {
+  border-radius: 0.5rem;
+  border: 1px solid $gray-2; 
+  background: $primary-cover-2;
+  padding: 1.25rem;
+  width: 100%;
+  margin-bottom:1.25rem;
+
+  ul {
+    list-style: none;
+    padding: 0;
+  
+    li {
+      padding: 0.4rem 0;
+      padding-left: 1.4rem;
+      position: relative;
+    }
+
+    li::before {
+      content: "○";
+      position: absolute;
+      left: 0;
+    }
   }
 }

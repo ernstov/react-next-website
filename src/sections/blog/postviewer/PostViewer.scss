@@ -19,7 +19,7 @@ $blog-container-spacer: 2rem;
     &-title {
       padding: 0 $blog-container-spacer/2;
     }
-  
+
     &-bottom {
       padding: 0 $blog-container-spacer/2;
     }
@@ -38,29 +38,62 @@ $blog-container-spacer: 2rem;
   ul {
     list-style: none;
     font-weight: 500;
-    font-size: 0.875rem;
+    font-size: 1rem;
     padding-left: 1rem;
     margin-bottom: $blog-spacer;
-  
+
     a {
       color: $secondary;
       text-decoration: none;
       transition: color $transition ease;
       font-family: $font-family-heavy;
-  
+
       &:hover {
-        color:$black;
+        color: $black;
         text-decoration: none;
       }
     }
-    
+
     li {
-      padding: 0.2rem 0;
+      padding: 0.4rem 0;
+      padding-left: 1.4rem;
+      position: relative;
     }
-    li::before {content: "•"; color: $primary;margin-right: 0.7rem;}
+    li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: $primary;
+    }
   }
 
-  h2, h3, h4, h5, h6 {
+  .block-advanced {
+    border-radius: 0.5rem;
+    border: 1px solid $gray-2; 
+    background: $primary-cover-2;
+    padding: 1.25rem;
+    width: 100%;
+    margin-bottom:1.25rem;
+  
+    ul {
+      padding: 0;
+      margin-top: 0.5rem;
+      margin-bottom: 0;
+    
+      li::before {
+        content: "○";
+        color: $dark;
+        position: absolute;
+        left: 0;
+      }
+    }
+  }
+
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: $font-family-heavy;
     margin-bottom: $blog-spacer;
   }
@@ -84,7 +117,8 @@ $blog-container-spacer: 2rem;
       }
     }
 
-    th, td {
+    th,
+    td {
       img {
         width: 100%;
       }
@@ -119,12 +153,18 @@ $blog-container-spacer: 2rem;
   }
 
   @include media-breakpoint-down(lg) {
-    p {
-      font-size: 1rem;
+    font-size: 1.15rem;
+
+    ul {
+      font-size: 1.15rem;
     }
-  
+
+    p {
+      font-size: 1.15rem;
+    }
+
     h3 {
-      font-size: 1.1875rem;
+      font-size: 1.225rem;
       margin-top: 2rem;
       margin-bottom: 1rem;
     }
@@ -137,13 +177,13 @@ $blog-container-spacer: 2rem;
       thead {
         th {
           display: block;
-  
+
           &:first-child {
             width: 100%;
             padding-right: 0;
             margin-bottom: $blog-spacer;
           }
-  
+
           &:last-child {
             width: 100%;
             padding-left: 0;
