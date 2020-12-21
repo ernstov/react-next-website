@@ -81,7 +81,7 @@ const PostList = (props) => {
         </div>
         <div className="subscribe-wrapper">
           <p className="subscribe-wrapper__text">{data?.subscribeForm?.title}</p>
-          <Follow data={settings.follow} variant={'form-only'} />
+          <Follow data={{...settings.follow, bg:"white"}} variant={'form-only'} />
         </div>
       </div>
       <section className="blog-container">
