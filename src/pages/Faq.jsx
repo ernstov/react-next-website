@@ -29,7 +29,7 @@ const Faq = ({ path }) => {
   const sections = [
     { component: Hero, props: { data: page.hero } },
     { component: FaqViewer, props: { data: page.faq, question: question, isWrap: isWrap() } },
-    { component: Follow, props: { data: settings.follow } },
+    { component: Follow, props: { data: {...settings.follow, className: "pb-spc"} } },
     { component: Footer, props: { data: { ...settings.footer, ...settings.simpleFooter } } },
   ]
 

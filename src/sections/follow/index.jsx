@@ -59,7 +59,7 @@ const Follow = ({ data, isVisible, variant }) => {
     )
   } else {
     return (
-      <div className={`follow ${visible ? "active" : ""}`}>
+      <div className={`follow ${data.className ? data.className : ""} ${visible ? "active" : ""}`}>
         <Container>
           <Row>
             <Col lg={12} className="text-center position-relative entry-1">

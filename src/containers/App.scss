@@ -24,6 +24,10 @@
   &.no-wrap {
     padding-top: 0;
 
+    .pb-spc {
+      padding-bottom: $spacer*8;
+    }
+
     .scoll-bar {
       height: 100vh;
     }

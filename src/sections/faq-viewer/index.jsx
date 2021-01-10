@@ -31,7 +31,7 @@ const FaqViewer = ({ data, isVisible, question, isWrap }) => {
     if (question) {
       for (const i in data) {
         if (data[i].id == question) {
-          setOpen(i);
+          setOpen(open.map((item, z)=> i == z ? true : false));
           setTimeout(() => {
             scrollTo(question);
           }, 1000)
