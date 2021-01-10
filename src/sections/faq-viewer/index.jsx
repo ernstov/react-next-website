@@ -10,7 +10,7 @@ import './FaqViewer.scss';
 const FaqViewer = ({ data, isVisible, question, isWrap }) => {
 
   const [visible, setVisible] = useState(false);
-  const [open, setOpen] = useState(0);
+  const [open, setOpen] = useState(data.map((item ,i) => i == 0 ? true : false));
   const { scrollB } = useContext(Context);
 
   const calcPosition = (position) => {
@@ -49,17 +49,21 @@ const FaqViewer = ({ data, isVisible, question, isWrap }) => {
     }
   }, [isVisible])
 
+  const isMob = () => {
+    return window.innerWidth < 880;
+  }
+
   return (
     <div className={`faq-viewer ${visible ? "active" : ""}`}>
       <Container className="p-0">
         <Row>
           <Col lg={12} className="entry-4">
             {data.map((question, i) => (
-              <Card id={question.id} className={`${question.link ? "faq-link" : ""} ${i == open && question.answer ? "active" : ""}`} key={`ai-${i}`}>
-                <Card.Header onClick={() => { setOpen(i != open ? i : null); if (question.link) navigate(question.link) }}>
+              <Card id={question.id} className={`${question.link ? "faq-link" : ""} ${open[i] && question.answer ? "active" : ""}`} key={`ai-${i}`}>
+                <Card.Header onClick={() => { setOpen(open[i] ? open.map((item, z) => i == z ? false : item) : open.map((item, z) => z == i ? true : isMob() ? item : false)); if (question.link) navigate(question.link) }}>
                   {question.question}<Icon variant={`${question.link ? "arrow-right" : "arrow-down"}`} />
                 </Card.Header>
-                {question.answer && <Collapse in={open == i}>
+                {question.answer && <Collapse in={open[i]}>
                   <div><Card.Body dangerouslySetInnerHTML={{ __html: question.answer }}></Card.Body></div>
                 </Collapse>}
               </Card>
