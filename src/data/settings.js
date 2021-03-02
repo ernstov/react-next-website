@@ -129,7 +129,7 @@ export const settings = {
         link: "/wire"
       }
     ],
-    copyright: "© 2020 Gawq. All rights reserved.",
+    copyright: "© 2021 Gawq. All rights reserved.",
   },
 
   simpleFooter: {
