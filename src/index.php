@@ -74,31 +74,34 @@ if($blogPaths[1]) {
   }
   }
 
-  $ph = curl_init();
-  curl_setopt($ph, CURLOPT_URL, $pageAPI."?alias=".$pageAlias);
-  curl_setopt($ph, CURLOPT_RETURNTRANSFER, 1);
-  curl_setopt($ph, CURLOPT_SSL_VERIFYPEER, 0);
-  curl_setopt($ph, CURLOPT_SSL_VERIFYHOST, 0);
-  curl_setopt($ph, CURLOPT_CONNECTTIMEOUT, 10);
-  curl_setopt($ph, CURLOPT_TIMEOUT, 10);
+  if($pageAlias) {
+    $ph = curl_init();
+    curl_setopt($ph, CURLOPT_URL, $pageAPI."?alias=".$pageAlias);
+    curl_setopt($ph, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ph, CURLOPT_SSL_VERIFYPEER, 0);
+    curl_setopt($ph, CURLOPT_SSL_VERIFYHOST, 0);
+    curl_setopt($ph, CURLOPT_CONNECTTIMEOUT, 10);
+    curl_setopt($ph, CURLOPT_TIMEOUT, 10);
   
-  $httpCodePh = curl_getinfo($ph , CURLINFO_HTTP_CODE);
-  $responsePh = curl_exec($ph);
-
-  if ($responsePh === false) {
-    $responsePh = curl_error($ph);
-  }else {
-    $pages = json_decode($responsePh);
-
-    if($pages) {
-      $seo .= '<title>'.$projectName.' - '.$pages[0]->title.'</title>';
-      $seo .= '<meta name="description" content="'.$pages[0]->subTitle.'" />';
-      $seo .= '<meta property="og:description" content="'.$pages[0]->subTitle.'" />';
-      $seo .= '<meta property="og:title" content="'.$pages[0]->title.'" />';
-      $seo .= '<meta property="og:image" content="'.$pages[0]->hero->url.'" />';
+    $httpCodePh = curl_getinfo($ph , CURLINFO_HTTP_CODE);
+    $responsePh = curl_exec($ph);
+  
+    if ($responsePh === false) {
+      $responsePh = curl_error($ph);
+    }else {
+      $pages = json_decode($responsePh);
+  
+      if($pages) {
+        $seo = '';
+        $seo .= '<title>'.$projectName.' - '.$pages[0]->title.'</title>';
+        $seo .= '<meta name="description" content="'.$pages[0]->subTitle.'" />';
+        $seo .= '<meta property="og:description" content="'.$pages[0]->subTitle.'" />';
+        $seo .= '<meta property="og:title" content="'.$pages[0]->title.'" />';
+        $seo .= '<meta property="og:image" content="'.$pages[0]->hero[0]->url.'" />';
+      }
     }
+    curl_close($ph);
   }
-  curl_close($ph);
 }
 
 $seo .= '<meta property="og:url" content="'.$siteURL.$p.'">';
@@ -158,6 +161,7 @@ $seo .= '<meta property="og:url" content="'.$siteURL.$p.'">';
   <div class="loader-inner"><img src="../assets/img/loader.svg" alt=""></div>
   <div id="app"></div>
   <noscript>
+    <?php   print_r($pages[0]) ?>
     You need to enable JavaScript to run this app.
   </noscript>
   <script src="/assets/bundle.js"></script>
