@@ -93,10 +93,10 @@ if($blogPaths[1]) {
   
       if($pages) {
         $seo = '';
-        $seo .= '<title>'.$projectName.' - '.$pages[0]->title.'</title>';
+        $seo .= '<title>'.$projectName.' - '.strip_tags($pages[0]->title).'</title>';
         $seo .= '<meta name="description" content="'.$pages[0]->subTitle.'" />';
         $seo .= '<meta property="og:description" content="'.$pages[0]->subTitle.'" />';
-        $seo .= '<meta property="og:title" content="'.$pages[0]->title.'" />';
+        $seo .= '<meta property="og:title" content="'.$projectName.' - '.strip_tags($pages[0]->title).'" />';
         $seo .= '<meta property="og:image" content="'.$pages[0]->hero[0]->url.'" />';
       }
     }
