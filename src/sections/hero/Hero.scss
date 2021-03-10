@@ -53,6 +53,7 @@
   @include media-breakpoint-down(md) {
     &-img {
       max-width: 100% !important;
+      width: 100%;
     }
 
     &-inner {

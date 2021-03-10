@@ -14,7 +14,8 @@ const ContentManager = ({ dispatchPages, dispatchNotifi }, callback) => {
     `/tags/trending?cat=time&subcat=event&startTime=${yestarday}T00:00:00&endTime=${today}T23:59:59`,
     `/tags/trending?cat=org&subcat=business&startTime=${yestarday}T00:00:00&endTime=${today}T23:59:59`,
     `/tags/trending?cat=broad&startTime=${yestarday}T00:00:00&endTime=${today}T23:59:59`,
-    `/blogs`
+    `/blogs`,
+    `/pages`
   ]
 
   let promises = [];
@@ -30,6 +31,13 @@ const ContentManager = ({ dispatchPages, dispatchNotifi }, callback) => {
   }), error => {
     dispatchNotifi({ type: "ERROR", data: { error: error } })
   })
+}
+
+export const PagesManager = (page , callback) => {
+
+  const request = `/pages?alias=${page}`;
+
+  return ApiService.get(request);
 }
 
 export default ContentManager;

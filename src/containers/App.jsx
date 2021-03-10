@@ -17,6 +17,7 @@ import { settings } from "../data/settings";
 import ReactDynamicImport from "react-dynamic-import";
 import { globalHistory } from "@reach/router";
 import { isWrap } from "../utils";
+import Page from "../pages/Page";
 
 SmoothScrollbar.use(StopScrollPlugin);
 
@@ -97,8 +98,14 @@ const App = () => {
     return <Component key={`r-${i}`} path={link} data={data} />
   }
 
+  const importDefault = (id) => {
+    return <Page key={`${id}`} default />
+  }
+
   const importComponents = () => {
     const comps = [];
+
+    comps.push(importDefault("idefault"));
 
     settings.navigation.map((nav, i) => {
       if (nav.component) {

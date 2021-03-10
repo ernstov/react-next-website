@@ -1,9 +1,9 @@
-@import "../../../styles/global/variables.scss";
+@import "../../styles/global/variables.scss";
 
 $blog-spacer: 1.6rem;
 $blog-container-spacer: 2rem;
 
-.blog-post {
+.page-post {
   max-width: 840px;
   margin: 0 auto;
 
@@ -26,33 +26,40 @@ $blog-container-spacer: 2rem;
   }
 }
 
-.blog-content {
+.page-content {
   padding: $blog-container-spacer $blog-container-spacer;
   border-top: 1px solid $border-color;
   border-bottom: 1px solid $border-color;
   font-size: 1.15rem;
 
-  a {
-    color: $secondary;
-  }
-
   hr {
-    width: calc(100% + #{$blog-container-spacer*2});
+    width: calc(100% + #{$blog-container-spacer * 2});
     margin-left: -$blog-container-spacer;
     margin-top: 2rem;
     margin-bottom: 2rem;
+  }
+
+  a {
+    color: $secondary;
+    text-decoration: underline;
+    transition: color $transition ease;
+    font-family: $font-family-heavy;
+
+    &:hover {
+      color: $black;
+      text-decoration: none;
+    }
   }
 
   ul {
     list-style: none;
     font-weight: 500;
     font-size: 1rem;
-    padding-left: 1rem;
+    padding-left: 0;
     margin-bottom: $blog-spacer;
 
     a {
       color: $secondary;
-      text-decoration: none;
       transition: color $transition ease;
       font-family: $font-family-heavy;
 
@@ -77,17 +84,26 @@ $blog-container-spacer: 2rem;
 
   .block-advanced {
     border-radius: 0.5rem;
-    border: 1px solid $gray-2; 
+    border: 1px solid $gray-2;
     background: $primary-cover-2;
     padding: 1.25rem;
     width: 100%;
-    margin-bottom:1.25rem;
-  
+    margin-bottom: 1.25rem;
+
     ul {
       padding: 0;
       margin-top: 0.5rem;
       margin-bottom: 0;
-    
+
+      a {
+        text-decoration: none;
+        color: $dark;
+
+        &:hover {
+          color: $secondary;
+        }
+      }
+
       li::before {
         content: "○";
         color: $dark;

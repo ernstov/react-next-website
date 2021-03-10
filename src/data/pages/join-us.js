@@ -2,7 +2,7 @@ export const page = {
   hero: {
     title: 'Help build the <span>future</span> of “news”',
     description: 'We’re seeking truth-seekers',
-    img: "join-us-hero.svg",
+    img: "join-us-hero.png",
     imgCL: "mw-520",
   },
   joinUs: {
