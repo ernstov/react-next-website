@@ -27,6 +27,7 @@ export const settings = {
     m: "m",
     Filedunder: "Filed under",
     Postsnotfound: "Posts not found",
+    NotFound: "404 page not found"
   },
 
   header: {

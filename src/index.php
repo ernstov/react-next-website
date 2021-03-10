@@ -4,10 +4,12 @@ $string = file_get_contents("./seo.json");
 $seo = '';
 $siteURL='http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['HTTP_HOST'].'/';
 $blogAPI = "https://app.gawq.com/blogs";
+$pageAPI = "https://app.gawq.com/pages";
 $p = substr($_SERVER['REQUEST_URI'], 1);
 $blogPaths = explode("wire/", $p);
 $post = new stdClass();
 $projectName = "Gawq";
+$pageAlias = explode("/", $_SERVER['REQUEST_URI'])[1];
 
 if($blogPaths[1]) {
   $ch = curl_init();
@@ -20,7 +22,7 @@ if($blogPaths[1]) {
   
   $httpCode = curl_getinfo($ch , CURLINFO_HTTP_CODE);
   $response = curl_exec($ch);
-  
+
   if ($response === false) {
     $response = curl_error($ch);
   }else {
@@ -71,6 +73,32 @@ if($blogPaths[1]) {
     }
   }
   }
+
+  $ph = curl_init();
+  curl_setopt($ph, CURLOPT_URL, $pageAPI."?alias=".$pageAlias);
+  curl_setopt($ph, CURLOPT_RETURNTRANSFER, 1);
+  curl_setopt($ph, CURLOPT_SSL_VERIFYPEER, 0);
+  curl_setopt($ph, CURLOPT_SSL_VERIFYHOST, 0);
+  curl_setopt($ph, CURLOPT_CONNECTTIMEOUT, 10);
+  curl_setopt($ph, CURLOPT_TIMEOUT, 10);
+  
+  $httpCodePh = curl_getinfo($ph , CURLINFO_HTTP_CODE);
+  $responsePh = curl_exec($ph);
+
+  if ($responsePh === false) {
+    $responsePh = curl_error($ph);
+  }else {
+    $pages = json_decode($responsePh);
+
+    if($pages) {
+      $seo .= '<title>'.$projectName.' - '.$pages[0]->title.'</title>';
+      $seo .= '<meta name="description" content="'.$pages[0]->subTitle.'" />';
+      $seo .= '<meta property="og:description" content="'.$pages[0]->subTitle.'" />';
+      $seo .= '<meta property="og:title" content="'.$pages[0]->title.'" />';
+      $seo .= '<meta property="og:image" content="'.$pages[0]->hero->url.'" />';
+    }
+  }
+  curl_close($ph);
 }
 
 $seo .= '<meta property="og:url" content="'.$siteURL.$p.'">';
