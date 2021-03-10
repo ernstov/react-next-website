@@ -3,8 +3,8 @@
 $string = file_get_contents("./seo.json");
 $seo = '';
 $siteURL='http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['HTTP_HOST'].'/';
-$blogAPI = "https://app.gawq.com/blogs";
-$pageAPI = "https://app.gawq.com/pages";
+$blogAPI = "https://dev-dispatch-276213.ue.r.appspot.com/blogs";
+$pageAPI = "https://dev-dispatch-276213.ue.r.appspot.com/pages";
 $p = substr($_SERVER['REQUEST_URI'], 1);
 $blogPaths = explode("wire/", $p);
 $post = new stdClass();
