@@ -37,7 +37,7 @@ const Page = ({ path }) => {
   }, [])
 
   const sections = [
-    { component: Hero, props: { data: { ...page.hero, title: post.title, description: post.subTitle, isExternal: true, img: post?.hero ? post.hero[0]?.url : null} } },
+    { component: Hero, props: { data: { ...page.hero, title: post?.title, description: post?.subTitle, isExternal: true, img: post?.hero ? post.hero[0]?.url : null} } },
     { component: PageViewer, props: { data: post } },
     { component: Footer, props: { data: { ...settings.footer, ...page.footer } } },
   ]
@@ -45,7 +45,7 @@ const Page = ({ path }) => {
   if (!isWrap()) sections.pop();
 
   return <div>
-    <Seo seo={{title: `${settings.projectName} - ${post.title ? cleanText(post.title) : ""}` }} />
+    <Seo seo={{title: `${settings.projectName} - ${post?.title ? cleanText(post.title) : ""}` }} />
     {sections.map((section, i) => (
       <VisibilitySensor minTopValue={100} partialVisibility={true} once={true} key={`p-${i}`}>
         {({ isVisible }) =>
