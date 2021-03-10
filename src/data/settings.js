@@ -1,6 +1,6 @@
 export const settings = {
   projectName: "Gawq",
-  api: "https://app.gawq.com", 
+  api: "https://dev-dispatch-276213.ue.r.appspot.com", 
   preloaderTime: 700,
   gtmId:"GTM-KS798VW",
   gtmDataLayerName:"PageDataLayer",
