@@ -161,7 +161,6 @@ $seo .= '<meta property="og:url" content="'.$siteURL.$p.'">';
   <div class="loader-inner"><img src="../assets/img/loader.svg" alt=""></div>
   <div id="app"></div>
   <noscript>
-    <?php   print_r($pages[0]) ?>
     You need to enable JavaScript to run this app.
   </noscript>
   <script src="/assets/bundle.js"></script>
