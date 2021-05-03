@@ -39,7 +39,7 @@ const Home = ({ path }) => {
 
     setLoading(true)
     try {
-      const res = await fetch(`${settings.api}/articles/headlines2?startTime=${startTime}` + `&endTime=${endTime}`)
+      const res = await fetch(`${settings.api}/articles/headlines?startTime=${startTime}` + `&endTime=${endTime}`)
       const resJson = await res.json()
       const contents = resJson && resJson.length > 0 && resJson.map(item => {
         return {

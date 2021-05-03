@@ -9,7 +9,12 @@ $p = substr($_SERVER['REQUEST_URI'], 1);
 $blogPaths = explode("wire/", $p);
 $post = new stdClass();
 $projectName = "Gawq";
-$pageAlias = explode("/", $_SERVER['REQUEST_URI'])[1];
+$pageUp = explode("/", $_SERVER['REQUEST_URI'])[1];
+$pageAlias = $pageUp;
+
+if(strpos($pageUp, '?') !== false){
+  $pageAlias = explode("?", $pageUp)[0];
+}
 
 if($blogPaths[1]) {
   $ch = curl_init();
