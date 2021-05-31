@@ -1,0 +1,155 @@
+@import "../base/variables.scss"; 
+
+.logo {
+  width: 100px;
+  height: auto;
+  cursor: pointer;
+
+  &:global(.active){
+    width: 100px; 
+  }
+
+  @include media-breakpoint-down(md) {
+    width: 87px;
+
+    &:global(.active){
+      width: 87px; 
+    }
+  }
+}
+
+.list {
+  ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+}
+
+.flexCenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fw300 {font-weight: 300;}
+.fw500 {font-weight: 500;}
+.fw700 {font-weight: 700;}
+
+.prApp {
+  padding-right: $content-padding;
+}
+
+.plApp {
+  padding-left: $content-padding;
+}
+
+.select {
+  position: relative;
+  z-index: 10;
+  flex-shrink: 0;
+  min-width: 160px;
+
+  :global(.acr-select__value-container){
+    padding-left:1rem;
+  }
+
+  :global(.acr-select__single-value) {
+    display: flex;
+    align-items: center;
+    color: $white;
+    font-weight: 600;
+    font-size: 0.8125rem;
+
+    svg {
+      font-size: 1rem;
+      margin-right: 0.5rem;
+    }
+
+    > * {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  :global(.acr-select__menu) {
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  :global(.acr-select__menu-list) {
+    padding: 0;
+    border: none;
+  }
+
+  :global(.acr-select__option){
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+
+  :global(.acr-select__option.acr-select__option--is-focused) {
+    background-color: rgba($primary, 0.1);
+  }
+
+  :global(.acr-select__option.acr-select__option--is-selected) {
+    background-color: rgba($black, 0.6);
+  }
+
+  :global(.acr-select__control){
+    background-color: $black;
+    border-radius: 25px;
+    box-shadow: none;
+    border: none;
+
+    :global(.acr-select__indicators) {
+      background-color: transparent;
+
+      :global(.acr-select__indicator) {
+        color: $white;
+        transform-origin: center center;
+        margin-right: 8px;
+        transition: transform $transition ease;
+
+        svg {
+          width: 16px;
+          height: 16px;
+        }
+      }
+    }
+  }
+
+  :global(.acr-select__indicator-separator) {
+    display: none;
+  }
+
+  :global(.acr-select__control.acr-select__control--menu-is-open){
+    :global(.acr-select__indicators) {
+      :global(.acr-select__indicator) {
+       transform: rotate(-180deg);
+     }
+   }
+  }
+}
+
+.label {
+  background-color: $light;
+  color: rgba($black, 0.4);
+  border: 1px solid rgba($black, 0.25);
+  display: inline-block;
+  padding: 0.2rem 0.7rem;
+  border-radius: 0.3rem;
+  letter-spacing: 0.0075rem;
+  font-weight: 600;
+  font-size: 0.7875rem;
+  text-transform: uppercase;
+}
+
+
+.transitionContainer {
+  opacity: 0;
+  transition: opacity $transition ease;
+
+  &:global(.active) {
+    opacity: 1;
+  }
+}

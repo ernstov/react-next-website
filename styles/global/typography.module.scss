@@ -1,0 +1,164 @@
+@import "../base/variables.scss";
+
+.textTitle {
+  color: $black;
+  font-weight: 600;
+
+  span {
+    position: relative;
+    display: inline-block;
+
+    &::after {
+      content: "";
+      display: block;
+      width: calc(100% + 4px);
+      margin-left: -4px;
+      height: 10px;
+      position: absolute;
+      bottom: 5px;
+      left: 0;
+      background-color: rgba($primary, 0.3);
+      z-index: -1;
+    }
+  }
+}
+
+.textSubTitle {
+  font-size: 1.3125rem;
+  line-height: 1.04;
+}
+
+.titleHeavyMedium {
+  font-family: $font-family-heavy;
+  font-size: 1.1875rem;
+}
+
+.titleSmall {
+  font-size: 1.1875rem;
+  font-weight: 500;
+}
+
+.category {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.regularD {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.smallM {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.tinyD {
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.tinyM {
+  font-size: 0.8125rem;
+  font-weight: 500;
+}
+
+.smallD {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.small {
+  font-size: 0.875rem;
+}
+
+.tinyMedium {
+  font-weight: 500;
+  font-size: 0.6875rem;
+}
+
+.header2 {
+  font-size: 1.625rem;
+  font-family: $font-family-base;
+  font-weight: 600;
+}
+
+.header3 {
+  font-size: 1.0625rem;
+  font-family: $font-family-base;
+  font-weight: 600;
+}
+
+.subTitle {
+  color: rgba($black, 0.65);
+}
+
+.tinyLabel {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: rgba($black, 0.4);
+}
+
+.tinyLabelM {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: rgba($black, 0.4);
+}
+
+.stiny {
+  font-size: 0.65rem;
+}
+
+.titleSmallD {
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+.subTitleD {
+  font-size: 1.3125rem;
+  font-weight: 600;
+}
+
+.c1 {
+  color: $c1;
+}
+.c2 {
+  color: $gray-9;
+}
+.c3 {
+  color: $gray-10;
+}
+.c4 {
+  color: rgba($black, 0.5);
+}
+.c5 {
+  color: $dark-1;
+}
+.c6 {
+  color: $secondary;
+}
+
+@include media-breakpoint-down(lg) {
+  .text-sub-title {
+    font-size: 1.125rem;
+  }
+}
+
+@include media-breakpoint-down(md) {
+  .header2 {
+    font-size: 1.3125rem;
+  }
+  .subTitleD {
+    font-size: 1.0625rem;
+  }
+  
+  .textSubTitle {font-size: 1.0625rem;}
+
+  .textTitle {
+    span {
+      &::after{
+        bottom: 0px;
+      }
+    }
+  }
+}

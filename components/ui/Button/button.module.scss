@@ -1,0 +1,176 @@
+@import "../../../styles/base/variables.scss";
+
+.button {
+  background-color: $primary;
+  border: 1px solid $primary;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $btn-padding;
+  border-radius: $btn-radius;
+  height: $btn-height;
+  font-size: $btn-fsize;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color $transition ease, background-color $transition ease;
+
+  &:hover {
+    text-decoration: none;
+    color: inherit;
+
+    svg {
+      color: inherit;
+    }
+  }
+}
+
+.link {
+  transition: color $transition ease;
+  text-decoration: underline;
+  font-size: 0.875rem;
+  font-weight: 600;
+
+  &:hover {
+    color: $black;
+    text-decoration: none;
+  }
+}
+
+.collapse {
+  background-color: $black;
+  font-size: 1.1875rem;
+  color: $white;
+  font-family: $font-family-heavy;
+  transition: color $transition ease;
+  border:none;
+  padding: 0 calc(1rem + 5px);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  height: 58px;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba($white, 0.1);
+
+  >div {
+    &:first-child{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    &:last-child{
+      flex-shrink: 0;
+
+      svg{
+        font-size: 0.8125rem;
+        opacity: 0.65;
+        transition: transform $transition ease;
+      }
+    }
+  }
+
+  &:global(.active) {
+    >div {
+      &:last-child{
+        svg {
+          transform: rotate(-180deg);
+        }
+      }
+    }
+  }
+}
+
+.radial {
+  border-radius: 50%;
+  padding: 0;
+  flex-shrink: 0;
+  width: $btn-height;
+  height: $btn-height;
+}
+
+.square {
+  border-radius: $block-radius;
+}
+
+.large {
+  height: $btn-height-large;
+  font-size: $btn-fsize-large;
+
+  @include media-breakpoint-down(md) {
+    height: $btn-height-large-md;
+    font-size: $btn-fsize-large-md;
+  }
+}
+
+.dark {
+  background-color: $black;
+  color: $white;
+  border-color: $black;
+
+  &:hover {
+    color: $dark;
+    background-color: transparent;
+  }
+}
+
+.light {
+  background-color: $light;
+  color: $black;
+  border-color: rgba($black, 0.25);
+
+  &:global(.active){
+    background-color: $black;
+    color: $white;
+
+    &:hover {
+      color: $white;
+    }
+  }
+
+  &:hover {
+    color: $secondary;
+  }
+}
+
+.lightD {
+  background-color: $light;
+  color: $gray-7;
+  border-color: rgba($black, 0.25);
+
+  &:global(.active){
+    background-color: $black;
+    color: $white;
+
+    &:hover {
+      color: $white;
+    }
+  }
+
+  &:hover {
+    background-color: $black;
+    color: $white;
+  }
+}
+
+.wide {
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.secondary {
+  background-color: $cover-blue;
+  color: $secondary;
+  border-color: rgba($secondary, 0.25);
+
+  &:global(.active){
+    background-color: $secondary;
+    color: $white;
+  }
+}
+
+.secondaryLink {
+  color: $secondary;
+}

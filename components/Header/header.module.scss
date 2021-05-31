@@ -1,0 +1,233 @@
+@import "../../styles/base/variables.scss";
+
+$menu-color: $black;
+$toggle-transition: 0.2s;
+$snappy: cubic-bezier(0.694, 0.048, 0.335, 1);
+
+.header {
+  padding: 1rem;
+  height: $heder-height;
+  border-bottom: 2px solid $gray;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: visible;
+
+  @include media-breakpoint-down(md) {
+    padding-left: 0;
+    padding-right: 0;
+    height: $header-height-md;
+  }
+}
+
+.menuToggler {
+  position: absolute;
+  right: $gutter;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  z-index: 16;
+
+  > div {
+    width: 23px;
+    height: 16px;
+    position: relative;
+    transition: transform 0.3s $snappy;
+
+    > span {
+      display: block;
+      width: 100%;
+      height: 2px;
+      margin-top: 5px;
+
+      &::after {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 100%;
+        background-color: $dark-2;
+        transition: background-color $toggle-transition * 4 $snappy;
+      }
+
+      &:first-child {
+        margin-top: 0;
+        transform: scaleX(1);
+        transition: transform $toggle-transition $snappy;
+        transition-delay: 0.4s;
+      }
+      &:nth-child(2) {
+        transform: scaleX(0.6);
+        transform-origin: center right;
+        transition: transform $toggle-transition $snappy;
+        transition-delay: 0.4s;
+      }
+      &:nth-child(3) {
+        transform: scaleX(0.6);
+        transform-origin: center right;
+        transition: width $toggle-transition $snappy;
+        transition-delay: 0.4s;
+      }
+    }
+    > div {
+      width: 2px;
+      height: 0;
+      position: absolute;
+      top: -4px;
+      left: 50%;
+      margin-left: -1px;
+      transition: height 0.4s $snappy;
+      z-index: 10;
+
+      &::after {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 100%;
+        background-color: $gray-4;
+        transition: background-color $toggle-transition * 4 $snappy;
+      }
+    }
+  }
+  &:global(.is-menu-open) {
+    > div {
+      transform: rotate(45deg);
+      transition-delay: 0.4s;
+      > span {
+        &::after {
+          background-color: $gray-4;
+        }
+        &:first-child {
+          transform: scaleX(0);
+          transition: transform $toggle-transition $snappy;
+        }
+        &:nth-child(3) {
+          width: 0;
+          transition: width $toggle-transition $snappy;
+        }
+        &:nth-child(2) {
+          transform: scaleX(1);
+        }
+      }
+      > div {
+        height: 23px;
+        transition: height $toggle-transition $snappy;
+        transition-delay: 0.3s;
+
+        &::after {
+          background-color: $gray-4;
+        }
+      }
+    }
+  }
+}
+
+.menuContainer {
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-color: $black;
+  padding: 3rem;
+  min-width: 320px;
+  min-height: 600px;
+  z-index: 15;
+  transform: translateX(100%);
+  transition: transform $transition * 3 $transition-timing;
+
+  &:global(.active) {
+    transform: translateX(0);
+  }
+
+  ul {
+    padding: 0.5rem 0;
+    margin: 0;
+    list-style: none;
+
+    li {
+      padding: 0;
+      margin: 0;
+
+      a {
+        color: $light;
+        text-decoration: none;
+        font-size: 1.625rem;
+        font-weight: 500;
+        padding: 1rem 0;
+        display: block;
+        transition: color $transition ease;
+
+        &:hover {
+          color: $primary;
+        }
+      }
+    }
+  }
+
+  @include media-breakpoint-down(lg) {
+    height: 100vh;
+    ul {
+      li {
+        a {
+          font-size: 1.25rem;
+        }
+      }
+    }
+  }
+
+  @include media-breakpoint-down(sm) {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 100%;
+}
+
+.navigation {
+  display: flex;
+
+  @include media-breakpoint-down(lg) {
+    display: none;
+  }
+}
+
+.menuUser {
+  margin-left: 1rem;
+  img {
+    width: 1.875rem;
+    height: 1.875rem;
+  }
+
+  @include media-breakpoint-down(lg) {
+    display: none;
+  }
+}
+
+.headerFavorite {
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: color $transition ease;
+
+  &:hover {
+    color: $secondary;
+  }
+
+  @include media-breakpoint-down(md) {
+    display: none;
+  }
+}
+
+.headerToggler {
+  display: none;
+
+  @include media-breakpoint-down(lg) {
+    display: block;
+  }
+}

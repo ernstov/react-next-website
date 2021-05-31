@@ -1,0 +1,35 @@
+body .scrollbar-track {
+  background-color: transparent;
+  z-index: 11;
+}
+
+body .scrollbar-track.scrollbar-track-x {
+  display: none !important;
+}
+
+body .scrollbar-thumb {
+  width: 4px;
+  left: 2px;
+  background-color: $black;
+}
+
+body .scroll-content {
+  > * {
+    position: relative;
+    overflow:hidden;
+  }
+}
+
+.cursor-pointer{
+  cursor: pointer;
+}
+
+.lh-1 {
+  line-height: 1;
+}
+
+.mw-300 {max-width: 300px;}
+.mw-400 {max-width: 400px;}
+.mw-450 {max-width: 450px;}
+.mw-600 {max-width: 600px;}
+.mw-800 {max-width: 800px;}
