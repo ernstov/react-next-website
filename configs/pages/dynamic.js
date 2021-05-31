@@ -204,7 +204,7 @@ export const pages = [
           list: ["Custom volume/scale", "Adding unsupported sources", "Tailored AI", "Unique data-mapping needs", "Deeper integrations"],
           button: {
             variant: "primary-arrow-down",
-            jump: "#contact",
+            jump: "contact",
             name: "Contact us"
           }
         },

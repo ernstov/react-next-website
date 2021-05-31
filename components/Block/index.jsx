@@ -9,6 +9,11 @@ const Block = ({ data, i, variant, isYearly }) => {
 
   const { lang: { USD, month, Startnow } } = useContext(Context);
 
+  const getButtonOptions = (button) => {
+    if(button.link) return {link: button.link}
+    if(button.jump) return {jump: button.jump}
+  }
+
   const render = () => {
     switch (variant) {
       case "badge":
@@ -24,7 +29,7 @@ const Block = ({ data, i, variant, isYearly }) => {
           </div>
           {data.button &&
             <div className="text-center">
-              <Button variant={data.button.variant}>{data.button.name}</Button>
+              <Button {...getButtonOptions(data.button)} variant={data.button.variant}>{data.button.name}</Button>
             </div>
             }
         </div>

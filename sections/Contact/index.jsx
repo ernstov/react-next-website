@@ -62,7 +62,7 @@ const Contact = ({ data, isVisible, question, isWrap }) => {
   }
 
   return (
-    <div className={`${styles.contact} ${data.className ? data.className : ""} ${visible ? "active" : ""}`}>
+    <div className={`${styles.contact} ${data.className ? data.className : ""} ${visible ? "active" : ""}`} id="contact">
       <Container fluid className="p-0">
         <Row>
           <Col lg={4} className="entry-4 text-center text-md-left">

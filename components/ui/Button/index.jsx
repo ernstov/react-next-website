@@ -1,8 +1,12 @@
+import {useContext} from "react"
 import styles from './button.module.scss'
 import Link from 'next/link'
 import Icon from "../../Icon"
+import { Context } from "../../../context/context"
 
-const Button = ({ children, variant, className, onClick, as, link, isActive, disabled }) => {
+const Button = ({ children, variant, className, onClick, as, link, isActive, disabled, jump }) => {
+
+  const { scrollB } = useContext(Context)
 
   const getStyles = () => {
     switch (variant) {
@@ -48,27 +52,37 @@ const Button = ({ children, variant, className, onClick, as, link, isActive, dis
         return <span className="ml-3"><Icon variant="arrow-down" /></span>
       default:
         return <></>
-
     }
+  }
+
+  const onClickIn = () => {
+
+    if (jump) scrollTo(jump)
+    if (onClick) onClick()
+  }
+
+  const scrollTo = (elmId) => {
+    const position = document.querySelector(`#${elmId}`).offsetTop;
+    scrollB.current.scrollbar.scrollTo(0, position, 1000);
   }
 
   const render = () => {
     switch (as) {
       case "link":
         return <Link href={`..${link}`} passHref>
-          <a className={`${getStyles()} ${className ? className : ""}`} onClick={onClick}>{children} {getIcons()}</a>
+          <a className={`${getStyles()} ${className ? className : ""}`} onClick={onClickIn}>{children} {getIcons()}</a>
         </Link>
       case "url":
-        return <a className={`${getStyles()} ${className ? className : ""}`} href={link} target="_blank" onClick={onClick}>{children} {getIcons()}</a>
+        return <a className={`${getStyles()} ${className ? className : ""}`} href={link} target="_blank" onClick={onClickIn}>{children} {getIcons()}</a>
       case "url-same":
-        return <a className={`${getStyles()} ${className ? className : ""}`} href={link} onClick={onClick}>{children} {getIcons()}</a>
+        return <a className={`${getStyles()} ${className ? className : ""}`} href={link} onClick={onClickIn}>{children} {getIcons()}</a>
       case "collapse":
-        return <button onClick={onClick} disabled={disabled ? disabled : false} className={`${getStyles()} ${isActive ? "active" : ""} ${className ? className : ""}`}>
+        return <button onClick={onClickIn} disabled={disabled ? disabled : false} className={`${getStyles()} ${isActive ? "active" : ""} ${className ? className : ""}`}>
           <div>{children}</div>
           <div className="ml-3"><Icon variant="chevron-up" /></div>
         </button>
       default:
-        return <button disabled={disabled ? disabled : false} onClick={onClick} className={`${getStyles()} ${className ? className : ""}`}>
+        return <button disabled={disabled ? disabled : false} onClick={onClickIn} className={`${getStyles()} ${className ? className : ""}`}>
           {children} {getIcons()}
         </button>
     }
