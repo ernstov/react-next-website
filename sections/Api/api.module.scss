@@ -1,0 +1,11 @@
+@import "../../styles/base/variables.scss";
+
+.api {
+  border-bottom: 1px solid $border-color;
+  padding-bottom: $section-spacer*2;
+
+  @include media-breakpoint-down(md) {
+    display: none;
+  }
+
+}

@@ -8,7 +8,7 @@ import Router, {useRouter} from "next/router"
 import "../styles/main.scss"
 import 'swiper/swiper.scss'
 import 'swiper/components/lazy/lazy.scss'
-
+// import 'jsoneditor-react/es/editor.min.css';
 
 export default function App({ Component, pageProps }) {
 

@@ -20,6 +20,22 @@ body .scroll-content {
   }
 }
 
+.ace_scrollbar::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 4px rgba(0,0,0,0.1);
+}
+
+.ace_scrollbar::-webkit-scrollbar
+{
+	width: 8px;
+}
+
+.ace_scrollbar::-webkit-scrollbar-thumb
+{
+	background-color: rgba(0,0,0,0.3);
+}
+
+
 .cursor-pointer {
   cursor: pointer;
 }

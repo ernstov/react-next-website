@@ -11,6 +11,7 @@ import Hero from "../sections/Hero"
 import Carousel from "../sections/Carousel"
 import Columns from "../sections/Columns"
 import Features from "../sections/Features"
+import Api from "../sections/Api"
 
 const Home = ({ tags, dataPosts, path }) => {
 
@@ -28,6 +29,7 @@ const Home = ({ tags, dataPosts, path }) => {
         <Hero data={page.hero} />
         <Features data={page.features} />
         <Carousel data={page.carousel} />
+        <Api data={page.console}/>
         <Columns data={page.columns}/>
         <Footer data={appConfig.footer} />
       </LayoutBase>

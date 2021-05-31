@@ -19,7 +19,7 @@ export const pages = [
     },
     carousel: {
       variant: "fluid",
-      className: "with-bullets",
+      className: "with-bullets reduce-padding-md",
       columns: [
         { title: "Topic & entity extraction", description: "Machine learning automatically extracts events, people, businesses, places, & topics in the news.", img: "/img/topic-extraction.jpg", imgClass: "fluid offset20" },
         { title: "Event clustering", description: "Articles are systematically scored for similarity and then organized into a clean feed. Analyze each of them individually, or filter for unique headlines.", img: "/img/event-clustering.jpg", imgClass: "fluid offset20" },
@@ -36,6 +36,7 @@ export const pages = [
       title: "Industries & use cases",
       titleSPC: "Tap into the power of news intelligence",
       img: "power-of-intelligence.svg",
+      className: "reduce-padding-md",
       columns: [
         {
           title: "Media monitoring",
@@ -115,6 +116,19 @@ export const pages = [
           variant: "outline-primary",
         },
       ]
+    },
+    console: {
+      inner: {
+        title: "Live demo",
+        tab: "REQUEST",
+        label: "REST API",
+        getLabel: "curl -XGET",
+        dateLabel: "FROM DATE",
+        button: "Refresh",
+        api: "app.gawq.com/",
+        query: "tags/trending",
+        date: "2020-07-01",
+      }
     }
   },
 
