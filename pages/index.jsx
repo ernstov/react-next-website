@@ -1,3 +1,4 @@
+import React from "react"
 import Head from 'next/head'
 import { useEffect, useContext, useState } from 'react'
 import appConfig from "../configs/appConfig"
@@ -11,11 +12,21 @@ import Carousel from "../sections/Carousel"
 import Columns from "../sections/Columns"
 import Features from "../sections/Features"
 import Api from "../sections/Api"
+import VisibilitySensor from '../utils/react-visibility-sensor';
 
 const Home = ({ tags, dataPosts, path }) => {
 
   const { app, dispatchApp, lang: { Home, } } = useContext(Context);
   const page = filterIt(pages, path, "link")[0];
+
+  const sections = [
+    { component: Hero, props: { data: page.hero } },
+    { component: Features, props: { data: page.features } },
+    { component: Carousel, props: { data: page.carousel } },
+    { component: Api, props: { data: page.console } },
+    { component: Columns, props: { data: page.columns } },
+    { component: Footer, props: { data: appConfig.footer } },
+  ]
 
   return (
     <>
@@ -23,13 +34,13 @@ const Home = ({ tags, dataPosts, path }) => {
         <title>{appConfig.projectName} - {page.title}</title>
         <link rel="icon" href="/img/favicon.ico" />
       </Head>
-      <Header />
-      <Hero data={page.hero} />
-      <Features data={page.features} />
-      <Carousel data={page.carousel} />
-      <Api data={page.console} />
-      <Columns data={page.columns} />
-      <Footer data={appConfig.footer} />
+      {sections.map((section, i) => (
+        <VisibilitySensor minTopValue={100} partialVisibility={true} once={true} key={`p-${i}`}>
+          {({ isVisible }) =>
+            React.createElement(section.component, { ...section.props, key: `s-${i}`, isVisible: isVisible })
+          }
+        </VisibilitySensor>
+      ))}
     </>
   )
 }

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 import styles from './hero.module.scss'
 import Button from '../../components/ui/Button'
 import typographyStyles from "../../styles/global/typography.module.scss"
+import appConfig from "../../configs/appConfig"
 
 const Hero = ({ data, isVisible }) => {
 
@@ -11,7 +12,7 @@ const Hero = ({ data, isVisible }) => {
     if (isVisible) {
       setTimeout(() => {
         setVisible(true)
-      }, 1000)
+      }, appConfig.entryDelay*2)
     }
   }, [isVisible])
 

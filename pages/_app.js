@@ -7,6 +7,7 @@ import Router, { useRouter } from "next/router"
 import { LayoutBase, LayoutRow } from "../components/Layout"
 import Scrollbar from "react-smooth-scrollbar"
 import Loader from "../components/Loader/"
+import Header from "../components/Header"
 
 import "../styles/main.scss"
 import 'swiper/swiper.scss'
@@ -60,6 +61,7 @@ export default function App({ Component, pageProps }) {
   return <Context.Provider value={{ app, dispatchApp, lang, scrollB }}>
     <LayoutBase>
       <Loader loaderState={loaderState} />
+      <Header />
       <Scrollbar className="scoll-bar" ref={e => { if (e && !scrollB.current) { scrollB.current = e; } }}>
         <Component {...pageProps} path={router.pathname} />
       </Scrollbar>

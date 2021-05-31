@@ -9,10 +9,22 @@ $snappy: cubic-bezier(0.694, 0.048, 0.335, 1);
   height: $heder-height;
   border-bottom: 2px solid $gray;
   display: flex;
+  width: 100%;
   align-items: center;
-  position: relative;
-  overflow-x: hidden;
-  overflow-y: visible;
+  background-color: $light;
+  transform: translateY(-100%);
+  transition: transform $transition * 3 $transition-timing;
+
+  &:global(.fixed) {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99;
+  }
+
+  &:global(.visible) {
+    transform: translateY(0);
+  }
 
   @include media-breakpoint-down(md) {
     padding-left: 0;
@@ -116,6 +128,24 @@ $snappy: cubic-bezier(0.694, 0.048, 0.335, 1);
 
         &::after {
           background-color: $gray-4;
+        }
+      }
+    }
+  }
+}
+
+.headerAnimationSvg {
+  cursor: pointer;
+  transition: transform $transition * 4 ease;
+
+  svg {
+    width: auto !important;
+    height: 46px !important;
+
+    > g {
+      > g {
+        &:first-child {
+          display: none !important;
         }
       }
     }

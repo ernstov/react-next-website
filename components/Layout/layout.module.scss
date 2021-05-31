@@ -7,6 +7,11 @@
   overflow: hidden;
   position: relative;
   height: 100vh;
+  padding-top: $heder-height;
+
+  @include media-breakpoint-down(md) {
+    padding-top: $heder-height;
+  }
 }
 
 .layoutBaseRow {

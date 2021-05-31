@@ -3,6 +3,7 @@ const app = {
   projectName: "Gawq",
   headerHeight: 80,
   headerHeightMd: 75,
+  entryDelay: 500,
 
   headerNavigation: [
     {name: "News API", link:"/"},

@@ -24,13 +24,13 @@ const Features = ({ data, isVisible }) => {
       <Container>
         <Row>
           <Col className="order-2 order-md-1" md={5}>
-            <div className={`${styles.featuresImgOuter}`}><div className={`${styles.featuresImgContainer}`}><img className={`${styles.featuresImg}`} src={`/img/${column1.img}`}/></div></div>
+            <div className={`${styles.featuresImgOuter} entry-1`}><div className={`${styles.featuresImgContainer}`}><img className={`${styles.featuresImg}`} src={`/img/${column1.img}`}/></div></div>
           </Col>
           <Col className="pl-1 pl-md-5 order-1 order-md-2" md={7}>
-            <div className="d-flex align-items-center"><img className="mr-2" src={`/img/${column1.labelImg}`} /><span className={`${typographyStyles.labelPrimaryMd}`}>{column1.label}</span></div>
-            <div className="mt-2"><span className={`${typographyStyles.titleDemiWhite}`}>{column1.title}</span></div>
-            <p className={`${typographyStyles.textWhiteRegular} mt-3`}>{column1.description}</p>
-            <ul className={`${presetsStyles.listPrimary} dark`}>
+            <div className="d-flex align-items-center entry-1"><img className="mr-2" src={`/img/${column1.labelImg}`} /><span className={`${typographyStyles.labelPrimaryMd}`}>{column1.label}</span></div>
+            <div className="mt-2 entry-2"><span className={`${typographyStyles.titleDemiWhite}`}>{column1.title}</span></div>
+            <p className={`${typographyStyles.textWhiteRegular} mt-3 entry-3`}>{column1.description}</p>
+            <ul className={`${presetsStyles.listPrimary} dark entry-4`}>
               {column1.list.map((item, i) => (
                 <li key={`li-${i}`}>{item.title}</li>
               ))}
@@ -39,8 +39,8 @@ const Features = ({ data, isVisible }) => {
         </Row>
         <Row className="mt-4 mt-md-5">
           <Col>
-            <div><span className={`${typographyStyles.labelPrimaryMd}`} dangerouslySetInnerHTML={{ __html: column2.label }}></span></div>
-            <div className="mt-4">
+            <div className="entry-1"><span className={`${typographyStyles.labelPrimaryMd}`} dangerouslySetInnerHTML={{ __html: column2.label }}></span></div>
+            <div className="mt-4 entry-2">
               {column2.list.map((item, i) => (
                 <div className="d-flex mb-5" key={`li-${i}`}>
                   <div><img className="mr-3" src={`/img/${item.img}`}/></div>
@@ -51,7 +51,7 @@ const Features = ({ data, isVisible }) => {
                 </div>
               ))}
             </div>
-            <div className={`${styles.buttons} mt-5 entry-4`}>
+            <div className={`${styles.buttons} mt-5 entry-3`}>
               {data.buttons && data.buttons.map((button, i) => (
                 <Button link={button.link} as={`${button.as ? button.as : "link"}`} variant={button.variant} className={`${button.className ? button.className : ""} ${i < data.buttons.length-1 ? "mb-2 mr-3" : ""}`} key={`bi-${i}`}>{button.name}</Button>
               ))}
