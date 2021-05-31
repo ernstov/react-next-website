@@ -21,9 +21,10 @@ export const page = {
   },
   mediaSources: {
     title: "Mobile or tablet",
-    label_1: "150+",
+    label_1: "850+",
     label_2: "media sources",
     list: [
+      { name: "Get local, national, & world news" },
       { name: "No algorithms, anti-echo chamber" },
       { name: "No in-stream ads" },
       { name: "Filter opinions, celebrity, or paid news" },
