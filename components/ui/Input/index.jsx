@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react"
 import styles from './input.module.scss'
-import * as bootstrapValidate from 'bootstrap-validate';
-import typographyStyles from "../../../styles/global/typography.module.scss"
+import * as bootstrapValidate from 'bootstrap-validate'
+import Label from "../Label"
 
 const Input = ({ variant, className, placeholder, name, onChange, defaultValue, type, required, label }) => {
 
@@ -84,7 +84,7 @@ const Input = ({ variant, className, placeholder, name, onChange, defaultValue, 
       case "form":
       default:
         return <div className={`${styles.input} ${variant ? variant : ""} ${isFocus ? "focus" : ""} ${className ? className : ""} ${valid == null ? "" : valid ? "valid" : "not-valid"}`}>
-          {label && <div className={`${styles.inputLabel}`}><span className={`${typographyStyles.labelForm}`}>{label}</span></div>}
+          {label && <Label label={label} />}
           {renderInput()}
         </div>
     }

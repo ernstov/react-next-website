@@ -67,7 +67,7 @@ const Signup = ({ data, isVisible }) => {
 
   return (
     <div className={`${styles.signup} ${data.className ? data.className : ""} ${visible ? "active" : ""}`}>
-      <Block variant="badge-wrap">
+      <Block className="entry-3" variant="badge-wrap">
         <form name="contactForm" onSubmit={onSubmit} ref={form}>
           <Container fluid className="p-0">
             <Row>
@@ -120,7 +120,7 @@ const Signup = ({ data, isVisible }) => {
           </Container>
         </form>
       </Block>
-      <div className="text-center mt-4"><span className={`${typographyStyles.textMediumD} mr-1`}>{bottom}</span><Button as="link" link="/sign-in" variant="link">{SignIn}</Button></div>
+      <div className="text-center mt-4 entry-4"><span className={`${typographyStyles.textMediumD} mr-1`}>{bottom}</span><Button as="link" link="/sign-in" variant="link">{SignIn}</Button></div>
     </div>
   );
 }

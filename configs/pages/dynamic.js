@@ -286,9 +286,53 @@ export const pages = [
       options: [
         {value: "Free trial", label: "Free trial"},
         {value: "Lite", label: "Lite"},
-        {value: "Standart", label: "Standart"},
+        {value: "Standard", label: "Standard"},
         {value: "Business", label: "Business"},
         {value: "Enterprise", label: "Enterprise"},
+      ]
+    }
+  },
+  {
+    link: "/account",
+    title: "Sign up",
+    description: "Create a business account to get started.",
+    hero: {
+      title: "S<span>ign u</span>p",
+      titleCL: "mw-450",
+      description: "Create a business account to get started.",
+      descriptionCL: "mw-600",
+      img: "account-hero.svg",
+      variant: "small",
+    },
+    signup: {
+      bottom: "Existing business user?",
+      options: [
+        {value: "Free trial", label: "Free trial"},
+        {value: "Lite", label: "Lite"},
+        {value: "Standard", label: "Standard"},
+        {value: "Business", label: "Business"},
+        {value: "Enterprise", label: "Enterprise"},
+      ]
+    }
+  },
+  {
+    link: "/account/plan",
+    title: "My Plan",
+    description: "Create a business account to get started.",
+    hero: {
+      title: "S<span>ign u</span>p",
+      titleCL: "mw-450",
+      description: "👋🏽 Please share some additional details.",
+      descriptionCL: "mw-600",
+      variant: "small",
+    },
+    accountPlan: {
+      optionsHow: [
+        {value: "Option 1", label: "Option 1"},
+        {value: "Option 2", label: "Option 2"},
+        {value: "Option 3", label: "Option 3"},
+        {value: "Option 4", label: "Option 4"},
+        {value: "Option 5", label: "Option 5"},
       ]
     }
   }

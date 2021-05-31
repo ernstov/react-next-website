@@ -178,11 +178,17 @@
   flex-shrink: 0;
   min-width: 160px;
 
+  &:global(.white){
+    :global(.acr-select__control){
+      background-color: $white;
+    }
+  }
+
   :global(.acr-select__value-container){
     padding-left:1rem;
   }
 
-  :global(.acr-select__single-value) {
+  :global(.acr-select__single-value), :global(.acr-select__placeholder) {
     display: flex;
     align-items: center;
     color: $black;
@@ -281,4 +287,8 @@
   &:global(.active) {
     opacity: 1;
   }
+}
+
+.labelMargin {
+  margin-bottom: 0.1rem;
 }

@@ -23,7 +23,13 @@ const languages = {
     Passwordmustbe: "Password must be at least 6 characters, contain one special character and number",
     Ihaveread: "I have read & agree to the",
     Signup: "Sign up",
-    EndUserAgreement : "End User License Agreement"
+    EndUserAgreement : "End User License Agreement",
+    BusinessName: "Business Name",
+    HomeCountry: "Home Country",
+    Complete: "Complete",
+    SelectOne: "Select One",
+    Howdidyouhearaboutus: "How did you hear about us?",
+    UseofAPI: "Use of API"
   }
 }
 

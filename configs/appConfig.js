@@ -9,10 +9,19 @@ const app = {
   },
 
   headerNavigation: [
-    {name: "News API", link:"/"},
-    {name: "Pricing", link:"/pricing"},
-    {name: "Documentation", link:"/documentation"},
-    {name: "Sign Up", link:"/sign-up"},
+    {name: "News API", link:"/", show: 0},
+    {name: "Pricing", link:"/pricing", show: 0},
+    {name: "Documentation", link:"/documentation", show: 0},
+    {name: "Sign Up", link:"/sign-up", show: 1},
+    {name: "Account", link:"/account", show: 2},
+  ],
+
+  accountNavigation: [
+    {name: "Overview", link:"/account"},
+    {name: "My Plan", link:"/account/plan"},
+    {name: "API Keys", link:"/account/api-keys"},
+    {name: "Billing", link:"/account/billing"},
+    {name: "Support", link:"/account/support"},
   ],
   
   footer: {

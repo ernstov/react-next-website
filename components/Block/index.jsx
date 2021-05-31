@@ -5,7 +5,7 @@ import { Context } from "../../context/context"
 import { numberWithCommas } from "../../utils/"
 import Button from "../ui/Button"
 
-const Block = ({ data, i, variant, isYearly, children }) => {
+const Block = ({ data, i, variant, isYearly, children, className }) => {
 
   const { lang: { USD, month, Startnow } } = useContext(Context);
 
@@ -19,15 +19,15 @@ const Block = ({ data, i, variant, isYearly, children }) => {
   const render = () => {
     switch (variant) {
       case "badge-wrap":
-        return <div className={`${styles.blockBadgeWrap}`}>{children}</div>
+        return <div className={`${styles.blockBadgeWrap} ${className ? className : ""}`}>{children}</div>
       case "badge":
-        return <div className={`${styles.blockBadge} h-100`}>
+        return <div className={`${styles.blockBadge} ${className ? className : ""} h-100`}>
           <h3 className={`${typographyStyles.textDemi2} ${typographyStyles.fontBase} text-center mb-0`}>{data.name}</h3>
           <div className={`text-center `}><span className={`${typographyStyles.textMediumReg} `}>{data.description}</span></div>
           <div className="mt-4 d-flex justify-content-center">
             <ul className="list-outline">
               {data.list.map((item, i) => (
-                <li key={`bli-${{ i }}`}>{item}</li>
+                <li key={`bli-${i}`}>{item}</li>
               ))}
             </ul>
           </div>
@@ -38,7 +38,7 @@ const Block = ({ data, i, variant, isYearly, children }) => {
             }
         </div>
       case "plan":
-        return <div className={`${styles.block} plan`}>
+        return <div className={`${styles.block} ${className ? className : ""} plan`}>
           <div className={`${styles.blockTopShape}`} style={{ backgroundColor: data.color }}></div>
           <div className={`${styles.blockContent}`}>
             <h3 className={`${typographyStyles.textDemi2} ${typographyStyles.fontBase} text-center mb-0`}>{data.name}</h3>
@@ -64,7 +64,7 @@ const Block = ({ data, i, variant, isYearly, children }) => {
           </div>
         </div>
       case "fluid":
-        return <div className={`${styles.block} fluid`}>
+        return <div className={`${styles.block} ${className ? className : ""} fluid`}>
           <div className={`block-title`}>
             {data.title && <h3 className={`${typographyStyles.textTitleLg}`}>{data.title}</h3>}
             {data.description && <p className={`${typographyStyles.textMediumReg} mb-0`}>{data.description}</p>}

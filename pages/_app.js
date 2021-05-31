@@ -1,4 +1,4 @@
-import { useReducer, useState, useEffect, useRef} from "react"
+import { useReducer, useState, useEffect, useRef } from "react"
 import { Context } from "../context/context"
 import reducerApp from "../context/reducerApp"
 import appConfig from "../configs/appConfig"
@@ -8,6 +8,7 @@ import { LayoutBase, LayoutRow } from "../components/Layout"
 import Scrollbar from "react-smooth-scrollbar"
 import Loader from "../components/Loader/"
 import Header from "../components/Header"
+import Sidebar from "../components/Sidebar"
 
 import "../styles/main.scss"
 import 'swiper/swiper.scss'
@@ -16,10 +17,11 @@ import 'swiper/components/lazy/lazy.scss'
 
 export default function App({ Component, pageProps }) {
 
-  const [lang, setLang] = useState(languages[appConfig.lang]);
-  const [loaderState, setLoaderState] = useState("load");
+  const [lang, setLang] = useState(languages[appConfig.lang])
+  const [loaderState, setLoaderState] = useState("load")
   const router = useRouter()
-  const scrollB = useRef(null);
+  const scrollB = useRef(null)
+  const [isLoader, setIsLoader] = useState(true)
 
   const [app, dispatchApp] = useReducer(reducerApp, {
     isLoading: false,
@@ -31,7 +33,18 @@ export default function App({ Component, pageProps }) {
     headlinesUpdated: 1,
     offset: null,
     nextPage: router.asPath,
+    isAuth: false,
   });
+
+  useEffect(() => {
+    if(router.pathname.indexOf("/account") != -1) {
+      setTimeout(()=>{
+        setIsLoader(false)
+      }, 1200)
+    }else{
+      setIsLoader(true)
+    }
+  },[router.pathname])
 
   useEffect(() => {
     const start = (e) => {
@@ -58,10 +71,15 @@ export default function App({ Component, pageProps }) {
     };
   }, [])
 
+  const isSidebar = () => {
+    return router.pathname.indexOf("/account") != -1
+  }
+
   return <Context.Provider value={{ app, dispatchApp, lang, scrollB }}>
     <LayoutBase>
-      <Loader loaderState={loaderState} />
+      {isLoader && <Loader loaderState={loaderState} />}
       <Header />
+      {isSidebar() && <Sidebar />}
       <Scrollbar className="scoll-bar" ref={e => { if (e && !scrollB.current) { scrollB.current = e; } }}>
         <Component {...pageProps} path={router.pathname} />
       </Scrollbar>

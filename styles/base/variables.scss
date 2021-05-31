@@ -50,6 +50,7 @@ $cover-4:                   #fdf8ea;
 $cover-5:                   #D6D6D5;
 $cover-6:                   #FDF8EA;
 $cover-7:                   #EDFAFF;
+$cover-8:                   #F7F1E2;
 $gray-adv:                  #e4e8eb;
 
 $theme-colors: ();
@@ -197,3 +198,5 @@ $custom-switch-indicator-size: subtract(
   $custom-control-indicator-size,
   $custom-control-indicator-border-width * 4
 );
+
+$sidebar-width:                   240px;

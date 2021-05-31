@@ -10,7 +10,7 @@ import Link from "next/link"
 import appConfig from "../../configs/appConfig"
 import Button from "../ui/Button"
 import Router, { useRouter } from "next/router"
-import {Context} from "../../context/context"
+import { Context } from "../../context/context"
 import animationData from '../animations/logoAnimation.json'
 import Lottie from 'lottie-web'
 
@@ -22,7 +22,7 @@ const Header = ({ data, path }) => {
   const router = useRouter()
   const [isCenter, setIsCenter] = useState(false);
   const handAnimationContainer = useRef(null);
-  const { scrollB, page } = useContext(Context);
+  const { scrollB, page, app } = useContext(Context);
   const isPlayed = useRef(null);
   const isCanPlay = useRef(null);
   let handAnimation = null;
@@ -88,6 +88,14 @@ const Header = ({ data, path }) => {
     setIsActiveMobile(false);
   }
 
+  const isActive = (link) => {
+    if (link == "/") {
+      return router.pathname == link
+    } else {
+      return router.pathname == link || router.pathname.indexOf(link) != -1
+    }
+  }
+
   return (
     <>
       <div className={`${styles.header} fixed ${isVisible ? "visible" : ""}`}>
@@ -99,7 +107,7 @@ const Header = ({ data, path }) => {
             <Col xs={6} className={`${presetsStyles.flexCenter}`}>
               <div className={`${styles.navigation}`}>
                 {headerNavigation.map((link, i) => (
-                  <Button className={`${router.pathname == link.link ? "active" : ""} ml-1 mr-1`} link={link.link} key={`mn-${i}`} as="link" variant="light">{link.name}</Button>
+                  (link.show == 0 || (link.show == 1 && !app.isAuth) || (link.show == 2 && app.isAuth)) && <Button className={`${isActive(link.link) ? "active" : ""} ml-1 mr-1`} link={link.link} key={`mn-${i}`} as="link" variant="light">{link.name}</Button>
                 ))}
               </div>
             </Col>
@@ -112,12 +120,12 @@ const Header = ({ data, path }) => {
           </Row>
         </Container>
         <MenuContainer isActiveMobile={isActiveMobile}>
-        <ul>
-          {headerNavigation.map((link, i) => (
-            <li key={`ni-${i}`}><Link onClick={() => hideAll(true)} href={link.link}>{link.name}</Link></li>
-          ))}
-        </ul>
-      </MenuContainer>
+          <ul>
+            {headerNavigation.map((link, i) => (
+              <li onClick={() => hideAll(true)} key={`ni-${i}`}><Link href={link.link}>{link.name}</Link></li>
+            ))}
+          </ul>
+        </MenuContainer>
       </div>
     </>
   )
