@@ -6,6 +6,7 @@ import languages from "../configs/languages"
 import Router, { useRouter } from "next/router"
 import { LayoutBase, LayoutRow } from "../components/Layout"
 import Scrollbar from "react-smooth-scrollbar"
+import Loader from "../components/Loader/"
 
 import "../styles/main.scss"
 import 'swiper/swiper.scss'
@@ -15,6 +16,7 @@ import 'swiper/components/lazy/lazy.scss'
 export default function App({ Component, pageProps }) {
 
   const [lang, setLang] = useState(languages[appConfig.lang]);
+  const [loaderState, setLoaderState] = useState("load");
   const router = useRouter()
   const scrollB = useRef(null);
 
@@ -34,10 +36,17 @@ export default function App({ Component, pageProps }) {
     const start = (e) => {
       dispatchApp({ type: "SET_LOADING", data: { isLoading: true, nextPage: e } });
       scrollB.current?.scrollbar.scrollTo(0, 0, 500);
+      setLoaderState("preload")
     };
     const end = (e) => {
       dispatchApp({ type: "SET_LOADING", data: { isLoading: false, nextPage: e } });
+      setLoaderState("loaded")
     };
+
+    setTimeout(() => {
+      setLoaderState("loaded")
+    }, 500)
+
     Router.events.on("routeChangeStart", start);
     Router.events.on("routeChangeComplete", end);
     Router.events.on("routeChangeError", end);
@@ -50,6 +59,7 @@ export default function App({ Component, pageProps }) {
 
   return <Context.Provider value={{ app, dispatchApp, lang, scrollB }}>
     <LayoutBase>
+      <Loader loaderState={loaderState} />
       <Scrollbar className="scoll-bar" ref={e => { if (e && !scrollB.current) { scrollB.current = e; } }}>
         <Component {...pageProps} path={router.pathname} />
       </Scrollbar>
