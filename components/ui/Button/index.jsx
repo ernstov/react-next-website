@@ -27,6 +27,8 @@ const Button = ({ children, variant, className, onClick, as, link, isActive, dis
         return `${styles.button} ${styles.dark} ${styles.square} ${styles.large}`
       case "primary-arrow":
         return `${styles.button} ${styles.primary} ${styles.arrow}`
+      case "primary-arrow-down":
+        return `${styles.button} ${styles.primary} ${styles.arrow}`
       case "primary":
         return `${styles.button} ${styles.primary}`
       case "outline-primary":
@@ -42,6 +44,8 @@ const Button = ({ children, variant, className, onClick, as, link, isActive, dis
     switch (variant) {
       case "primary-arrow":
         return <span className="ml-3"><Icon variant="arrow-right" /></span>
+      case "primary-arrow-down":
+        return <span className="ml-3"><Icon variant="arrow-down" /></span>
       default:
         return <></>
 

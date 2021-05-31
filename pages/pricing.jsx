@@ -10,6 +10,7 @@ import Hero from "../sections/Hero"
 import Faq from "../sections/Faq"
 import Columns from "../sections/Columns"
 import Contact from "../sections/Contact"
+import Plans from "../sections/Plans"
 
 const Home = ({ tags, dataPosts, path }) => {
 
@@ -24,6 +25,7 @@ const Home = ({ tags, dataPosts, path }) => {
       </Head>
       <Header />
       <Hero data={page.hero} />
+      <Plans data={page.plans} />
       <Columns data={page.columns} />
       <Faq data={page.faq} />
       <Contact data={page.contact} />

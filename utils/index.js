@@ -210,3 +210,7 @@ export const filterBySourceBias = (array, name) => {
 export const excludeByKey = (array, key, value) => {
 	return array.filter((article)=>(article[key] != value))
 }
+
+export const numberWithCommas = (x) => {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+};

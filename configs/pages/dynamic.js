@@ -139,9 +139,76 @@ export const pages = [
     hero: {
       title: "API <span>pricing</span>",
       titleCL: "mw-450",
+      className: "pb-0",
       description: "Choose a plan to start using the API right away.",
       descriptionCL: "mw-600",
       img: "hands-prining.svg",
+    },
+    plans: {
+      variant:"plan",
+      className: "pt-0",
+      list: [
+        {
+          name: "Lite",
+          label: "LOCAL",
+          color: "#969696",
+          variant:"gray",
+          description: "Access to city-specific local news in over 100 cities",
+          price: 150,
+          features: ["100,000 requests/month", "3 requests/second", "Real-time news", "Local, city-specific news", "Topic & entity tagging", "Standard support"]
+        },
+        {
+          name: "Standard",
+          label: "World",
+          color: "#5B5A59",
+          variant:"dark",
+          description: "Access to all world news along with journalists data",
+          price: 395,
+          features: ["250,000 requests/month", "5 requests/second", "Real-time news", "World news", "Topic & entity tagging", "Journalists data", "Standard support"]
+        },
+        {
+          name: "Business",
+          label: "Local + world",
+          color: "#227C9D",
+          variant:"secondary",
+          description: "Total access to local + world news, some AI features",
+          price: 750,
+          features: ["500,000 requests/month", "8 requests/second", "Real-time news", "World news", "Local, city-specific news", "Topic & entity tagging", "Event clustering", "Journalists data", "Trending stories", "Article sentiment data", "Priority support"]
+        },
+        {
+          name: "Enterprise",
+          label: "Local + World",
+          color: "#F9C035",
+          variant:"primary",
+          description: "High-scale access to local + world news, all AI features",
+          price: 1250,
+          features: ["1,000,000 requests/month", "10 requests/second", "Real-time news", "World news", "Local, city-specific news", "Topic & entity tagging", "Event clustering", "Journalists data", "Trending stories", "Article sentiment data", "Article summarization", "99.95% uptime SLA", "Priority support"]
+        }
+      ],
+      columns: [
+        {
+          name: "Free trial",
+          variant: "badge",
+          description: "Temporary access to all features for testing purposes",
+          list: ["10 requests/day", "Real-time news", "Local, city-specific news", "World news", "All AI features"],
+          button: {
+            variant: "primary-arrow",
+            link: "#",
+            name: "Start trial"
+          }
+        },
+        {
+          name: "Custom plan",
+          variant: "badge",
+          description: "Let us tailor a package to fit your project needs, good for:",
+          list: ["Custom volume/scale", "Adding unsupported sources", "Tailored AI", "Unique data-mapping needs", "Deeper integrations"],
+          button: {
+            variant: "primary-arrow-down",
+            jump: "#contact",
+            name: "Contact us"
+          }
+        },
+      ]
     },
     faq: {
       title: "FAQs",

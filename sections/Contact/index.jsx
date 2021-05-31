@@ -63,13 +63,13 @@ const Contact = ({ data, isVisible, question, isWrap }) => {
 
   return (
     <div className={`${styles.contact} ${data.className ? data.className : ""} ${visible ? "active" : ""}`}>
-      <Container className="p-0">
+      <Container fluid className="p-0">
         <Row>
           <Col lg={4} className="entry-4 text-center text-md-left">
             {title && <h2 className={`${typographyStyles.textDemi2} ${typographyStyles.fontBase}`}>{title}</h2>}
             {description && <p className={`${typographyStyles.textMediumReg} mb-4`}>{description}</p>}
             {buttons && <div>{buttons.map((button, i) => (
-              <Button key={`cb-${i}`} as="url-same" link={button.link} className={`${button.className ? button.className : ""} justify-content-start mb-3`} variant="dark-np"><Icon variant={button.icon} /><span className="ml-2">{button.name}</span></Button>
+              <div key={`cb-${i}`}><Button as="url-same" link={button.link} className={`${button.className ? button.className : ""} justify-content-start mb-3`} variant="dark-np"><Icon variant={button.icon} /><span className="ml-2">{button.name}</span></Button></div>
             ))}</div>}
             {label && <div><span className={`${typographyStyles.textRomanSm} d-block mb-3 mb-md-0`}>{label}</span></div>}
           </Col>

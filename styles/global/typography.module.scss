@@ -65,6 +65,13 @@
   font-weight: 600;
 }
 
+.tinyLabel {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: $gray-10;
+}
+
 .tinyM {
   font-size: 0.8125rem;
   font-weight: 500;
@@ -82,6 +89,12 @@
 .tinyMedium {
   font-weight: 500;
   font-size: 0.6875rem;
+}
+
+.tinyLab {
+  font-weight: 600;
+  font-size: 0.6875rem;
+  color: $gray-10;
 }
 
 .header2 {
@@ -225,6 +238,12 @@
   font-weight: 600;
 }
 
+.textWhiteDemi {
+  font-size: 1.125rem;
+  color: $white;
+  font-weight: 600;
+}
+
 .textWhiteRegular {
   font-size: 1.125rem;
   color: rgba($white, 0.8);
@@ -271,6 +290,7 @@
   .textSubTitleSecondary {font-size: 1.125rem;}
   .labelPrimaryMd {font-size: 1.1875rem;}
   .textWhiteRegular{font-size: 1rem;}
+  .textWhiteDemi {font-size: 1rem;}
 }
 
 @include media-breakpoint-down(md) {
