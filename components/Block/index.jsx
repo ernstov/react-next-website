@@ -12,12 +12,14 @@ const Block = ({ data, i, variant, isYearly, children, className }) => {
 
 
   const getButtonOptions = (button) => {
-    if(button.link) return {link: button.link}
-    if(button.jump) return {jump: button.jump}
+    if (button.link) return { link: button.link }
+    if (button.jump) return { jump: button.jump }
   }
 
   const render = () => {
     switch (variant) {
+      case "stick":
+        return <div className={`${styles.blockStick} ${className ? className : ""}`}>{children}</div>
       case "badge-wrap":
         return <div className={`${styles.blockBadgeWrap} ${className ? className : ""}`}>{children}</div>
       case "badge":
@@ -35,7 +37,7 @@ const Block = ({ data, i, variant, isYearly, children, className }) => {
             <div className="text-center">
               <Button {...getButtonOptions(data.button)} variant={data.button.variant}>{data.button.name}</Button>
             </div>
-            }
+          }
         </div>
       case "plan":
         return <div className={`${styles.block} ${className ? className : ""} plan`}>

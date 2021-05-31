@@ -131,7 +131,6 @@ export const pages = [
       }
     }
   },
-
   {
     link: "/pricing",
     title: "API pricing",
@@ -293,7 +292,7 @@ export const pages = [
     }
   },
   {
-    link: "/account",
+    link: "/account/overview",
     title: "Sign up",
     description: "Create a business account to get started.",
     hero: {
@@ -318,21 +317,64 @@ export const pages = [
   {
     link: "/account/plan",
     title: "My Plan",
-    description: "Create a business account to get started.",
+    description: "Please share some additional details.",
     hero: {
-      title: "S<span>ign u</span>p",
       titleCL: "mw-450",
       description: "👋🏽 Please share some additional details.",
       descriptionCL: "mw-600",
       variant: "small",
     },
     accountPlan: {
+      label1: "Business or Commercial",
+      label2: "Personal Project",
+      label3: "Academic",
       optionsHow: [
         {value: "Option 1", label: "Option 1"},
         {value: "Option 2", label: "Option 2"},
         {value: "Option 3", label: "Option 3"},
         {value: "Option 4", label: "Option 4"},
         {value: "Option 5", label: "Option 5"},
+      ]
+    }
+  },
+  {
+    link: "/account/billing",
+    title: "My Plan Billing",
+    description: "Add billing details in order to activate your plan.",
+    hero: {
+      title: "M<span>y Pla</span>n",
+      titleCL: "mw-450",
+      description: "Add billing details in order to activate your plan.",
+      descriptionCL: "mw-600",
+      variant: "small",
+    },
+    accountBilling: {
+      description: "Your card will be billed $395 on the 16th of each month, starting today. All payments are non-refundable.",
+      optionsExpirationMonths: [
+        {value: "01", label: "01"},
+        {value: "02", label: "02"},
+        {value: "03", label: "03"},
+        {value: "04", label: "04"},
+        {value: "05", label: "05"},
+        {value: "06", label: "06"},
+        {value: "07", label: "07"},
+        {value: "08", label: "08"},
+        {value: "09", label: "09"},
+        {value: "10", label: "10"},
+        {value: "11", label: "11"},
+        {value: "12", label: "12"},
+      ],
+      optionsExpirationYears: [
+        {value: "2021", label: "2021"},
+        {value: "2022", label: "2022"},
+        {value: "2023", label: "2023"},
+        {value: "2024", label: "2024"},
+        {value: "2025", label: "2025"},
+        {value: "2026", label: "2026"},
+        {value: "2027", label: "2027"},
+        {value: "2028", label: "2028"},
+        {value: "2029", label: "2029"},
+        {value: "2030", label: "2030"},
       ]
     }
   }

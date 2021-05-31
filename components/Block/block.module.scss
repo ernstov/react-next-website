@@ -252,6 +252,28 @@
   box-shadow: 0px 2px 0px $gray-13;
 }
 
+.blockStick {
+  background-color: $light;
+  border-radius: $block-radius;
+  border: 1px solid $gray-12;
+  padding: 1rem 1rem;
+  position: relative;
+  overflow: hidden;
+
+  &::after{
+    content: '';
+    background-color: $info;
+    width: 20px;
+    height: 40px;
+    transform-origin: center center;
+    position: absolute;
+    top: -15px;
+    left: -5px;
+    display: block;
+    transform: rotate(45deg);
+  }
+}
+
 // :global(.clicked) {
 //   :global(.block-tooltip) {
 //     opacity: 1;

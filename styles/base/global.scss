@@ -1,6 +1,7 @@
 * {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-smooth: auto;
 }
 
 body .scrollbar-track {
@@ -238,12 +239,40 @@ body .scroll-content {
   }
 }
 
+.list-gray {
+  list-style: none;
+  font-weight: 500;
+  font-size: 0.875rem;
+  padding-left: 0;
+
+  li {
+    padding: 0.2rem 0;
+    padding-left: 1.4rem;
+    position: relative;
+  }
+  li::before {
+    content: "•";
+    font-size: 1rem;
+    transform: translateY(-0.1rem);
+    position: absolute;
+    left: 0;
+    flex-shrink: 0;
+    color: rgba($gray-17, 0.5);
+  }
+}
+
 .op-05 {
   opacity: 0.5;
 }
 
 .custom-checkbox-light.custom-radio {
   min-height: 2rem;
+  display: flex;
+  align-items: center;
+
+  .custom-control-input {
+    height: 2rem;
+  }
 
   .custom-control-input:checked ~ .custom-control-label::before {
     color: $secondary;

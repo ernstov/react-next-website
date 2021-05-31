@@ -32,6 +32,11 @@
   position: relative;
   font-weight: 600;
   font-size: 1.125rem;
+  transition: opacity $transition ease;
+
+  &:hover {
+    opacity: 0.5;
+  }
 
   span {
     display: block;
@@ -63,6 +68,10 @@
   &:global(.active) {
     &::before {
       transform: translateX(0);
+    }
+
+    &:hover {
+      opacity: 1;
     }
 
     span {

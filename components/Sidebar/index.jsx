@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import Icon from "../../components/Icon";
 import Link from 'next/link'
 import styles from './sidebar.module.scss'
 import appConfig from "../../configs/appConfig"
 import { useRouter } from "next/router"
+import { Context } from "../../context/context"
 
 const Sidebar = ({ variant, isVisible }) => {
 
+  const { lang: { SignOut, } } = useContext(Context)
   const [visible, setVisible] = useState(false)
   const [isSidebarActive, setIsSidebarActive] = useState(false)
   const router = useRouter()
@@ -21,7 +23,7 @@ const Sidebar = ({ variant, isVisible }) => {
   }, [isVisible])
 
   const isActive = (link) => {
-    return router.pathname == link
+    return router.pathname == link || router.pathname.indexOf(link) != -1
   }
 
   return (
@@ -30,6 +32,7 @@ const Sidebar = ({ variant, isVisible }) => {
       {appConfig.accountNavigation.map((item, i)=>(
         <Link key={`si-${i}`} href={item.link} passHref><a className={`${styles.sidebarLink} ${isActive(item.link) ? "active" : ""}`}><span>{item.name}</span></a></Link>
       ))}
+      <Link href={`/sign-up`} passHref><a className={`${styles.sidebarLink}`}><span>{SignOut}</span></a></Link>
     </div>
   );
 }

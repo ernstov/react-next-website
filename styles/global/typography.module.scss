@@ -28,6 +28,11 @@
   line-height: 1.04;
 }
 
+.textSubTitleM {
+  font-size: 1.3125rem;
+  font-weight: 500;
+}
+
 .textSubTitleSecondary {
   font-size: 1.3125rem;
   font-weight: 600;
@@ -44,6 +49,13 @@
   font-size: 1.1875rem;
   font-weight: 500;
 }
+
+.titleDemi {
+  font-size: 1.1875rem;
+  font-weight: 600;
+  color: $black;
+}
+
 
 .category {
   font-size: 1rem;
@@ -69,6 +81,11 @@
   font-size: 0.8125rem;
   font-weight: 600;
   text-transform: uppercase;
+  color: $gray-10;
+}
+
+.tinyReg {
+  font-size: 0.8125rem;
   color: $gray-10;
 }
 
@@ -156,6 +173,9 @@
 }
 .c6 {
   color: $secondary;
+}
+.c7 {
+  color: $gray-17;
 }
 
 .textMediumReg {

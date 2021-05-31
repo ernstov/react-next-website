@@ -14,6 +14,7 @@ import presetsStyles from "../../styles/global/presets.module.scss"
 import { customSingleValue, scrollBar } from '../../components/ui/Helpers/UiComponents'
 import countryList from 'react-select-country-list'
 import Label from "../../components/ui/Label"
+import { useRouter } from 'next/router'
 
 const AccountPlan = ({ data, isVisible }) => {
 
@@ -22,6 +23,7 @@ const AccountPlan = ({ data, isVisible }) => {
   const form = useRef(null)
   const [isProcess, setIsProcess] = useState(false)
   const optionsCountry = useMemo(() => countryList().getData(), [])
+  const router = useRouter()
 
   const [visible, setVisible] = useState(false)
 
@@ -41,6 +43,9 @@ const AccountPlan = ({ data, isVisible }) => {
     if (e.target.querySelectorAll(".not-valid").length > 0) {
       setIsProcess(false)
     } else {
+
+      router.push("/account/billing")  // temporally
+
       const formData = new FormData(e.target)
       let json = {
       }
@@ -68,9 +73,9 @@ const AccountPlan = ({ data, isVisible }) => {
   }
 
   return (
-    <div className={`${styles.signup} ${data.className ? data.className : ""} ${visible ? "active" : ""}`}>
+    <div className={`${styles.accountPlan} ${data.className ? data.className : ""} ${visible ? "active" : ""}`}>
       <Block className="entry-3" variant="badge-wrap">
-        <form name="contactForm" onSubmit={onSubmit} ref={form}>
+        <form name="planForm" onSubmit={onSubmit} ref={form}>
           <Container fluid className="p-0">
             <Row>
               <Col md={12} className="pb-4">
@@ -82,11 +87,12 @@ const AccountPlan = ({ data, isVisible }) => {
                         className="custom-checkbox-light mb-3 mb-md-0"
                         value={"1"}
                         custom
+                        defaultChecked={true}
                         onChange={() => { }}
                         type="radio"
                         id={`use-of-api-1`}
                         name="use-of-api"
-                        label="Business or Commercial"
+                        label={data.label1}
                       />
                     </Col>
                     <Col md={4}>
@@ -98,7 +104,7 @@ const AccountPlan = ({ data, isVisible }) => {
                         type="radio"
                         id={`use-of-api-2`}
                         name="use-of-api"
-                        label="Personal Project"
+                        label={data.label2}
                       />
                     </Col>
                     <Col md={3}>
@@ -110,7 +116,7 @@ const AccountPlan = ({ data, isVisible }) => {
                         type="radio"
                         id={`use-of-api-3`}
                         name="use-of-api"
-                        label="Academic"
+                        label={data.label3}
                       />
                     </Col>
                   </Row>

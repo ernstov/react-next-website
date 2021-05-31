@@ -15,6 +15,12 @@ const Input = ({ variant, className, placeholder, name, onChange, defaultValue, 
 
   const validate = () => {
     switch (name) {
+      case 'card-number':
+        bootstrapValidate(inputR.current, 'regex:^[0-9]{16}$:', setValidaion);
+        break;
+      case 'cvc':
+        bootstrapValidate(inputR.current, 'regex:^[0-9]{3,}$:', setValidaion);
+        break;
       case 'email':
         bootstrapValidate(inputR.current, 'email:', setValidaion);
         break;
@@ -33,6 +39,9 @@ const Input = ({ variant, className, placeholder, name, onChange, defaultValue, 
         bootstrapValidate(inputR.current, 'min:2:', setValidaion);
         break;
       case 'city':
+        bootstrapValidate(inputR.current, 'min:2:', setValidaion);
+        break;
+      case 'card-number':
         bootstrapValidate(inputR.current, 'min:2:', setValidaion);
         break;
       case 'zip':

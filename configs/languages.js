@@ -29,7 +29,23 @@ const languages = {
     Complete: "Complete",
     SelectOne: "Select One",
     Howdidyouhearaboutus: "How did you hear about us?",
-    UseofAPI: "Use of API"
+    UseofAPI: "Use of API",
+    SignOut: "Sign Out",
+    Startplan: "Start plan",
+    plan: "plan",
+    APIplan: "API plan",
+    BillingUSD: "Billing (USD)",
+    Monthly: "Monthly",
+    Yearly: "Yearly",
+    mo: "mo",
+    yr: "yr",
+    Save10: "Save 10%",
+    Billingdetails: "Billing details",
+    CardNumber: "Card Number",
+    CardholderName: "Cardholder Name",
+    CVC: "CVC",
+    Expiration: "Expiration",
+    digitcode: "3 or 4-digit code"
   }
 }
 
