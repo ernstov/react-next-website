@@ -138,10 +138,49 @@
   color: $secondary;
 }
 
+.textMediumReg {
+  font-size: 0.9375rem;
+}
+
+.textTitleSemi {
+  font-size: 1.875rem;
+  font-family: $font-family-advanced;
+  font-weight: 500;
+}
+
+.textTitleLg {
+  font-size: 2rem;
+  line-height: 1.0625em;
+  font-family: $font-family-heavy;
+}
+
+.textSubMd {
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+
+.textTiny {
+  font-size: 0.625rem;
+  font-weight: 600;
+  color: $lgray;
+}
+
+.textSmall2 {
+  font-size: 0.75rem;
+  color: $lgray;
+  font-weight: 500;
+}
+
+.textMedium {
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
 @include media-breakpoint-down(lg) {
-  .text-sub-title {
-    font-size: 1.125rem;
-  }
+  .textSubTitle {font-size: 1.125rem;}
+  .textTitleSemi {font-size: 1.5rem;}
+  .textTitleLg {font-size: 1.625rem;}
+  .textSubMd {font-size: 1rem;}
 }
 
 @include media-breakpoint-down(md) {

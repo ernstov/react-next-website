@@ -1,0 +1,74 @@
+@import "../../styles/base/variables.scss";
+
+.carousel {
+  width: 100vw;
+  border-bottom: 30px solid $dark;
+  padding-top: $section-spacer;
+  padding-bottom: $section-spacer * 2;
+  overflow: hidden;
+
+  &:global(.with-bullets) {
+    :global(.swiper-pagination) {
+      display: block;
+    }
+  }
+
+  :global(.swiper-pagination) {
+    text-align: center;
+    display: none;
+    top: -40px;
+    bottom: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    position: absolute;
+
+    :global(.swiper-pagination-bullet) {
+      width: 10px;
+      height: 10px;
+      display: inline-block;
+      margin: 0 5px;
+      cursor: pointer;
+      border-radius: 50%;
+      background-color: $gray-3;
+      transition: background-color $transition ease;
+
+      &:global(.swiper-pagination-bullet-active) {
+        background-color: $secondary;
+      }
+    }
+  }
+
+  @include media-breakpoint-down(md) {
+    padding-top: $section-spacer/2;
+    padding-bottom: $section-spacer;
+  }
+
+  @include media-breakpoint-down(sm) {
+    .swiper-pagination {
+      display: block;
+    }
+  }
+}
+
+.carouselImg {
+  width: 340px;
+  height: auto;
+
+  @include media-breakpoint-down(md) {
+    width: 280px;
+  }
+}
+
+.carouselSwiperOverflow {
+  margin-top: 4rem;
+  padding-left: 15px;
+
+  :global(.swiper-container) {
+    overflow: visible;
+  }
+
+  @include media-breakpoint-down(sm) {
+    width: 100%;
+    padding-right: 15px;
+  }
+}

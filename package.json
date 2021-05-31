@@ -23,6 +23,6 @@
     "react-smooth-scrollbar": "^8.0.6",
     "sass": "^1.32.8",
     "smooth-scrollbar": "^8.6.0",
-    "swiper": "^6.5.0"
+    "swiper": "^6.6.2"
   }
 }

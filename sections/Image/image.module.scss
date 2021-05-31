@@ -1,0 +1,10 @@
+@import "../../styles/base/variables.scss";
+
+.image {
+
+
+  @include media-breakpoint-down(md) {
+    padding-top: $section-spacer/2;
+    padding-bottom: $section-spacer;
+  }
+}

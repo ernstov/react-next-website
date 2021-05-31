@@ -23,6 +23,8 @@ const Button = ({ children, variant, className, onClick, as, link, isActive }) =
         return `${styles.button} ${styles.dark} ${styles.square}`
       case "dark-square-large":
         return `${styles.button} ${styles.dark} ${styles.square} ${styles.large}`
+      case "primary-arrow":
+        return `${styles.button} ${styles.primary} ${styles.arrow}`
       case "link":
         return `${styles.link} ${styles.secondaryLink}`
       case "collapse":
@@ -30,14 +32,24 @@ const Button = ({ children, variant, className, onClick, as, link, isActive }) =
     }
   }
 
+  const getIcons = () => {
+    switch (variant) {
+      case "primary-arrow":
+        return <span className="ml-3"><Icon variant="arrow-right" /></span>
+      default:
+        return <></>
+
+    }
+  }
+
   const render = () => {
     switch (as) {
       case "link":
         return <Link href={`..${link}`} passHref>
-          <a className={`${getStyles()} ${className ? className : ""}`} onClick={onClick}>{children}</a>
+          <a className={`${getStyles()} ${className ? className : ""}`} onClick={onClick}>{children} {getIcons()}</a>
         </Link>
       case "url":
-        return <a className={`${getStyles()} ${className ? className : ""}`} href={link} target="_blank" onClick={onClick}>{children}</a>
+        return <a className={`${getStyles()} ${className ? className : ""}`} href={link} target="_blank" onClick={onClick}>{children} {getIcons()}</a>
       case "collapse":
         return <button onClick={onClick} className={`${getStyles()} ${isActive ? "active" : ""} ${className ? className : ""}`}>
           <div>{children}</div>
@@ -45,7 +57,7 @@ const Button = ({ children, variant, className, onClick, as, link, isActive }) =
         </button>
       default:
         return <button onClick={onClick} className={`${getStyles()} ${className ? className : ""}`}>
-          {children}
+          {children} {getIcons()}
         </button>
     }
   }

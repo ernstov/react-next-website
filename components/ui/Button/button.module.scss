@@ -4,7 +4,7 @@
   background-color: $primary;
   border: 1px solid $primary;
   outline: none;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   padding: $btn-padding;
@@ -23,6 +23,13 @@
     svg {
       color: inherit;
     }
+  }
+}
+
+.arrow {
+  svg {
+    transform: translateY(-1px);
+    font-size: 0.875rem;
   }
 }
 
@@ -109,6 +116,17 @@
   background-color: $black;
   color: $white;
   border-color: $black;
+
+  &:hover {
+    color: $dark;
+    background-color: transparent;
+  }
+}
+
+.primary {
+  background-color: $primary;
+  color: $black;
+  border-color: $primary;
 
   &:hover {
     color: $dark;

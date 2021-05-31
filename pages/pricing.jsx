@@ -7,7 +7,7 @@ import { LayoutBase, LayoutRow } from "../components/Layout"
 import Footer from "../components/Footer"
 import { pages } from "../configs/pages/dynamic"
 import { filterIt, getSkeletonVariant, getSidebarAvailability } from '../utils'
-import Hero from "../sections/hero"
+import Hero from "../sections/Hero"
 
 const Home = ({ tags, dataPosts, path }) => {
 

@@ -98,8 +98,6 @@ $line-height-base:            1.33;
 $headings-line-height:        1.2;
 $font-size-base:              1rem;
 
-$headings-margin-bottom:      0.2rem;
-
 $h1-font-size:                $font-size-base * 3;
 $h2-font-size:                $font-size-base * 2.5;
 $h3-font-size:                $font-size-base * 2;
@@ -150,12 +148,12 @@ $input-height:                  45px;
 $input-border-radius:           25px;
 $input-padding:                 0 2rem;
 
-$btn-height:                    36px;
+$btn-height:                    45px;
 $btn-height-large:              60px;
 $btn-height-large-md:           48px;
-$btn-padding:                   0 1rem;
+$btn-padding:                   0 2.4rem;
 $btn-radius:                    25px;
-$btn-fsize:                     0.9375rem;
+$btn-fsize:                     1.125rem;
 $btn-fsize-large:               1.3125rem;
 $btn-fsize-large-md:            1.1875rem;
 

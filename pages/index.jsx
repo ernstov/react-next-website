@@ -7,7 +7,8 @@ import { LayoutBase, LayoutRow } from "../components/Layout"
 import Footer from "../components/Footer"
 import { pages } from "../configs/pages/dynamic"
 import { filterIt, getSkeletonVariant, getSidebarAvailability } from '../utils'
-import Hero from "../sections/hero"
+import Hero from "../sections/Hero"
+import Carousel from "../sections/Carousel"
 
 const Home = ({ tags, dataPosts, path }) => {
 
@@ -23,6 +24,7 @@ const Home = ({ tags, dataPosts, path }) => {
       <LayoutBase>
         <Header />
         <Hero data={page.hero} />
+        <Carousel data={page.carousel} />
         <Footer data={appConfig.footer} />
       </LayoutBase>
     </>
