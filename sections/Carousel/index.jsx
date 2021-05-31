@@ -38,7 +38,7 @@ const Carousel = ({ data, isVisible }) => {
         spaceBetween: 30
       },
       1500: {
-        slidesPerView: 3.3,
+        slidesPerView: 4.3,
         spaceBetween: 30
       }
     }

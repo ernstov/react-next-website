@@ -9,6 +9,8 @@ import { pages } from "../configs/pages/dynamic"
 import { filterIt, getSkeletonVariant, getSidebarAvailability } from '../utils'
 import Hero from "../sections/Hero"
 import Carousel from "../sections/Carousel"
+import Columns from "../sections/Columns"
+import Features from "../sections/Features"
 
 const Home = ({ tags, dataPosts, path }) => {
 
@@ -24,7 +26,9 @@ const Home = ({ tags, dataPosts, path }) => {
       <LayoutBase>
         <Header />
         <Hero data={page.hero} />
+        <Features data={page.features} />
         <Carousel data={page.carousel} />
+        <Columns data={page.columns}/>
         <Footer data={appConfig.footer} />
       </LayoutBase>
     </>

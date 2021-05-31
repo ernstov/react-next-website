@@ -25,6 +25,8 @@ const Button = ({ children, variant, className, onClick, as, link, isActive }) =
         return `${styles.button} ${styles.dark} ${styles.square} ${styles.large}`
       case "primary-arrow":
         return `${styles.button} ${styles.primary} ${styles.arrow}`
+      case "outline-primary":
+        return `${styles.button} ${styles.primaryOutline}`
       case "link":
         return `${styles.link} ${styles.secondaryLink}`
       case "collapse":

@@ -28,6 +28,13 @@
   line-height: 1.04;
 }
 
+.textSubTitleSecondary {
+  font-size: 1.3125rem;
+  font-weight: 600;
+  color: $secondary;
+  font-family: $font-family-base;
+}
+
 .titleHeavyMedium {
   font-family: $font-family-heavy;
   font-size: 1.1875rem;
@@ -142,6 +149,10 @@
   font-size: 0.9375rem;
 }
 
+.textTitleSm {
+  font-size: 1.875rem;
+}
+
 .textTitleSemi {
   font-size: 1.875rem;
   font-family: $font-family-advanced;
@@ -176,11 +187,47 @@
   font-weight: 600;
 }
 
+.textTitleDemi {
+  font-weight: 600;
+  font-size: 1.25rem;
+  font-family: $font-family-base;
+}
+
+.labelPrimaryMd {
+  color: $primary;
+  font-size: 1.3125rem;
+  font-weight: 400;
+
+  strong {
+    font-weight: 600;
+  }
+}
+
+.titleDemiWhite {
+  color: $white;
+  font-size: 1.6875rem;
+  font-weight: 600;
+}
+
+.textWhiteRegular {
+  font-size: 1.125rem;
+  color: rgba($white, 0.8);
+}
+
+.textWhiteRegularSm {
+  font-size: 1.0625rem;
+  color: rgba($white, 0.8);
+}
+
 @include media-breakpoint-down(lg) {
   .textSubTitle {font-size: 1.125rem;}
   .textTitleSemi {font-size: 1.5rem;}
   .textTitleLg {font-size: 1.625rem;}
   .textSubMd {font-size: 1rem;}
+  .textTitleDemi {font-size: 1.15rem;}
+  .textSubTitleSecondary {font-size: 1.125rem;}
+  .labelPrimaryMd {font-size: 1.1875rem;}
+  .textWhiteRegular{font-size: 1rem;}
 }
 
 @include media-breakpoint-down(md) {
@@ -190,7 +237,7 @@
   .subTitleD {
     font-size: 1.0625rem;
   }
-  
+  .textTitle {font-size: 1.9375rem;}
   .textSubTitle {font-size: 1.0625rem;}
 
   .textTitle {

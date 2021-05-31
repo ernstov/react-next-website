@@ -1,0 +1,39 @@
+@import "../../styles/base/variables.scss";
+
+.features {
+  background-color: $black;
+  padding: $section-spacer*2 $section-spacer;
+  background-image: url(/img/features-bg.png);
+  background-position: bottom right;
+  background-repeat: no-repeat;
+
+  @include media-breakpoint-down(md) {
+    padding: $section-spacer $gutter/2;
+    background-image: none;
+  }
+}
+
+.featuresImgContainer {
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0px 0px 30px 4px rgba(0, 0, 0, 0.3);
+
+  @include media-breakpoint-down(md) {
+    margin-bottom: 2rem;
+  }
+}
+
+.featuresImgOuter {
+  @include media-breakpoint-down(md) {
+    width: calc(100% + #{$gutter*2});
+    margin-left: -$gutter;
+    padding: 3rem $gutter/2;
+    background-image: url(/img/features-bg-mobile.png);
+    background-position: bottom -40px right;
+    background-repeat: no-repeat;
+  }
+}
+
+.featuresImg {
+  max-width: 100%;
+}

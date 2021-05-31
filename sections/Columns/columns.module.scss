@@ -1,0 +1,47 @@
+@import "../../styles/base/variables.scss";
+
+.columns {
+  padding: $section-spacer*2 0;
+
+  @include media-breakpoint-down(md) {
+    padding: $section-spacer 0;
+  }
+}
+
+.columnTitle {
+  display: flex;
+  align-items: center;
+
+  img {
+    max-height: 1.125rem;
+    margin-right: 1rem;
+  }
+}
+
+.columnsImg {
+  margin: 3rem 0;
+  img {
+    max-width: 100%;
+  }
+}
+
+.columnsRow {
+  > div {
+    padding-left: $gutter*2;
+    padding-right: $gutter*2;
+  }
+
+  @include media-breakpoint-down(md) {
+    > div {
+      padding-left: $gutter/2;
+      padding-right: $gutter/2;
+    }
+  }
+}
+
+.columnsTitle {
+  @include media-breakpoint-down(md) {
+    max-width: 260px;
+    margin: 0 auto;
+  }
+}

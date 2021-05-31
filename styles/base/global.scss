@@ -16,11 +16,11 @@ body .scrollbar-thumb {
 body .scroll-content {
   > * {
     position: relative;
-    overflow:hidden;
+    overflow: hidden;
   }
 }
 
-.cursor-pointer{
+.cursor-pointer {
   cursor: pointer;
 }
 
@@ -28,8 +28,67 @@ body .scroll-content {
   line-height: 1;
 }
 
-.mw-300 {max-width: 300px;}
-.mw-400 {max-width: 400px;}
-.mw-450 {max-width: 450px;}
-.mw-600 {max-width: 600px;}
-.mw-800 {max-width: 800px;}
+.mw-300 {
+  max-width: 300px;
+}
+.mw-400 {
+  max-width: 400px;
+}
+.mw-450 {
+  max-width: 450px;
+}
+.mw-600 {
+  max-width: 600px;
+}
+.mw-650 {
+  max-width: 650px;
+}
+.mw-800 {
+  max-width: 800px;
+}
+
+.border-bottom-half {
+  &::after {
+    content: "";
+    display: block;
+    width: 50%;
+    height: 1px;
+    background-color: $border-color;
+  }
+}
+
+.border-bottom-half {
+  position: relative;
+
+  &::after {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 50%;
+    height: 1px;
+    background-color: $border-color;
+  }
+}
+
+.border-bottom-half-mobile {
+  position: relative;
+
+  &::after {
+    content: "";
+    display: none;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 50%;
+    height: 1px;
+    background-color: $border-color;
+  }
+
+  @include media-breakpoint-down(md) {
+    &::after {
+      display: block;
+    }
+  }
+}
