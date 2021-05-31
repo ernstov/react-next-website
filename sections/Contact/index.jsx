@@ -63,7 +63,7 @@ const Contact = ({ data, isVisible, question, isWrap }) => {
 
   return (
     <div className={`${styles.contact} ${data.className ? data.className : ""} ${visible ? "active" : ""}`} id="contact">
-      <Container fluid className="p-0 entry-2">
+      <Container fluid className="p-0">
         <Row>
           <Col lg={4} className="text-center text-md-left">
             {title && <h2 className={`${typographyStyles.textDemi2} ${typographyStyles.fontBase} entry-1`}>{title}</h2>}
