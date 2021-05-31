@@ -21,6 +21,7 @@
     "react-dom": "17.0.1",
     "react-indiana-drag-scroll": "^1.8.1",
     "react-loading-skeleton": "^2.2.0",
+    "react-particles-js": "^3.4.1",
     "react-select": "^4.3.0",
     "react-slider": "^1.1.4",
     "react-smooth-scrollbar": "^8.0.6",

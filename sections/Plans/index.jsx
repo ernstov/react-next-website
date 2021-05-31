@@ -7,6 +7,7 @@ import typographyStyles from "../../styles/global/typography.module.scss"
 import SwiperCore, { Pagination } from 'swiper/core'
 import AvancedSwitch from "../../components/ui/AdvancedSwitch"
 import { Context } from "../../context/context"
+import Particles from '../../components/Particles'
 
 SwiperCore.use([Pagination]);
 
@@ -43,30 +44,33 @@ const Plans = ({ data, isVisible }) => {
 
   return (
     <div className={`${styles.plans} ${data.className ? data.className : ""} ${isVisible ? "active" : ""}`}>
-      <div className="text-center mb-5">
+      <div className={`${styles.plansContainer}`}>
+        <div className="text-center mb-5">
         <div className={`${styles.switch}`}>
           <div><span>{Monthly}</span></div>
           <AvancedSwitch active={isYearly} onChange={(e) => setIsYearly(!isYearly)} />
           <div><div><span>{Yearly}</span></div><div><span>{discount10}</span></div></div>
         </div></div>
-      <Swiper {...options}>
-        {data.list.map((item, i) => (
-          <SwiperSlide className="pl-3 pr-3" key={`ci-${i}`}>
-            <Block isYearly={isYearly} variant={data.variant} data={item} />
-          </SwiperSlide>
-        ))}
-      </Swiper>
-      <div className={`${styles.columns} mt-5 mb-2`}>
-        <Container>
-          <Row>
-            {data.columns.map((item, i) => (
-              <Col className="pb-3" md={6} key={`cri-${i}`}>
-                <Block variant={item.variant} data={item} />
-              </Col>
-            ))}
-          </Row>
-        </Container>
+        <Swiper {...options}>
+          {data.list.map((item, i) => (
+            <SwiperSlide className="pl-3 pr-3" key={`ci-${i}`}>
+              <Block isYearly={isYearly} variant={data.variant} data={item} />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+        <div className={`${styles.columns} mt-5 mb-2`}>
+          <Container>
+            <Row>
+              {data.columns.map((item, i) => (
+                <Col className="pb-3" md={6} key={`cri-${i}`}>
+                  <Block variant={item.variant} data={item} />
+                </Col>
+              ))}
+            </Row>
+          </Container>
+        </div>
       </div>
+      <Particles />
     </div>
   );
 }

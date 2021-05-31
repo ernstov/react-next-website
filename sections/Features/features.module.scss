@@ -6,6 +6,7 @@
   background-image: url(/img/features-bg.png);
   background-position: bottom right;
   background-repeat: no-repeat;
+  position: relative;
 
   @include media-breakpoint-down(md) {
     padding: $section-spacer $gutter/2;

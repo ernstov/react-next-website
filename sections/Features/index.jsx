@@ -4,6 +4,7 @@ import Button from '../../components/ui/Button'
 import typographyStyles from "../../styles/global/typography.module.scss"
 import { Container, Row, Col, Badge } from "react-bootstrap"
 import presetsStyles from "../../styles/global/presets.module.scss"
+import Particles from '../../components/Particles'
 
 const Features = ({ data, isVisible }) => {
 
@@ -20,6 +21,7 @@ const Features = ({ data, isVisible }) => {
 
   return (
     <div className={`${styles.features} ${data.variant ? data.variant : ""} ${visible ? "active" : ""}`}>
+      <Particles variant="light"/>
       <Container>
         <Row>
           <Col className="order-2 order-md-1" md={5}>

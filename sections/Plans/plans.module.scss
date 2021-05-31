@@ -1,11 +1,11 @@
 @import "../../styles/base/variables.scss";
 
 .plans {
-  max-width: 1400px;
-  margin: 0 auto;
+  width: 100%;
   padding-top: $section-spacer;
   padding-bottom: $section-spacer;
   overflow: hidden;
+  position: relative;
 
   &:global(.with-bullets) {
     :global(.swiper-pagination) {
@@ -52,6 +52,13 @@
       display: block;
     }
   }
+}
+
+.plansContainer {
+  position: relative;
+  z-index: 1;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 .switch {
