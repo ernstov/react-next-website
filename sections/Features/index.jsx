@@ -21,7 +21,6 @@ const Features = ({ data, isVisible }) => {
 
   return (
     <div className={`${styles.features} ${data.variant ? data.variant : ""} ${visible ? "active" : ""}`}>
-      <Particles variant="light"/>
       <Container>
         <Row>
           <Col className="order-2 order-md-1" md={5}>

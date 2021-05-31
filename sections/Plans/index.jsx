@@ -28,7 +28,7 @@ const Plans = ({ data, isVisible }) => {
     },
     breakpoints: {
       300: {
-        slidesPerView: 1.2,
+        slidesPerView: 1,
       },
       767: {
         slidesPerView: 2.3,
@@ -70,7 +70,6 @@ const Plans = ({ data, isVisible }) => {
           </Container>
         </div>
       </div>
-      <Particles />
     </div>
   );
 }

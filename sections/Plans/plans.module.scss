@@ -6,6 +6,10 @@
   padding-bottom: $section-spacer;
   overflow: hidden;
   position: relative;
+  background-image: url(/img/bg-dots.png);
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-position: left 0 bottom 8%;
 
   &:global(.with-bullets) {
     :global(.swiper-pagination) {
@@ -41,6 +45,16 @@
   @include media-breakpoint-down(md) {
     padding-top: $section-spacer/2;
     padding-bottom: $section-spacer;
+    
+
+    :global(.swiper-pagination) {
+      display: block;
+    }
+
+    :global(.swiper-container){
+      overflow: visible;
+      margin-top: 4rem;
+    }
 
     &:global(.reduce-padding-md){
       padding-bottom: 0;
@@ -48,6 +62,10 @@
   }
 
   @include media-breakpoint-down(sm) {
+    background-position: center bottom 50%;
+    background-repeat: no-repeat;
+    background-size: auto 400px;
+    
     .swiper-pagination {
       display: block;
     }

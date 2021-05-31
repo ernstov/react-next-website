@@ -41,7 +41,7 @@ const Block = ({ data, i, variant, isYearly }) => {
             <div className={`text-center mb-3`}><span className={`${typographyStyles.tinyLabel}`}>{data.label}</span></div>
             <div className={`text-center `}><span className={`${typographyStyles.textMediumReg} `}>{data.description}</span></div>
             <div className={`${styles.blockPrice} mt-4`}>
-              <div><span className={`${typographyStyles.textDemi2}`}>${numberWithCommas(data.price * (isYearly ? 0.9 : 1))}</span></div>
+              <div><span className={`${typographyStyles.textDemi2}`}>${numberWithCommas(Math.floor(data.price * (isYearly ? 0.9 : 1)))}</span></div>
               <div className={"ml-1"}>
                 <div><span className={`${typographyStyles.tinyLab} lh-1 d-block`}>{USD}</span></div>
                 <div><span className={`${typographyStyles.textSubMd} lh-1 d-block`}>/{month}</span></div>
