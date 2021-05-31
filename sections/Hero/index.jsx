@@ -12,36 +12,52 @@ const Hero = ({ data, isVisible }) => {
     if (isVisible) {
       setTimeout(() => {
         setVisible(true)
-      }, appConfig.entryDelay*2)
+      }, appConfig.entryDelay * 2)
     }
   }, [isVisible])
 
-  return (
-    <div className={`${styles.hero} ${data.className ? data.className : ""} ${data.variant ? data.variant : ""} ${visible ? "active" : ""}`}>
-      <div className={`${styles.inner}`}>
-        {data.img &&
-          <img className={`${styles.img} entry-1 ${data.imgCL ? data.imgCL : ""}`} src={data.isExternal ? data.img : `/img/${data.img}`} />
-        }
-        <h1 className={`${typographyStyles.textTitle} mb-4 mb-md-5 entry-1 mx-auto ${data.titleCL ? data.titleCL : "mw-410"}`} dangerouslySetInnerHTML={{ __html: data.title }}></h1>
-        <p className={`${typographyStyles.textSubTitle} entry-2 mx-auto ${data.descriptionCL ? data.descriptionCL : "mw-410"}`} dangerouslySetInnerHTML={{ __html: data.description }}></p>
+  const render = () => {
+    switch (data.variant) {
+      case "small":
+        return <div className={`${styles.inner}`}>
+          {data.img &&
+            <img className={`${styles.img} entry-1 ${data.imgCL ? data.imgCL : ""} mb-3`} src={data.isExternal ? data.img : `/img/${data.img}`} />
+          }
+          <h1 className={`${typographyStyles.textTitle} mb-3 mb-md-3 entry-1 mx-auto ${data.titleCL ? data.titleCL : "mw-410"}`} dangerouslySetInnerHTML={{ __html: data.title }}></h1>
+          <p className={`${typographyStyles.textSubTitle} entry-2 mx-auto ${data.descriptionCL ? data.descriptionCL : "mw-410"}`} dangerouslySetInnerHTML={{ __html: data.description }}></p>
+        </div>
+      case "base":
+      default:
+        return <div className={`${styles.inner}`}>
+          {data.img &&
+            <img className={`${styles.img} entry-1 ${data.imgCL ? data.imgCL : ""}`} src={data.isExternal ? data.img : `/img/${data.img}`} />
+          }
+          <h1 className={`${typographyStyles.textTitle} mb-4 mb-md-5 entry-1 mx-auto ${data.titleCL ? data.titleCL : "mw-410"}`} dangerouslySetInnerHTML={{ __html: data.title }}></h1>
+          <p className={`${typographyStyles.textSubTitle} entry-2 mx-auto ${data.descriptionCL ? data.descriptionCL : "mw-410"}`} dangerouslySetInnerHTML={{ __html: data.description }}></p>
 
-        {data.markets &&
-          <div className={`${styles.appsMarkets} entry-3`}>
-            {data.markets.map((market, i) => (
-              <a href={market.link} target="blank" key={`mi-${i}`}><img src={`/img/${market.img}`} alt="" /></a>
+          {data.markets &&
+            <div className={`${styles.appsMarkets} entry-3`}>
+              {data.markets.map((market, i) => (
+                <a href={market.link} target="blank" key={`mi-${i}`}><img src={`/img/${market.img}`} alt="" /></a>
+              ))}
+            </div>
+          }
+
+          <div className={`${styles.buttons} mt-5 entry-4`}>
+            {data.buttons && data.buttons.map((button, i) => (
+              data.isBlank ?
+                <Button link={button.link} as={`${button.as ? button.as : "link"}`} variant={button.variant} className={`${button.className ? button.className : ""} ${i < data.buttons.length ? "mb-2" : ""}`} key={`bi-${i}`}>{button.name}</Button> :
+                <Button link={button.link} as={`${button.as ? button.as : "link"}`} variant={button.variant} className={`${button.className ? button.className : ""} ${i < data.buttons.length ? "mb-2" : ""}`} key={`bi2-${i}`}>{button.name}</Button>
             ))}
           </div>
-        }
-
-        <div className={`${styles.buttons} mt-5 entry-4`}>
-          {data.buttons && data.buttons.map((button, i) => (
-            data.isBlank ? 
-            <Button link={button.link} as={`${button.as ? button.as : "link"}`} variant={button.variant} className={`${button.className ? button.className : ""} ${i < data.buttons.length ? "mb-2" : ""}`} key={`bi-${i}`}>{button.name}</Button> :
-            <Button link={button.link} as={`${button.as ? button.as : "link"}`} variant={button.variant} className={`${button.className ? button.className : ""} ${i < data.buttons.length ? "mb-2" : ""}`} key={`bi2-${i}`}>{button.name}</Button>
-          ))}
         </div>
 
-      </div>
+    }
+  }
+
+  return (
+    <div className={`${styles.hero} ${data.className ? data.className : ""} ${data.variant ? data.variant : ""} ${visible ? "active" : ""}`}>
+      {render()}
     </div>
   );
 }

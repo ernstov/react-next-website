@@ -236,8 +236,16 @@
 
 .blockBadge {
   background-color: $primary-cover-2;
+  border-radius: $block-radius;
+  border: 1px solid $gray-12;
+  padding: 2rem 2rem;
+  width: 100%;
+  box-shadow: 0px 2px 0px $gray-13;
+}
+
+.blockBadgeWrap {
   background-color: $primary-cover-2;
-  border-radius: 8px;
+  border-radius: $block-radius;
   border: 1px solid $gray-12;
   padding: 2rem 2rem;
   width: 100%;

@@ -1,8 +1,9 @@
 import { useState, useRef, useEffect } from "react"
 import styles from './input.module.scss'
 import * as bootstrapValidate from 'bootstrap-validate';
+import typographyStyles from "../../../styles/global/typography.module.scss"
 
-const Input = ({ variant, className, placeholder, name, onChange, defaultValue, type, required }) => {
+const Input = ({ variant, className, placeholder, name, onChange, defaultValue, type, required, label }) => {
 
   const [isFocus, setIsFocus] = useState(false)
   const inputR = useRef(null)
@@ -24,6 +25,8 @@ const Input = ({ variant, className, placeholder, name, onChange, defaultValue, 
         bootstrapValidate(inputR.current, 'min:6:', setValidaion);
         break;
       case 'name':
+      case 'first-name':
+      case 'last-name':
         bootstrapValidate(inputR.current, 'min:2:', setValidaion);
         break;
       case 'lastName':
@@ -36,7 +39,7 @@ const Input = ({ variant, className, placeholder, name, onChange, defaultValue, 
         bootstrapValidate(inputR.current, 'regex:^(?:[A-Z0-9]+([- ]?[A-Z0-9]+)*)?$:Enter a valid Zip code!', setValidaion);
         break;
       case 'password':
-        bootstrapValidate(inputR.current, 'regex:^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-])(?!.* ).{10,}$:Enter a password that contains at least 10 characters, one special character, a capital letter, and a number!', setValidaion);
+        bootstrapValidate(inputR.current, 'regex:^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-])(?!.* ).{6,}$:', setValidaion);
         break;
     }
   };
@@ -81,6 +84,7 @@ const Input = ({ variant, className, placeholder, name, onChange, defaultValue, 
       case "form":
       default:
         return <div className={`${styles.input} ${variant ? variant : ""} ${isFocus ? "focus" : ""} ${className ? className : ""} ${valid == null ? "" : valid ? "valid" : "not-valid"}`}>
+          {label && <div className={`${styles.inputLabel}`}><span className={`${typographyStyles.labelForm}`}>{label}</span></div>}
           {renderInput()}
         </div>
     }

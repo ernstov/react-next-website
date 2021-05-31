@@ -269,4 +269,27 @@ export const pages = [
       label: "Mon - Fri, 9:00AM - 5:00PM CT"
     }
   },
+  {
+    link: "/sign-up",
+    title: "Sign up",
+    description: "Create a business account to get started.",
+    hero: {
+      title: "S<span>ign u</span>p",
+      titleCL: "mw-450",
+      description: "Create a business account to get started.",
+      descriptionCL: "mw-600",
+      img: "account-hero.svg",
+      variant: "small",
+    },
+    signup: {
+      bottom: "Existing business user?",
+      options: [
+        {value: "Free trial", label: "Free trial"},
+        {value: "Lite", label: "Lite"},
+        {value: "Standart", label: "Standart"},
+        {value: "Business", label: "Business"},
+        {value: "Enterprise", label: "Enterprise"},
+      ]
+    }
+  }
 ]

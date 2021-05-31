@@ -1,16 +1,12 @@
 import React from "react"
 import Head from 'next/head'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import appConfig from "../configs/appConfig"
 import { Context } from "../context/context"
-import Footer from "../components/Footer"
 import { pages } from "../configs/pages/dynamic"
 import { filterIt } from '../utils'
 import Hero from "../sections/Hero"
-import Faq from "../sections/Faq"
-import Columns from "../sections/Columns"
-import Contact from "../sections/Contact"
-import Plans from "../sections/Plans"
+import Signup from "../sections/Signup"
 import VisibilitySensor from '../utils/react-visibility-sensor';
 
 const Home = ({ tags, dataPosts, path }) => {
@@ -20,11 +16,7 @@ const Home = ({ tags, dataPosts, path }) => {
 
   const sections = [
     { component: Hero, props: { data: page.hero } },
-    { component: Plans, props: { data: page.plans } },
-    { component: Columns, props: { data: page.columns } },
-    { component: Faq, props: { data: page.faq } },
-    { component: Contact, props: { data: page.contact } },
-    { component: Footer, props: { data: appConfig.footer } },
+    { component: Signup, props: { data: page.signup } },
   ]
 
   return (

@@ -271,6 +271,17 @@
   font-size: 0.9375rem;
 }
 
+.textMediumM {
+  font-size: 0.9375rem;
+  font-weight: 500;
+}
+
+.textMediumD {
+  font-size: 0.9375;
+  font-weight: 500;
+  color: $black;
+}
+
 .textMediumLgt {
   font-size: 0.9375rem;
   color: $gray-5;
@@ -279,6 +290,18 @@
 .textRomanSm {
   font-size: 0.875rem;
   font-weight: 500;
+}
+
+.textRomanTiny {
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.labelForm {
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: rgba($black, 0.6);
 }
 
 @include media-breakpoint-down(lg) {

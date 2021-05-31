@@ -49,6 +49,8 @@ $cover-3:                   #f7ecf3;
 $cover-4:                   #fdf8ea;
 $cover-5:                   #D6D6D5;
 $cover-6:                   #FDF8EA;
+$cover-7:                   #EDFAFF;
+$gray-adv:                  #e4e8eb;
 
 $theme-colors: ();
 
@@ -119,8 +121,6 @@ $badge-border-radius:         20px;
 $badge-transition:            $btn-transition !default;
 $badge-focus-width:           $input-btn-focus-width !default;
 
-$heder-height:                80px;
-
 $section-spacer:              60px;
 $section-spacer-lg:           100px;
 
@@ -154,7 +154,7 @@ $input-border-radius:           25px;
 $input-padding:                 0 2rem;
 
 $btn-height:                    45px;
-$btn-height-large:              60px;
+$btn-height-large:              64px;
 $btn-height-large-md:           48px;
 $btn-padding:                   0 2.4rem;
 $btn-radius:                    25px;
@@ -175,3 +175,25 @@ $link-color:                              $secondary;
 $link-decoration:                         none;
 $link-hover-color:                        $secondary;
 $link-hover-decoration:                   underline;
+
+$custom-checkbox-indicator-border-radius: $border-radius;
+$custom-control-indicator-bg: $white;
+$custom-control-indicator-border-color: $border-color;
+$custom-control-cursor: pointer;
+
+$custom-control-indicator-checked-color: $white;
+$custom-checkbox-indicator-icon-checked: url("data:image/svg+xml,<svg width='13' height='10' viewBox='0 0 13 10' xmlns='http://www.w3.org/2000/svg'><path d='M11.0317 0.293607C11.3298 -0.057066 11.8557 -0.0997066 12.2064 0.198365C12.557 0.496437 12.5997 1.02235 12.3016 1.37302L5.21826 9.70636C4.91551 10.0625 4.37906 10.1001 4.02968 9.78949L0.279673 6.45616C-0.0643129 6.15039 -0.0952969 5.62367 0.210468 5.27968C0.516233 4.93569 1.04296 4.90471 1.38695 5.21048L4.50016 7.97777L11.0317 0.293607Z' fill='#{$custom-control-indicator-checked-color}'/></svg>");
+$custom-control-indicator-bg-size: 65% 65%;
+
+$custom-control-gutter: 0.5rem;
+
+$custom-control-indicator-checked-bg: $secondary;
+$custom-control-indicator-checked-border-color: $secondary;
+
+$custom-control-indicator-size: 2rem;
+$custom-switch-width: $custom-control-indicator-size * 1.75;
+$custom-switch-indicator-border-radius: $custom-control-indicator-size / 2;
+$custom-switch-indicator-size: subtract(
+  $custom-control-indicator-size,
+  $custom-control-indicator-border-width * 4
+);

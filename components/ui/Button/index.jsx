@@ -1,4 +1,4 @@
-import {useContext} from "react"
+import { useContext } from "react"
 import styles from './button.module.scss'
 import Link from 'next/link'
 import Icon from "../../Icon"
@@ -35,10 +35,18 @@ const Button = ({ children, variant, className, onClick, as, link, isActive, dis
         return `${styles.button} ${styles.primary} ${styles.arrow}`
       case "primary":
         return `${styles.button} ${styles.primary}`
+      case "primary-notround":
+        return `${styles.button} ${styles.primary} ${styles.notRound}`
+      case "primary-notround-large":
+        return `${styles.button} ${styles.primary} ${styles.notRound} ${styles.large}`
       case "outline-primary":
         return `${styles.button} ${styles.primaryOutline}`
       case "link":
         return `${styles.link} ${styles.secondaryLink}`
+      case "link-gray":
+        return `${styles.link} ${styles.grayLink}`
+      case "link-nondec":
+        return `${styles.linkNon} ${styles.secondaryLink}`
       case "collapse":
         return `${styles.collapse}`
     }

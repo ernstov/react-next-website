@@ -4,6 +4,9 @@ const app = {
   headerHeight: 80,
   headerHeightMd: 75,
   entryDelay: 500,
+  apis: {
+    signup: "#",
+  },
 
   headerNavigation: [
     {name: "News API", link:"/"},

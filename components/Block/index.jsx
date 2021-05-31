@@ -5,9 +5,11 @@ import { Context } from "../../context/context"
 import { numberWithCommas } from "../../utils/"
 import Button from "../ui/Button"
 
-const Block = ({ data, i, variant, isYearly }) => {
+const Block = ({ data, i, variant, isYearly, children }) => {
 
   const { lang: { USD, month, Startnow } } = useContext(Context);
+
+
 
   const getButtonOptions = (button) => {
     if(button.link) return {link: button.link}
@@ -16,6 +18,8 @@ const Block = ({ data, i, variant, isYearly }) => {
 
   const render = () => {
     switch (variant) {
+      case "badge-wrap":
+        return <div className={`${styles.blockBadgeWrap}`}>{children}</div>
       case "badge":
         return <div className={`${styles.blockBadge} h-100`}>
           <h3 className={`${typographyStyles.textDemi2} ${typographyStyles.fontBase} text-center mb-0`}>{data.name}</h3>

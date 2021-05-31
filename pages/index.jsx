@@ -1,12 +1,11 @@
 import React from "react"
 import Head from 'next/head'
-import { useEffect, useContext, useState } from 'react'
+import { useContext, useState } from 'react'
 import appConfig from "../configs/appConfig"
 import { Context } from "../context/context"
-import Header from "../components/Header"
 import Footer from "../components/Footer"
 import { pages } from "../configs/pages/dynamic"
-import { filterIt, getSkeletonVariant, getSidebarAvailability } from '../utils'
+import { filterIt } from '../utils'
 import Hero from "../sections/Hero"
 import Carousel from "../sections/Carousel"
 import Columns from "../sections/Columns"

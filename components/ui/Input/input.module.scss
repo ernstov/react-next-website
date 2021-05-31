@@ -3,7 +3,8 @@
 .input {
   position: relative;
 
-  input, textarea {
+  input,
+  textarea {
     background-color: $white;
     border: none;
     border-radius: 25px;
@@ -27,6 +28,13 @@
       font-size: 1rem;
       font-weight: 500;
       color: rgba($black, 0.5);
+    }
+  }
+
+  &:global(.flat) {
+    input,
+    textarea {
+      border-radius: $block-radius/2;
     }
   }
 
@@ -72,9 +80,12 @@
   }
 
   @include media-breakpoint-down(lg) {
-
   }
 
   @include media-breakpoint-down(md) {
   }
+}
+
+.inputLabel {
+  margin-bottom: 0.1rem;
 }

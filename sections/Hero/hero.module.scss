@@ -15,6 +15,15 @@
       color: $gray-5;
     }
   }
+
+  @include media-breakpoint-down(md) {
+    &:global(.small){
+      img {
+        max-width: 100px !important;
+        width: 100%;
+      }
+    }
+  }
 }
 
 .inner {
@@ -32,7 +41,7 @@
   margin-bottom: 3.5rem;
 
   @include media-breakpoint-down(md) {
-    max-width: 100% !important;
+    max-width: 200px !important;
     width: 100%;
   }
 }
