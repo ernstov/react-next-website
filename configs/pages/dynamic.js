@@ -143,5 +143,63 @@ export const pages = [
       descriptionCL: "mw-600",
       img: "hands-prining.svg",
     },
+    faq: {
+      title: "FAQs",
+      titleSPC: "Answers to common questions",
+      img: "question-marks.svg",
+      className: "mt-s",
+      list: [
+        { id: "id1", question: "A sample question here?", answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sed vestibulum ante. Pellentesque fermentum scelerisque libero, vel tristique massa sodales non. Fusce quis diam condimentum, congue massa tincidunt, aliquet mauris. Aliquam vestibulum faucibus eros a cursus. Mauris gravida mattis diam, a mattis arcu auctor sed." },
+        { id: "id2", question: "Another question?", answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sed vestibulum ante. Pellentesque fermentum scelerisque libero, vel tristique massa sodales non. Fusce quis diam condimentum, congue massa tincidunt, aliquet mauris. Aliquam vestibulum faucibus eros a cursus. Mauris gravida mattis diam, a mattis arcu auctor sed." },
+        { id: "id3", question: "Another question?", answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sed vestibulum ante. Pellentesque fermentum scelerisque libero, vel tristique massa sodales non. Fusce quis diam condimentum, congue massa tincidunt, aliquet mauris. Aliquam vestibulum faucibus eros a cursus. Mauris gravida mattis diam, a mattis arcu auctor sed." },
+        { id: "id4", question: "Another question?", answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sed vestibulum ante. Pellentesque fermentum scelerisque libero, vel tristique massa sodales non. Fusce quis diam condimentum, congue massa tincidunt, aliquet mauris. Aliquam vestibulum faucibus eros a cursus. Mauris gravida mattis diam, a mattis arcu auctor sed." },
+        { id: "id5", question: "Another question?", answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sed vestibulum ante. Pellentesque fermentum scelerisque libero, vel tristique massa sodales non. Fusce quis diam condimentum, congue massa tincidunt, aliquet mauris. Aliquam vestibulum faucibus eros a cursus. Mauris gravida mattis diam, a mattis arcu auctor sed." },
+        { id: "id6", question: "Another question?", answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sed vestibulum ante. Pellentesque fermentum scelerisque libero, vel tristique massa sodales non. Fusce quis diam condimentum, congue massa tincidunt, aliquet mauris. Aliquam vestibulum faucibus eros a cursus. Mauris gravida mattis diam, a mattis arcu auctor sed." },
+        { id: "id7", question: "Another question?", answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sed vestibulum ante. Pellentesque fermentum scelerisque libero, vel tristique massa sodales non. Fusce quis diam condimentum, congue massa tincidunt, aliquet mauris. Aliquam vestibulum faucibus eros a cursus. Mauris gravida mattis diam, a mattis arcu auctor sed." },
+        { id: "id8", question: "Another question?", answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sed vestibulum ante. Pellentesque fermentum scelerisque libero, vel tristique massa sodales non. Fusce quis diam condimentum, congue massa tincidunt, aliquet mauris. Aliquam vestibulum faucibus eros a cursus. Mauris gravida mattis diam, a mattis arcu auctor sed." },
+        { id: "id9", question: "Another question?", answer: "In addition to national & world news, Gawq also gives you the ability to follow local news, weather, and events happening in over 100 cities around the globe. New cities are being added every month!" },
+        { question: "News API", link: "/" },
+      ]
+    },
+
+    columns: {
+      title: "Business-grade quality for all plans",
+      variant: "advanced",
+      columns: [
+        {
+          title: "Helpful support",
+          description: "We’re here for you. Message us if you experience any problems or find ways to make Gawq work better for you.",
+          img: "support.svg",
+        },
+        {
+          title: "Blazingly fast",
+          description: "Response-times <1s. Query by keywords, date ranges, sources, languages, topics, countries & more.",
+          img: "bolt.svg",
+        },
+        {
+          title: "Built for developers",
+          description: "We provide client libraries that offer full access to the API with as little as a few lines of code.",
+          img: "developers.svg",
+        },
+      ],
+    },
+
+    contact: {
+      title: "Contact us",
+      description: "Send us an email or submit the contact form to get in touch. For Gawq API inquires only.",
+      buttons: [
+        {
+          name: "data@gawq.com",
+          icon: "mail",
+          link: "mailto:data@gawq.com"
+        },
+        {
+          name: "888.202.0521",
+          icon: "phone",
+          link: "tel:888.202.0521",
+        }
+      ],
+      label: "Mon - Fri, 9:00AM - 5:00PM CT"
+    }
   },
 ]

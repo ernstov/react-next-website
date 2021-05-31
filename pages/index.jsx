@@ -3,7 +3,6 @@ import { useEffect, useContext, useState } from 'react'
 import appConfig from "../configs/appConfig"
 import { Context } from "../context/context"
 import Header from "../components/Header"
-import { LayoutBase, LayoutRow } from "../components/Layout"
 import Footer from "../components/Footer"
 import { pages } from "../configs/pages/dynamic"
 import { filterIt, getSkeletonVariant, getSidebarAvailability } from '../utils'
@@ -24,15 +23,13 @@ const Home = ({ tags, dataPosts, path }) => {
         <title>{appConfig.projectName} - {page.title}</title>
         <link rel="icon" href="/img/favicon.ico" />
       </Head>
-      <LayoutBase>
-        <Header />
-        <Hero data={page.hero} />
-        <Features data={page.features} />
-        <Carousel data={page.carousel} />
-        <Api data={page.console}/>
-        <Columns data={page.columns}/>
-        <Footer data={appConfig.footer} />
-      </LayoutBase>
+      <Header />
+      <Hero data={page.hero} />
+      <Features data={page.features} />
+      <Carousel data={page.carousel} />
+      <Api data={page.console} />
+      <Columns data={page.columns} />
+      <Footer data={appConfig.footer} />
     </>
   )
 }

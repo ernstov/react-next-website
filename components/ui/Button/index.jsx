@@ -2,7 +2,7 @@ import styles from './button.module.scss'
 import Link from 'next/link'
 import Icon from "../../Icon"
 
-const Button = ({ children, variant, className, onClick, as, link, isActive }) => {
+const Button = ({ children, variant, className, onClick, as, link, isActive, disabled }) => {
 
   const getStyles = () => {
     switch (variant) {
@@ -10,6 +10,8 @@ const Button = ({ children, variant, className, onClick, as, link, isActive }) =
         return `${styles.button} ${styles.radial} ${styles.dark}`
       case "dark":
         return `${styles.button} ${styles.dark}`
+      case "dark-np":
+        return `${styles.button} ${styles.dark} np`
       case "light-wide":
         return `${styles.button} ${styles.wide} ${styles.light}`
       case "light":
@@ -25,6 +27,8 @@ const Button = ({ children, variant, className, onClick, as, link, isActive }) =
         return `${styles.button} ${styles.dark} ${styles.square} ${styles.large}`
       case "primary-arrow":
         return `${styles.button} ${styles.primary} ${styles.arrow}`
+      case "primary":
+        return `${styles.button} ${styles.primary}`
       case "outline-primary":
         return `${styles.button} ${styles.primaryOutline}`
       case "link":
@@ -52,13 +56,15 @@ const Button = ({ children, variant, className, onClick, as, link, isActive }) =
         </Link>
       case "url":
         return <a className={`${getStyles()} ${className ? className : ""}`} href={link} target="_blank" onClick={onClick}>{children} {getIcons()}</a>
+      case "url-same":
+        return <a className={`${getStyles()} ${className ? className : ""}`} href={link} onClick={onClick}>{children} {getIcons()}</a>
       case "collapse":
-        return <button onClick={onClick} className={`${getStyles()} ${isActive ? "active" : ""} ${className ? className : ""}`}>
+        return <button onClick={onClick} disabled={disabled ? disabled : false} className={`${getStyles()} ${isActive ? "active" : ""} ${className ? className : ""}`}>
           <div>{children}</div>
           <div className="ml-3"><Icon variant="chevron-up" /></div>
         </button>
       default:
-        return <button onClick={onClick} className={`${getStyles()} ${className ? className : ""}`}>
+        return <button disabled={disabled ? disabled : false} onClick={onClick} className={`${getStyles()} ${className ? className : ""}`}>
           {children} {getIcons()}
         </button>
     }

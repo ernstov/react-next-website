@@ -108,3 +108,35 @@ body .scroll-content {
     }
   }
 }
+
+.mb-s {
+  margin-bottom: $section-spacer;
+
+  @include media-breakpoint-down(md) {
+    margin-bottom: $section-spacer/2;
+  }
+}
+
+.mt-s {
+  margin-top: $section-spacer;
+
+  @include media-breakpoint-down(md) {
+    margin-top: $section-spacer/2;
+  }
+}
+
+.pb-s {
+  padding-bottom: $section-spacer;
+
+  @include media-breakpoint-down(md) {
+    padding-bottom: $section-spacer/2;
+  }
+}
+
+.pt-s {
+  padding-top: $section-spacer;
+
+  @include media-breakpoint-down(md) {
+    padding-top: $section-spacer/2;
+  }
+}

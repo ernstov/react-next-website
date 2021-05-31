@@ -3,11 +3,20 @@
 .columns {
   padding: $section-spacer*2 0;
 
+  &:global(.advanced){
+    background-color: $black;
+    padding: $section-spacer 0;
+  }
+
   @include media-breakpoint-down(md) {
     padding: $section-spacer 0;
 
     &:global(.reduce-padding-md){
       padding-top: 0;
+    }
+
+    &:global(.advanced){
+      padding: $section-spacer $section-spacer/2;
     }
   }
 }
@@ -18,6 +27,16 @@
 
   img {
     max-height: 1.125rem;
+    margin-right: 1rem;
+  }
+}
+
+.columnTitleAdvanced {
+  display: flex;
+  align-items: center;
+
+  img {
+    max-height: 1.5rem;
     margin-right: 1rem;
   }
 }

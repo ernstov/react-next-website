@@ -16,6 +16,16 @@
   cursor: pointer;
   transition: color $transition ease, background-color $transition ease;
 
+  &:global([disabled]){
+    opacity: 0.5;
+    pointer-events: none;
+  }
+  
+  &:global(.np) {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
   &:hover {
     text-decoration: none;
     color: inherit;

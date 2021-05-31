@@ -1,0 +1,80 @@
+@import "../../../styles/base/variables.scss";
+
+.input {
+  position: relative;
+
+  input, textarea {
+    background-color: $white;
+    border: none;
+    border-radius: 25px;
+    width: 100%;
+    font-size: 1rem;
+    font-weight: 500;
+    color: $black;
+    outline: none;
+    padding: 0 1rem;
+    border: 1px solid $border-color;
+    line-height: $btn-height;
+
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus,
+    &:-webkit-autofill:active {
+      -webkit-box-shadow: 0 0 0 40px $white inset !important;
+    }
+
+    &::placeholder {
+      font-size: 1rem;
+      font-weight: 500;
+      color: rgba($black, 0.5);
+    }
+  }
+
+  textarea {
+    height: 100%;
+    border-radius: 12px;
+    padding-top: 0.5rem;
+  }
+
+  &:global(.form) {
+    input {
+      padding-left: 1rem;
+
+      &::placeholder {
+        color: rgba($black, 0.6);
+      }
+    }
+  }
+
+  &:global(.focus) {
+  }
+
+  &:global(.valid) {
+    &::after {
+      transform: scaleX(1);
+      background-color: $success;
+    }
+  }
+
+  &:global(.not-valid) {
+    input {
+      border-color: $danger;
+    }
+  }
+
+  :global(.invalid-feedback) {
+    position: absolute;
+    bottom: -14px;
+    left: 1rem;
+    color: $danger;
+    font-size: 0.75rem;
+    width: 100%;
+  }
+
+  @include media-breakpoint-down(lg) {
+
+  }
+
+  @include media-breakpoint-down(md) {
+  }
+}

@@ -32,6 +32,8 @@ $gray-8:                    #CCCCCC;
 $gray-9:                    #C0BDB6;
 $gray-10:                   #868686;
 $gray-11:                   #E9E5DA;
+$gray-12:                   #BFBFBF;
+$gray-13:                   #EAEAEA;
 $primary-strong:            #E7AD00;
 $c1:                        #716F6B;
 $cover-2:                   #FDF8EB;
@@ -166,3 +168,8 @@ $shadow-3:                      0px -12px 20px rgba(0, 0, 0, 0.10383);
 $shadow-4:                      0px 6px 10px rgba(0, 0, 0, 0.10383);
 $shadow-5:                      0px 0px 30px 4px rgba(0, 0, 0, 0.3);
 $spacer-mobile:                 5px;
+
+$link-color:                              $secondary;
+$link-decoration:                         none;
+$link-hover-color:                        $secondary;
+$link-hover-decoration:                   underline;

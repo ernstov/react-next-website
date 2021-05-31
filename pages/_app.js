@@ -1,9 +1,11 @@
-import {useReducer, useState, useEffect} from "react"
+import { useReducer, useState, useEffect, useRef} from "react"
 import { Context } from "../context/context"
 import reducerApp from "../context/reducerApp"
 import appConfig from "../configs/appConfig"
 import languages from "../configs/languages"
-import Router, {useRouter} from "next/router"
+import Router, { useRouter } from "next/router"
+import { LayoutBase, LayoutRow } from "../components/Layout"
+import Scrollbar from "react-smooth-scrollbar"
 
 import "../styles/main.scss"
 import 'swiper/swiper.scss'
@@ -12,8 +14,9 @@ import 'swiper/components/lazy/lazy.scss'
 
 export default function App({ Component, pageProps }) {
 
-  const [lang, setLang] =  useState(languages[appConfig.lang]);
+  const [lang, setLang] = useState(languages[appConfig.lang]);
   const router = useRouter()
+  const scrollB = useRef(null);
 
   const [app, dispatchApp] = useReducer(reducerApp, {
     isLoading: false,
@@ -27,12 +30,13 @@ export default function App({ Component, pageProps }) {
     nextPage: router.asPath,
   });
 
-  useEffect(()=>{
+  useEffect(() => {
     const start = (e) => {
-      dispatchApp({type: "SET_LOADING", data: {isLoading:true, nextPage: e}});
+      dispatchApp({ type: "SET_LOADING", data: { isLoading: true, nextPage: e } });
+      scrollB.current?.scrollbar.scrollTo(0, 0, 500);
     };
     const end = (e) => {
-      dispatchApp({type: "SET_LOADING", data: {isLoading:false, nextPage: e}});
+      dispatchApp({ type: "SET_LOADING", data: { isLoading: false, nextPage: e } });
     };
     Router.events.on("routeChangeStart", start);
     Router.events.on("routeChangeComplete", end);
@@ -44,7 +48,11 @@ export default function App({ Component, pageProps }) {
     };
   }, [])
 
-  return <Context.Provider value={{ app, dispatchApp, lang }}>
-    <Component {...pageProps} path={router.pathname}/>
+  return <Context.Provider value={{ app, dispatchApp, lang, scrollB }}>
+    <LayoutBase>
+      <Scrollbar className="scoll-bar" ref={e => { if (e && !scrollB.current) { scrollB.current = e; } }}>
+        <Component {...pageProps} path={router.pathname} />
+      </Scrollbar>
+    </LayoutBase>
   </Context.Provider>
 }

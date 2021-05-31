@@ -1,12 +1,33 @@
 import { Container, Row, Col, Badge } from "react-bootstrap"
 import styles from './columns.module.scss'
 import typographyStyles from "../../styles/global/typography.module.scss"
+import presetsStyles from "../../styles/global/presets.module.scss"
 import Button from "../../components/ui/Button"
 
 const Columns = ({ data, isVisible }) => {
 
   const render = () => {
     switch (data.variant) {
+      case "advanced":
+        return <>
+          <Container>
+            <Row>
+              <Col className="text-center mb-4 mb-md-0">
+                {data.title && <h3 className={`${styles.columnsTitle} ${typographyStyles.fontBase} ${typographyStyles.titlePrimaryMd} mb-4 mb-md-5 entry-1`}>{data.title}</h3>}
+              </Col>
+            </Row>
+            <Row>
+              {data.columns.map((column, i) => (
+                <Col className="entry-2 d-flex align-items-stretch" md={4} key={`ci-${i}`}>
+                  <div className={`${column.className ? `${column.className} ${i < data.columns.length-1 ? "pb-5 pb-md-0" : ""}` : `${i < data.columns.length-1 ? "pb-5 pb-md-0" : ""}`}`}>
+                    <div className={`${styles.columnTitleAdvanced} mb-3`}>{column.img && <img src={`/img/${column.img}`} />}<h4 className={`${typographyStyles.titleDemiWhiteSm} ${typographyStyles.fontBase} mb-0`}>{column.title}</h4></div>
+                    <div><span className={`${typographyStyles.textRegular20}`}>{column.description}</span></div>
+                  </div>
+                </Col>
+              ))}
+            </Row>
+          </Container>
+        </>
       case "base":
       default:
         return <>
@@ -46,7 +67,7 @@ const Columns = ({ data, isVisible }) => {
   }
 
   return (
-    <div className={`${styles.columns} ${data.className ? data.className : ""} ${isVisible ? "active" : ""}`}>
+    <div className={`${styles.columns} ${data.variant ? data.variant : ""} ${data.className ? data.className : ""} ${isVisible ? "active" : ""}`}>
       {render()}
     </div>
   );
