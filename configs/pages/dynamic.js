@@ -293,25 +293,13 @@ export const pages = [
   },
   {
     link: "/account/overview",
-    title: "Sign up",
-    description: "Create a business account to get started.",
-    hero: {
-      title: "S<span>ign u</span>p",
-      titleCL: "mw-450",
-      description: "Create a business account to get started.",
-      descriptionCL: "mw-600",
-      img: "account-hero.svg",
-      variant: "small",
-    },
-    signup: {
-      bottom: "Existing business user?",
-      options: [
-        {value: "Free trial", label: "Free trial"},
-        {value: "Lite", label: "Lite"},
-        {value: "Standard", label: "Standard"},
-        {value: "Business", label: "Business"},
-        {value: "Enterprise", label: "Enterprise"},
-      ]
+    title: "Overview",
+    description: "Overview",
+    accountOverview: {
+      title: "You’ve been registered since Jan 12, 2021",
+      label1: "Business or Commercial",
+      label2: "Personal Project",
+      label3: "Academic",
     }
   },
   {

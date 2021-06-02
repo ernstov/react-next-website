@@ -5,6 +5,7 @@ import appConfig from "../../configs/appConfig"
 import { Context } from "../../context/context"
 import { pages } from "../../configs/pages/dynamic"
 import { filterIt } from '../../utils'
+import AccountOverview from "../../sections/AccountOverview"
 import VisibilitySensor from '../../utils/react-visibility-sensor';
 
 const Overview = ({ tags, dataPosts, path }) => {
@@ -13,7 +14,7 @@ const Overview = ({ tags, dataPosts, path }) => {
   const page = filterIt(pages, path, "link")[0];
 
   const sections = [
-
+    { component: AccountOverview, props: { data: page.accountOverview } },
   ]
 
   return (

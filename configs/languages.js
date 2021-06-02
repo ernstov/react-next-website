@@ -45,7 +45,19 @@ const languages = {
     CardholderName: "Cardholder Name",
     CVC: "CVC",
     Expiration: "Expiration",
-    digitcode: "3 or 4-digit code"
+    digitcode: "3 or 4-digit code",
+    Update: "Update",
+    Changepassword: "Change password",
+    Status: "Status",
+    Plan: "Plan",
+    Billing: "Billing",
+    Nextpayment: "Next Payment",
+    Changeplan: "Change plan",
+    Apiaccess: "Api access",
+    OfRequests: "# OF REQUESTS",
+    ViewKeys :"View Keys",
+    APIDocs: "API Docs",
+    APIUsage: "API Usage"
   }
 }
 

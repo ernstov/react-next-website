@@ -39,6 +39,8 @@ const Button = ({ children, variant, className, onClick, as, link, isActive, dis
         return `${styles.button} ${styles.primary} ${styles.notRound}`
       case "primary-notround-large":
         return `${styles.button} ${styles.primary} ${styles.notRound} ${styles.large}`
+      case "outline-secondary-notround-small":
+        return `${styles.button} ${styles.small} ${styles.secondaryOutline} ${styles.notRound}`
       case "outline-primary":
         return `${styles.button} ${styles.primaryOutline}`
       case "link":

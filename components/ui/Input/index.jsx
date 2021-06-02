@@ -33,8 +33,6 @@ const Input = ({ variant, className, placeholder, name, onChange, defaultValue, 
       case 'name':
       case 'first-name':
       case 'last-name':
-        bootstrapValidate(inputR.current, 'min:2:', setValidaion);
-        break;
       case 'lastName':
         bootstrapValidate(inputR.current, 'min:2:', setValidaion);
         break;

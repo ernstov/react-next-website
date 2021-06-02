@@ -89,3 +89,50 @@
 .inputLabel {
   margin-bottom: 0.1rem;
 }
+
+
+.inputPreview {
+  position: relative;
+
+  :global(.inputInner) {
+    background-color: $cover-9;
+    border: none;
+    border-radius: 25px;
+    width: 100%;
+    font-size: 1rem;
+    font-weight: 500;
+    color: $black;
+    outline: none;
+    padding: 0 1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    border: 1px solid $cover-9;
+    line-height: $btn-height;
+
+    &::placeholder {
+      font-size: 1rem;
+      font-weight: 500;
+      color: rgba($black, 0.5);
+    }
+  }
+
+  :global(.inputLight){
+    font-weight: 300;
+  }
+
+  &:global(.flat) {
+    :global(.inputInner) {
+      border-radius: $block-radius/2;
+    }
+  }
+
+  &:global(.form) {
+    :global(.inputInner) {
+      padding-left: 1rem;
+
+      &::placeholder {
+        color: rgba($black, 0.6);
+      }
+    }
+  }
+}

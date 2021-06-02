@@ -10,7 +10,7 @@
   background-color: $cover-8;
   transition: transform $transition*2 $transition-timing;
 
-  @include media-breakpoint-down(lg) {
+  @media only screen and (max-width: 1450px) {
     top: $header-height-md;
     height: calc(100% - #{$header-height-md});
     transform: translateX(calc(-100% - 14px));
@@ -98,7 +98,7 @@
     font-size: 0.75rem;
   }
 
-  @include media-breakpoint-down(lg) {
+  @media only screen and (max-width: 1450px) {
     display: flex;
   }
 
