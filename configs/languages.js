@@ -57,7 +57,9 @@ const languages = {
     OfRequests: "# OF REQUESTS",
     ViewKeys :"View Keys",
     APIDocs: "API Docs",
-    APIUsage: "API Usage"
+    APIUsage: "API Usage",
+    Gettingstarted: "Getting started",
+    Searchapi: "Search api",
   }
 }
 

@@ -37,7 +37,7 @@ export default function App({ Component, pageProps }) {
   });
 
   useEffect(() => {
-    if(router.pathname.indexOf("/account") != -1) {
+    if(router.pathname.indexOf("/account") != -1 || router.pathname.indexOf("/documentation") != -1) {
       setTimeout(()=>{
         setIsLoader(false)
       }, 1200)
@@ -72,14 +72,19 @@ export default function App({ Component, pageProps }) {
   }, [])
 
   const isSidebar = () => {
-    return router.pathname.indexOf("/account") != -1
+    return router.pathname.indexOf("/account") != -1 || router.pathname.indexOf("/documentation") != -1
+  }
+
+  const getSidebarVariant = () => {
+    if(router.pathname.indexOf("/account") != -1) return "account"
+    if(router.pathname.indexOf("/documentation") != -1) return "documentation"
   }
 
   return <Context.Provider value={{ app, dispatchApp, lang, scrollB }}>
     <LayoutBase>
       {isLoader && <Loader loaderState={loaderState} />}
       <Header />
-      {isSidebar() && <Sidebar />}
+      {isSidebar() && <Sidebar variant={getSidebarVariant()} />}
       <Scrollbar className="scoll-bar" ref={e => { if (e && !scrollB.current) { scrollB.current = e; } }}>
         <Component {...pageProps} path={router.pathname} />
       </Scrollbar>

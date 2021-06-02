@@ -13,7 +13,7 @@ const app = {
     {name: "Pricing", link:"/pricing", show: 0},
     {name: "Documentation", link:"/documentation", show: 0},
     {name: "Sign Up", link:"/sign-up", show: 1},
-    {name: "Account", link:"/account", show: 2},
+    {name: "Account", link:"/account/plan", show: 2},
   ],
 
   accountNavigation: [
@@ -22,6 +22,15 @@ const app = {
     {name: "API Keys", link:"/account/api-keys"},
     {name: "Billing", link:"/account/billing"},
     {name: "Support", link:"/account/support"},
+  ],
+
+  documentationNavigation: [
+    {name: "News", link:"/documentation/news"},
+    {name: "Headlines", link:"/documentation/headlines"},
+    {name: "Sources", link:"/documentation/sources"},
+    {name: "Advanced queries", link:"/documentation/advanced-queries"},
+    {name: "Countries & languages", link:"/documentation/countries-languages"},
+    {name: "Examples", link:"/documentation/examples"},
   ],
   
   footer: {

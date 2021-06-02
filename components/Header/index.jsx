@@ -92,7 +92,11 @@ const Header = ({ data, path }) => {
     if (link == "/") {
       return router.pathname == link
     } else {
-      return router.pathname == link || router.pathname.indexOf(link) != -1
+      if(router.pathname == link) {
+        return true
+      }else{
+        return router.pathname.indexOf(link) != -1
+      }
     }
   }
 
