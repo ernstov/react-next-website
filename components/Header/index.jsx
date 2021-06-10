@@ -14,7 +14,7 @@ import { Context } from "../../context/context"
 import animationData from '../animations/logoAnimation.json'
 import Lottie from 'lottie-web'
 
-const Header = ({ data, path }) => {
+const Header = ({ data, path, isLoggedIn }) => {
 
   const [isVisible, setIsVisible] = useState(false);
   const [isActiveMobile, setIsActiveMobile] = useState(false)
@@ -92,9 +92,9 @@ const Header = ({ data, path }) => {
     if (link == "/") {
       return router.pathname == link
     } else {
-      if(router.pathname == link) {
+      if (router.pathname == link) {
         return true
-      }else{
+      } else {
         return router.pathname.indexOf(link) != -1
       }
     }
@@ -109,27 +109,31 @@ const Header = ({ data, path }) => {
               <Link href="/"><div className={`${styles.headerAnimationSvg}`} ref={handAnimationContainer}></div></Link>
             </Col>
             <Col xs={6} className={`${presetsStyles.flexCenter}`}>
-              <div className={`${styles.navigation}`}>
-                {headerNavigation.map((link, i) => (
-                  (link.show == 0 || (link.show == 1 && !app.isAuth) || (link.show == 2 && app.isAuth)) && <Button className={`${isActive(link.link) ? "active" : ""} ml-1 mr-1`} link={link.link} key={`mn-${i}`} as="link" variant="light">{link.name}</Button>
-                ))}
-              </div>
+              {!isLoggedIn &&
+                <div className={`${styles.navigation}`}>
+                  {headerNavigation.map((link, i) => (
+                    (link.show == 0 || (link.show == 1 && !app.isAuth) || (link.show == 2 && app.isAuth)) && <Button className={`${isActive(link.link) ? "active" : ""} ml-1 mr-1`} link={link.link} key={`mn-${i}`} as="link" variant="light">{link.name}</Button>
+                  ))}
+                </div>
+              }
             </Col>
             <Col xs={3}>
               <div className={`${styles.headerActions}`}>
                 <MenuUser />
-                <div className={`${styles.headerToggler}`}><MenuToggler isActiveMobile={isActiveMobile} setIsActiveMobile={() => setIsActiveMobile(!isActiveMobile)} /></div>
+                {!isLoggedIn && <div className={`${styles.headerToggler}`}><MenuToggler isActiveMobile={isActiveMobile} setIsActiveMobile={() => setIsActiveMobile(!isActiveMobile)} /></div>}
               </div>
             </Col>
           </Row>
         </Container>
-        <MenuContainer isActiveMobile={isActiveMobile}>
-          <ul>
-            {headerNavigation.map((link, i) => (
-              <li onClick={() => hideAll(true)} key={`ni-${i}`}><Link href={link.link}>{link.name}</Link></li>
-            ))}
-          </ul>
-        </MenuContainer>
+        {!isLoggedIn &&
+          <MenuContainer isActiveMobile={isActiveMobile}>
+            <ul>
+              {headerNavigation.map((link, i) => (
+                <li onClick={() => hideAll(true)} key={`ni-${i}`}><Link href={link.link}>{link.name}</Link></li>
+              ))}
+            </ul>
+          </MenuContainer>
+        }
       </div>
     </>
   )

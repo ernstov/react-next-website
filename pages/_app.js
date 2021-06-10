@@ -75,6 +75,10 @@ export default function App({ Component, pageProps }) {
     return router.pathname.indexOf("/account") != -1 || router.pathname.indexOf("/documentation") != -1
   }
 
+  const isLoggedIn = () => {
+    return router.pathname.indexOf("/account") != -1 || router.pathname.indexOf("/documentation") != -1
+  }
+
   const getSidebarVariant = () => {
     if(router.pathname.indexOf("/account") != -1) return "account"
     if(router.pathname.indexOf("/documentation") != -1) return "documentation"
@@ -83,7 +87,7 @@ export default function App({ Component, pageProps }) {
   return <Context.Provider value={{ app, dispatchApp, lang, scrollB }}>
     <LayoutBase>
       {isLoader && <Loader loaderState={loaderState} />}
-      <Header />
+      <Header isLoggedIn={isLoggedIn()} />
       {isSidebar() && <Sidebar variant={getSidebarVariant()} />}
       <Scrollbar className="scoll-bar" ref={e => { if (e && !scrollB.current) { scrollB.current = e; } }}>
         <Component {...pageProps} path={router.pathname} />

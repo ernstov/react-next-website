@@ -22,6 +22,7 @@ const app = {
     {name: "API Keys", link:"/account/api-keys"},
     {name: "Billing", link:"/account/billing"},
     {name: "Support", link:"/account/support"},
+    {name: "Documentation", link:"/documentation"},
   ],
 
   documentationNavigation: [

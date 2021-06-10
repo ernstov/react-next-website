@@ -234,10 +234,6 @@ $snappy: cubic-bezier(0.694, 0.048, 0.335, 1);
     width: 1.875rem;
     height: 1.875rem;
   }
-
-  @include media-breakpoint-down(lg) {
-    display: none;
-  }
 }
 
 .headerFavorite {
