@@ -292,6 +292,19 @@ export const pages = [
     }
   },
   {
+    link: "/sign-in",
+    title: "Sign in",
+    description: "Login to your account.",
+    hero: {
+      title: "S<span>ign i</span>n",
+      titleCL: "mw-450",
+      description: "Login to your account.",
+      descriptionCL: "mw-600",
+      img: "account-hero.svg",
+      variant: "small",
+    }
+  },
+  {
     link: "/account/overview",
     title: "Overview",
     description: "Overview",

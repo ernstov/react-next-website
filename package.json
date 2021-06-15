@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "ace-builds": "^1.4.12",
+    "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
     "bootstrap-validate": "^2.2.0",
     "lottie-web": "^5.7.8",

@@ -12,6 +12,8 @@ import Icon from "../../components/Icon"
 import Select from "react-select"
 import presetsStyles from "../../styles/global/presets.module.scss"
 import { customSingleValue, scrollBar } from '../../components/ui/Helpers/UiComponents'
+import AuthService from "../../services/AuthService"
+import { useRouter } from 'next/router'
 
 const Signup = ({ data, isVisible }) => {
 
@@ -22,6 +24,7 @@ const Signup = ({ data, isVisible }) => {
   const [isAgreed, setIsAgreed] = useState(false)
 
   const [visible, setVisible] = useState(false)
+  const router = useRouter()
 
   useEffect(() => {
     if (isVisible) {
@@ -40,27 +43,19 @@ const Signup = ({ data, isVisible }) => {
       setIsProcess(false)
     } else {
       const formData = new FormData(e.target)
-      let json = {
-      }
       let fields = {}
 
       formData.forEach((value, key) => {
         fields[key] = value
       })
 
-      json.user = fields
+      AuthService.signup(JSON.stringify(fields)).then(response => {
+        let routeTo = "/account/billing"
+        if(fields["billingPlan"] === "Free trial") routeTo = "/account/plan"
+        setIsProcess(false)
+        router.push(routeTo)
+      })
 
-      fetch(appConfig.apis.signup, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json;charset=utf-8'
-        },
-        body: JSON.stringify(json)
-      }).then(response => response.json())
-        .then(result => {
-          setIsProcess(false)
-          console.log(result)
-        })
     }
 
   }
@@ -82,16 +77,17 @@ const Signup = ({ data, isVisible }) => {
                     SingleValue: customSingleValue,
                     MenuList: scrollBar,
                   }}
+                  name="billingPlan"
                 />
               </Col>
               <Col md={6} className="mb-4 d-flex align-items-center">
                 <Button link="/pricing" as="link" variant="link-nondec">{Viewpricingplans}</Button>
               </Col>
               <Col md={6} className="mb-4">
-                <Input name="first-name" variant="flat" label={Firstname} required />
+                <Input name="firstName" variant="flat" label={Firstname} required />
               </Col>
               <Col md={6} className="mb-4">
-                <Input name="last-name" variant="flat" label={Lastname} required />
+                <Input name="lastName" variant="flat" label={Lastname} required />
               </Col>
               <Col md={6} className="mb-4">
                 <Input name="email" variant="flat" label={Email} required />
