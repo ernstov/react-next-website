@@ -40,6 +40,7 @@ const Plans = ({ data, isVisible }) => {
     breakpoints: {
       300: {
         slidesPerView: 1,
+        initialSlide: 1,
       },
       767: {
         slidesPerView: 2.3,

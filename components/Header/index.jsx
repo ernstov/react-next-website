@@ -102,13 +102,17 @@ const Header = ({ data, path, isLoggedIn }) => {
 
   return (
     <>
-      <div className={`${styles.header} fixed ${isVisible ? "visible" : ""}`}>
+      <div className={`${styles.header} fixed ${isVisible ? "visible" : ""} ${isCenter ? "center-logo" : ""}`}>
         <Container fluid>
           <Row>
-            <Col xs={3} className="d-flex align-items-center">
-              <Link href="/"><div className={`${styles.headerAnimationSvg}`} ref={handAnimationContainer}></div></Link>
+            <Col lg={3} xs={12} className="d-flex align-items-center justify-content-center justify-content-lg-start">
+              <Link href="/"><div className={`hag ${styles.headerAnimationSvg}`} ref={handAnimationContainer}></div></Link>
+              <div className={`${styles.mobileActions}`}>
+                <MenuUser />
+                {!isLoggedIn && <div className={`${styles.headerToggler}`}><MenuToggler isActiveMobile={isActiveMobile} setIsActiveMobile={() => setIsActiveMobile(!isActiveMobile)} /></div>}
+              </div>
             </Col>
-            <Col xs={6} className={`${presetsStyles.flexCenter}`}>
+            <Col lg={6} xs={6} className={`${styles.navigationCenter}`}>
               {!isLoggedIn &&
                 <div className={`${styles.navigation}`}>
                   {headerNavigation.map((link, i) => (
@@ -117,7 +121,7 @@ const Header = ({ data, path, isLoggedIn }) => {
                 </div>
               }
             </Col>
-            <Col xs={3}>
+            <Col lg={3} xs={3} className={`${styles.headerDesktopActions}`}>
               <div className={`${styles.headerActions}`}>
                 <MenuUser />
                 {!isLoggedIn && <div className={`${styles.headerToggler}`}><MenuToggler isActiveMobile={isActiveMobile} setIsActiveMobile={() => setIsActiveMobile(!isActiveMobile)} /></div>}
