@@ -1,8 +1,8 @@
 import axios from "axios";
 import { getToken, setToken } from "../utils/AuthUtils";
 
-// const BASE_URL = "http://localhost:8080/api";
-const BASE_URL = "https://gawq.com/api";
+ const BASE_URL = "http://localhost:8080/api";
+// const BASE_URL = "https://gawq.com/api";
 
 const instance = axios.create({
     baseURL: BASE_URL,
