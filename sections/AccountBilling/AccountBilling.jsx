@@ -84,7 +84,7 @@ const AccountBilling = ({ data, isVisible }) => {
     e.preventDefault();
     e.stopPropagation();
     setIsProcess(true)
-
+    
     if (e.target.querySelectorAll(".not-valid").length > 0) {
       setIsProcess(false)
     } else {
@@ -98,11 +98,15 @@ const AccountBilling = ({ data, isVisible }) => {
       const cardElement = elements.getElement(CardElement)
 
       // TODO : call create subscription api
-      const userBillingResponse = await UserBillingService.addPlan();
-      const clientSecret = "";
-
+      const body = {
+        billingMode: isYearly ? "YEARLY" : "MONTHLY",
+        billingPlanId: billingPlan[selectedPlan.value].id,
+        userId: 1,
+        email: "alfa@gmail.com"
+      }
+      const data = await UserBillingService.addPlan(body);
       // Use card Element to tokenize payment details
-      let { error, paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
+      let { error, paymentIntent } = await stripe.confirmCardPayment(data.clientSecret, {
         payment_method: {
           card: cardElement,
           billing_details: {
@@ -111,7 +115,6 @@ const AccountBilling = ({ data, isVisible }) => {
         }
       });
     }
-
   }
 
   return (
