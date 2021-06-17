@@ -9,6 +9,8 @@
     "export": "next build && next export"
   },
   "dependencies": {
+    "@stripe/react-stripe-js": "^1.4.1",
+    "@stripe/stripe-js": "^1.15.0",
     "ace-builds": "^1.4.12",
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
