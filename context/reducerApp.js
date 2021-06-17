@@ -62,6 +62,13 @@ export default function reducer(state, action) {
         offset: action.data.offset,
         isOffset: true,
       }
+    
+    case "SET_USER": {
+      return {
+        ...state,
+        user: action.data.user,
+      }
+    }
 
     default:
       return state;

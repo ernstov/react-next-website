@@ -7,8 +7,8 @@ const stripePromise = loadStripe('pk_test_51IyHkODNyMxQBMQZyDi5MPznEjbJINDCzAqmi
 
 const Base = (props) => {
   return (<Elements stripe={stripePromise}>
-    <AccountBiling {...props}/>
-     </Elements>)
+    <AccountBiling {...props} />
+  </Elements>)
 }
 
 export default Base;

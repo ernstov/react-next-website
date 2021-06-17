@@ -23,9 +23,7 @@ import {
 
 const AccountBilling = ({ data, isVisible }) => {
 
-  console.log("data", isVisible);
-
-  const { lang: { Startplan, plan, APIplan, BillingUSD, Monthly, Yearly, mo, yr, Save10, Billingdetails, CardNumber, CardholderName, CVC, Expiration, digitcode } } = useContext(Context)
+  const { lang: { Startplan, plan, APIplan, BillingUSD, Monthly, Yearly, mo, yr, Save10, Billingdetails, CardNumber, CardholderName, CVC, Expiration, digitcode }, app } = useContext(Context)
   const { optionsExpirationMonths, optionsExpirationYears, pricing: { plans } } = data
   const form = useRef(null)
   const [isProcess, setIsProcess] = useState(false)
@@ -79,10 +77,9 @@ const AccountBilling = ({ data, isVisible }) => {
       });
   }, [])
 
-
   const onSubmit = async (e) => {
-    e.preventDefault();
-    e.stopPropagation();
+    e.preventDefault()
+    e.stopPropagation()
     setIsProcess(true)
     
     if (e.target.querySelectorAll(".not-valid").length > 0) {
@@ -97,12 +94,11 @@ const AccountBilling = ({ data, isVisible }) => {
 
       const cardElement = elements.getElement(CardElement)
 
-      // TODO : call create subscription api
       const body = {
         billingMode: isYearly ? "YEARLY" : "MONTHLY",
         billingPlanId: billingPlan[selectedPlan.value].id,
-        userId: 1,
-        email: "alfa@gmail.com"
+        userId: app.user.id,
+        email: app.user.email
       }
       const data = await UserBillingService.addPlan(body);
       // Use card Element to tokenize payment details
@@ -110,7 +106,7 @@ const AccountBilling = ({ data, isVisible }) => {
         payment_method: {
           card: cardElement,
           billing_details: {
-            email: 'beta@gmail.com'
+            email: app.user.email
           }
         }
       });
@@ -171,9 +167,9 @@ const AccountBilling = ({ data, isVisible }) => {
                       <span className={`${typographyStyles.titleDemi}`}>${billingPlan[selectedPlan.value] ? billingPlan[selectedPlan.value].yearlyPrice : 0}<span className={`${typographyStyles.tinyD} op-05`}>/{yr}</span></span>
                     </div>
                   </div>
-                  <div className="text-right">
+                  {/* <div className="text-right">
                     <div className={`${styles.badge}`}><span>{Save10}</span></div>
-                  </div>
+                  </div> */}
                 </div>
               </Col>
               <Col md={6} className="mb-4 d-flex align-items-center">
@@ -181,7 +177,7 @@ const AccountBilling = ({ data, isVisible }) => {
                   <div><span className={`${typographyStyles.titleSmallD} ${typographyStyles.c7}`}>{billingPlan[selectedPlan.value] ? billingPlan[selectedPlan.value].planName : ""} {plan}</span></div>
                   <div className="mt-3 mb-3"><span className={`${typographyStyles.textRomanSm} ${typographyStyles.c7}`}>{billingPlan[selectedPlan.value] ? billingPlan[selectedPlan.value].description : ""}</span></div>
                   <ul className="list-gray">
-                    {billingPlan[selectedPlan.value] ? billingPlan[selectedPlan.value].features.split(",").map((feature, i) => (
+                    {billingPlan[selectedPlan.value] && billingPlan[selectedPlan.value].features ? billingPlan[selectedPlan.value].features.split(",").map((feature, i) => (
                       <li key={`lif-${i}`}><span className={`${typographyStyles.c7}`}>{feature}</span></li>
                     )) : ""}
                   </ul>

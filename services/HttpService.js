@@ -33,8 +33,10 @@ instance.interceptors.request.use(
 
 instance.interceptors.response.use(
     response => {
-        const token = response.headers['access-token'] || "";
-        setToken(token);
+        if (response.headers['access-token']) {
+            const token = response.headers['access-token'];
+            setToken(token);
+        }
         return response.data;
     },
     error => {
