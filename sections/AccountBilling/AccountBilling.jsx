@@ -19,7 +19,7 @@ import {
   useElements,
   CardElement
 } from "@stripe/react-stripe-js"
-
+import { useRouter } from 'next/router'
 
 const AccountBilling = ({ data, isVisible }) => {
 
@@ -35,6 +35,7 @@ const AccountBilling = ({ data, isVisible }) => {
   const [userPlan, setUserPlan] = useState(null)
   const stripe = useStripe();
   const elements = useElements();
+  const router = useRouter();
 
 
   const CARD_OPTIONS = {
@@ -111,6 +112,7 @@ const AccountBilling = ({ data, isVisible }) => {
           }
         });
       }
+      router.push("/account/overview")
     }
   }
   const activePlan = userPlan && userPlan.status === "ACTIVE"
