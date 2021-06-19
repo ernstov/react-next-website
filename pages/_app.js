@@ -53,9 +53,6 @@ export default function App({ Component, pageProps }) {
       dispatchApp({ type: "SET_LOADING", data: { isLoading: true, nextPage: e } });
       scrollB.current?.scrollbar.scrollTo(0, 0, 500);
       setLoaderState("preload")
-      const userData = getCurrentUserData()
-      if (userData?.sub && userData?.email)
-        dispatchApp({ type: "SET_USER", data: { user: { id: userData.sub, email: userData.email } } })
     };
     const end = (e) => {
       dispatchApp({ type: "SET_LOADING", data: { isLoading: false, nextPage: e } });
@@ -65,10 +62,12 @@ export default function App({ Component, pageProps }) {
     setTimeout(() => {
       setLoaderState("loaded")
     }, 500)
-
     const userData = getCurrentUserData()
-    if (userData?.sub && userData?.email)
+    if (!isAuth(userData)) {
+      router.push("/sign-in")
+    } else {
       dispatchApp({ type: "SET_USER", data: { user: { id: userData.sub, email: userData.email } } })
+    }
 
     Router.events.on("routeChangeStart", start);
     Router.events.on("routeChangeComplete", end);
@@ -91,6 +90,13 @@ export default function App({ Component, pageProps }) {
   const getSidebarVariant = () => {
     if (router.pathname.indexOf("/account") != -1) return "account"
     if (router.pathname.indexOf("/documentation") != -1) return "documentation"
+  }
+
+  const isAuth = (userData) => {
+    if (router.pathname.indexOf("/account") >= 0) {
+      return userData?.sub && userData?.email && userData?.exp > Date.now()
+    }
+    return true
   }
 
   return <Context.Provider value={{ app, dispatchApp, lang, scrollB }}>

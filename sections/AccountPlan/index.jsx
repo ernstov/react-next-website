@@ -15,6 +15,7 @@ import { customSingleValue, scrollBar } from '../../components/ui/Helpers/UiComp
 import countryList from 'react-select-country-list'
 import Label from "../../components/ui/Label"
 import { useRouter } from 'next/router'
+import UserBillingService from "../../services/UserBillingService"
 
 const AccountPlan = ({ data, isVisible }) => {
 
@@ -23,6 +24,10 @@ const AccountPlan = ({ data, isVisible }) => {
   const form = useRef(null)
   const [isProcess, setIsProcess] = useState(false)
   const optionsCountry = useMemo(() => countryList().getData(), [])
+  const [userBilling, setUserBilling] = useState({User:{}, BillingPlan: {}})
+  const [useage, setUseage] = useState(null);
+  const [country, setCountry] = useState(null);
+  const [hearAboutUs, setHearAboutUs] = useState(null);
   const router = useRouter()
 
   const [visible, setVisible] = useState(false)
@@ -35,7 +40,17 @@ const AccountPlan = ({ data, isVisible }) => {
     }
   }, [isVisible])
 
-  const onSubmit = (e) => {
+  useEffect(() => {
+    UserBillingService.getUser()
+      .then((res) => {
+        setUserBilling(res)
+        setUseage(res.User.usage)
+        setCountry(res.User.homeCountry)
+        setHearAboutUs(res.User.hearAboutUs)
+      });
+  }, [])
+
+  const onSubmit = async (e) => {
     e.preventDefault();
     e.stopPropagation();
     setIsProcess(true)
@@ -44,30 +59,17 @@ const AccountPlan = ({ data, isVisible }) => {
       setIsProcess(false)
     } else {
 
-      router.push("/account/billing")  // temporally
-
       const formData = new FormData(e.target)
-      let json = {
-      }
+
       let fields = {}
 
       formData.forEach((value, key) => {
         fields[key] = value
       })
-
-      json.user = fields
-
-      fetch(appConfig.apis.signup, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json;charset=utf-8'
-        },
-        body: JSON.stringify(json)
-      }).then(response => response.json())
-        .then(result => {
-          setIsProcess(false)
-          console.log(result)
-        })
+      fields.usage = useage
+      fields.homeCountry = country
+      fields.hearAboutUs = hearAboutUs
+      await UserBillingService.updateUser(fields);
     }
 
   }
@@ -85,37 +87,40 @@ const AccountPlan = ({ data, isVisible }) => {
                     <Col md={5}>
                       <Form.Check
                         className="custom-checkbox-light mb-3 mb-md-0"
-                        value={"1"}
+                        value={data.label1}
                         custom
-                        defaultChecked={true}
-                        onChange={() => { }}
+                        defaultChecked={data.label1 === userBilling.User.usage}
+                        checked={data.label1 === useage}
+                        onChange={e => setUseage(e.target.value)}
                         type="radio"
-                        id={`use-of-api-1`}
-                        name="use-of-api"
+                        id={data.label1}
                         label={data.label1}
                       />
                     </Col>
                     <Col md={4}>
                       <Form.Check
                         className="custom-checkbox-light mb-3 mb-md-0"
-                        value={"2"}
+                        value={data.label2}
                         custom
-                        onChange={() => { }}
+                        defaultChecked={data.label2 === userBilling.User.usage}
+                        checked={data.label2 === useage}
+                        onChange={e => setUseage(e.target.value)}
                         type="radio"
-                        id={`use-of-api-2`}
-                        name="use-of-api"
+                        id={data.label2}
+                        name="usage"
                         label={data.label2}
                       />
                     </Col>
                     <Col md={3}>
                       <Form.Check
                         className="custom-checkbox-light"
-                        value={"3"}
+                        defaultChecked={data.label3 === userBilling.User.usage}
+                        checked={data.label3 === useage}
+                        value={data.label3}
                         custom
-                        onChange={() => { }}
+                        onChange={e => setUseage(e.target.value)}
                         type="radio"
-                        id={`use-of-api-3`}
-                        name="use-of-api"
+                        id={data.label3}
                         label={data.label3}
                       />
                     </Col>
@@ -123,13 +128,13 @@ const AccountPlan = ({ data, isVisible }) => {
                 </Container>
               </Col>
               <Col md={6} className="mb-4">
-                <Input name="business-name" variant="flat" label={BusinessName} required />
+              <Input defaultValue={userBilling.User.businessName} name="businessName" variant="flat" label={BusinessName} required />
               </Col>
               <Col md={6} className="mb-4">
                 <Label label={HomeCountry} />
                 <Select
-                  defaultValue={{ label: "United States", value: "US" }}
-                  onChange={e => { }}
+                  value={{ label: country}}
+                  onChange={e => setCountry(e.label)}
                   className={`${presetsStyles.selectLight} white`}
                   classNamePrefix={'acr-select'}
                   options={optionsCountry}
@@ -142,7 +147,8 @@ const AccountPlan = ({ data, isVisible }) => {
               <Col md={6} className="mb-4">
                 <Label label={Howdidyouhearaboutus} />
                 <Select
-                  onChange={e => { }}
+                  value={{ label: hearAboutUs}}
+                  onChange={e => setHearAboutUs(e.label)}
                   className={`${presetsStyles.selectLight} white`}
                   classNamePrefix={'acr-select'}
                   options={optionsHow}

@@ -32,6 +32,7 @@ const languages = {
     UseofAPI: "Use of API",
     SignOut: "Sign Out",
     Startplan: "Start plan",
+    UpdatePlan: "Update plan",
     plan: "plan",
     APIplan: "API plan",
     BillingUSD: "Billing (USD)",

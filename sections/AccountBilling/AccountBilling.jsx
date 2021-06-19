@@ -23,7 +23,7 @@ import {
 
 const AccountBilling = ({ data, isVisible }) => {
 
-  const { lang: { Startplan, plan, APIplan, BillingUSD, Monthly, Yearly, mo, yr, Save10, Billingdetails, CardNumber, CardholderName, CVC, Expiration, digitcode }, app } = useContext(Context)
+  const { lang: { Startplan, UpdatePlan, plan, APIplan, BillingUSD, Monthly, Yearly, mo, yr, Save10, Billingdetails, CardNumber, CardholderName, CVC, Expiration, digitcode }, app } = useContext(Context)
   const { optionsExpirationMonths, optionsExpirationYears, pricing: { plans } } = data
   const form = useRef(null)
   const [isProcess, setIsProcess] = useState(false)
@@ -32,6 +32,7 @@ const AccountBilling = ({ data, isVisible }) => {
   const [selectedPlan, setSelectedPlan] = useState({ value: 0, label: plans.list[0].name })
   const [isYearly, setIsYearly] = useState(false)
   const [billingPlan, setBillingPlan] = useState([])
+  const [userPlan, setUserPlan] = useState(null)
   const stripe = useStripe();
   const elements = useElements();
 
@@ -71,48 +72,48 @@ const AccountBilling = ({ data, isVisible }) => {
   }, [isVisible])
 
   useEffect(() => {
-    BillingPlanService.getAllBillingPlans()
-      .then((res) => {
-        setBillingPlan(res);
-      });
+    const promises = [];
+    promises.push(BillingPlanService.getAllBillingPlans())
+    promises.push(UserBillingService.getUserPlan())
+    Promise.all(promises).then(res => {
+      setBillingPlan(res[0])
+      setUserPlan(res[1])
+    })
   }, [])
 
   const onSubmit = async (e) => {
     e.preventDefault()
     e.stopPropagation()
     setIsProcess(true)
-    
+
     if (e.target.querySelectorAll(".not-valid").length > 0) {
       setIsProcess(false)
     } else {
-      const formData = new FormData(e.target)
-      let fields = {}
-
-      formData.forEach((value, key) => {
-        fields[key] = value
-      })
-
-      const cardElement = elements.getElement(CardElement)
-
       const body = {
         billingMode: isYearly ? "YEARLY" : "MONTHLY",
-        billingPlanId: billingPlan[selectedPlan.value].id,
-        userId: app.user.id,
-        email: app.user.email
+        billingPlanId: billingPlan[selectedPlan.value].id
       }
-      const data = await UserBillingService.addPlan(body);
-      // Use card Element to tokenize payment details
-      let { error, paymentIntent } = await stripe.confirmCardPayment(data.clientSecret, {
-        payment_method: {
-          card: cardElement,
-          billing_details: {
-            email: app.user.email
+
+      if (userPlan && userPlan.status === "ACTIVE") {
+        const data = await UserBillingService.updatePlan(body);
+        
+      } else {
+        const cardElement = elements.getElement(CardElement)
+
+        const data = await UserBillingService.addPlan(body);
+        // Use card Element to tokenize payment details
+        let { error, paymentIntent } = await stripe.confirmCardPayment(data.clientSecret, {
+          payment_method: {
+            card: cardElement,
+            billing_details: {
+              email: app.user.email
+            }
           }
-        }
-      });
+        });
+      }
     }
   }
-
+  const activePlan = userPlan && userPlan.status === "ACTIVE"
   return (
     <div className={`${styles.accountBilling} ${data.className ? data.className : ""} ${visible ? "active" : ""}`}>
       <Block className="entry-3" variant="badge-wrap">
@@ -177,36 +178,40 @@ const AccountBilling = ({ data, isVisible }) => {
                   <div><span className={`${typographyStyles.titleSmallD} ${typographyStyles.c7}`}>{billingPlan[selectedPlan.value] ? billingPlan[selectedPlan.value].planName : ""} {plan}</span></div>
                   <div className="mt-3 mb-3"><span className={`${typographyStyles.textRomanSm} ${typographyStyles.c7}`}>{billingPlan[selectedPlan.value] ? billingPlan[selectedPlan.value].description : ""}</span></div>
                   <ul className="list-gray">
-                    {billingPlan[selectedPlan.value] && billingPlan[selectedPlan.value].features ? billingPlan[selectedPlan.value].features.split(",").map((feature, i) => (
+                    {billingPlan[selectedPlan.value] && billingPlan[selectedPlan.value].features ? billingPlan[selectedPlan.value].features.split(";").map((feature, i) => (
                       <li key={`lif-${i}`}><span className={`${typographyStyles.c7}`}>{feature}</span></li>
                     )) : ""}
                   </ul>
                 </Block>
               </Col>
             </Row>
-            <Row className="mb-3">
-              <Col><div className={`${styles.bilingTitles}`}><Icon className="mr-2" variant="lock" /><span className={`${typographyStyles.textSubTitleM}`}>{Billingdetails}</span></div></Col>
-            </Row>
-            <Row>
-              <Col md={12} className="mb-4">
-                <div className={`${styles.cardLabel}`}><Label label={CardNumber} /><div><img src="/img/visa.png" alt="" /><img src="/img/master.png" alt="" /><img src="/img/card.png" alt="" /></div></div>
-              </Col>
-            </Row>
-            <Row>
-              <Col md={12} className="mb-4">
-                <CardElement options={CARD_OPTIONS} />
-              </Col>
-            </Row>
-            <Row>
+            {!activePlan && (
+              <>
+                <Row className="mb-3">
+                  <Col><div className={`${styles.bilingTitles}`}><Icon className="mr-2" variant="lock" /><span className={`${typographyStyles.textSubTitleM}`}>{Billingdetails}</span></div></Col>
+                </Row>
+                <Row>
+                  <Col md={12} className="mb-4">
+                    <div className={`${styles.cardLabel}`}><Label label={CardNumber} /><div><img src="/img/visa.png" alt="" /><img src="/img/master.png" alt="" /><img src="/img/card.png" alt="" /></div></div>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col md={12} className="mb-4">
+                    <CardElement options={CARD_OPTIONS} />
+                  </Col>
+                </Row>
+              </>
+            )}
+            {/* <Row>
               <Col md={12}>
                 <div className="text-center mb-4">
                   <span className={`${typographyStyles.textMediumReg}`}>{data.description}</span>
                 </div>
               </Col>
-            </Row>
+            </Row> */}
             <Row>
               <Col md={12}>
-                <Button disabled={isProcess} className="w-100" variant="primary-notround-large" >{Startplan}</Button>
+                <Button disabled={isProcess} className="w-100" variant="primary-notround-large" >{activePlan ? UpdatePlan : Startplan}</Button>
               </Col>
             </Row>
           </Container>

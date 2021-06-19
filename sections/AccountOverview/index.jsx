@@ -16,6 +16,7 @@ import { customSingleValue, scrollBar } from '../../components/ui/Helpers/UiComp
 import countryList from 'react-select-country-list'
 import Label from "../../components/ui/Label"
 import { useRouter } from 'next/router'
+import UserBillingService from "../../services/UserBillingService"
 
 const AccountOverview = ({ data, isVisible }) => {
 
@@ -23,6 +24,9 @@ const AccountOverview = ({ data, isVisible }) => {
   const form = useRef(null)
   const [isProcess, setIsProcess] = useState(false)
   const optionsCountry = useMemo(() => countryList().getData(), [])
+  const [userBilling, setUserBilling] = useState({User:{}, BillingPlan: {}})
+  const [useage, setUseage] = useState(null);
+  const [country, setCountry] = useState(null);
   const router = useRouter()
 
   const [visible, setVisible] = useState(false)
@@ -35,7 +39,15 @@ const AccountOverview = ({ data, isVisible }) => {
     }
   }, [isVisible])
 
-  const onSubmit = (e) => {
+  useEffect(() => {
+    UserBillingService.getUser()
+      .then((res) => {
+        setUserBilling(res)
+        setUseage(res.User.usage)
+        setCountry(res.User.homeCountry)
+      });
+  }, [])
+  const onSubmit = async (e) => {
     e.preventDefault();
     e.stopPropagation();
     setIsProcess(true)
@@ -44,34 +56,24 @@ const AccountOverview = ({ data, isVisible }) => {
       setIsProcess(false)
     } else {
 
-      router.push("/account/billing")  // temporally
-
       const formData = new FormData(e.target)
-      let json = {
-      }
+
       let fields = {}
 
       formData.forEach((value, key) => {
         fields[key] = value
       })
+      fields.usage = useage
+      fields.homeCountry = country
+      await UserBillingService.updateUser(fields);
 
-      json.user = fields
-
-      fetch(appConfig.apis.signup, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json;charset=utf-8'
-        },
-        body: JSON.stringify(json)
-      }).then(response => response.json())
-        .then(result => {
-          setIsProcess(false)
-          console.log(result)
-        })
     }
 
   }
-
+  let amount = "0$"
+  if(userBilling.billingAmount && userBilling.billingMode) {
+    amount = `${userBilling.billingAmount}$/${userBilling.billingMode && userBilling.billingMode.charAt(0)}`
+  }
   return (
     <div className={`${styles.accountOverview} ${data.className ? data.className : ""} ${visible ? "active" : ""}`}>
       <Container fluid className="p-0 mb-g">
@@ -86,23 +88,23 @@ const AccountOverview = ({ data, isVisible }) => {
               <Container fluid className="p-0">
                 <Row>
                   <Col md={4} className="mb-4">
-                    <InputPreview variant="flat" defaultValue={"Active"} label={Status} />
+                    <InputPreview variant="flat" defaultValue={userBilling.status || "ACTIVE" } label={Status} />
                   </Col>
                   <Col md={8} className={`${styles.inputRow} mb-4`}>
                     <Container fluid className={`${styles.inputContainer}`}>
                       <Row>
-                        <Col md={6}><InputPreview variant="flat" defaultValue={"Standard"} label={Plan} /></Col>
+                        <Col md={6}><InputPreview variant="flat" defaultValue={userBilling.BillingPlan.planName || "Free Trial"} label={Plan}/></Col>
                         <Col md={6} className="d-flex align-items-end mt-4 mt-md-0"><Button className="w-100" variant="outline-secondary-notround-small">{Changeplan}</Button></Col>
                       </Row>
                     </Container>
                   </Col>
                   <Col md={4} className="mb-4 mb-md-0">
-                    <InputPreview variant="flat" defaultValue={"$395/mo"} label={Billing} />
+                    <InputPreview variant="flat" defaultValue={amount} label={Billing} />
                   </Col>
                   <Col md={8} className={`${styles.inputRow} mb-4 mb-md-0`}>
                     <Container fluid className={`${styles.inputContainer}`}>
                       <Row>
-                        <Col md={6}><InputPreview variant="flat" defaultValue={"July 16, 2021"} label={Nextpayment} /></Col>
+                        <Col md={6}><InputPreview variant="flat" defaultValue={userBilling.nextPaymentAt || "N/A"} label={Nextpayment} /></Col>
                         <Col md={6} className="d-flex align-items-end"><Button className="w-100 mt-4 mt-md-0" variant="outline-secondary-notround-small">{Billing}</Button></Col>
                       </Row>
                     </Container>
@@ -141,19 +143,19 @@ const AccountOverview = ({ data, isVisible }) => {
           <Container fluid className="p-0">
             <Row>
               <Col md={6} className="mb-4">
-                <Input placeholder={`John`} name="first-name" variant="flat" label={Firstname} required />
+                <Input placeholder={`John`} defaultValue={userBilling.User.firstName} name="firstName" variant="flat" label={Firstname} required />
               </Col>
               <Col md={6} className="mb-4">
-                <Input placeholder={`Smith`} name="last-name" variant="flat" label={Lastname} required />
+                <Input placeholder={`Smith`} defaultValue={userBilling.User.lastName} name="lastName" variant="flat" label={Lastname} required />
               </Col>
               <Col md={6} className="mb-4">
-                <Input placeholder={`sample@gmail.com`} name="email" variant="flat" label={Email} required />
+                <Input placeholder={`sample@gmail.com`} defaultValue={userBilling.User.email} name="email" variant="flat" label={Email} required />
               </Col>
               <Col md={6} className="mb-4">
                 <Label label={HomeCountry} />
                 <Select
-                  defaultValue={{ label: "United States", value: "US" }}
-                  onChange={e => { }}
+                  value={{ label: country}}
+                  onChange={e => setCountry(e.label)}
                   className={`${presetsStyles.selectLight} white`}
                   classNamePrefix={'acr-select'}
                   options={optionsCountry}
@@ -172,37 +174,40 @@ const AccountOverview = ({ data, isVisible }) => {
                     <Col md={5}>
                       <Form.Check
                         className="custom-checkbox-light mb-3 mb-md-0"
-                        value={"1"}
+                        value={data.label1}
                         custom
-                        defaultChecked={true}
-                        onChange={() => { }}
+                        defaultChecked={data.label1 === userBilling.User.usage}
+                        checked={data.label1 === useage}
+                        onChange={e => setUseage(e.target.value)}
                         type="radio"
-                        id={`use-of-api-1`}
-                        name="use-of-api"
+                        id={data.label1}
                         label={data.label1}
                       />
                     </Col>
                     <Col md={4}>
                       <Form.Check
                         className="custom-checkbox-light mb-3 mb-md-0"
-                        value={"2"}
+                        value={data.label2}
                         custom
-                        onChange={() => { }}
+                        defaultChecked={data.label2 === userBilling.User.usage}
+                        checked={data.label2 === useage}
+                        onChange={e => setUseage(e.target.value)}
                         type="radio"
-                        id={`use-of-api-2`}
-                        name="use-of-api"
+                        id={data.label2}
+                        name="usage"
                         label={data.label2}
                       />
                     </Col>
                     <Col md={3}>
                       <Form.Check
                         className="custom-checkbox-light"
-                        value={"3"}
+                        defaultChecked={data.label3 === userBilling.User.usage}
+                        checked={data.label3 === useage}
+                        value={data.label3}
                         custom
-                        onChange={() => { }}
+                        onChange={e => setUseage(e.target.value)}
                         type="radio"
-                        id={`use-of-api-3`}
-                        name="use-of-api"
+                        id={data.label3}
                         label={data.label3}
                       />
                     </Col>
@@ -210,7 +215,7 @@ const AccountOverview = ({ data, isVisible }) => {
                 </Container>
               </Col>
               <Col md={6} className="mb-4">
-                <Input placeholder={`Sample Co Inc.`} name="business-name" variant="flat" label={BusinessName} required />
+                <Input placeholder={`Sample Co Inc.`} defaultValue={userBilling.User.businessName} name="businessName" variant="flat" label={BusinessName} required />
               </Col>
               <Col md={12}>
                 <Button disabled={isProcess} className="w-100" variant="primary-notround-large">{Update}</Button>
