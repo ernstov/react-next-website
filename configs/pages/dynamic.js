@@ -316,7 +316,7 @@ export const pages = [
     }
   },
   {
-    link: "/account/plan",
+    link: "/details",
     title: "My Plan",
     description: "Please share some additional details.",
     hero: {
@@ -339,7 +339,7 @@ export const pages = [
     }
   },
   {
-    link: "/account/billing",
+    link: "/account/plan",
     title: "My Plan Billing",
     description: "Add billing details in order to activate your plan.",
     hero: {

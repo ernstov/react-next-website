@@ -60,7 +60,7 @@ const Signin = ({ data, isVisible }) => {
                 <Input name="email" variant="flat" label={Email} required />
               </Col>
               <Col md={12} className="mb-4">
-                <Input name="password" variant="flat" label={Password} required />
+                <Input name="password" variant="flat" type="password" label={Password} required />
                 <div className="d-flex align-items-start mt-2"><Icon variant="lock" className={`${styles.signinLock}`} /><span className={`${typographyStyles.textRomanTiny} op-05 d-block lh-1`}>{Passwordmustbe}</span></div>
               </Col>
               <Col md={12}>

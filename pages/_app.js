@@ -93,7 +93,7 @@ export default function App({ Component, pageProps }) {
   }
 
   const isAuth = (userData) => {
-    if (router.pathname.indexOf("/account") >= 0) {
+    if (router.pathname.indexOf("/account") >= 0 || router.pathname.indexOf("/details") >= 0) {
       return userData?.sub && userData?.email && userData?.exp > Date.now()
     }
     return true

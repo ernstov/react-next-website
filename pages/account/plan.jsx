@@ -6,17 +6,18 @@ import { Context } from "../../context/context"
 import { pages } from "../../configs/pages/dynamic"
 import { filterIt } from '../../utils'
 import Hero from "../../sections/Hero"
-import AccountPlan from "../../sections/AccountPlan"
+import AccountBilling from "../../sections/AccountBilling"
 import VisibilitySensor from '../../utils/react-visibility-sensor';
 
 const Plan = ({ tags, dataPosts, path }) => {
 
-  const { app, dispatchApp, lang: { Welcome, } } = useContext(Context);
-  const page = filterIt(pages, path, "link")[0];
+  const { app, dispatchApp, lang: { Welcome, } } = useContext(Context)
+  const page = filterIt(pages, path, "link")[0]
+  const pricing = filterIt(pages, "/pricing", "link")[0]
 
   const sections = [
-    { component: Hero, props: { data: {...page.hero, title: `Welc<span>ome, A</span>ndrii`} } },
-    { component: AccountPlan, props: { data: page.accountPlan } },
+    { component: Hero, props: {data: page.hero} },
+    { component: AccountBilling, props: { data: {...page.accountBilling, pricing: pricing} } },
   ]
 
   return (

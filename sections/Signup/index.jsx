@@ -34,7 +34,7 @@ const Signup = ({ data, isVisible }) => {
     }
   }, [isVisible])
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     e.stopPropagation();
     setIsProcess(true)
@@ -48,14 +48,14 @@ const Signup = ({ data, isVisible }) => {
       formData.forEach((value, key) => {
         fields[key] = value
       })
-
-      AuthService.signup(JSON.stringify(fields)).then(response => {
-        let routeTo = "/account/billing"
-        if(fields["billingPlan"] === "Free trial") routeTo = "/account/plan"
-        setIsProcess(false)
-        router.push(routeTo)
-      })
-
+      try {
+        await AuthService.signup(JSON.stringify(fields))
+        let routeTo = "/details"
+        router.push({ pathname: routeTo, query: { billingPlan: fields.billingPlan } })
+      } catch (e) {
+        console.log(e);
+      }
+      setIsProcess(false)
     }
 
   }
@@ -93,7 +93,7 @@ const Signup = ({ data, isVisible }) => {
                 <Input name="email" variant="flat" label={Email} required />
               </Col>
               <Col md={6} className="mb-4">
-                <Input name="password" variant="flat" label={Password} required />
+                <Input name="password" variant="flat" type="password" label={Password} required />
                 <div className="d-flex align-items-start mt-2"><Icon variant="lock" className={`${styles.signupLock}`} /><span className={`${typographyStyles.textRomanTiny} op-05 d-block lh-1`}>{Passwordmustbe}</span></div>
               </Col>
               <Col className="d-flex justify-content-center pb-4 align-items-center">

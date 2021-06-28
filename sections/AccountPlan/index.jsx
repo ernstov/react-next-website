@@ -24,7 +24,7 @@ const AccountPlan = ({ data, isVisible }) => {
   const form = useRef(null)
   const [isProcess, setIsProcess] = useState(false)
   const optionsCountry = useMemo(() => countryList().getData(), [])
-  const [userBilling, setUserBilling] = useState({User:{}, BillingPlan: {}})
+  const [userBilling, setUserBilling] = useState({ User: {}, BillingPlan: {} })
   const [useage, setUseage] = useState(null);
   const [country, setCountry] = useState(null);
   const [hearAboutUs, setHearAboutUs] = useState(null);
@@ -69,7 +69,18 @@ const AccountPlan = ({ data, isVisible }) => {
       fields.usage = useage
       fields.homeCountry = country
       fields.hearAboutUs = hearAboutUs
-      await UserBillingService.updateUser(fields);
+      try {
+        await UserBillingService.updateUser(fields);
+        debugger;
+        if (router?.query?.billingPlan !== "Free trial") {
+          router.push("/account/plan")
+        } else {
+          router.push("/account/overview")
+        }
+      } catch (e) {
+        console.log(e);
+      }
+      setIsProcess(false)
     }
 
   }
@@ -128,12 +139,12 @@ const AccountPlan = ({ data, isVisible }) => {
                 </Container>
               </Col>
               <Col md={6} className="mb-4">
-              <Input defaultValue={userBilling.User.businessName} name="businessName" variant="flat" label={BusinessName} required />
+                <Input defaultValue={userBilling.User.businessName} name="businessName" variant="flat" label={BusinessName} required />
               </Col>
               <Col md={6} className="mb-4">
                 <Label label={HomeCountry} />
                 <Select
-                  value={{ label: country}}
+                  value={{ label: country }}
                   onChange={e => setCountry(e.label)}
                   className={`${presetsStyles.selectLight} white`}
                   classNamePrefix={'acr-select'}
@@ -147,7 +158,7 @@ const AccountPlan = ({ data, isVisible }) => {
               <Col md={6} className="mb-4">
                 <Label label={Howdidyouhearaboutus} />
                 <Select
-                  value={{ label: hearAboutUs}}
+                  value={{ label: hearAboutUs }}
                   onChange={e => setHearAboutUs(e.label)}
                   className={`${presetsStyles.selectLight} white`}
                   classNamePrefix={'acr-select'}
