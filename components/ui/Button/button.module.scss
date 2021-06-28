@@ -17,11 +17,11 @@
   white-space: nowrap;
   transition: color $transition ease, background-color $transition ease;
 
-  &:global([disabled]){
+  &:global([disabled]) {
     opacity: 0.5;
     pointer-events: none;
   }
-  
+
   &:global(.np) {
     padding-left: 1rem;
     padding-right: 1rem;
@@ -182,6 +182,17 @@
   }
 }
 
+.primaryWhite {
+  background-color: $primary;
+  color: $white;
+  border-color: $primary;
+
+  &:hover {
+    color: $primary;
+    background-color: transparent;
+  }
+}
+
 .primary {
   background-color: $primary;
   color: $black;
@@ -189,6 +200,18 @@
 
   &:hover {
     color: $dark;
+    background-color: transparent;
+  }
+}
+
+.primaryHome {
+  background-color: $primary;
+  color: $black;
+  font-size: 1rem;
+  border-color: $primary;
+
+  &:hover {
+    color: $primary;
     background-color: transparent;
   }
 }
@@ -264,4 +287,29 @@
 
 .notRound {
   border-radius: $border-radius/2;
+}
+
+.outlineInfo {
+  font-size: 0.875rem;
+  color: $black;
+  font-weight: 500;
+  border-color: $cover-11;
+  background-color: transparent;
+
+  &:hover {
+    background-color: $cover-11;
+  }
+}
+
+.outlineLight {
+  color: $light;
+  font-weight: 400;
+  font-size: 1rem;
+  border-color: $light;
+  background-color: transparent;
+
+  &:hover {
+    background-color: $light;
+    color: $black;
+  }
 }

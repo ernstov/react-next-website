@@ -14,6 +14,9 @@ import "../styles/main.scss"
 import 'swiper/swiper.scss'
 import 'swiper/components/lazy/lazy.scss'
 // import 'jsoneditor-react/es/editor.min.css';
+import ApiService from "../services/ApiService"
+import BottomMenu from "../components/BottomMenu"
+import { isWrap } from "../utils";
 
 export default function App({ Component, pageProps }) {
 
@@ -22,6 +25,7 @@ export default function App({ Component, pageProps }) {
   const router = useRouter()
   const scrollB = useRef(null)
   const [isLoader, setIsLoader] = useState(true)
+  const [wrap, setWrap] = useState(true)
 
   const [app, dispatchApp] = useReducer(reducerApp, {
     isLoading: false,
@@ -34,7 +38,9 @@ export default function App({ Component, pageProps }) {
     offset: null,
     nextPage: router.asPath,
     isAuth: false,
-    user: {}
+    user: {},
+    trands: [],
+    blog: [],
   });
 
   useEffect(() => {
@@ -49,6 +55,8 @@ export default function App({ Component, pageProps }) {
 
   useEffect(() => {
 
+    if(!isWrap()) setWrap(false)
+
     const start = (e) => {
       dispatchApp({ type: "SET_LOADING", data: { isLoading: true, nextPage: e } });
       scrollB.current?.scrollbar.scrollTo(0, 0, 500);
@@ -62,7 +70,9 @@ export default function App({ Component, pageProps }) {
     setTimeout(() => {
       setLoaderState("loaded")
     }, 500)
+
     const userData = getCurrentUserData()
+
     if (!isAuth(userData)) {
       router.push("/sign-in")
     } else {
@@ -72,6 +82,14 @@ export default function App({ Component, pageProps }) {
     Router.events.on("routeChangeStart", start);
     Router.events.on("routeChangeComplete", end);
     Router.events.on("routeChangeError", end);
+
+    ApiService.getPages()
+    .then((responses) => Promise.all(responses.map((response) => response.json())))
+    .then((result) => {
+      dispatchApp({ type: "SET_APP_VALUES", data: { trands: result.slice(0, 4), blog: result.slice(4, 5)[0].data } });
+    })
+    .catch((err) => console.error(err));
+
     return () => {
       Router.events.off("routeChangeStart", start);
       Router.events.off("routeChangeComplete", end);
@@ -99,10 +117,20 @@ export default function App({ Component, pageProps }) {
     return true
   }
 
+  const getHeaderVariant = () => {
+    if(router.pathname.indexOf("/account") != -1 || router.pathname.indexOf("/documentation") != -1 || router.pathname.indexOf("/business") != -1) return "business"
+  }
+
+  const isHome = () => {
+    return router.pathname.indexOf("/account") == -1 || router.pathname.indexOf("/documentation") == -1 || router.pathname.indexOf("/business") == -1
+  }
+
+
   return <Context.Provider value={{ app, dispatchApp, lang, scrollB }}>
-    <LayoutBase>
+    <LayoutBase isWrap={wrap}>
       {isLoader && <Loader loaderState={loaderState} />}
-      <Header isLoggedIn={isLoggedIn()} />
+      {wrap && <Header path={router.pathname} variant={getHeaderVariant()} isLoggedIn={isLoggedIn()} />}
+      {isHome() && <BottomMenu path={router.pathname} data={appConfig.bottomMenu}/>}
       {isSidebar() && <Sidebar variant={getSidebarVariant()} />}
       <Scrollbar className="scoll-bar" ref={e => { if (e && !scrollB.current) { scrollB.current = e; } }}>
         <Component {...pageProps} path={router.pathname} />

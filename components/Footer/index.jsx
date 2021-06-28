@@ -23,12 +23,12 @@ const Footer = ({ data, isVisible }) => {
           <Row>
             <Col md={6} className={`${styles.footerSocialsContainer}`}>
               <div className="w-100">
-                <div className={`${styles.footerSocials} simple`}>
+                <div className={`${styles.footerSocials} simple entry-1`}>
                   {data.socials.map((social, i) => (
                     <a key={`si-${i}`} href={social.link} target="blank"><Icon variant={social.icon} /></a>
                   ))}
                 </div>
-                <div className={`${styles.footerLinks} simple`}>
+                <div className={`${styles.footerLinks} simple entry-2`}>
                   {data.links.map((link, i) => (
                     <Link key={`li-${i}`} href={link.link}><a>{link.name}</a></Link>
                   ))}
@@ -43,7 +43,7 @@ const Footer = ({ data, isVisible }) => {
           </Row>
           <Row>
             <Col>
-              <div className={`${styles.footerCopyright} simple`}>
+              <div className={`${styles.footerCopyright} simple entry-3`}>
 
                 {data.additional &&
                   <div dangerouslySetInnerHTML={{ __html: data.additional }}></div>
@@ -59,12 +59,12 @@ const Footer = ({ data, isVisible }) => {
           <Row>
             <Col md={6} className="d-flex align-items-center">
               <div className="w-100">
-                <div className={`${styles.footerSocials}`}>
+                <div className={`${styles.footerSocials} entry-1`}>
                   {data.socials.map((social, i) => (
                     <a key={`si-${i}`} href={social.link} target="blank"><Icon variant={social.icon} /></a>
                   ))}
                 </div>
-                <div className={`${styles.footerLinks}`}>
+                <div className={`${styles.footerLinks} entry-2`}>
                   {data.links.map((link, i) => (
                     <Link key={`li-${i}`} href={link.link}><a>{link.name}</a></Link>
                   ))}
@@ -75,7 +75,7 @@ const Footer = ({ data, isVisible }) => {
               </div>
             </Col>
             <Col md={6} className={`${styles.footerImgContainer} text-right text-md-center`}>
-              <img className={`${styles.footerImg}`} src={`/img/${data.img}`} />
+              <img className={`${styles.footerImg} entry-4`} src={`/img/${data.img}`} />
             </Col>
           </Row>
         </Container>

@@ -1,0 +1,130 @@
+@import "../../styles/base/variables.scss";
+
+.tranding {
+  padding: $section-spacer * 1.5 0;
+  padding-bottom: 0;
+
+  :global(.badge) {
+    cursor: pointer;
+
+    &:hover {
+      background-color: rgba($dark, 0.15);
+    }
+  }
+
+  :global(.tranding-swiper-overflow) {
+    width: 100vw;
+    overflow: hidden;
+  }
+
+  :global(.tranding-tags) {
+    :global(.scroll-content) > * {
+      overflow: auto;
+    }
+  }
+
+  :global(.swiper-wrapper) {
+    align-items: stretch;
+  }
+
+  :global(.swiper-slide) {
+    height: auto;
+  }
+
+  :global(.block-img) {
+    height: 85px;
+  }
+
+  :global(.swiper-container) {
+    padding-bottom: $section-spacer*2;
+  }
+
+  :global(.tranding-tags-container) {
+    margin-bottom: 1.5rem;
+  }
+
+  :global(.container)  {
+    max-width: $small-container;
+  }
+
+  :global(.tranding-container) {
+    width: 100%;
+    max-width: $small-container;
+
+    .col-xl-6 {
+      width: 50%;
+      max-width: 50%;
+    }
+
+    .col-xl-4 {
+      width: 33.3333%;
+      max-width: 33.3333%;
+    }
+  }
+
+  @include media-breakpoint-down(lg) {
+    :global(.tranding-container-swiper)  {
+      width: 133%;
+      max-width: 133%;
+    }
+    :global(.tranding-container) {
+      &.title {
+        width: 100%;
+        max-width: 100%;
+      }
+    }
+  }
+
+  @include media-breakpoint-down(sm) {
+    :global(.tranding-container-swiper)  {
+      width: 150%;
+      max-width: 150%;
+    }
+    :global(.tranding-tags-container) {
+      margin-bottom: 0;
+      display: flex;
+      align-items: center;
+      flex-wrap: nowrap;
+
+      &::after{
+        content: " ";
+        white-space: pre;
+        display: inline-block;
+        width: 1rem;
+        flex-shrink: 0;
+      }
+
+      :global(.scroll-content) {
+        >div {
+          display: flex;
+          flex-wrap: nowrap;
+        }
+      }
+    }
+    :global(.tranding-tags) {
+      display: flex;
+      align-items: center;
+      justify-content: stretch;
+      margin-bottom: 1.5rem;
+
+      h5 {
+        margin-bottom: 0;
+        margin-right: 1rem;
+      }
+    }
+    :global(.tranding-container) {
+      width: 100%;
+      .col-xl-6 {
+        width: 100%;
+        padding-right: 0;
+        max-width: 100%;
+
+        &:last-child{
+          :global(.tranding-tags) {
+            margin-bottom: 0;
+          }
+        }
+      }
+    }
+  }
+}

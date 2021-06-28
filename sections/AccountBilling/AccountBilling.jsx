@@ -23,6 +23,8 @@ import { useRouter } from 'next/router'
 
 const AccountBilling = ({ data, isVisible }) => {
 
+  console.log(data)
+
   const { lang: { Startplan, UpdatePlan, plan, APIplan, BillingUSD, Monthly, Yearly, mo, yr, Save10, Billingdetails, CardNumber, CardholderName, CVC, Expiration, digitcode }, app } = useContext(Context)
   const { optionsExpirationMonths, optionsExpirationYears, pricing: { plans } } = data
   const form = useRef(null)

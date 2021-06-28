@@ -13,7 +13,7 @@ const Plan = ({ tags, dataPosts, path }) => {
 
   const { app, dispatchApp, lang: { Welcome, } } = useContext(Context)
   const page = filterIt(pages, path, "link")[0]
-  const pricing = filterIt(pages, "/pricing", "link")[0]
+  const pricing = filterIt(pages, "/business/pricing", "link")[0]
 
   const sections = [
     { component: Hero, props: {data: page.hero} },

@@ -1,9 +1,9 @@
 import styles from './layout.module.scss'
 
-const LayoutBase = ({ children }) => {
+const LayoutBase = ({ children, isWrap }) => {
 
   return (
-    <div className={`${styles.layoutBase}`}>
+    <div className={`${styles.layoutBase} ${!isWrap ? "no-wrap" : ""}`}>
       {children}
     </div>
   )

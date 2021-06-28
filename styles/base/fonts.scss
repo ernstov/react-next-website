@@ -23,6 +23,14 @@
 }
 
 @font-face {
+  font-family: 'Avenir Next Demi';
+  src: url('/fonts/AvenirNext-DemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
   font-family: 'Avenir Next';
   src: url('/fonts/AvenirNext-MediumItalic.woff2') format('woff2');
   font-weight: 500;

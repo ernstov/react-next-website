@@ -35,6 +35,10 @@ const Button = ({ children, variant, className, onClick, as, link, isActive, dis
         return `${styles.button} ${styles.primary} ${styles.arrow}`
       case "primary":
         return `${styles.button} ${styles.primary}`
+      case "primary-home":
+        return `${styles.button} ${styles.primaryHome}`
+      case "primary-white":
+        return `${styles.button} ${styles.primaryWhite}`
       case "primary-notround":
         return `${styles.button} ${styles.primary} ${styles.notRound}`
       case "primary-notround-large":
@@ -43,6 +47,10 @@ const Button = ({ children, variant, className, onClick, as, link, isActive, dis
         return `${styles.button} ${styles.small} ${styles.secondaryOutline} ${styles.notRound}`
       case "outline-primary":
         return `${styles.button} ${styles.primaryOutline}`
+      case "outline-info":
+        return `${styles.button} ${styles.outlineInfo}`
+      case "outline-light":
+        return `${styles.button} ${styles.outlineLight}`
       case "link":
         return `${styles.link} ${styles.secondaryLink}`
       case "link-gray":

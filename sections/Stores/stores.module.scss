@@ -1,0 +1,111 @@
+@import "../../styles/base/variables.scss";
+
+.page-image-wrapper {
+  text-align: center;
+  margin: 70px 0 30px;
+
+  img {
+    max-width: 400px;
+  }
+
+  @include media-breakpoint-down(sm){
+    margin: 40px 0 0px;
+  }
+}
+
+.download-page-title {
+  margin-top: 30px;
+  margin-bottom: 30px;
+
+  @include media-breakpoint-down(sm) {
+    margin: 40px 0 50px;
+  }
+}
+
+.download-page-subtitle {
+  color: #000000;
+  line-height: 1.4;
+  margin-bottom: 50px;
+  font-size: 19px;
+
+  @include media-breakpoint-down(sm) {
+    margin-bottom: 35px;
+  }
+}
+
+.download-header-wrapper {
+  text-align: center;
+  margin: 0 auto 50px;
+  max-width: 760px;
+  width: 100%;
+  border-bottom: 1px solid #E2E2E2;
+  padding-bottom: 30px;
+
+  @include media-breakpoint-down(sm) {
+    max-width: calc(100% - 60px);
+    padding-bottom: 35px;
+    margin-bottom: 35px;
+  }
+}
+
+.stores {
+  :global(.stores-wrapper) {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 3rem;
+  
+    :global(.stores-wrapper__item) {
+      margin: 0 20px;
+      height: 50px;
+    }  
+  
+    @include media-breakpoint-down(sm){
+      :global(.stores-wrapper__item) {
+        height: 40px;
+        margin: 0 10px;
+      }
+    }
+  }
+  
+  :global(.download-description) {
+    background: $primary-cover-2;
+    border: 1px solid $gray-12;
+    box-shadow: 0px 2px 0px $gray-13;
+    border-radius: 10px;
+    padding: 20px 25px 30px;
+  
+  
+    :global(.download-description__title) {
+      font-weight: 600;
+      font-family: $font-family-base;
+      color: $black;
+    }
+  
+    :global(.download-description__text) {
+      color: $gray-19;
+      margin: 0;
+    }
+  
+    @include media-breakpoint-down(sm){
+      font-size: 14px;
+      padding: 17px 20px 20px;
+  
+      :global(.download-description__title) {
+        margin-bottom: 8px;
+      }
+    }
+  }
+  
+  :global(.download-container) {
+    margin: 0 auto;
+    max-width: 760px;
+    width: 100%;
+    padding-bottom: 170px;
+    padding-top: 3rem;
+    border-top: 1px solid $border-color;
+  
+    @include media-breakpoint-down(sm) {
+      padding-top: 3rem;
+    }
+  }
+}

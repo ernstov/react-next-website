@@ -186,6 +186,11 @@
   font-size: 1.875rem;
 }
 
+.textTitleSm2 {
+  font-family: $font-family-heavy;
+  font-size: 1.25rem;
+}
+
 .textTitleSemi {
   font-size: 1.875rem;
   font-family: $font-family-advanced;
@@ -207,6 +212,12 @@
   font-size: 0.625rem;
   font-weight: 600;
   color: $lgray;
+}
+
+.textSmall {
+  font-size: 0.8125rem;
+  color: $lgray;
+  font-weight: 500;
 }
 
 .textSmall2 {
@@ -331,6 +342,26 @@
   color: rgba($black, 0.6);
 }
 
+.textTitleLight {
+  font-size: 2.5rem;
+  color: $light;
+}
+
+.textLabel {
+  font-family: $font-family-base;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  font-weight: 500;
+  letter-spacing: 0.05rem;
+  color: rgba($black, 0.4);
+}
+
+.textTitleSmd {
+  font-family: $font-family-heavy;
+  font-size: 1.125rem;
+  margin-bottom: 1rem;
+}
+
 @include media-breakpoint-down(lg) {
   .textSubTitle {font-size: 1.125rem;}
   .textTitleSemi {font-size: 1.5rem;}
@@ -341,6 +372,8 @@
   .labelPrimaryMd {font-size: 1.1875rem;}
   .textWhiteRegular{font-size: 1rem;}
   .textWhiteDemi {font-size: 1rem;}
+  .textTitleLight {font-size: 2rem;}
+  .textTitleSm {font-size: 1.125rem;}
 }
 
 @include media-breakpoint-down(md) {
@@ -360,4 +393,5 @@
       }
     }
   }
+  .textTitleLight {font-size: 1.9375rem;}
 }

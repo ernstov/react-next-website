@@ -43,7 +43,7 @@ const Hero = ({ data, isVisible }) => {
             </div>
           }
 
-          <div className={`${styles.buttons} mt-5 entry-4`}>
+          <div className={`${styles.buttons} ${data.btnsClassName ? data.btnsClassName : ""} entry-4`}>
             {data.buttons && data.buttons.map((button, i) => (
               data.isBlank ?
                 <Button link={button.link} as={`${button.as ? button.as : "link"}`} variant={button.variant} className={`${button.className ? button.className : ""} ${i < data.buttons.length ? "mb-2" : ""}`} key={`bi-${i}`}>{button.name}</Button> :

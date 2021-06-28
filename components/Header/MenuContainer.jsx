@@ -1,9 +1,9 @@
 import styles from './header.module.scss'
 
-const MenuContainer = ({ isActiveMobile, children }) => {
+const MenuContainer = ({ isActiveMobile, children, className }) => {
 
   return (
-    <div className={`${styles.menuContainer} ${isActiveMobile ? "active" : ""}`}>
+    <div className={`${styles.menuContainer} ${className ? className : ""} ${isActiveMobile ? "active" : ""}`}>
       {children}
     </div>
   )

@@ -1,7 +1,7 @@
 import apiConfig from "../configs/apiConfig"
 import appConfig from "../configs/appConfig"
 import moment from "moment"
-import { cutOffString, diffTimeString } from "../utils";
+import { cutOffString, diffTimeString, dateFormat } from "../utils";
 
 const ApiService = {
 
@@ -48,7 +48,7 @@ const ApiService = {
 
   async getHeadlines(field, start, offset) {
 
-    const now = offset &&  offset != 0 ? moment.utc().subtract(offset, "hours") : moment.utc();
+    const now = offset && offset != 0 ? moment.utc().subtract(offset, "hours") : moment.utc();
     const endTime = now.format('YYYY-MM-DDTHH:00:00')
     const startTime = now.subtract(8, "hours").format('YYYY-MM-DDTHH:00:00')
 
@@ -75,14 +75,14 @@ const ApiService = {
       const resJson = await res.json()
       const contents = resJson
 
-      resJson.related_articles = resJson.related_articles?.length > 0 ? resJson.related_articles.map((article)=>parseArticles(article)) : null
+      resJson.related_articles = resJson.related_articles?.length > 0 ? resJson.related_articles.map((article) => parseArticles(article)) : null
 
-      if(!resJson.related_articles && resJson?.tags?.length > 0) {
+      if (!resJson.related_articles && resJson?.tags?.length > 0) {
         const urlT = `${apiConfig.api}/articlesByTag/${resJson?.tags[0].id}?_limit=20`
         const resT = await fetch(`${urlT}`)
         const resJsonT = await resT.json()
 
-        resJson.recent_articles = resJsonT.articles.map((article)=>parseArticles(article))
+        resJson.recent_articles = resJsonT.articles.map((article) => parseArticles(article))
       }
 
       return new Promise((resolve) => {
@@ -93,6 +93,29 @@ const ApiService = {
       throw (e);
     }
   },
+
+  async getPages() {
+    const t = new Date();
+    const today = dateFormat(t, "yyyy-mm-dd");
+    const yestarday = dateFormat(t.setDate(t.getDate() - 1), "yyyy-mm-dd");
+
+    const requests = [
+      `/tags/trending?cat=person&startTime=${yestarday}T00:00:00&endTime=${today}T23:59:59`,
+      `/tags/trending?cat=time&subcat=event&startTime=${yestarday}T00:00:00&endTime=${today}T23:59:59`,
+      `/tags/trending?cat=org&subcat=business&startTime=${yestarday}T00:00:00&endTime=${today}T23:59:59`,
+      `/tags/trending?cat=broad&startTime=${yestarday}T00:00:00&endTime=${today}T23:59:59`,
+      `/blogs`,
+      `/pages`
+    ]
+
+    return Promise.all(
+      requests.map((rg) => {
+        return fetch(`${appConfig.api}${rg}`, {
+          method: "GET",
+        })
+      }),
+    )
+  }
 }
 
 export const getDataByType = async (type, field, start, offset) => {
