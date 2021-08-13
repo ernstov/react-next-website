@@ -1,0 +1,35 @@
+@import "../../styles/base/variables.scss";
+
+.joinUsContent {
+
+  :global(.container) {
+    max-width: $small-container;
+  }
+
+  :global(.join-us-inner) {
+    padding: 2rem;
+    border-top: 1px solid $border-color;
+    border-bottom: 1px solid $border-color;
+  }
+
+  :global(.join-us-img) {
+    width: 195px;
+    height: auto;
+  }
+
+  :global(.join-us-footer) {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  @include media-breakpoint-down(md) {
+    :global(.join-us-inner) {
+      padding-left: 0;
+      padding-right: 0;
+    }
+    :global(.join-us-footer) {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+}

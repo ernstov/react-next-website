@@ -362,6 +362,38 @@
   margin-bottom: 1rem;
 }
 
+.textTitleWhite {
+  color: $light;
+  font-size: 1.4375rem;
+  font-family: $font-family-base;
+  font-weight: 500;
+}
+
+.textRoman {
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+
+.textRomanSm {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.textTitleMd {
+  font-size: 1.125rem;
+  font-family: $font-family-secondary;
+}
+
+.textMediumLgt {
+  font-size: 0.9375rem;
+  color: $gray-5;
+}
+
+.textBook {
+  font-size: 0.875rem;
+  color: $gray-5;
+}
+
 @include media-breakpoint-down(lg) {
   .textSubTitle {font-size: 1.125rem;}
   .textTitleSemi {font-size: 1.5rem;}
@@ -374,6 +406,7 @@
   .textWhiteDemi {font-size: 1rem;}
   .textTitleLight {font-size: 2rem;}
   .textTitleSm {font-size: 1.125rem;}
+  .textRoman {font-size: 1rem;}
 }
 
 @include media-breakpoint-down(md) {

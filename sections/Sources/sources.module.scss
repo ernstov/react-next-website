@@ -8,6 +8,10 @@ $coef: 6.98477;
   width: 100%;
   position: relative;
 
+  :global(.container) {
+    max-width: $small-container;
+  }
+
   :global(.sources-inner) {
     position: relative;
     min-height: 333px;

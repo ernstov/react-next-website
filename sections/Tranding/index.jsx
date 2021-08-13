@@ -25,16 +25,21 @@ const Tranding = ({ data, isVisible }) => {
       delay: 5000,
       disableOnInteraction: false
     },
+    pagination: {
+      clickable: true
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev"
+    },
     breakpoints: {
       300: {
-        slidesPerView: 2,
+        slidesPerView: 1.3,
         spaceBetween: 30,
-        loop: true,
       },
       767: {
-        slidesPerView: 3,
+        slidesPerView: 3.3,
         spaceBetween: 30,
-        loop: true,
       },
       1100: {
         slidesPerView: 3,
@@ -93,7 +98,7 @@ const Tranding = ({ data, isVisible }) => {
           <Row>
             <Col>
               <Swiper {...options}>
-                {data.content && data.content.map((item, i) => (
+                {data?.content?.length && data.content.map((item, i) => (
                   <SwiperSlide key={`bi-${i}`}>
                     <Block data={item} />
                   </SwiperSlide>

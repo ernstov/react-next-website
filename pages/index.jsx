@@ -28,22 +28,20 @@ const Home = ({ path }) => {
   const page = filterIt(pages, path, "link")[0]
   const [trandingContents, setContents] = useState([])
   const [loading, setLoading] = useState(true)
+  const [wrap, setWrap] = useState(true)
 
-  const [sections, setSections] = useState([
+  const sections = [
     { component: Hero, props: { data: page.hero } },
     { component: Sources, props: { data: page.mediaSources } },
     { component: Tranding, props: { data: { ...page.tranding, content: trandingContents } } },
     { component: About, props: { data: page.about } },
-    { component: Footer, props: { data: {...appConfig.footer, variant: ""} } },
-  ])
+    { component: Footer, props: { data: {...appConfig.footer, variant: "", className: "small-container"} } },
+  ]
 
   useEffect(() => {
     TagManager.dataLayer(tagManagerArgs)
     fetchContent()
-
-    if (!isWrap()) {
-      setSections(current => current.filter((item, i)=>i < current.length-1))
-    }
+    setWrap(isWrap())
   }, [])
 
   const fetchContent = async () => {
@@ -79,6 +77,8 @@ const Home = ({ path }) => {
     }
   }
 
+  if (!wrap) sections.pop();
+
   return (
     <>
       <Head>
@@ -86,6 +86,7 @@ const Home = ({ path }) => {
         <link rel="icon" href="/img/favicon.ico" />
         <meta property="og:title" content={`${appConfig.projectName} - ${page.title}`}></meta>
         <meta name="description" content={`${page.description}`}></meta>
+        <meta property="og:description" content={`${page.description}`}></meta>
         <meta property="og:image" content={`/img/${page.thumbnail}`} id="og"></meta>
       </Head>
       {sections.map((section, i) => (

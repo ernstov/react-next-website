@@ -5,6 +5,16 @@
   background-color: $primary-cover;
   border-top: 1px solid $border-color;
 
+  :global(.container) {
+    max-width: $small-container;
+  }
+
+  &:global(.form-only){
+    padding: 0;
+    background-color: transparent;
+    border: none;
+  }
+
   :global(.follow-title) {
     font-size: $font-family-heavy;
     font-size: 1.25rem;

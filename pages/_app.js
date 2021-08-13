@@ -86,7 +86,7 @@ export default function App({ Component, pageProps }) {
     ApiService.getPages()
     .then((responses) => Promise.all(responses.map((response) => response.json())))
     .then((result) => {
-      dispatchApp({ type: "SET_APP_VALUES", data: { trands: result.slice(0, 4), blog: result.slice(4, 5)[0].data } });
+      dispatchApp({ type: "SET_APP_VALUES", data: { trands: result.slice(0, 4), blog: result.slice(4, 5)[0] } });
     })
     .catch((err) => console.error(err));
 

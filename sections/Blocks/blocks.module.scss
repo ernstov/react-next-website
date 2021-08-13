@@ -1,0 +1,60 @@
+@import "../../styles/base/variables.scss";
+
+.blocks {
+  padding: $section-spacer-lg 0;
+  border-bottom: 1px solid $border-color;
+  border-top: 1px solid $border-color;
+  padding-bottom: calc(#{$section-spacer-lg} - 4rem);
+
+  :global(.container) {
+    max-width: $small-container;
+  }
+
+  :global(.blocks-img) {
+    width: 350px;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+  }
+
+  p {
+    margin-bottom: 0;
+    font-size: 0.9375rem;
+  }
+
+  :global(.blocks-item) {
+    position: relative;
+    padding-bottom: 4rem;
+    height: 100%;
+    max-width: 365px;
+
+    &::after {
+      content: "";
+      width: 50%;
+      height: 1px;
+      background-color: $border-color;
+      position: absolute;
+      left: 0;
+      bottom: 2rem;
+    }
+  }
+
+  :global(.blocks-col) {
+    &:last-child {
+      :global(.blocks-item) {
+        &::after {
+          display: none;
+        }
+      }
+    }
+  }
+
+  @include media-breakpoint-down(md) {
+    padding: $section-spacer 0;
+    padding-bottom: calc(#{$section-spacer} - 4rem);
+
+    :global(.blocks-img) {
+      width: 270px;
+    }
+  }
+}

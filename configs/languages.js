@@ -61,6 +61,13 @@ const languages = {
     APIUsage: "API Usage",
     Gettingstarted: "Getting started",
     Searchapi: "Search api",
+    Postsnotfound: "Posts not found",
+    Postnotfound: "The Post not found",
+    m: "m",
+    read: "read",
+    Filedunder: "Filed under",
+    Sharethis: "Share this",
+    NotFound: "404 page not found"
   }
 }
 

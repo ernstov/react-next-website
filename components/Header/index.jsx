@@ -30,6 +30,7 @@ const Header = ({ data, path, isLoggedIn, variant }) => {
 
   const hideAll = () => {
     setIsActiveMobile(false);
+    console.log(111)
   }
 
   const isActive = (link) => {
@@ -75,7 +76,7 @@ const Header = ({ data, path, isLoggedIn, variant }) => {
               </div>
               <ul>
                 {appConfig.navigation.map((nav, i) => (
-                  !nav.excludeNav && <li key={`ni-${i}`}><Link onClick={() => hideAll(true)} href={nav.link}>{nav.name}</Link></li>
+                  !nav.excludeNav && <li onClick={() => hideAll(true)} key={`ni-${i}`}><Link href={nav.link}>{nav.name}</Link></li>
                 ))}
               </ul>
             </div>
@@ -89,7 +90,7 @@ const Header = ({ data, path, isLoggedIn, variant }) => {
                 {appConfig.navigationAdditional.links.map((row, i) => (
                   <div key={`rki-${i}`}>
                     {row.row.map((link, i) => (
-                      <div key={`lki-${i}`}><Link onClick={() => hideAll(true)} href={link.link}>{link.name}</Link> {i < row.row.length - 1 ? <span>&bull;</span> : ""}</div>
+                      <div onClick={() => hideAll(true)} key={`lki-${i}`}><Link href={link.link}>{link.name}</Link> {i < row.row.length - 1 ? <span>&bull;</span> : ""}</div>
                     ))}
                   </div>
                 ))}

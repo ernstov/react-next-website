@@ -22,7 +22,6 @@ body .scrollbar-thumb {
 body .scroll-content {
   > * {
     position: relative;
-    overflow: hidden;
   }
 }
 
@@ -406,5 +405,23 @@ select:-webkit-autofill:focus {
     position: absolute;
     left: 0;
     color: $primary;
+  }
+}
+
+.sect-spacer-lg {
+  padding-top: $section-spacer-lg;
+  padding-bottom: $section-spacer-lg;
+
+  @include media-breakpoint-down(md) {
+    padding-top: $section-spacer;
+    padding-bottom: $section-spacer;
+  }
+}
+
+.sect-spacer {
+  padding: $section-spacer 0;
+
+  @include media-breakpoint-down(md) {
+    padding: $section-spacer 0;
   }
 }

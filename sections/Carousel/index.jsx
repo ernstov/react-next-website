@@ -12,7 +12,7 @@ const Carousel = ({ data, isVisible }) => {
   const options = {
     slidesPerView: 4,
     spaceBetween: 30,
-    loop: true,
+    loop: data.hasOwnProperty('loop') ? data.loop : true,
     autoplay: {
       delay: 5000,
       disableOnInteraction: false
@@ -34,11 +34,11 @@ const Carousel = ({ data, isVisible }) => {
         spaceBetween: 30,
       },
       1100: {
-        slidesPerView: 3.3,
+        slidesPerView: data.slidesMd ? data.slidesMd : 3.3,
         spaceBetween: 30
       },
       1500: {
-        slidesPerView: 4.3,
+        slidesPerView: data.slidesLg ? data.slidesLg : 4.3,
         spaceBetween: 30
       }
     }

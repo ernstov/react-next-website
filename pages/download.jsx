@@ -22,21 +22,22 @@ const tagManagerArgs = {
 const Download = ({ path }) => {
 
   const page = filterIt(pages, path, "link")[0]
+  const [wrap, setWrap] = useState(true)
 
-  const [sections, setSections] = useState([
+  const sections = [
     { component: Hero, props: { data: page.hero } },
     { component: Stores, props: { data: page.stores } },
     { component: Follow, props: { data: appConfig.follow } },
-    { component: Footer, props: { data: { ...appConfig.footer} } },
-  ])
+    { component: Footer, props: { data: { ...appConfig.footer, className: "small-container"} } },
+  ]
 
   useEffect(() => {
     TagManager.dataLayer(tagManagerArgs)
 
-    if (!isWrap()) {
-      setSections(current => current.filter((item, i)=>i < current.length-1))
-    }
+    setWrap(isWrap())
   }, [])
+
+  if (!wrap) sections.pop();
 
   return (
     <>
@@ -45,6 +46,7 @@ const Download = ({ path }) => {
         <link rel="icon" href="/img/favicon.ico" />
         <meta property="og:title" content={`${appConfig.projectName} - ${page.title}`}></meta>
         <meta name="description" content={`${page.description}`}></meta>
+        <meta property="og:description" content={`${page.description}`}></meta>
         <meta property="og:image" content={`/img/${page.thumbnail}`} id="og"></meta>
       </Head>
       {sections.map((section, i) => (

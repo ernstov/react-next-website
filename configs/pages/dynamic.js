@@ -156,6 +156,138 @@ export const pages = [
     },
   },
   {
+    link: "/apply",
+    title: "Join us",
+    description: "Help build the future of “news”",
+    thumbnail: "joinus-thumb.png",
+    hero: {
+      title: 'Help build the <span>future</span> of “news”',
+      description: 'We’re seeking truth-seekers',
+      img: "join-us-hero.png",
+      imgCL: "mw-520",
+    },
+    joinUs: {
+      title: "Become a Moderator",
+      description: "Help improve the quality of information for all by moderating activity on the Gawq platform. Moderators have a strong sense of curiosity, enjoy reading, and have a natural interest in knowing the very latest on trends or newsworthy events. Becoming a Moderator at Gawq means that you'll be joining a community of people that share your passion for great content, and directly contributing toward the transformation of modern media. This is an unpaid volunteer role. There's no time commitment, but we do ask for your commitment toward the values and mission of Gawq. <a href='https://forms.gle/NvMZ8KDo76sHcRJF6' target='blank'>Click here</a> to apply to be a Moderator.",
+      img: "join-us-img.png",
+      list: {
+        title: "Moderator responsibilities include:",
+        items: [
+          "Monitoring user-generated reviews and comments",
+          "Flagging inappropriate content",
+          "Improving the accuracy of content categorization",
+          "Generating new content reviews and ratings"
+        ]
+      },
+      footer: {
+        title: "Careers",
+        description: "Check again soon for job openings."
+      }
+    }
+  },
+  {
+    link: "/faqs",
+    title: "FAQs",
+    description: "Frequently asked questions",
+    thumbnail: "faqs-thumb.png",
+    hero: {
+      title: "Frequently asked <span>questions</span>",
+      description: "We like when people ask questions. It's why we have a 'Q' in our name. Read on...",
+      descriptionCL: "mw-600",
+      img: "question-marks.svg",
+    },
+    faq: [
+      { id: "hows-gawq-different", question: "How’s Gawq different?", answer: "The spirit of Gawq (and the reason we exist) is to help solve the problem of misinformation in the digital age. We believe that the modern social media news feed is fundamentally broken, and we want to be a part of the solution.<p><p>To that end,  Gawq is different in the following key ways:<p><p><b>Ratings & reviews.</b> Gawq is the only mobile news app where you can react to media coverage based on the fairness, accuracy & quality of the story itself. Our system empowers you to rate journalists based on the truthfulness of their work, not on individual partisan leanings or how many eyeballs the story gets. Your participation helps to build a better media landscape for all.<p><b>Anti-echo chamber.</b> Unlike most major news feeds, the stories you read today won’t impact what you see tomorrow. We believe that algorithms foster confirmation bias, limit your view of the world, and give you only one side of the complex issues facing our world today.<p><b>Clearer, smarter labels.</b> We've put significant resources toward building intelligent labels that filter opinion-based articles, non-news, celebrity gossip, and more. Articles in Gawq are clearly labeled to ensure that you stay aware of biases and misinformation in the stories you read." },
+      { id: "is-gawq-free", question: "Is Gawq free?", answer: "Yes, Gawq is entirely free. Version one is available for both Apple iOS and Android. The app is optimized for mobile and tablet devices." },
+      { id: "whats-the-business-model", question: "What’s the business model?", answer: "Our first priority is to build the right user experience. In doing so, we didn't want the distractions that often come with commercialization. Inevitably, we'll need to find a business model to support our growth and continued innovation. Whatever path we decide to take, we'll make sure that our model clearly aligns with the greater mission of Gawq, and that it doesn't run the risk of recreating many of the problems that exist in today's media landscape." },
+      { id: "is-there-political-bias", question: "Is there a political bias?", answer: "Gawq does not write or produce the news. Instead, we focus on building technology that makes it easier for you to stay informed without the concern of mystery algorithms under the hood. Many of our features are designed to provide 360 coverage across sources that have varying perspectives. We do not hand-pick what you see or use technology that sorts content based on your likelihood to engage. The feeds on Gawq either sort by recency or - in the case of headlines - the amount of recent coverage for a given story." },
+      { id: "whys-it-called-gawq", question: "Why’s it called ‘Gawq’?", answer: "We're all guilty of gawking at our phone and clicking those sensational headlines. Our brand exists because of this problem, and we want to send a subtle reminder each and every time you click to open the app. Making strides toward a solution always starts with awareness of the problem itself. The 'Q' in our name is because we want people to ask questions, and to examine the quality of the information they consume." },
+      { id: "hows-gawq-funded", question: "How’s Gawq funded?", answer: "The company is founded by Joshua Dziabiak, a serial entrepreneur and investor from Austin, TX. Joshua has invested his own money to create the first version of Gawq. Given the size and scope of our mission, we may engage outside investment to help support our growth. If and when we engage investors, it will be important that their objectives and investment strategies align with our values and vision for the company." },
+      { id: "whos-behind-gawq", question: "Who’s behind Gawq?", answer: "The company is founded by Joshua Dziabiak, a serial entrepreneur and investor from Austin, TX. You can read more about Joshua's background on <a href='https://www.linkedin.com/in/joshua-dziabiak/' target='_blank'>his LinkedIn profile</a>. There are currently no institutional investors or other shareholders in the company. Almost 100% of the product and brand design was completed by Joshua himself. The engineering has been supported by several (incredible) contract developers, a couple of which work full-time for Gawq. Community moderation is largely supported by volunteers. If you're passionate about improving the media landscape, explore opportunities to <a href='/apply'>join us</a>!" },
+      { id: "which-media-sources-are-supported", question: "Which media sources are supported?", answer: "Gawq supports over 850 local, national & world media sources. These include major organizations like CNN, Fox News, ABC News, New York Post, NBC News, CBS News, Newsweek, and The New York Times. There are also dozens of specialized media sources available, like TechCrunch, ESPN, Snopes, Politico, Gadget, Refinery29, NPR, and others. To avoid overwhelming you with content, we do not automatically activate every source when you first register. You can enable, disable, or simply view the full list of available sources inside the 'Content controls' section under your account. If you'd like to request a new source to be added, please email <a href='mailto:support@gawq.com'>support@gawq.com</a>." },
+      { id: "what-about-local-news", question: "What about local news?", answer: "In addition to national & world news, Gawq also gives you the ability to follow local news, weather, and events happening in over 100 cities around the globe. New cities are being added every month!" },
+      { id: "how-do-i-claim-journalist-profile", question: "How do I claim a journalist profile?", answer: "If you’re a journalist and looking to link your Gawq account to the journalist profile within the app, please email <a href='mailto:support@gawq.com'>support@gawq.com.</a> We may ask for some additional information in order to verify your identity." },
+      { question: "More about Gawq", link: "/about" },
+      { question: "Join us", link: "/apply" },
+      { question: "Contact us", link: "/contact" },
+    ]
+  },
+  {
+    link: "/about",
+    title: "About",
+    description: "Learn more about Gawq and our mission to improve the modern media landscape.",
+    thumbnail: "about-thumb.png",
+    hero: {
+      title: "People <span>before</span> technology",
+      description: "We’re building a new kind of tech company: hyper-focused on transparency, social impact & putting people first.",
+      descriptionCL: "mw-600",
+      img: "about-hero.svg",
+    },
+    quote: {
+      description: "The tools that we use to consume media are fundamentally flawed — programmed to fuel clicks over quality. Our goal is to establish trust by using technology in a way that helps people cut through the noise, understand perspective, and realize the world around us.",
+      author: {
+        name: "Joshua Dziabiak",
+        title: "Founder",
+        img: "joshua.png"
+      }
+    },
+    cooperation: {
+      title: "Our manifesto",
+      img: "gandshake.svg",
+      columns: [
+        {
+          title: "No manipulative algorithms",
+          description: "We’ll never use your browsing history or personal attributes to determine the content that you see. Gawq vows to avoid technology that builds echo chambers or harbors confirmation bias."
+        },
+        {
+          title: "Transparency in the process",
+          description: "You have the right to know what’s under the hood, especially when it comes to the information that you consume. We vow to be clear in our strategy and design systems."
+        },
+        {
+          title: "Remaining neutral",
+          description: "Our objective is to build tools that make it easier for you to realize perspective and stay informed. Gawq is not the arbiter of truth."
+        },
+        {
+          title: "Supporting balanced journalism",
+          description: "When in doubt, we’ll look to the four principals in the Society of Professional Journalists’ Code of Ethics."
+        },
+        {
+          title: "Acknowledging our mistakes",
+          description: "Like every other organization, we’re bound to make mistakes along the way. We commit to accountability, and owning-up to our mistakes."
+        },
+      ]
+    },
+    whatWeAsk: {
+      img: "hand-phone-g.svg",
+      title: "What we ask of you",
+      list: [
+        { name: "<span class='mr-2'>○</span> Ask questions" },
+        { name: "<span class='mr-2'>○</span> Read beyond the headlines" },
+        { name: "<span class='mr-2'>○</span> Consider perspective" },
+        { name: "<span class='mr-2'>○</span> Support great content creators" },
+        { name: "<span class='mr-2'>○</span> Be kind" },
+      ]
+    },
+    carousel: {
+      img: "printing-press.svg",
+      title: "Unbreaking news",
+      description: "We’re unraveling echo chambers and giving you new tools to stay informed, mindfully:",
+      variant: "fluid",
+      columns: [
+        { title: "Browse", description: "Local, national, & world news as it happens, from over 850 sources of all types", img: "/img/browse-img.png", imgClass: "fluid", additional: "US, World, Politics, Sports, Tech, Entertainment, Science, Business, Lifestyle + more" },
+        { title: "Filter", description: "Decipher between news and noise", img: "/img/filter-img.svg" },
+        { title: "Read", description: "Mobile, tablet, light, dark, web or reader modes", img: "/img/read-img.png", imgClass: "img-bottom" },
+        { title: "Compare", description: "See how different sources cover the same story and compare fact checks across the web", img: "/img/compare-img.png", imgClass: "img-bottom" },
+        { title: "Review", description: "Help improve the news by reviewing media coverage on its fairness, accuracy & quality", img: "/img/review-img.png" },
+      ]
+    },
+
+    graph: {
+      title: "Tech and the truth decay",
+      source: "Source: GALLUP, Sep 2019",
+    }
+  },
+  {
     link: "/contact",
     title: "Contact",
     description: "We're happy to hear from you.",
@@ -212,6 +344,56 @@ export const pages = [
     },
   },
   {
+    link: "/wire",
+    title: "The Wire",
+    description: "Gawq’s journey toward a better media landscape",
+    thumbnail: "wire-thumb.png",
+    hero: {
+      titleCL: "mw-600",
+      variant: "blog",
+      descriptionCL: "mw-600"
+    },
+    footer: {
+      variant: "simple",
+      additional: "Use of Gawq is subject to our <a href='/terms'>Terms</a> & <a href='/privacy'>Privacy Policy</a>.",
+      stores: [
+        { img: "app-store-badge.png", link: "/download" },
+        { img: "google-play-badge.png", link: "/download" },
+      ]
+    },
+    blog: {
+      tagsText: 'Frequent topics',
+      subscribeForm: {
+        title: 'Follow along and get content from the Wire delivered straight to your inbox:',
+      },
+      pageTitle: 'This is the Wire',
+      pageSubtitle: 'Gawq’s journey toward a better media landscape',
+      articlesTitle: 'Recent posts',
+    },
+  },
+  {
+    link: "/post",
+    title: "The Wire",
+    description: "Gawq’s journey toward a better media landscape",
+    thumbnail: "wire-thumb.png",
+    hero: {
+      titleCL: "mw-600",
+      variant: "blog",
+      descriptionCL: "mw-600"
+    },
+  },
+  {
+    link: "/page",
+    title: "The Page",
+    description: "Gawq’s journey toward a better media landscape",
+    thumbnail: "wire-thumb.png",
+    hero: {
+      titleCL: "mw-600",
+      variant: "blog",
+      descriptionCL: "mw-600"
+    },
+  },
+  {
     link: "/business/news-api",
     title: "News API & business solutions",
     description: "Gawq News API & business solutions",
@@ -233,11 +415,12 @@ export const pages = [
     carousel: {
       variant: "fluid",
       className: "with-bullets reduce-padding-md",
+      slidesLg: 3.3,
+      slidesMd: 2.3,
+      loop: false,
       columns: [
         { title: "Topic & entity extraction", description: "Machine learning automatically extracts events, people, businesses, places, & topics in the news.", img: "/img/topic-extraction.jpg", imgClass: "fluid offset20" },
         { title: "Event clustering", description: "Articles are systematically scored for similarity and then organized into a clean feed. Analyze each of them individually, or filter for unique headlines.", img: "/img/event-clustering.jpg", imgClass: "fluid offset20" },
-        { title: "Real-time signals", description: "Gawq analyzes over 500 articles every minute. Search by source, date, location, and/or custom keywords for up-to-the-minute news.", img: "/img/real-time-signals.jpg", imgClass: "fluid offset120" },
-        { title: "Easy integration", description: "Apply Gawq’s API to your next project with simple HTTP get requests and JSON results. Start using the API with as little as 4 lines of code.", img: "/img/easy-integrations.jpg", imgClass: "fluid offset50" },
         { title: "Real-time signals", description: "Gawq analyzes over 500 articles every minute. Search by source, date, location, and/or custom keywords for up-to-the-minute news.", img: "/img/real-time-signals.jpg", imgClass: "fluid offset120" },
         { title: "Easy integration", description: "Apply Gawq’s API to your next project with simple HTTP get requests and JSON results. Start using the API with as little as 4 lines of code.", img: "/img/easy-integrations.jpg", imgClass: "fluid offset50" },
       ]

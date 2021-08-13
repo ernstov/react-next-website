@@ -1,0 +1,67 @@
+@import "../../styles/base/variables.scss";
+
+.faqViewer {
+  width: 100vw;
+  overflow: hidden;
+  padding-bottom: $section-spacer*1.6;
+
+  :global(.container) {
+    max-width: $small-container;
+  }
+
+  :global(.card) {
+    border-bottom: 1px solid $border-color;
+
+    &:global(.active) {
+      :global(.card-header) {
+        :global(svg) {
+          transform: rotate(-180deg);
+        }
+      }
+    }
+
+    &:global(.faq-link) {
+      background-color: rgba($primary, 0.05);
+    }
+
+    &:first-child {
+      border-top: 1px solid $border-color;
+    }
+  }
+
+  :global(.card-header) {
+    padding: 2rem;
+    font-family: $font-family-heavy;
+    font-size: 1.125rem;
+    background-color: transparent;
+    color: $black;
+    outline: none;
+    display: block;
+    cursor: pointer;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: color $transition ease;
+
+    :global(svg) {
+      transform-origin: center center;
+      transition: all $transition ease;
+    }
+
+    &:hover {
+      color: $primary;
+    }
+  }
+
+  :global(.card-body) {
+    padding-bottom: 2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    font-size: 0.9375rem;
+  }
+
+  @include media-breakpoint-down(sm) {
+    padding-bottom: $section-spacer*1.6;
+  }
+}

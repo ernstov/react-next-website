@@ -1,0 +1,47 @@
+@import "../../styles/base/variables.scss";
+
+.quote {
+  background-color: $primary-cover;
+  border-bottom: 1px solid $border-color;
+  border-top: 1px solid $border-color;
+
+  :global(.container) {
+    max-width: $small-container;
+  }
+
+  :global(.quote-img) {
+    width: 192px;
+    height: auto;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+
+  :global(.quote-inner) {
+    max-width: 475px;
+    margin: 0 auto;
+    position: relative;
+    text-align: center;
+  }
+
+  :global(.quote-icon) {
+    font-size: 11rem;
+    color: $primary;
+    opacity: 0.5;
+    line-height: 1;
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-family: $font-family-advanced;
+  }
+  
+
+  @include media-breakpoint-down(md) {
+    :global(.quote-inner) {
+      padding: 0 2rem;
+    }
+
+    :global(.quote-img) {
+      width: 100px;
+    }
+  }
+}

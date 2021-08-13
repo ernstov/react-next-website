@@ -83,7 +83,7 @@ const Footer = ({ data, isVisible }) => {
   }
 
   return (
-    <div className={`${styles.footer} ${visible ? "active" : ""} ${data.variant ? data.variant : ""}`}>
+    <div className={`${styles.footer} ${data.className ? data.className : ""} ${visible ? "active" : ""} ${data.variant ? data.variant : ""}`}>
       {render()}
     </div>
   );

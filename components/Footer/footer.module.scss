@@ -3,6 +3,12 @@
 .footer {
   padding-top: $section-spacer;
 
+  &:global(.small-container) {
+    :global(.container) {
+      max-width: $small-container;
+    }
+  }
+
   &:global(.simple) {
     background-color: $black;
     padding-bottom: $section-spacer;
@@ -10,12 +16,12 @@
 
   @include media-breakpoint-down(md) {
     padding-top: $section-spacer/2;
-    padding-bottom: $section-spacer*1.4;  
+    padding-bottom: $section-spacer * 1.4;
   }
 
   @include media-breakpoint-down(sm) {
     &:global(.simple) {
-      padding-bottom: $section-spacer*2;
+      padding-bottom: $section-spacer * 2;
       padding-top: $section-spacer;
     }
   }
@@ -39,11 +45,11 @@
     order: 1;
 
     a {
-     &:last-child {
-      > * {
-        margin-right: 0 !important;
+      &:last-child {
+        > * {
+          margin-right: 0 !important;
+        }
       }
-     }
     }
   }
 }
@@ -81,7 +87,7 @@
   width: 100%;
   justify-content: center;
 
-  &:global(.simple){
+  &:global(.simple) {
     justify-content: flex-start;
 
     a {
@@ -92,7 +98,7 @@
         opacity: 1;
       }
 
-      &:first-child{
+      &:first-child {
         margin-left: 0;
       }
     }
@@ -112,12 +118,12 @@
   @include media-breakpoint-down(md) {
     a {
       margin: 0 0.5rem;
-      font-size: 1.125rem;  
+      font-size: 1.125rem;
     }
   }
 
   @include media-breakpoint-down(sm) {
-    &:global(.simple){
+    &:global(.simple) {
       justify-content: center;
       margin-top: 2rem;
 
@@ -136,7 +142,7 @@
   justify-content: space-between;
   margin: 2rem auto;
 
-  &:global(.simple){
+  &:global(.simple) {
     max-width: 100%;
     justify-content: flex-start;
 
@@ -159,10 +165,10 @@
       text-decoration: none;
       color: inherit;
     }
-  } 
+  }
 
   @include media-breakpoint-down(sm) {
-    &:global(.simple){
+    &:global(.simple) {
       justify-content: center;
 
       a {
@@ -181,7 +187,7 @@
   font-size: 0.8125rem;
   text-align: center;
 
-  &:global(.simple){
+  &:global(.simple) {
     text-align: left;
     border-top: 1px solid rgba($white, 0.1);
     padding-top: 2rem;
@@ -190,7 +196,7 @@
       color: inherit;
       text-decoration: underline;
 
-      &:hover{
+      &:hover {
         text-decoration: none;
       }
     }

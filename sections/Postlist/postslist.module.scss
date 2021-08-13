@@ -1,0 +1,239 @@
+@import "../../styles/base/variables.scss";
+
+.blog {
+  :global(.badge) {
+    cursor: pointer;
+    transition: background-color $transition ease;
+
+    &:global(.active) {
+      background-color: $primary;
+
+      &:hover {
+        background-color: $primary;
+      }
+    }
+
+    &:hover {
+      background-color: rgba($dark, 0.15);
+    }
+  }
+}
+
+.blogHeader {
+  width: 100%;
+  height: 220px;
+  background: url("/img/wire-bg.png") center center;
+  background-size: cover;
+  position: relative;
+  border-bottom: 1px solid rgba($dark-1, 0.5);
+
+  img {
+    width: 380px;
+    display: block;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -17px;
+  }
+
+  @include media-breakpoint-down(md) {
+    height: 150px;
+
+    img {
+      width: 300px;
+      bottom: -14px;
+    }
+  }
+}
+
+.blogPageTitle {
+  margin-top: 30px;
+  margin-bottom: 15px;
+}
+
+.blogSubtitle {
+  color: #818181;
+  line-height: 1.4;
+}
+
+.blogHeaderWrapper {
+  text-align: center;
+  margin: 0 auto;
+  max-width: 760px;
+  width: 100%;
+  border-bottom: 1px solid #e2e2e2;
+  padding-bottom: 30px;
+
+  @include media-breakpoint-down(sm) {
+    max-width: calc(100% - 60px);
+    padding-bottom: 5px;
+  }
+}
+
+.blogContainer {
+  margin: 0 auto;
+  max-width: 760px;
+  width: 100%;
+
+  @include media-breakpoint-down(sm) {
+    padding: 0 15px;
+  }
+}
+
+.doubleSectionWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 696px;
+  margin: 35px auto;
+
+  @include media-breakpoint-down(md) {
+    justify-content: center;
+    padding: 0 30px;
+    margin: 25px auto 0;
+  }
+}
+
+.tagsWrapper {
+  max-width: 320px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.598585);
+  border: 1px solid #d1d1d1;
+  border-radius: 8px;
+  padding: 24px 32px 18px;
+
+  :global(.tags-wrapper__title) {
+    font-family: "Avenir";
+    font-weight: normal;
+    font-size: 14px;
+    color: #818181;
+    margin-bottom: 12px;
+  }
+
+  @include media-breakpoint-down(md) {
+    max-width: 400px;
+    margin-bottom: 15px;
+    padding: 20px 30px 18px;
+  }
+}
+
+.subscribeWrapper {
+  max-width: 355px;
+  width: 100%;
+  background: #fffae1;
+  border: 1px solid #d1d1d1;
+  border-radius: 8px;
+  padding: 26px 37px;
+
+  :global(.subscribe-wrapper__text) {
+    font-family: "Avenir";
+    font-weight: normal;
+    font-size: 14px;
+    color: #818181;
+    margin-bottom: 12px;
+  }
+
+  @include media-breakpoint-down(md) {
+    max-width: 400px;
+    padding: 26px 15px;
+
+    :global(.subscribe-wrapper__text) {
+      padding: 0 15px;
+    }
+  }
+}
+
+.subscribe-form {
+  display: flex;
+  justify-content: space-between;
+  height: 46px;
+  background: #ffffff;
+  border: 1px solid #d2cec4;
+  border-radius: 23px;
+  padding-left: 23px;
+  padding-right: 22px;
+  overflow: hidden;
+
+  &__input {
+    border: none;
+    outline: none;
+    max-width: 180px;
+    font-family: "Avenir Next";
+    font-weight: 500;
+    font-size: 14px;
+    color: #818181;
+    padding-right: 10px;
+
+    &::placeholder {
+      font-family: "Avenir Next";
+      font-weight: 500;
+      font-size: 14px;
+      color: #818181;
+    }
+  }
+
+  &__submit {
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 16px;
+    color: #227c9d;
+    opacity: 0.9;
+    color: $secondary;
+    text-decoration: underline;
+    font-family: $font-family-secondary;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  @include media-breakpoint-down(sm) {
+    padding: 0 15px;
+
+    &__input {
+      max-width: 120px;
+    }
+  }
+}
+
+.blogSectionTitleWrapper {
+  position: relative;
+  width: 100%;
+  padding: 0 20px;
+
+  &:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    left: 0;
+    bottom: 21px;
+    background: #e2e2e2;
+  }
+
+  @include media-breakpoint-down(md) {
+    margin-top: 30px;
+    padding: 0 5px;
+  }
+}
+
+.blogSectionTitle {
+  display: inline-block;
+  font-size: 29px;
+  color: #272727;
+  padding: 0 10px;
+  position: relative;
+  z-index: 10;
+
+  &:after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    bottom: 4px;
+    left: 0;
+    width: 100%;
+    height: 19px;
+    background: #fcdd8c;
+  }
+}

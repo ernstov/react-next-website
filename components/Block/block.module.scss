@@ -33,7 +33,7 @@
       }
     }
 
-    &:global(.block-img) {
+    :global(.block-img) {
       max-width: 100%;
       height: auto;
       padding: 0 4rem;

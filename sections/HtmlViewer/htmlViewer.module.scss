@@ -2,6 +2,10 @@
 
 .htmlViewer {
 
+  :global(.container) {
+    max-width: $small-container;
+  }
+
   ul {
     padding-left: 1rem;
 

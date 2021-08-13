@@ -37,22 +37,24 @@ const Follow = ({ data, isVisible, variant }) => {
 
   if (variant === 'form-only') {
     return (
-      <MailchimpSubscribe
-        url={data.button.action}
-        render={({ subscribe, status, message }) => (
-          <div>
-            <form onSubmit={(e) => onSubmit(e, subscribe)} className={`follow-form ${data.bg} ${status === "success" ? "hide" : ""}`}>
-              <div className="follow-input-container bg-white">
-                <input name="EMAIL" type="email" required placeholder={data.placeholder} />
-                <button disabled={status === "sending"} type="submit">{data.button.name}</button>
-                <div className={`follow-notification ${status === "error" ? "active" : ""}`} dangerouslySetInnerHTML={{ __html: message }}></div>
-              </div>
-              {status === "sending" && <div className="follow-loader"><Icon variant="loader" /></div>}
-            </form>
-            <div className={`follow-message ${status === "success" ? "show" : ""}`}>{data.message}</div>
-          </div>
-        )}
-      />
+      <div className={`${styles.follow} form-only ${data.className ? data.className : ""} ${visible ? "active" : ""}`}>
+        <MailchimpSubscribe
+          url={data.button.action}
+          render={({ subscribe, status, message }) => (
+            <div>
+              <form onSubmit={(e) => onSubmit(e, subscribe)} className={`follow-form ${data.bg} ${status === "success" ? "hide" : ""}`}>
+                <div className="follow-input-container bg-white">
+                  <input name="EMAIL" type="email" required placeholder={data.placeholder} />
+                  <button disabled={status === "sending"} type="submit">{data.button.name}</button>
+                  <div className={`follow-notification ${status === "error" ? "active" : ""}`} dangerouslySetInnerHTML={{ __html: message }}></div>
+                </div>
+                {status === "sending" && <div className="follow-loader"><Icon variant="loader" /></div>}
+              </form>
+              <div className={`follow-message ${status === "success" ? "show" : ""}`}>{data.message}</div>
+            </div>
+          )}
+        />
+      </div>
     )
   } else {
     return (

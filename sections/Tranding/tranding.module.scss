@@ -4,6 +4,10 @@
   padding: $section-spacer * 1.5 0;
   padding-bottom: 0;
 
+  :global(.container) {
+    max-width: $small-container;
+  }
+
   :global(.badge) {
     cursor: pointer;
 
@@ -64,8 +68,7 @@
 
   @include media-breakpoint-down(lg) {
     :global(.tranding-container-swiper)  {
-      width: 133%;
-      max-width: 133%;
+      width: calc(100% + #{$gutter/2});
     }
     :global(.tranding-container) {
       &.title {
@@ -76,10 +79,6 @@
   }
 
   @include media-breakpoint-down(sm) {
-    :global(.tranding-container-swiper)  {
-      width: 150%;
-      max-width: 150%;
-    }
     :global(.tranding-tags-container) {
       margin-bottom: 0;
       display: flex;

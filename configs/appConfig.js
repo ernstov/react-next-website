@@ -149,6 +149,12 @@ const app = {
       action: "https://gawq.us2.list-manage.com/subscribe/post?u=dd74d2ac64673e2e30f038e2b&amp;id=3a2aa0376b",
     }
   },
+
+  share: [
+    {name: "twitter", isText: true, link: "https://twitter.com/intent/tweet?url=", icon: "twitter"},
+    {name: "facebook", link: "https://www.facebook.com/sharer/sharer.php?u=", icon: "square-facebook"},
+    {name: "printerest", link: "http://pinterest.com/pin/create/link/?url=", icon: "printerest"},
+  ]
 }
 
 export default app;
