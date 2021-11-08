@@ -3,7 +3,8 @@ import Block from "../../components/Block"
 import { Swiper, SwiperSlide } from "swiper/react"
 import styles from './carousel.module.scss'
 import typographyStyles from "../../styles/global/typography.module.scss"
-import SwiperCore, {Pagination} from 'swiper/core';
+import SwiperCore, {Pagination} from 'swiper/core'
+import shortid from "shortid"
 
 SwiperCore.use([Pagination]);
 
@@ -50,15 +51,15 @@ const Carousel = ({ data, isVisible }) => {
         <Row>
           <Col className="text-center mb-4 mb-md-0">
             {data.img && <img className={`${styles.carouselImg} entry-1`} src={`/img/${data.img}`} />}
-            {data.title && <h3 className={`${typographyStyles.textTitleSemi} mt-4 mb-4 entry-2`}>{data.title}</h3>}
-            {data.description && <div className="entry-3"><p className="mb-0">{data.description}</p></div>}
+            {data.title && <h3 className={`${typographyStyles.textTitleSemi} mt-4 mb-2 entry-2`}>{data.title}</h3>}
+            {data.description && <div className={`${typographyStyles.textSubTitle} entry-3`}><p className="mb-0">{data.description}</p></div>}
           </Col>
         </Row>
       </Container>
       <div className={`${styles.carouselSwiperOverflow} entry-4`}>
         <Swiper {...options}>
           {data.columns.map((item, i) => (
-            <SwiperSlide key={`ci-${i}`}>
+            <SwiperSlide key={`${shortid.generate()}`}>
               <Block variant={data.variant} data={item} />
             </SwiperSlide>
           ))}

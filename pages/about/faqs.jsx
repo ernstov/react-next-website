@@ -1,41 +1,46 @@
 import React from "react"
 import Head from 'next/head'
 import { useState, useEffect } from 'react'
-import appConfig from "../configs/appConfig"
-import Footer from "../components/Footer"
-import { pages } from "../configs/pages/dynamic"
-import {  isWrap, filterIt } from '../utils'
-import Hero from "../sections/Hero"
-import Stores from "../sections/Stores";
-import Follow from "../sections/Follow";
-import VisibilitySensor from '../utils/react-visibility-sensor'
+import appConfig from "../../configs/appConfig"
+import Footer from "../../components/Footer"
+import { isWrap, getUrlParam } from '../../utils'
+import Hero from "../../sections/Hero"
+import FaqViewer from "../../sections/FaqViewer"
+import Follow from "../../sections/Follow"
+import VisibilitySensor from '../../utils/react-visibility-sensor'
 import TagManager from 'react-gtm-module'
+import {page} from "../../configs/pages/faq"
 
 const tagManagerArgs = {
   gtmId: appConfig.gtmId,
   dataLayerName: appConfig.gtmDataLayerName,
   dataLayer: {
-    page: 'Download'
+    page: 'Faq'
   },
 }
 
-const Download = ({ path }) => {
+const Faqs = ({ path }) => {
 
-  const page = filterIt(pages, path, "link")[0]
+  const [question, setQuestion] = useState(null)
   const [wrap, setWrap] = useState(true)
-
-  const sections = [
-    { component: Hero, props: { data: page.hero } },
-    { component: Stores, props: { data: page.stores } },
-    { component: Follow, props: { data: appConfig.follow } },
-    { component: Footer, props: { data: { ...appConfig.footer, className: "small-container"} } },
-  ]
 
   useEffect(() => {
     TagManager.dataLayer(tagManagerArgs)
 
+    if (!isWrap()) {
+      setSections(current => current.filter((item, i)=>i < current.length-1))
+    }
+
+    setQuestion(getUrlParam("q"))
     setWrap(isWrap())
   }, [])
+
+  const sections = [
+    { component: Hero, props: { data: page.hero } },
+    { component: FaqViewer, props: { data: page.faq, question: question, isWrap: wrap } },
+    // { component: Follow, props: { data: {...appConfig.follow, className: "pb-spc"} } },
+    { component: Footer, props: { data: { ...appConfig.footer, className: "small-container"} } },
+  ]
 
   if (!wrap) sections.pop();
 
@@ -67,4 +72,4 @@ export async function getStaticProps() {
   }
 }
 
-export default Download;
+export default Faqs;

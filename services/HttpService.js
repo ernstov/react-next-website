@@ -40,7 +40,7 @@ instance.interceptors.response.use(
         return response.data;
     },
     error => {
-        const err = error.message ? error.message : JSON.stringify(error);
+        const err = error?.response?.data?.msg ? error.response.data.msg : error.message ? error.message : JSON.stringify(error);
         console.log("error===> ", error);
 
         // TODO: Handle error with some UI pop-ups

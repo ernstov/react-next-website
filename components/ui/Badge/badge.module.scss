@@ -1,0 +1,15 @@
+@import "../../../styles/base/variables.scss";
+
+.badge {
+  display: inline-flex;
+  font-family: $font-family-secondary;
+  color: $cover-2;
+  background-color: $primary;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  border-bottom-left-radius: 0;
+
+  &:global(.secondary) {
+    background-color: $secondary;
+  }
+}

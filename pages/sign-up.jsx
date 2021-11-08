@@ -1,18 +1,12 @@
 import React from "react"
 import Head from 'next/head'
-import { useContext, useState } from 'react'
 import appConfig from "../configs/appConfig"
-import { Context } from "../context/context"
-import { pages } from "../configs/pages/dynamic"
-import { filterIt } from '../utils'
 import Hero from "../sections/Hero"
 import Signup from "../sections/Signup"
-import VisibilitySensor from '../utils/react-visibility-sensor';
+import VisibilitySensor from '../utils/react-visibility-sensor'
+import { page } from "../configs/pages/signUp"
 
-const Home = ({ tags, dataPosts, path }) => {
-
-  const { app, dispatchApp, lang: { Home, } } = useContext(Context);
-  const page = filterIt(pages, path, "link")[0];
+const SignUp = ({ tags, dataPosts, path }) => {
 
   const sections = [
     { component: Hero, props: { data: page.hero } },
@@ -43,4 +37,4 @@ export async function getStaticProps() {
   }
 }
 
-export default Home;
+export default SignUp;

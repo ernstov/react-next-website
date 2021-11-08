@@ -23,7 +23,7 @@ const Hero = ({ data, isVisible }) => {
           {data.img &&
             <img className={`${styles.img} entry-1 ${data.imgCL ? data.imgCL : ""} mb-3`} src={data.isExternal ? data.img : `/img/${data.img}`} />
           }
-          <h1 className={`${typographyStyles.textTitle} mb-3 mb-md-3 entry-1 mx-auto ${data.titleCL ? data.titleCL : "mw-410"}`} dangerouslySetInnerHTML={{ __html: data.title }}></h1>
+          <h1 className={`${typographyStyles.textTitle} mb-2 mb-md-2 entry-1 mx-auto ${data.titleCL ? data.titleCL : "mw-410"}`} dangerouslySetInnerHTML={{ __html: data.title }}></h1>
           <p className={`${typographyStyles.textSubTitle} entry-2 mx-auto ${data.descriptionCL ? data.descriptionCL : "mw-410"}`} dangerouslySetInnerHTML={{ __html: data.description }}></p>
         </div>
       case "base":
@@ -32,7 +32,7 @@ const Hero = ({ data, isVisible }) => {
           {data.img &&
             <img className={`${styles.img} entry-1 ${data.imgCL ? data.imgCL : ""}`} src={data.isExternal ? data.img : `/img/${data.img}`} />
           }
-          <h1 className={`${typographyStyles.textTitle} mb-4 mb-md-5 entry-1 mx-auto ${data.titleCL ? data.titleCL : "mw-410"}`} dangerouslySetInnerHTML={{ __html: data.title }}></h1>
+          <h1 className={`${typographyStyles.textTitle} mb-2 mb-md-2 entry-1 mx-auto ${data.titleCL ? data.titleCL : "mw-410"}`} dangerouslySetInnerHTML={{ __html: data.title }}></h1>
           <p className={`${typographyStyles.textSubTitle} entry-2 mx-auto ${data.descriptionCL ? data.descriptionCL : "mw-410"}`} dangerouslySetInnerHTML={{ __html: data.description }}></p>
 
           {data.markets &&

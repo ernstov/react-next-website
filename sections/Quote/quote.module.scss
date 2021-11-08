@@ -20,28 +20,37 @@
     max-width: 475px;
     margin: 0 auto;
     position: relative;
-    text-align: center;
   }
 
   :global(.quote-icon) {
     font-size: 11rem;
-    color: $primary;
-    opacity: 0.5;
+    color: $cover-15;
     line-height: 1;
     position: absolute;
-    left: 0;
+    left: -90px;
     top: 0;
     font-family: $font-family-advanced;
   }
-  
+
+  @include media-breakpoint-down(lg) {
+    :global(.quote-icon) {
+      left: -30px;
+    }
+
+  }
 
   @include media-breakpoint-down(md) {
+    :global(.quote-icon) {
+      left: -10px;
+    }
+
     :global(.quote-inner) {
       padding: 0 2rem;
     }
 
     :global(.quote-img) {
       width: 100px;
+      margin: 0 auto;
     }
   }
 }

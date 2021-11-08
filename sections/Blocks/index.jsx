@@ -32,7 +32,7 @@ const Blocks = ({ data, isVisible }) => {
             <Col className="blocks-col" key={`ci-${i}`} md={6}>
               <div className={`blocks-item entry-${i + 1}`}>
                 <h3 className={`${typographyStyles.textTitleSm2} mb-3`}>{column.title}</h3>
-                <p dangerouslySetInnerHTML={{ __html: column.description }}></p>
+                <p className={`${typographyStyles.textMediumM}`} dangerouslySetInnerHTML={{ __html: column.description }}></p>
               </div>
             </Col>
           ))}

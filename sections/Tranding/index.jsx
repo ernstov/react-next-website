@@ -71,7 +71,7 @@ const Tranding = ({ data, isVisible }) => {
                   <Scrollbar>
                     <div className="tranding-tags-container">
                       {trandData.map((item, i) => (
-                        window.innerWidth < 767 ?
+                        window?.innerWidth < 767 ?
                           <Badge onClick={() => router.push("/download")} key={`bi-${i}`} className="mr-2 mb-0 mb-md-2" variant="cover">{item.name}</Badge>
                           :
                           i < data.limitDesktop &&

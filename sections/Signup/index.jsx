@@ -17,7 +17,7 @@ import { useRouter } from 'next/router'
 
 const Signup = ({ data, isVisible }) => {
 
-  const { lang: { Signup, SignIn, APIplan, Viewpricingplans, Firstname, Lastname, Email, Password, Passwordmustbe, Ihaveread, EndUserAgreement } } = useContext(Context)
+  const { lang: { Signup, SignIn, APIplan, Viewpricingplans, Firstname, Lastname, Email, Password, Passwordmustbe6, Ihaveread, EndUserAgreement } } = useContext(Context)
   const { bottom, options } = data
   const form = useRef(null)
   const [isProcess, setIsProcess] = useState(false)
@@ -50,7 +50,7 @@ const Signup = ({ data, isVisible }) => {
       })
       try {
         await AuthService.signup(JSON.stringify(fields))
-        let routeTo = "/details"
+        let routeTo = "/account/details"
         router.push({ pathname: routeTo, query: { billingPlan: fields.billingPlan } })
       } catch (e) {
         console.log(e);
@@ -81,7 +81,7 @@ const Signup = ({ data, isVisible }) => {
                 />
               </Col>
               <Col md={6} className="mb-4 d-flex align-items-center">
-                <Button link="/pricing" as="link" variant="link-nondec">{Viewpricingplans}</Button>
+                <Button link="/data-solutions/pricing" as="link" variant="link-nondec">{Viewpricingplans}</Button>
               </Col>
               <Col md={6} className="mb-4">
                 <Input name="firstName" variant="flat" label={Firstname} required />
@@ -94,7 +94,7 @@ const Signup = ({ data, isVisible }) => {
               </Col>
               <Col md={6} className="mb-4">
                 <Input name="password" variant="flat" type="password" label={Password} required />
-                <div className="d-flex align-items-start mt-2"><Icon variant="lock" className={`${styles.signupLock}`} /><span className={`${typographyStyles.textRomanTiny} op-05 d-block lh-1`}>{Passwordmustbe}</span></div>
+                <div className="d-flex align-items-start mt-2"><Icon variant="lock" className={`${styles.signupLock}`} /><span className={`${typographyStyles.textRomanTiny} op-05 d-block lh-1`}>{Passwordmustbe6}</span></div>
               </Col>
               <Col className="d-flex justify-content-center pb-4 align-items-center">
                 <Form.Check

@@ -29,17 +29,18 @@
       cursor: pointer;
       border-radius: 50%;
       background-color: $gray-3;
-      transition: background-color $transition ease;
+      transition: all $transition ease;
 
       &:global(.swiper-pagination-bullet-active) {
-        background-color: $secondary;
+        background-color: $dark;
+        transform: scale(1.2);
       }
     }
   }
 
   @include media-breakpoint-down(md) {
     padding-top: $section-spacer/2;
-    padding-bottom: $section-spacer;
+    padding-bottom: $section-spacer/2;
 
     &:global(.reduce-padding-md){
       padding-bottom: 0;

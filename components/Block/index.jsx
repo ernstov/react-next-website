@@ -35,7 +35,7 @@ const Block = ({ data, i, variant, isYearly, children, className }) => {
           </div>
           {data.button &&
             <div className="text-center">
-              <Button {...getButtonOptions(data.button)} variant={data.button.variant}>{data.button.name}</Button>
+              <Button size="sm" {...getButtonOptions(data.button)} variant={data.button.variant}>{data.button.name}</Button>
             </div>
           }
         </div>
@@ -44,9 +44,9 @@ const Block = ({ data, i, variant, isYearly, children, className }) => {
           <div className={`${styles.blockTopShape}`} style={{ backgroundColor: data.color }}></div>
           <div className={`${styles.blockContent}`}>
             <h3 className={`${typographyStyles.textDemi2} ${typographyStyles.fontBase} text-center mb-0`}>{data.name}</h3>
-            <div className={`text-center mb-3`}><span className={`${typographyStyles.tinyLabel}`}>{data.label}</span></div>
+            <div className={`text-center mb-1`}><span className={`${typographyStyles.tinyLabel}`}>{data.label}</span></div>
             <div className={`text-center `}><span className={`${typographyStyles.textMediumReg} `}>{data.description}</span></div>
-            <div className={`${styles.blockPrice} mt-4`}>
+            <div className={`${styles.blockPrice} mt-2`}>
               <div><span className={`${typographyStyles.textDemi2}`}>${numberWithCommas(Math.floor(data.price * (isYearly ? 0.9 : 1)))}</span></div>
               <div className={"ml-1"}>
                 <div><span className={`${typographyStyles.tinyLab} lh-1 d-block`}>{USD}</span></div>
@@ -54,7 +54,7 @@ const Block = ({ data, i, variant, isYearly, children, className }) => {
               </div>
             </div>
             <div className="d-flex justify-content-center">
-              <ul className={`list-plan mt-4 ${data.variant}`}>
+              <ul className={`list-plan mt-2 mb-0 ${data.variant}`}>
                 {data.features.map((feature, i) => (
                   <li key={`fi-${i}`}>{feature}</li>
                 ))}
@@ -69,7 +69,7 @@ const Block = ({ data, i, variant, isYearly, children, className }) => {
         return <div className={`${styles.block} ${className ? className : ""} fluid`}>
           <div className={`block-title`}>
             {data.title && <h3 className={`${typographyStyles.textTitleLg}`}>{data.title}</h3>}
-            {data.description && <p className={`${typographyStyles.textMediumReg} mb-0`}>{data.description}</p>}
+            {data.description && <p className={`${typographyStyles.textSubTitleHero} mb-0`}>{data.description}</p>}
           </div>
 
           {data.img &&

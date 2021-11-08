@@ -2,13 +2,14 @@
 
 .hero {
   width: 100%;
-  padding-top: $section-spacer;
+  padding-top: $section-spacer * 1.4;
   padding-bottom: $section-spacer * 0.8;
   display: flex;
   align-items: center;
   justify-content: center;
   padding-left: $gutter/2;
   padding-right: $gutter/2;
+  overflow: hidden;
 
   &:global(.blog) {
     &:global(.text-sub-title) {
@@ -38,11 +39,20 @@
 .img {
   max-width: 300px;
   max-height: 240px;
-  margin-bottom: 3.5rem;
+  margin-bottom: 1.5rem;
 
   @include media-breakpoint-down(md) {
     max-width: 200px !important;
     width: 100%;
+  }
+}
+
+.imgAdvacned {
+  width: 100%;
+  height: auto;
+
+  @include media-breakpoint-down(md) {
+
   }
 }
 
@@ -77,4 +87,37 @@
   max-width: 320px;
   margin: 0 auto;
   margin-top: 1rem;
+}
+
+.buttonsAdvanced {
+  display: flex;
+  align-items: center;
+
+  > * {
+    margin-right: 1rem;
+  }
+
+  @include media-breakpoint-down(md) {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    max-width: 200px;
+
+    > * {
+      width: 100%;
+    }
+  }
+}
+
+.imgAdvacnedContainer {
+  @include media-breakpoint-down(lg) {
+    width: 430px;
+    position: absolute;
+    bottom: 0;
+    right: -100px;
+  }
+
+  @include media-breakpoint-down(md) {
+    bottom: 0;
+    right: -270px;
+  }
 }

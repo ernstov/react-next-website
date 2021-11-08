@@ -62,7 +62,7 @@ const Faq = ({ data, isVisible, question, isWrap }) => {
             {data.img &&
               <img className={`${styles.img}`} className={`${styles.img} entry-1 ${data.imgCL ? data.imgCL : ""}`} src={data.isExternal ? data.img : `/img/${data.img}`} />
             }
-            {data.title && <h1 className={`${typographyStyles.textTitle} entry-1 mx-auto ${data.titleCL ? data.titleCL : "mw-410"}`} dangerouslySetInnerHTML={{ __html: data.title }}></h1>}
+            {data.title && <h1 className={`${typographyStyles.textTitle} mb-0 entry-1 mx-auto ${data.titleCL ? data.titleCL : "mw-410"}`} dangerouslySetInnerHTML={{ __html: data.title }}></h1>}
             {data.description && <p className={`${typographyStyles.textSubTitle} entry-2 mx-auto ${data.descriptionCL ? data.descriptionCL : "mw-410"}`} dangerouslySetInnerHTML={{ __html: data.description }}></p>}
             {data.titleSPC && <div className={`${styles.columnsTitle} ${typographyStyles.textSubTitleSecondary} mb-5 entry-2`}>{data.titleSPC}</div>}
           </Col>

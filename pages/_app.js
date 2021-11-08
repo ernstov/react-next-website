@@ -83,12 +83,12 @@ export default function App({ Component, pageProps }) {
     Router.events.on("routeChangeComplete", end);
     Router.events.on("routeChangeError", end);
 
-    ApiService.getPages()
-    .then((responses) => Promise.all(responses.map((response) => response.json())))
-    .then((result) => {
-      dispatchApp({ type: "SET_APP_VALUES", data: { trands: result.slice(0, 4), blog: result.slice(4, 5)[0] } });
-    })
-    .catch((err) => console.error(err));
+    // ApiService.getPages()
+    // .then((responses) => Promise.all(responses.map((response) => response.json())))
+    // .then((result) => {
+    //   dispatchApp({ type: "SET_APP_VALUES", data: { trands: result.slice(0, 4), blog: result.slice(4, 5)[0] } });
+    // })
+    // .catch((err) => console.error(err));
 
     return () => {
       Router.events.off("routeChangeStart", start);
@@ -118,18 +118,18 @@ export default function App({ Component, pageProps }) {
   }
 
   const getHeaderVariant = () => {
-    if(router.pathname.indexOf("/account") != -1 || router.pathname.indexOf("/documentation") != -1 || router.pathname.indexOf("/business") != -1) return "business"
+    if(router.pathname.indexOf("/account") != -1 || router.pathname.indexOf("/documentation") != -1 || router.pathname.indexOf("/data-solutions") != -1) return "advanced"
   }
 
   const isHome = () => {
-    return router.pathname.indexOf("/account") == -1 || router.pathname.indexOf("/documentation") == -1 || router.pathname.indexOf("/business") == -1
+    return router.pathname.indexOf("/account") == -1 || router.pathname.indexOf("/documentation") == -1 || router.pathname.indexOf("/data-solutions") == -1
   }
 
 
   return <Context.Provider value={{ app, dispatchApp, lang, scrollB }}>
     <LayoutBase isWrap={wrap}>
-      {isLoader && <Loader loaderState={loaderState} />}
-      {wrap && <Header path={router.pathname} variant={getHeaderVariant()} isLoggedIn={isLoggedIn()} />}
+      {/* {isLoader && <Loader loaderState={loaderState} />} */}
+      {wrap && <Header path={router.pathname} variant={`advanced`} isLoggedIn={isLoggedIn()} />}
       {isHome() && <BottomMenu path={router.pathname} data={appConfig.bottomMenu}/>}
       {isSidebar() && <Sidebar variant={getSidebarVariant()} />}
       <Scrollbar className="scoll-bar" ref={e => { if (e && !scrollB.current) { scrollB.current = e; } }}>

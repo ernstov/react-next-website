@@ -6,17 +6,56 @@ const app = {
   entryDelay: 500,
   gtmId: "GTM-KS798VW",
   gtmDataLayerName: "PageDataLayer",
-  api: "https://app.gawq.com",
+  api: "https://api.goperigon.com",
   apis: {
     signup: "#",
   },
 
+  mobileNavigation: [
+    {
+      label: "For Everyone", links: [
+        { name: "News App", link: "/download" },
+      ]
+    },
+    {
+      label: "For Everyone", links: [
+        { name: "News API", link: "/data-solutions/news-api" },
+        { name: "Pricing", link: "/data-solutions/pricing" },
+        { name: "Documentation", link: "/documentation" },
+        { name: "Business Account", link: "/account" },
+      ]
+    },
+    {
+      label: "Perigon", links: [
+        { name: "Home", link: "/" },
+        { name: "About", link: "/about/overview" },
+        { name: "FAQs", link: "/about/faqs" },
+        { name: "Contact", link: "/about/contact" },
+      ]
+    }
+  ],
+
   headerNavigation: [
-    { name: "News API", link: "/business/news-api", show: 0 },
-    { name: "Pricing", link: "/business/pricing", show: 0 },
-    { name: "Documentation", link: "/documentation", show: 0 },
-    { name: "Sign Up", link: "/sign-up", show: 1 },
-    { name: "Account", link: "/account/plan", show: 2 },
+    { name: "News App", link: "/news-app", show: 0 },
+    {
+      name: "Data Solutions", link: "/data-solutions/news-api", show: 0,
+      sub: [
+        { name: "News API", link: "/data-solutions/news-api" },
+        { name: "Pricing", link: "/data-solutions/pricing" },
+        { name: "Documentation", link: "/documentation" },
+        { name: "Get Started", link: "/sign-in" },
+      ]
+    },
+    {
+      name: "About", link: "/about/overview", show: 0,
+      sub: [
+        { name: "Overview", link: "/about/overview" },
+        { name: "FAQs", link: "/about/faqs" },
+        { name: "Contact", link: "/about/contact" },
+      ]
+    },
+    // { name: "Sign Up", link: "/sign-up", show: 1 },
+    // { name: "Account", link: "/account/plan", show: 2 },
   ],
 
   accountNavigation: [
@@ -59,13 +98,8 @@ const app = {
     links: [
       {
         row: [
-          { name: "Contact us", link: "/contact" }
-        ]
-      },
-      {
-        row: [
-          { name: "Terms", link: "/terms" },
           { name: "Privacy Policy", link: "/privacy" },
+          { name: "Terms of Service", link: "/terms" },
         ]
       },
     ],
@@ -74,7 +108,7 @@ const app = {
   footer: {
     img: "periscope.svg",
     variant: "simple",
-    additional: "Use of Gawq is subject to our <a href='/terms'>Terms</a> & <a href='/privacy'>Privacy Policy</a>.",
+    additional: "Use of Perigon is subject to our <a href='/terms'>Terms</a> & <a href='/privacy'>Privacy Policy</a>.",
     stores: [
       { img: "app-store-badge.png", link: "https://apps.apple.com/us/app/gawq-unbreaking-news/id1514212857" },
       { img: "google-play-badge.png", link: "https://play.google.com/store/apps/details?id=com.gawq" },
@@ -115,9 +149,9 @@ const app = {
         link: "/wire"
       }
     ],
-    copyright: "© 2021 Gawq. All rights reserved.",
+    copyright: "© 2021 Perigon, Inc. All rights reserved.",
   },
-  
+
   bottomMenu: {
     img: "app-icon.png",
     title: "Gawq",
@@ -138,7 +172,7 @@ const app = {
       exclude: ["/"]
     }
   },
-  
+
   follow: {
     title: "Follow our journey:",
     placeholder: "your@email.com",
@@ -151,9 +185,9 @@ const app = {
   },
 
   share: [
-    {name: "twitter", isText: true, link: "https://twitter.com/intent/tweet?url=", icon: "twitter"},
-    {name: "facebook", link: "https://www.facebook.com/sharer/sharer.php?u=", icon: "square-facebook"},
-    {name: "printerest", link: "http://pinterest.com/pin/create/link/?url=", icon: "printerest"},
+    { name: "twitter", isText: true, link: "https://twitter.com/intent/tweet?url=", icon: "twitter" },
+    { name: "facebook", link: "https://www.facebook.com/sharer/sharer.php?u=", icon: "square-facebook" },
+    { name: "printerest", link: "http://pinterest.com/pin/create/link/?url=", icon: "printerest" },
   ]
 }
 

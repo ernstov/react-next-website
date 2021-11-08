@@ -8,11 +8,12 @@
 
   :global(.typer-container) {
     padding: 2rem 4rem;
-    background-color: $primary-cover-2;
-    border: 1px solid $border-color;
+    background-color: $gray-21;
+    border: 1px solid $cover-14;
     border-radius: 10px;
     display: inline-block;
     overflow: hidden;
+    box-shadow: $shadow-6;
 
     ul {
       padding: 0;
@@ -22,6 +23,7 @@
 
       li {
         line-height: 1.6;
+        font-weight: 500;
       }
     }
   }

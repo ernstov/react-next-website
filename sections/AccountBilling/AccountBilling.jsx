@@ -49,7 +49,7 @@ const AccountBilling = ({ data, isVisible }) => {
         'fontSize': '16px',
         '::placeholder': {
           color: '#aab7c4',
-        },
+        }
       },
       invalid: {
         color: '#fa755a',
@@ -99,7 +99,7 @@ const AccountBilling = ({ data, isVisible }) => {
 
       if (userPlan && userPlan.status === "ACTIVE") {
         const data = await UserBillingService.updatePlan(body);
-        
+
       } else {
         const cardElement = elements.getElement(CardElement)
 
@@ -152,7 +152,9 @@ const AccountBilling = ({ data, isVisible }) => {
                       label={Monthly}
                     />
                     <div>
-                      <span className={`${typographyStyles.titleDemi}`}>${billingPlan[selectedPlan.value] ? billingPlan[selectedPlan.value].monthlyPrice : 0}<span className={`${typographyStyles.tinyD} op-05`}>/{mo}</span></span>
+                      <span className={`${typographyStyles.titleDemi}`}>${billingPlan[selectedPlan.value] ? billingPlan[selectedPlan.value].monthlyPrice : 0}
+                        <span className={`${typographyStyles.tinyD} op-05`}>/{mo}</span>
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -169,21 +171,23 @@ const AccountBilling = ({ data, isVisible }) => {
                       label={Yearly}
                     />
                     <div>
-                      <span className={`${typographyStyles.titleDemi}`}>${billingPlan[selectedPlan.value] ? billingPlan[selectedPlan.value].yearlyPrice : 0}<span className={`${typographyStyles.tinyD} op-05`}>/{yr}</span></span>
+                      <span className={`${typographyStyles.titleDemi}`}>${billingPlan[selectedPlan.value] ? billingPlan[selectedPlan.value].yearlyPrice : 0}
+                        <span className={`${typographyStyles.tinyD} op-05`}>/{yr}</span>
+                      </span>
                     </div>
                   </div>
-                  {/* <div className="text-right">
+                  <div className="text-right">
                     <div className={`${styles.badge}`}><span>{Save10}</span></div>
-                  </div> */}
+                  </div>
                 </div>
               </Col>
               <Col md={6} className="mb-4 d-flex align-items-center">
                 <Block className="w-100" variant="stick">
-                  <div><span className={`${typographyStyles.titleSmallD} ${typographyStyles.c7}`}>{billingPlan[selectedPlan.value] ? billingPlan[selectedPlan.value].planName : ""} {plan}</span></div>
-                  <div className="mt-3 mb-3"><span className={`${typographyStyles.textRomanSm} ${typographyStyles.c7}`}>{billingPlan[selectedPlan.value] ? billingPlan[selectedPlan.value].description : ""}</span></div>
+                  <div><span className={`${typographyStyles.titleSmallD}`}>{billingPlan[selectedPlan.value] ? billingPlan[selectedPlan.value].planName : ""} {plan}</span></div>
+                  <div className="mt-3 mb-3"><span className={`${typographyStyles.titleSmallD}`}>{billingPlan[selectedPlan.value] ? billingPlan[selectedPlan.value].description : ""}</span></div>
                   <ul className="list-gray">
                     {billingPlan[selectedPlan.value] && billingPlan[selectedPlan.value].features ? billingPlan[selectedPlan.value].features.split(";").map((feature, i) => (
-                      <li key={`lif-${i}`}><span className={`${typographyStyles.c7}`}>{feature}</span></li>
+                      <li key={`lif-${i}`}><span className={`${typographyStyles.titleSmallD}`}>{feature}</span></li>
                     )) : ""}
                   </ul>
                 </Block>

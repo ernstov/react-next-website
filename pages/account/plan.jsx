@@ -1,23 +1,17 @@
 import React from "react"
 import Head from 'next/head'
-import { useContext, useState } from 'react'
 import appConfig from "../../configs/appConfig"
-import { Context } from "../../context/context"
-import { pages } from "../../configs/pages/dynamic"
-import { filterIt } from '../../utils'
 import Hero from "../../sections/Hero"
 import AccountBilling from "../../sections/AccountBilling"
-import VisibilitySensor from '../../utils/react-visibility-sensor';
+import VisibilitySensor from '../../utils/react-visibility-sensor'
+import { page } from "../../configs/pages/accountPlan"
+import { page as pagePricing } from "../../configs/pages/pricing"
 
-const Plan = ({ tags, dataPosts, path }) => {
-
-  const { app, dispatchApp, lang: { Welcome, } } = useContext(Context)
-  const page = filterIt(pages, path, "link")[0]
-  const pricing = filterIt(pages, "/business/pricing", "link")[0]
+const Plan = () => {
 
   const sections = [
     { component: Hero, props: {data: page.hero} },
-    { component: AccountBilling, props: { data: {...page.accountBilling, pricing: pricing} } },
+    { component: AccountBilling, props: { data: {...page.accountBilling, pricing: pagePricing} } },
   ]
 
   return (

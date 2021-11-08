@@ -7,21 +7,23 @@
   textarea {
     background-color: $white;
     border: none;
-    border-radius: 25px;
+    border-radius: $block-radius;
     width: 100%;
     font-size: 1rem;
     font-weight: 500;
     color: $black;
     outline: none;
-    padding: 0 1rem;
     border: 1px solid $border-color;
-    line-height: $btn-height;
+    height: $btn-height-sm;
+    display: flex;
+    align-items: center;
 
     &:-webkit-autofill,
     &:-webkit-autofill:hover,
     &:-webkit-autofill:focus,
     &:-webkit-autofill:active {
       -webkit-box-shadow: 0 0 0 40px $white inset !important;
+      border: 1px solid $border-color;
     }
 
     &::placeholder {
@@ -38,10 +40,14 @@
     }
   }
 
+  input {
+    padding: 0 1rem;
+  }
+
   textarea {
     height: 100%;
-    border-radius: 12px;
-    padding-top: 0.5rem;
+    padding: 1rem;
+    border-radius: $block-radius;
   }
 
   &:global(.form) {
@@ -107,11 +113,14 @@
     white-space: nowrap;
     overflow: hidden;
     border: 1px solid $cover-9;
-    line-height: $btn-height;
+    height: $btn-height-sm;
+    display: flex;
+    align-items: center;
+    font-weight: 600;
 
     &::placeholder {
       font-size: 1rem;
-      font-weight: 500;
+      font-weight: 600;
       color: rgba($black, 0.5);
     }
   }
@@ -123,6 +132,15 @@
   &:global(.flat) {
     :global(.inputInner) {
       border-radius: $block-radius/2;
+    }
+  }
+
+  &:global(.flat-light) {
+    :global(.inputInner) {
+      border-radius: $block-radius/2;
+      background-color: $cover-16;
+      border-color: $info;
+      color: $secondary;
     }
   }
 

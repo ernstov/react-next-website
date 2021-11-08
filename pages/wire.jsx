@@ -3,12 +3,12 @@ import Head from 'next/head'
 import { useState, useEffect } from 'react'
 import appConfig from "../configs/appConfig"
 import Footer from "../components/Footer"
-import { pages } from "../configs/pages/dynamic"
-import {  isWrap, filterIt } from '../utils'
+import {  isWrap } from '../utils'
 import PostList from "../sections/Postlist"
 import Follow from "../sections/Follow"
 import VisibilitySensor from '../utils/react-visibility-sensor'
 import TagManager from 'react-gtm-module'
+import { page } from "../configs/pages/wire"
 
 const tagManagerArgs = {
   gtmId: appConfig.gtmId,
@@ -20,7 +20,6 @@ const tagManagerArgs = {
 
 const Contact = ({ path }) => {
 
-  const page = filterIt(pages, path, "link")[0]
   const [wrap, setWrap] = useState(true)
 
   const sections = [

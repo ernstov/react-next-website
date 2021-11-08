@@ -2,9 +2,9 @@
 
 .signin {
   width: 100%;
-  max-width: 650px;
+  max-width: 480px;
   padding: 0 $gutter/2;
-  padding-bottom: $section-spacer;
+  padding-bottom: $section-spacer/2;
   margin: 0 auto;
 
   @include media-breakpoint-down(md) {
@@ -17,4 +17,23 @@
   opacity: 0.5;
   margin-right: 0.5rem;
   flex-shrink: 0;
+}
+
+.signinBottom {
+  max-width: 480px;
+  padding: 0 $gutter/2;
+  margin: 0 auto;
+  text-align: center;
+
+  span, a {
+    font-size: 1.0625rem;
+    font-weight: 500;
+  }
+}
+
+.signinBadge {
+  max-width: 480px;
+  padding: 0 $gutter/2;
+  margin: 0 auto;
+  text-align: center;
 }

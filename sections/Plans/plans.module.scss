@@ -6,7 +6,7 @@
   padding-bottom: $section-spacer;
   overflow: hidden;
   position: relative;
-  background-image: url(/img/bg-dots.png);
+  background-image: url(/img/bg-dots-2.png);
   background-repeat: no-repeat;
   background-size: 100% auto;
   background-position: left 0 bottom 8%;
@@ -81,10 +81,11 @@
 
 .switch {
   display: inline-flex;
-  background-color: $white;
+  background-color: $gray-21;
   border-radius: 5px;
   padding: 1rem;
-  border: 1px solid $border-color;
+  border: 1px solid $cover-14;
+  box-shadow: $shadow-6;
 
   > div {
     font-size: 0.9375rem;
@@ -96,17 +97,18 @@
     &:last-child{
       div {
         text-align: left;
-
-        &:last-child{
-          font-weight: 500;
-          font-size: 0.875rem;
-          text-align: left;
-          color: $gray-16;
-          text-transform: none;
-        }
       }
     }
   }
+}
+
+.discount {
+  background-color: $primary;
+  color: $blackAdv;
+  padding: 2px 4px;
+  font-size: 0.70rem;
+  font-weight: 600;
+  border-radius: 2px;
 }
 
 .columns {

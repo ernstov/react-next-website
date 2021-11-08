@@ -8,19 +8,25 @@ import MenuUser from "./MenuUser"
 import Link from "next/link"
 import appConfig from "../../configs/appConfig"
 import Button from "../ui/Button"
-import Router, { useRouter } from "next/router"
+import { useRouter } from "next/router"
 import { Context } from "../../context/context"
 import Logo from "./Logo"
 import Icon from "../Icon"
-
+import { filterItFull } from "../../utils"
+import typographyStyles from '../../styles/global/typography.module.scss'
+import shortid from "shortid";
 
 const Header = ({ data, path, isLoggedIn, variant }) => {
 
-  const { app } = useContext(Context);
+  const { app, lang: { GetTheApp } } = useContext(Context);
   const [isVisible, setIsVisible] = useState(false);
   const [isActiveMobile, setIsActiveMobile] = useState(false)
-  const { headerNavigation } = appConfig
+  const { headerNavigation, mobileNavigation } = appConfig
+  const [subActive, setSubActive] = useState(0)
+  let sub = useRef({})
+  const [line, setLine] = useState({ width: 80, position: sub.current })
   const router = useRouter()
+  let subRef = useRef([])
 
   useEffect(() => {
     setTimeout(() => {
@@ -28,9 +34,25 @@ const Header = ({ data, path, isLoggedIn, variant }) => {
     }, appConfig.entryDelay)
   }, [])
 
+  useEffect(() => {
+    setTimeout(() => {
+      const el = subRef.current[subActive]
+      setLine({ width: el?.offsetWidth - 16 * 2, position: el?.offsetLeft + 16 })
+    }, 500)
+  }, [subActive, router.pathname])
+
+  useEffect(() => {
+    if (filterItFull(headerNavigation, getParentLink(), "link")[0]?.sub) {
+      filterItFull(headerNavigation, getParentLink(), "link")[0].sub.map((link, i) => {
+        if (isActive(link.link)) {
+          setSubActive(i)
+        }
+      })
+    }
+  }, [router.pathname])
+
   const hideAll = () => {
     setIsActiveMobile(false);
-    console.log(111)
   }
 
   const isActive = (link) => {
@@ -43,6 +65,24 @@ const Header = ({ data, path, isLoggedIn, variant }) => {
         return router.pathname.indexOf(link) != -1
       }
     }
+  }
+
+  const isActiveSub = (link) => {
+    if (link == "/" || router.pathname == "/") {
+      return router.pathname == link
+    } else {
+      if (router.pathname == link) {
+        return true
+      } else {
+        return link.indexOf(getParentLink()) != -1
+      }
+    }
+  }
+
+  const getParentLink = () => {
+    const l = router.pathname.split("/")
+
+    return `/${l[1]}`
   }
 
   const render = () => {
@@ -76,7 +116,7 @@ const Header = ({ data, path, isLoggedIn, variant }) => {
               </div>
               <ul>
                 {appConfig.navigation.map((nav, i) => (
-                  !nav.excludeNav && <li onClick={() => hideAll(true)} key={`ni-${i}`}><Link href={nav.link}>{nav.name}</Link></li>
+                  !nav.excludeNav && <li onClick={() => hideAll(true)} key={`${shortid.generate()}`}><Link href={nav.link}>{nav.name}</Link></li>
                 ))}
               </ul>
             </div>
@@ -98,41 +138,86 @@ const Header = ({ data, path, isLoggedIn, variant }) => {
             </div>
           </MenuContainer>
         </div>
-      case "business":
-        return <div className={`${styles.header} fixed ${isVisible ? "visible" : ""}`}>
-          <Container fluid>
-            <Row>
-              <Col lg={3} xs={12} className="d-flex align-items-center justify-content-center justify-content-lg-start">
-                <Logo />
-                <div className={`${styles.mobileActions}`}>
-                  <MenuUser />
-                  {!isLoggedIn && <div className={`${styles.headerToggler}`}><MenuToggler isActiveMobile={isActiveMobile} setIsActiveMobile={() => setIsActiveMobile(!isActiveMobile)} /></div>}
-                </div>
-              </Col>
-              <Col lg={6} xs={6} className={`${styles.navigationCenter}`}>
-                {!isLoggedIn &&
-                  <div className={`${styles.navigation}`}>
-                    {headerNavigation.map((link, i) => (
-                      (link.show == 0 || (link.show == 1 && !app.isAuth) || (link.show == 2 && app.isAuth)) && <Button className={`${isActive(link.link) ? "active" : ""} ml-1 mr-1`} link={link.link} key={`mn-${i}`} as="link" variant="light">{link.name}</Button>
-                    ))}
+      case "advanced":
+        return <div className={`${styles.header} advanced fixed ${isVisible ? "visible" : ""}`}>
+          <div>
+            <Container fluid>
+              <Row>
+                <Col lg={3} xs={12} className="d-flex align-items-center">
+                  <Logo />
+                  <div className={`${styles.mobileActions} ${isActiveMobile ? "active" : ""}`}>
+                    {!isLoggedIn && <div className={`${styles.headerToggler}`}><MenuToggler isActiveMobile={isActiveMobile} setIsActiveMobile={() => setIsActiveMobile(!isActiveMobile)} /></div>}
                   </div>
-                }
-              </Col>
-              <Col lg={3} xs={3} className={`${styles.headerDesktopActions}`}>
-                <div className={`${styles.headerActions}`}>
-                  <MenuUser />
-                  {!isLoggedIn && <div className={`${styles.headerToggler}`}><MenuToggler isActiveMobile={isActiveMobile} setIsActiveMobile={() => setIsActiveMobile(!isActiveMobile)} /></div>}
-                </div>
-              </Col>
-            </Row>
-          </Container>
-          {!isLoggedIn &&
-            <MenuContainer className="business" isActiveMobile={isActiveMobile}>
-              <ul>
-                {headerNavigation.map((link, i) => (
-                  <li onClick={() => hideAll(true)} key={`ni-${i}`}><Link href={link.link}>{link.name}</Link></li>
+                </Col>
+                <Col lg={6} xs={6} className={`${styles.navigationCenter}`}>
+                  {!isLoggedIn &&
+                    <div className={`${styles.navigation}`}>
+                      {headerNavigation.map((link, i) => (
+                        (link.show == 0 || (link.show == 1 && !app.isAuth) || (link.show == 2 && app.isAuth)) && <Button className={`${isActiveSub(link.link) ? "active" : ""} ml-1 mr-1`} link={link.link} key={`mn-${i}`} as="link" variant="light-simple">{link.name}</Button>
+                      ))}
+                    </div>
+                  }
+                </Col>
+                <Col lg={3} xs={3} className={`${styles.headerDesktopActions}`}>
+                  <div className={`${styles.headerActions}`}>
+                    <MenuUser />
+                    {!isLoggedIn && <div className={`${styles.headerToggler}`}><MenuToggler isActiveMobile={isActiveMobile} setIsActiveMobile={() => setIsActiveMobile(!isActiveMobile)} /></div>}
+                  </div>
+                </Col>
+              </Row>
+            </Container>
+          </div>
+          {filterItFull(headerNavigation, getParentLink(), "link")[0]?.sub &&
+            <div className={`${styles.subNavigation}`}>
+              <div className={`${styles.subNavigationInner}`}>
+                {filterItFull(headerNavigation, getParentLink(), "link")[0].sub.map((link, i) => (
+                  <div ref={e => { subRef.current[i] = e }}><Button onClick={() => setSubActive(i)} className={`${isActive(link.link) ? "active" : ""} pl-3 pr-3`} link={link.link} key={`mn-${i}`} as="link" variant="flat-light">{link.name}</Button></div>
                 ))}
-              </ul>
+                <div style={{ maxWidth: `${line.width}px`, transform: `translateX(${line.position}px)` }} className={`${styles.subLine}`}></div>
+              </div>
+            </div>
+          }
+          {!isLoggedIn &&
+            <MenuContainer className="business" isActiveMobile={isActiveMobile} onHide={() => setIsActiveMobile(false)}>
+              <div className="menu-container-top">
+                <div className="menu-container-title">
+                  <Link onClick={() => hideAll(true)} href="/"><img className={`${styles.logoMobile}`} src={`/img/logo-light.svg`} /></Link>
+                </div>
+              </div>
+              <div className="menu-container-middle">
+                {mobileNavigation.map((sect, i) => (
+                  <div className="pb-3" key={`sdr-${i}`}>
+                    <div><span className={typographyStyles.labelMenu}>{sect.label}</span></div>
+                    <ul>
+                      {sect.links.map((nav, z) => (
+                        <li key={`ds-${i}-${z}`} onClick={() => hideAll(true)} key={`${shortid.generate()}`}><Link href={nav.link}>{nav.name}</Link></li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+                <div className="menu-container-stores">
+                  <span className="menu-container-badge">{GetTheApp}</span>
+                  {appConfig.navigationAdditional.stores && appConfig.navigationAdditional.stores.map((store, i) => (
+                    <a key={`sti-${i}`} target="blank" href={store.link}><img className={`${footerStyles.footerStore} mt-2`} src={`/img/${store.img}`} alt="" /></a>
+                  ))}
+                </div>
+              </div>
+              <div className="menu-container-bottom">
+                <div className="menu-container-socials">
+                  {appConfig.footer.socials.map((social, i) => (
+                    <a key={`ski-${i}`} href={social.link} target="blank"><Icon variant={social.icon} /></a>
+                  ))}
+                </div>
+                <div className="menu-container-links">
+                  {appConfig.navigationAdditional.links.map((row, i) => (
+                    <div key={`rki-${i}`}>
+                      {row.row.map((link, i) => (
+                        <div onClick={() => hideAll(true)} key={`lki-${i}`}><Link href={link.link}>{link.name}</Link></div>
+                      ))}
+                    </div>
+                  ))}
+                </div>
+              </div>
             </MenuContainer>
           }
         </div>

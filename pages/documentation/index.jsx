@@ -1,17 +1,11 @@
 import React from "react"
 import Head from 'next/head'
-import { useContext, useState } from 'react'
 import appConfig from "../../configs/appConfig"
-import { Context } from "../../context/context"
-import { pages } from "../../configs/pages/dynamic"
-import { filterIt } from '../../utils'
 import VisibilitySensor from '../../utils/react-visibility-sensor'
 import Page from "../../sections/Page"
+import { page } from "../../configs/pages/documentation"
 
-const GettingStarted = ({ tags, dataPosts, path }) => {
-
-  const { app, dispatchApp, lang: { Welcome, } } = useContext(Context);
-  const page = filterIt(pages, path, "link")[0];
+const Documentation = () => {
 
   const sections = [
     { component: Page, props: { data: page } },
@@ -41,4 +35,4 @@ export async function getStaticProps() {
   }
 }
 
-export default GettingStarted;
+export default Documentation;

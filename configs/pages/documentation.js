@@ -1,0 +1,6 @@
+export const page = {
+  link: "/documentation",
+  title: "Documentation Getting started",
+  description: "Documentation Getting started",
+  html: "<h1>Introduction</h1><p>Datanews API is an HTTP REST API for retrieving recent news articles. Our API accepts HTTP GET requests, and returns JSON-encoded responses. It uses standard HTTP response codes to indicate request's response status. To use the API you must obtain an API key, see Authentication section. There are two main endpoints, one retrieving current news headlines, another for searching over all indexed articles.</p><div class='apiKey mt-3'><h3>Your API Key</h3><div><input disabled value='01qv*&Ddshk35tqa8gerus' type='text' /><button></button></div></div><hr /><h2>Quick Start</h2><p>The easiest way to start using the API is to install our client library, or to make requests using curl or any other command line utility, see examples page. Your API key will be included in all of the examples (if signed in).</p><p><strong>Install the library with command:</strong></p><code>pip install datanews</code>"
+}

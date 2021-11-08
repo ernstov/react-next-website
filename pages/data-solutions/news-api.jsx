@@ -1,28 +1,24 @@
 import React from "react"
 import Head from 'next/head'
-import { useContext, useState } from 'react'
 import appConfig from "../../configs/appConfig"
-import { Context } from "../../context/context"
 import Footer from "../../components/Footer"
-import { pages } from "../../configs/pages/dynamic"
-import { filterIt } from '../../utils'
-import Hero from "../../sections/Hero"
+import HeroAdvanced from "../../sections/Hero/HeroAdvanced"
 import Carousel from "../../sections/Carousel"
 import Columns from "../../sections/Columns"
-import Features from "../../sections/Features"
+import Tags from "../../sections/Tags"
+import FeaturesSimple from "../../sections/Features/FeaturesSimple"
 import Api from "../../sections/Api"
-import VisibilitySensor from '../../utils/react-visibility-sensor';
+import VisibilitySensor from '../../utils/react-visibility-sensor'
+import { page } from "../../configs/pages/newsApi"
 
-const NewsAPI = ({ tags, dataPosts, path }) => {
-
-  const { app, dispatchApp, lang: { Home, } } = useContext(Context);
-  const page = filterIt(pages, path, "link")[0];
+const NewsAPI = () => {
 
   const sections = [
-    { component: Hero, props: { data: page.hero } },
-    { component: Features, props: { data: page.features } },
+    { component: HeroAdvanced, props: { data: page.hero } },
+    { component: FeaturesSimple, props: { data: page.features } },
     { component: Carousel, props: { data: page.carousel } },
     { component: Api, props: { data: page.console } },
+    { component: Tags, props: { data: page.tags } },
     { component: Columns, props: { data: page.columns } },
     { component: Footer, props: { data: appConfig.footer } },
   ]

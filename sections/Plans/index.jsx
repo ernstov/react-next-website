@@ -61,7 +61,7 @@ const Plans = ({ data, isVisible }) => {
           <div className={`${styles.switch} entry-1`}>
             <div><span>{Monthly}</span></div>
             <AvancedSwitch active={isYearly} onChange={(e) => setIsYearly(!isYearly)} />
-            <div><div><span>{Yearly}</span></div><div><span>{discount10}</span></div></div>
+            <div><div><span>{Yearly}</span></div><div className={`${styles.discount}`}><span>{discount10}</span></div></div>
           </div>
         </div>
         <div className="entry-3">

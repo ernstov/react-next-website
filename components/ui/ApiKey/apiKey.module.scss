@@ -1,0 +1,40 @@
+@import "../../../styles/base/variables.scss";
+
+.apiKey {
+  input {
+    background-color: $white;
+    border: 1px solid $gray-18;
+    border-radius: 4px;
+    padding: 0 1rem;
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    font-size: 1.0625rem;
+    color: rgba($black, 0.8);
+    outline: none;
+    height: $btn-height-sm;
+  }
+
+  > div {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.button {
+  width: $btn-height-sm;
+  height: $btn-height-sm;
+  background-color: $cover-10;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  margin-left: 0.5rem;
+  transition: opacity $transition ease;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}

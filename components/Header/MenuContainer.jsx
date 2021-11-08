@@ -1,10 +1,13 @@
 import styles from './header.module.scss'
 
-const MenuContainer = ({ isActiveMobile, children, className }) => {
+const MenuContainer = ({ isActiveMobile, children, className, onHide }) => {
 
   return (
     <div className={`${styles.menuContainer} ${className ? className : ""} ${isActiveMobile ? "active" : ""}`}>
-      {children}
+      <div onClick={onHide}></div>
+      <div>
+        {children}
+      </div>
     </div>
   )
 }

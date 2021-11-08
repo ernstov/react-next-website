@@ -1,47 +1,48 @@
 import React from "react"
 import Head from 'next/head'
 import { useState, useEffect } from 'react'
-import appConfig from "../configs/appConfig"
-import Footer from "../components/Footer"
-import { pages } from "../configs/pages/dynamic"
-import { isWrap, filterIt, getUrlParam } from '../utils'
-import Hero from "../sections/Hero"
-import FaqViewer from "../sections/FaqViewer"
-import Follow from "../sections/Follow"
-import VisibilitySensor from '../utils/react-visibility-sensor'
+import appConfig from "../../configs/appConfig"
+import Footer from "../../components/Footer"
+import {  isWrap } from '../../utils'
+import Hero from "../../sections/Hero"
+import Follow from "../../sections/Follow"
+import Carousel from "../../sections/Carousel"
+import Blocks from "../../sections/Blocks"
+import AboutGraph from "../../sections/AboutGraph"
+import Quote from "../../sections/Quote";
+import Typer from "../../sections/Typer";
+import VisibilitySensor from '../../utils/react-visibility-sensor'
 import TagManager from 'react-gtm-module'
+import {page} from "../../configs/pages/about" 
 
 const tagManagerArgs = {
   gtmId: appConfig.gtmId,
   dataLayerName: appConfig.gtmDataLayerName,
   dataLayer: {
-    page: 'Faq'
+    page: 'About'
   },
 }
 
-const Faqs = ({ path }) => {
+const About = () => {
 
-  const page = filterIt(pages, path, "link")[0]
-  const [question, setQuestion] = useState(null)
   const [wrap, setWrap] = useState(true)
+
+  const sections = [
+    { component: Hero, props: { data: page.hero } },
+    { component: AboutGraph, props: { data: page.graph } },
+    { component: Carousel, props: { data: page.carousel } },
+    { component: Quote, props: { data: page.quote } },
+    { component: Blocks, props: { data: page.cooperation } },
+    { component: Typer, props: { data: page.whatWeAsk } },
+    // { component: Follow, props: { data: appConfig.follow } },
+    { component: Footer, props: { data: { ...appConfig.footer, className: "small-container"} } },
+  ]
 
   useEffect(() => {
     TagManager.dataLayer(tagManagerArgs)
 
-    if (!isWrap()) {
-      setSections(current => current.filter((item, i)=>i < current.length-1))
-    }
-
-    setQuestion(getUrlParam("q"))
     setWrap(isWrap())
   }, [])
-
-  const sections = [
-    { component: Hero, props: { data: page.hero } },
-    { component: FaqViewer, props: { data: page.faq, question: question, isWrap: wrap } },
-    { component: Follow, props: { data: {...appConfig.follow, className: "pb-spc"} } },
-    { component: Footer, props: { data: { ...appConfig.footer, className: "small-container"} } },
-  ]
 
   if (!wrap) sections.pop();
 
@@ -73,4 +74,4 @@ export async function getStaticProps() {
   }
 }
 
-export default Faqs;
+export default About;

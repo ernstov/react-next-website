@@ -46,7 +46,10 @@ const Input = ({ variant, className, placeholder, name, onChange, defaultValue, 
         bootstrapValidate(inputR.current, 'regex:^(?:[A-Z0-9]+([- ]?[A-Z0-9]+)*)?$:Enter a valid Zip code!', setValidaion);
         break;
       case 'password':
-        bootstrapValidate(inputR.current, 'regex:^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-])(?!.* ).{6,}$:', setValidaion);
+      case 'password2':
+      case 'current-password':
+        bootstrapValidate(inputR.current, 'min:6:', setValidaion);
+        //bootstrapValidate(inputR.current, 'regex:^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-])(?!.* ).{6,}$:', setValidaion);
         break;
     }
   };

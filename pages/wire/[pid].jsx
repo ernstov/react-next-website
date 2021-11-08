@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from 'react'
 import Head from 'next/head'
 import appConfig from "../../configs/appConfig"
 import Footer from "../../components/Footer"
-import { pages } from "../../configs/pages/dynamic"
 import {  isWrap, filterIt } from '../../utils'
 import PostViewer from "../../sections/PostViewer"
 import Hero from "../../sections/Hero"
@@ -10,6 +9,7 @@ import { Context } from "../../context/context"
 import { useRouter } from "next/router"
 import VisibilitySensor from '../../utils/react-visibility-sensor'
 import TagManager from 'react-gtm-module'
+import { page } from "../../configs/pages/post"
 
 const tagManagerArgs = {
   gtmId: appConfig.gtmId,
@@ -19,9 +19,8 @@ const tagManagerArgs = {
   },
 }
 
-const Post = ({ path }) => {
+const Post = () => {
 
-  const page = filterIt(pages, "/post", "link")[0]
   const { app, lang: { home } } = useContext(Context);
   const router = useRouter();
   const postId = router.query.pid;

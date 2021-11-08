@@ -23,7 +23,7 @@ const Typer = ({ data, isVisible }) => {
           <Col md={6} className="d-flex align-items-center justify-content-center">
             <img className="typer-img entry-1" src={`/img/${data.img}`} />
           </Col>
-          <Col md={6} className="d-flex d-block justify-content-center">
+          <Col md={6} className="d-flex justify-content-center justify-content-md-start">
             <div className="typer-container entry-1">
               <h3 className={`${typographyStyles.textTitleMd} entry-2`}>{data.title}</h3>
               <ul>

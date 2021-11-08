@@ -214,3 +214,10 @@ export const excludeByKey = (array, key, value) => {
 export const numberWithCommas = (x) => {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 };
+
+export const filterItFull = (array, value, key) => {
+	return array.filter(key
+		? a => a[key].toLowerCase().indexOf(value.toLowerCase()) !== -1
+		: a => Object.keys(a).some(k => a[k].toLowerCase().indexOf(value.toLowerCase()) !== -1)
+	);
+}

@@ -17,6 +17,55 @@
   white-space: nowrap;
   transition: color $transition ease, background-color $transition ease;
 
+  &:global(.sm) {
+    height: $btn-height-sm;
+    font-size: 1.125rem;
+    padding-left: 1.4rem;
+    padding-right: 1.4rem;
+  }
+
+  &:global([disabled]) {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  &:global(.np) {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  &:hover {
+    text-decoration: none;
+    color: inherit;
+
+    svg {
+      color: inherit;
+    }
+  }
+
+  @include media-breakpoint-down(md) {
+    padding-left: 1.4rem;
+    padding-right: 1.4rem;
+  }
+}
+
+.buttonR {
+  background-color: $primary;
+  border: 1px solid $primary;
+  outline: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1.4rem;
+  border-radius: 17px;
+  height: $btn-height-small;
+  font-size: $btn-fsize-small;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color $transition ease, background-color $transition ease;
+
   &:global([disabled]) {
     opacity: 0.5;
     pointer-events: none;
@@ -47,6 +96,7 @@
   font-weight: 600;
   padding-left: 1rem;
   padding-right: 1rem;
+  height: $btn-height-sm;
 }
 
 .arrow {
@@ -182,6 +232,17 @@
   }
 }
 
+.darkLight {
+  background-color: $dark-5;
+  color: $white;
+  border-color: $dark-6;
+
+  &:hover {
+    color: $dark;
+    background-color: $white;
+  }
+}
+
 .primaryWhite {
   background-color: $primary;
   color: $white;
@@ -194,13 +255,35 @@
 }
 
 .primary {
+  background-color: $blackAdv;
+  color: $white;
+  border-color: $blackAdv;
+
+  &:hover {
+    color: $dark;
+    background-color: transparent;
+  }
+}
+
+.primaryY {
   background-color: $primary;
-  color: $black;
+  color: $dark;
   border-color: $primary;
 
   &:hover {
     color: $dark;
     background-color: transparent;
+  }
+}
+
+.outlineArrow {
+  background-color: transparent;
+  color: $blackAdv;
+  border-color: $blackAdv;
+
+  &:hover {
+    color: $white;
+    background-color: $blackAdv;
   }
 }
 
@@ -220,6 +303,25 @@
   background-color: $light;
   color: $black;
   border-color: rgba($black, 0.25);
+
+  &:global(.active) {
+    background-color: $black;
+    color: $white;
+
+    &:hover {
+      color: $white;
+    }
+  }
+
+  &:hover {
+    color: $secondary;
+  }
+}
+
+.lightSimple {
+  background-color: $gray-21;
+  color: $black;
+  border:none;
 
   &:global(.active) {
     background-color: $black;
@@ -311,5 +413,48 @@
   &:hover {
     background-color: $light;
     color: $black;
+  }
+}
+
+.flatLight {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: $dark;
+  opacity: 0.7;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+  transition: opacity $transition ease;
+
+  // &::after{
+  //   content: '';
+  //   width: 100%;
+  //   position: absolute;
+  //   bottom: 0;
+  //   left: 0;
+  //   height: 6px;
+  //   border-top-left-radius: 3px;
+  //   border-top-right-radius: 3px;
+  //   background-color: $dark;
+  //   transform: translateY(100%);
+  //   transform: transform $transition ease;
+  // }
+
+  &:global(.active) {
+    opacity: 1;
+
+    // &::after{
+    //   transform: translateY(0);
+    // }
+  }
+
+  &:hover {
+    text-decoration: none;
+    opacity: 1;
+    color: $dark;
   }
 }

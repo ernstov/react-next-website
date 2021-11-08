@@ -1,21 +1,15 @@
 import React from "react"
 import Head from 'next/head'
-import { useContext, useState } from 'react'
-import appConfig from "../configs/appConfig"
-import { Context } from "../context/context"
-import { pages } from "../configs/pages/dynamic"
-import { filterIt } from '../utils'
-import Hero from "../sections/Hero"
-import AccountPlan from "../sections/AccountPlan"
-import VisibilitySensor from '../utils/react-visibility-sensor';
+import appConfig from "../../configs/appConfig"
+import Hero from "../../sections/Hero"
+import AccountPlan from "../../sections/AccountPlan"
+import VisibilitySensor from '../../utils/react-visibility-sensor'
+import {page} from "../../configs/pages/myDetails" 
 
-const Details = ({ tags, dataPosts, path }) => {
-
-  const { app, dispatchApp, lang: { Welcome, } } = useContext(Context);
-  const page = filterIt(pages, path, "link")[0];
+const Details = () => {
 
   const sections = [
-    { component: Hero, props: { data: {...page.hero, title: `Welc<span>ome, A</span>ndrii`} } },
+    { component: Hero, props: { data: {...page.hero, title: `Welcome, Andrii`} } },
     { component: AccountPlan, props: { data: page.accountPlan } },
   ]
 

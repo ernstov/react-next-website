@@ -3,29 +3,30 @@ import Head from 'next/head'
 import { useState, useEffect } from 'react'
 import appConfig from "../configs/appConfig"
 import Footer from "../components/Footer"
-import { pages } from "../configs/pages/dynamic"
-import {  isWrap, filterIt } from '../utils'
+import {  isWrap } from '../utils'
 import Hero from "../sections/Hero"
-import ContactViewer from "../sections/ContactViewer";
+import Stores from "../sections/Stores";
+import Follow from "../sections/Follow";
 import VisibilitySensor from '../utils/react-visibility-sensor'
 import TagManager from 'react-gtm-module'
+import {page} from "../configs/pages/download"
 
 const tagManagerArgs = {
   gtmId: appConfig.gtmId,
   dataLayerName: appConfig.gtmDataLayerName,
   dataLayer: {
-    page: 'Contact'
+    page: 'Download'
   },
 }
 
-const Contact = ({ path }) => {
+const NewsApp = () => {
 
-  const page = filterIt(pages, path, "link")[0]
   const [wrap, setWrap] = useState(true)
 
   const sections = [
     { component: Hero, props: { data: page.hero } },
-    { component: ContactViewer, props: { data: page.contact } },
+    { component: Stores, props: { data: page.stores } },
+    // { component: Follow, props: { data: appConfig.follow } },
     { component: Footer, props: { data: { ...appConfig.footer, className: "small-container"} } },
   ]
 
@@ -65,4 +66,4 @@ export async function getStaticProps() {
   }
 }
 
-export default Contact;
+export default NewsApp;

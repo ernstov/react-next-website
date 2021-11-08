@@ -1,22 +1,16 @@
 import React from "react"
 import Head from 'next/head'
-import { useContext } from 'react'
 import appConfig from "../../configs/appConfig"
-import { Context } from "../../context/context"
 import Footer from "../../components/Footer"
-import { pages } from "../../configs/pages/dynamic"
-import { filterIt } from '../../utils'
 import Hero from "../../sections/Hero"
 import Faq from "../../sections/Faq"
 import Columns from "../../sections/Columns"
 import Contact from "../../sections/Contact"
 import Plans from "../../sections/Plans"
-import VisibilitySensor from '../../utils/react-visibility-sensor';
+import VisibilitySensor from '../../utils/react-visibility-sensor'
+import { page } from "../../configs/pages/pricing"
 
-const Home = ({ tags, dataPosts, path }) => {
-
-  const { app, dispatchApp, lang: { Home, } } = useContext(Context);
-  const page = filterIt(pages, path, "link")[0];
+const Pricing = () => {
 
   const sections = [
     { component: Hero, props: { data: page.hero } },
@@ -51,4 +45,4 @@ export async function getStaticProps() {
   }
 }
 
-export default Home;
+export default Pricing;

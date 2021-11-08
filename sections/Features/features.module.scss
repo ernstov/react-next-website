@@ -1,7 +1,7 @@
 @import "../../styles/base/variables.scss";
 
 .features {
-  background-color: $black;
+  background-color: $blackAdv;
   padding: $section-spacer*2 $section-spacer;
   background-image: url(/img/features-bg.png), url(/img/bg-dots-light.png);
   background-position: bottom right, left 0 top 8%;
@@ -9,12 +9,22 @@
   background-size: auto auto, 100% auto;
   position: relative;
 
+  &:global(.simple) {
+    background-image: url(/img/features-bg-adv.png);
+    background-position: bottom right;
+    padding: $section-spacer $section-spacer;
+  }
+
   @include media-breakpoint-down(md) {
     padding: $section-spacer $gutter/2;
     background-image: url(/img/bg-dots-light.png);
     background-position: center top 8%;
     background-repeat: no-repeat;
     background-size: auto 400px;
+
+    &:global(.simple) {
+      padding: $section-spacer $section-spacer/4;
+    }
   }
 }
 

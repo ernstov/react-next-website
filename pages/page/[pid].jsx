@@ -2,8 +2,7 @@ import React, { useState, useEffect, useContext } from 'react'
 import Head from 'next/head'
 import appConfig from "../../configs/appConfig"
 import Footer from "../../components/Footer"
-import { pages } from "../../configs/pages/dynamic"
-import {  isWrap, filterIt } from '../../utils'
+import {  isWrap } from '../../utils'
 import PageViewer from "../../sections/PageViewer"
 import Hero from "../../sections/Hero"
 import { Context } from "../../context/context"
@@ -11,6 +10,7 @@ import { useRouter } from "next/router"
 import VisibilitySensor from '../../utils/react-visibility-sensor'
 import TagManager from 'react-gtm-module'
 import ApiService from '../../services/ApiService'
+import { page } from "../../configs/pages/page"
 
 const tagManagerArgs = {
   gtmId: appConfig.gtmId,
@@ -22,7 +22,6 @@ const tagManagerArgs = {
 
 const Page = ({ path }) => {
 
-  const page = filterIt(pages, "/page", "link")[0]
   const { app, lang: { home } } = useContext(Context);
   const router = useRouter();
   const [p, setP] = useState(null);

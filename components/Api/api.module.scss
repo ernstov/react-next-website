@@ -1,9 +1,9 @@
 @import "../../styles/base/variables.scss";
 
-$console-1: #464646;
-$console-2: #141414;
+$console-1: #272727;
+$console-2: #121212;
 $console-3: #624b14;
-$console-4: #d8d8d8;
+$console-4: #ffffff;
 $console-5: #227c9d;
 $font-family-console: "Consolas";
 
@@ -47,9 +47,9 @@ $font-family-console: "Consolas";
 }
 
 .titleText {
-  font-size: 1.1875rem;
+  font-size: 1.6875rem;
   font-weight: 600;
-  color: rgba($white, 0.5);
+  color: rgba($white, 1);
 }
 
 .titleActions {

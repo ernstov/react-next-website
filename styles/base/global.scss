@@ -311,8 +311,8 @@ body .scroll-content {
   }
 
   label {
-    font-size: 0.875rem;
-    font-weight: 500;
+    font-size: 0.9375rem;
+    font-family: $font-family-secondary;
   }
 }
 
@@ -326,6 +326,18 @@ body .scroll-content {
 
   &.badge-cover {
     color: $black;
+  }
+
+  &.badge-secondary-light {
+    color: $secondary;
+    font-size: 1rem;
+    padding: 1rem;
+    border-radius: 3px;
+    background-color: rgba($cover-12, 0.65);
+
+    &:hover {
+      background-color: rgba($cover-12, 1) !important;
+    }
   }
 }
 
@@ -397,14 +409,14 @@ select:-webkit-autofill:focus {
 
   li {
     padding: 0.4rem 0;
-    padding-left: 1.4rem;
+    padding-left: 1rem;
     position: relative;
   }
   li::before {
     content: "•";
     position: absolute;
     left: 0;
-    color: $primary;
+    color: rgba($black, 0.5);
   }
 }
 
@@ -424,4 +436,35 @@ select:-webkit-autofill:focus {
   @include media-breakpoint-down(md) {
     padding: $section-spacer 0;
   }
+}
+
+.z-1 {
+  z-index: 1;
+}
+
+.table {
+  &.simple {
+    thead {
+      font-size: 0.9375rem;
+      font-family: $font-family-secondary;
+      color: rgba($black, 0.65);
+      border-bottom: 1px solid $border-color;
+    }
+
+    td {
+      font-weight: 500;
+    }
+    
+    th, td {
+      padding: 0.8rem 0;
+    }
+  }
+}
+
+.op-08 {
+  opacity: 0.8;
+}
+
+.h-80vh {
+  height: 80vh;
 }

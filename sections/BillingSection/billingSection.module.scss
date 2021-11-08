@@ -1,0 +1,14 @@
+@import "../../styles/base/variables.scss";
+
+.billing {
+  max-width: 1400px;
+  margin: 0 auto;
+  width: calc(100% - #{$gutter});
+  padding: $section-spacer 0;
+  padding-top: $section-spacer/2;
+  box-shadow: $shadow-6;
+
+  @include media-breakpoint-down(md) {
+    padding: $section-spacer/2;
+  }
+}

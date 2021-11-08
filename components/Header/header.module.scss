@@ -6,7 +6,6 @@ $snappy: cubic-bezier(0.694, 0.048, 0.335, 1);
 
 .header {
   padding: 1rem;
-  height: $header-height;
   border-bottom: 2px solid $gray;
   display: flex;
   width: 100%;
@@ -14,6 +13,25 @@ $snappy: cubic-bezier(0.694, 0.048, 0.335, 1);
   background-color: $light;
   transform: translateY(-100%);
   transition: transform $transition * 3 $transition-timing;
+
+  &:global(.advanced) {
+    flex-direction: column;
+    padding: 0;
+    border-bottom: 0;
+
+    & > * {
+      &:first-child {
+        padding: 1rem;
+        height: $header-height;
+        flex-shrink: 0;
+        display: flex;
+        white-space: nowrap;
+        width: 100%;
+        align-items: center;
+        border-bottom: 1px solid $gray-20;
+      }
+    }
+  }
 
   :global(.logoCenter) {
     display: flex;
@@ -42,6 +60,15 @@ $snappy: cubic-bezier(0.694, 0.048, 0.335, 1);
     padding-left: 0;
     padding-right: 0;
     height: $header-height-md;
+
+    &:global(.advanced) {
+      & > * {
+        &:first-child {
+          padding: 0;
+          height: $header-height-md;
+        }
+      }
+    }
 
     :global(.logoCenter) {
       :global(.hag) {
@@ -185,25 +212,48 @@ $snappy: cubic-bezier(0.694, 0.048, 0.335, 1);
 }
 
 .menuContainer {
-
   position: absolute;
+  width: 100vw;
+  height: 100vh;
   right: 0;
   top: 0;
-  background-color: $black;
-  padding: $gutter;
+  display: flex;
+  align-items: stretch;
   padding-top: 0;
-  min-width: 320px;
   z-index: 15;
   transform: translateX(100%);
   transition: transform $transition * 3 $transition-timing;
-  
-  &:global(.business) {
-    padding: 3rem;
-    min-height: 600px;
+
+  > div {
+    &:first-child {
+      background-color: rgba($black, 0.35);
+      width: calc(100% - 270px);
+      opacity: 0;
+      transition: opacity $transition ease;
+    }
+    &:last-child {
+      background-color: $blackAdv;
+      padding: $gutter;
+      padding-top: 0;
+      padding-bottom: 0;
+      width: 270px;
+      transition: box-shadow $transition ease;
+    }
   }
 
   &:global(.active) {
     transform: translateX(0);
+
+    > div {
+      &:first-child {
+        opacity: 1;
+        transition: opacity $transition*3 ease;
+        transition-delay: $transition*3;
+      }
+      &:last-child {
+        box-shadow: 10px 0px 85px rgba(18, 18, 18, 0.6);
+      }
+    }
   }
 
   ul {
@@ -216,11 +266,11 @@ $snappy: cubic-bezier(0.694, 0.048, 0.335, 1);
       margin: 0;
 
       a {
-        color: $light;
+        color: $secondary;
         text-decoration: none;
         font-size: 1.625rem;
         font-weight: 500;
-        padding: 1rem 0;
+        padding: 0.5rem 0;
         display: block;
         transition: color $transition ease;
 
@@ -231,37 +281,52 @@ $snappy: cubic-bezier(0.694, 0.048, 0.335, 1);
     }
   }
 
-
   :global(.menu-container-title) {
     display: flex;
     align-items: center;
-    height: $header-height;
+    height: $header-height-md;
+    padding-top: 0.5rem;
     border-bottom: 1px solid rgba($gray, 0.07);
   }
 
   :global(.menu-container-stores) {
-    height: $header-height;
-    border-bottom: 1px solid rgba($gray, 0.07);
-    display: flex;
-    align-items: center;
+    display: inline-flex;
+    background-color: $dark-5;
+    border-radius: 4px;
+    border: 1px solid rgba($white, 0.1);
+    flex-direction: column;
+    padding-top: 1rem;
+    padding-bottom: 0.7rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+
+    a {
+      margin: 0;
+    }
+  }
+
+  :global(.menu-container-badge) {
+    display: inline-flex;
     justify-content: center;
+    width: 98px;
+    background-color: $primary;
+    color: $blackAdv;
+    padding: 0.2rem 0.4rem;
+    border-radius: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 0.6875rem;
+    letter-spacing: 0.1em;
   }
 
   :global(.menu-container-links) {
     > * {
       margin: 0.5rem 0;
-      display: flex;
-      align-items: center;
+      margin-top: 0;
     }
 
-    span {
-      color: rgba($light, 0.3);
-      margin: 0 0.5rem;
-      display: inline-block;
-      transform: translateY(1px);
-    }
     a {
-      color: $light;
+      color: $lgray;
       text-decoration: none;
       font-weight: 500;
       font-size: 0.9375rem;
@@ -277,11 +342,20 @@ $snappy: cubic-bezier(0.694, 0.048, 0.335, 1);
   :global(.menu-container-top) {
     position: relative;
     z-index: 2;
+    height: $header-height-md;
+  }
+
+  :global(.menu-container-middle) {
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 1rem 0;
+    height: calc(100% - 120px - #{$header-height-md});
   }
 
   :global(.menu-container-bottom) {
     position: relative;
     z-index: 2;
+    height: 120px;
     border-top: 1px solid rgba($gray, 0.07);
   }
 
@@ -307,6 +381,7 @@ $snappy: cubic-bezier(0.694, 0.048, 0.335, 1);
   ul {
     padding: 0.5rem 0;
     margin: 0;
+    padding-top: 0;
     list-style: none;
 
     li {
@@ -314,12 +389,13 @@ $snappy: cubic-bezier(0.694, 0.048, 0.335, 1);
       margin: 0;
 
       a {
-        color: $light;
+        color: $secondary;
         text-decoration: none;
-        font-size: 1.625rem;
+        font-size: 1.1875rem;
         font-weight: 500;
-        padding: 1rem 0;
+        padding: 0.2rem 0;
         display: block;
+        font-weight: 600;
         transition: color $transition ease;
 
         &:hover {
@@ -329,24 +405,15 @@ $snappy: cubic-bezier(0.694, 0.048, 0.335, 1);
     }
   }
 
-
   @include media-breakpoint-down(lg) {
     height: 100vh;
     ul {
       li {
         a {
-          font-size: 1.25rem;
+          font-size: 1.1875rem;
         }
       }
     }
-  }
-
-  @include media-breakpoint-down(sm) {
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
   }
 }
 
@@ -363,6 +430,19 @@ $snappy: cubic-bezier(0.694, 0.048, 0.335, 1);
   @include media-breakpoint-down(lg) {
     display: none;
   }
+}
+
+.subLine {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 6px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  background-color: $dark;
+  transform: translateY(16px);
+  transition: all $transition ease;
 }
 
 .menuUser {
@@ -408,7 +488,7 @@ $snappy: cubic-bezier(0.694, 0.048, 0.335, 1);
 
 .mobileActions {
   position: absolute;
-  right: $gutter;
+  right: $gutter/2;
   top: 50%;
   display: none;
   align-items: center;
@@ -441,7 +521,7 @@ $snappy: cubic-bezier(0.694, 0.048, 0.335, 1);
 }
 
 .logoMobile {
-  height: 28px;
+  height: 25px;
   width: auto;
   display: none;
 
@@ -457,5 +537,52 @@ $snappy: cubic-bezier(0.694, 0.048, 0.335, 1);
 
   @include media-breakpoint-down(md) {
     display: none !important;
+  }
+}
+
+.logo {
+  height: 50px;
+  width: auto;
+  cursor: pointer;
+
+  img {
+    height: 100%;
+    width: auto;
+  }
+
+  @include media-breakpoint-down(md) {
+    height: 40px;
+  }
+}
+
+.subNavigation {
+  background-color: $gray-20;
+  height: 50px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  white-space: nowrap;
+  justify-content: center;
+  overflow-x: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  @include media-breakpoint-down(md) {
+    justify-content: flex-start;
+  }
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.subNavigationInner {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+
+  :global(a) {
+    height: 50px;
   }
 }

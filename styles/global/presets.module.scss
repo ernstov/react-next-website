@@ -191,6 +191,12 @@
     }
   }
 
+  &:global(.neutral) {
+    :global(.acr-select__placeholder) {
+      color: rgba($black, 0.5);
+    }
+  }
+
   :global(.acr-select__value-container) {
     padding-left: 1rem;
   }
@@ -215,7 +221,7 @@
   }
 
   :global(.acr-select__menu) {
-    border-radius: $block-radius/2;
+    border-radius: $block-radius;
     overflow: hidden;
   }
 
@@ -240,7 +246,7 @@
 
   :global(.acr-select__control) {
     background-color: $cover-7;
-    border-radius: $block-radius/2;
+    border-radius: $block-radius;
     box-shadow: none;
     min-height: 46px;
     border: 1px solid $border-color;
@@ -308,10 +314,75 @@
   padding: 10px 14px;
   font-size: 1em;
   font-family: "Source Code Pro", monospace;
-  box-shadow: rgba(50, 50, 93, 0.14902) 0px 1px 3px,
-    rgba(0, 0, 0, 0.0196078) 0px 1px 0px;
+  box-shadow: rgba(50, 50, 93, 0.14902) 0px 1px 3px, rgba(0, 0, 0, 0.0196078) 0px 1px 0px;
   border: 0;
   outline: 0;
   border-radius: 4px;
   background: white;
+}
+
+.listHero {
+  list-style: none;
+  font-weight: 600;
+  font-size: 1.25rem;
+  margin: 0;
+  padding: 0;
+  font-family: $font-family-secondary;
+
+  li {
+    display: flex;
+    align-items: center;
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
+
+    &::before {
+      content: "";
+      width: 18px;
+      height: 7px;
+      margin-right: 1rem;
+      background-image: url(/img/list-bullet-icn.svg);
+      background-position: center center;
+      background-size: 100% auto;
+    }
+  }
+
+  @include media-breakpoint-down(lg) {
+    font-size: 1.0625rem;
+  }
+}
+
+.labelSecondary {
+  background-color: rgba($secondary, 0.1);
+  color: $secondary;
+  border-radius: 4px;
+  text-align: center;
+  width: 100%;
+  padding: 0.9rem 1rem;
+  font-family: $font-family-secondary;
+  font-size: 0.9375rem;
+}
+
+.labelSecondaryLight {
+  background-color: $cover-16;
+  color: $secondary;
+  border-radius: 4px;
+  border: 1px solid rgba($cover-13, 0.5);
+  text-align: center;
+  width: 100%;
+  padding: 0.9rem 1rem;
+  font-family: $font-family-secondary;
+  font-size: 0.9375rem;
+}
+
+.labelError {
+  background-color: rgba($error, 0.05);
+  color: $error;
+  border-radius: 4px;
+  border: 1px solid $error;
+  text-align: center;
+  width: 100%;
+  padding: 1.4rem 1rem;
+  font-family: $font-family-secondary;
+  font-size: 1.0625rem;
+  box-shadow: 0px 2px 0px #EAEAEA;
 }
