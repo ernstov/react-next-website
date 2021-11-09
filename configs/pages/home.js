@@ -1,10 +1,11 @@
 export const page = {
   link: "/",
-  title: "Stay informed, mindfully.",
+  title: "A better way to stay informed",
   description: "Compare the news, mute the noise, and read beyond the headlines.",
   thumbnail: "logo-thumb.png",
   hero: {
     title: "Coming soon",
+    img: "logo.svg",
     //description: "Compare the news, mute the noise, and read beyond the headlines.",
     className: "h-80vh"
     // markets: [
@@ -127,7 +128,7 @@ export const page = {
     title: "Break free from echo chambers. This is news served without an agenda.",
     titleCL: "mw-550",
     button: {
-      name: "Learn more about Gawq",
+      name: "Learn more about Perigon",
       link: "/about",
       className: "w-100",
       variant: "outline-light"

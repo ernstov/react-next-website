@@ -19,6 +19,20 @@
   @include media-breakpoint-down(md) {
     padding: $section-spacer 0;
 
+    :global(.border-bottom-half) {
+      &::after{
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+
+    :global(.border-bottom-half-mobile) {
+      &::after{
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+
     &:global(.reduce-padding-md){
       padding-top: 0;
     }
@@ -64,8 +78,8 @@
 
   @include media-breakpoint-down(md) {
     > div {
-      padding-left: $gutter/2;
-      padding-right: $gutter/2;
+      padding-left: $gutter;
+      padding-right: $gutter;
     }
   }
 }

@@ -246,6 +246,11 @@ const Icon = ({ variant, className }) => {
           <path d="M0.8,13.5c-0.2,0-0.4-0.1-0.5-0.2c-0.3-0.3-0.3-0.8,0-1.1l5.5-5.5L0.2,1.3c-0.3-0.3-0.3-0.8,0-1.1s0.8-0.3,1.1,0l6,6c0.3,0.3,0.3,0.8,0,1.1l-6,6C1.1,13.4,0.9,13.5,0.8,13.5z" />
         </svg>
 
+      case "chevron-right-bold":
+        return <svg name="chevron-right-bold" className={`${styles.appIcon} ${className ? className : ""}`} xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="8px" height="14px" viewBox="0 0 8 14">
+          <path d="M1,14c-0.3,0-0.5-0.1-0.7-0.3c-0.4-0.4-0.4-1,0-1.4L5.6,7L0.3,1.7c-0.4-0.4-0.4-1,0-1.4s1-0.4,1.4,0l6,6c0.4,0.4,0.4,1,0,1.4l-6,6C1.5,13.9,1.3,14,1,14z" />
+        </svg>
+
       case "thumb":
         return <svg className={`${styles.appIcon} ${className ? className : ""}`} width="3" height="11" viewBox="0 0 3 11">
           <rect width="1" height="11" rx="0.5" />
@@ -311,8 +316,8 @@ const Icon = ({ variant, className }) => {
 
       case "completed-circle":
         return <svg className={`${styles.appIcon} ${className ? className : ""}`} name="completed-circle" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 39 39">
-          <path d="M19.5,39C8.7,39,0,30.3,0,19.5S8.7,0,19.5,0C30.3,0,39,8.7,39,19.5S30.3,39,19.5,39z M19.5,3C10.4,3,3,10.4,3,19.5S10.4,36,19.5,36C28.6,36,36,28.6,36,19.5S28.6,3,19.5,3z"/>
-          <path d="M17.5,27c-0.4,0-0.8-0.2-1.1-0.4l-6-6c-0.6-0.6-0.6-1.5,0-2.1c0.6-0.6,1.5-0.6,2.1,0l4.9,4.9l8.9-8.9c0.6-0.6,1.5-0.6,2.1,0c0.6,0.6,0.6,1.5,0,2.1l-10,10C18.3,26.8,17.9,27,17.5,27z"/>
+          <path d="M19.5,39C8.7,39,0,30.3,0,19.5S8.7,0,19.5,0C30.3,0,39,8.7,39,19.5S30.3,39,19.5,39z M19.5,3C10.4,3,3,10.4,3,19.5S10.4,36,19.5,36C28.6,36,36,28.6,36,19.5S28.6,3,19.5,3z" />
+          <path d="M17.5,27c-0.4,0-0.8-0.2-1.1-0.4l-6-6c-0.6-0.6-0.6-1.5,0-2.1c0.6-0.6,1.5-0.6,2.1,0l4.9,4.9l8.9-8.9c0.6-0.6,1.5-0.6,2.1,0c0.6,0.6,0.6,1.5,0,2.1l-10,10C18.3,26.8,17.9,27,17.5,27z" />
         </svg>
 
       case "warning":

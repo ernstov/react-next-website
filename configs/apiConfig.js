@@ -5,7 +5,7 @@ const today = now.format("YYYY-MM-DD");
 const yestarday = now.subtract(1, "day").format("YYYY-MM-DD");
 
 const api = {
-  api: "https://app.gawq.com",
+  api: "https://app.perigon.com",
   contact: "#",
   tagsRequests: [
     {api:`/tags/trending?cat=person&startTime=${yestarday}T00:00:00&endTime=${today}T23:59:59&_limit=6`, name: "People", icon: "people"},

@@ -12,8 +12,8 @@ export const page = {
   },
   stores: {
     stores: [
-      { img: "app-store-badge.png", link: "https://apps.apple.com/us/app/gawq-unbreaking-news/id1514212857" },
-      { img: "google-play-badge.png", link: "https://play.google.com/store/apps/details?id=com.gawq" }
+      { img: "app-store-badge.png", link: "https://apps.apple.com/us/app/perigon-unbreaking-news/id1514212857" },
+      { img: "google-play-badge.png", link: "https://play.google.com/store/apps/details?id=com.perigon" }
     ],
     additional: {
       title: 'Mobile + tablet friendly 🙌🏽',

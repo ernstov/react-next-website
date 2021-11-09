@@ -32,7 +32,7 @@ const Home = () => {
     // { component: Sources, props: { data: page.mediaSources } },
     // { component: Tranding, props: { data: { ...page.tranding, content: trandingContents } } },
     // { component: About, props: { data: page.about } },
-    { component: Footer, props: { data: {...appConfig.footer} } },
+    //{ component: Footer, props: { data: {...appConfig.footer} } },
   ]
 
   // useEffect(() => {

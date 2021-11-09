@@ -1,7 +1,7 @@
 export const page = {
   link: "/about",
   title: "About",
-  description: "Learn more about Gawq and our mission to improve the modern media landscape.",
+  description: "Learn more about Perigon and our mission to improve the modern media landscape.",
   thumbnail: "about-thumb.png",
   hero: {
     title: "People before technology",

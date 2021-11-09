@@ -1,6 +1,6 @@
 const app = {
   lang: "eng",
-  projectName: "Gawq",
+  projectName: "Perigon",
   headerHeight: 80,
   headerHeightMd: 75,
   entryDelay: 500,
@@ -18,7 +18,7 @@ const app = {
       ]
     },
     {
-      label: "For Everyone", links: [
+      label: "For business", links: [
         { name: "News API", link: "/data-solutions/news-api" },
         { name: "Pricing", link: "/data-solutions/pricing" },
         { name: "Documentation", link: "/documentation" },
@@ -116,19 +116,19 @@ const app = {
     socials: [
       {
         icon: "facebook",
-        link: "https://www.facebook.com/GawqTalk/",
+        link: "https://www.facebook.com/GoPerigon",
       },
       {
         icon: "twitter",
-        link: "https://twitter.com/gawqtalk",
+        link: "https://twitter.com/goperigon",
       },
       {
         icon: "instagram",
-        link: "https://www.instagram.com/gawqgram/",
+        link: "https://www.instagram.com/goperigon/",
       },
       {
         icon: "linked",
-        link: "https://www.linkedin.com/company/gawq",
+        link: "https://www.linkedin.com/company/goperigon/",
       },
     ],
     links: [
@@ -154,7 +154,7 @@ const app = {
 
   bottomMenu: {
     img: "app-icon.png",
-    title: "Gawq",
+    title: "Perigon",
     description: "Apple + Android",
     label: "Free",
     button: {
@@ -180,7 +180,7 @@ const app = {
     message: "Thank You. You are subscribed.",
     button: {
       name: "Subscribe",
-      action: "https://gawq.us2.list-manage.com/subscribe/post?u=dd74d2ac64673e2e30f038e2b&amp;id=3a2aa0376b",
+      action: "https://perigon.us2.list-manage.com/subscribe/post?u=dd74d2ac64673e2e30f038e2b&amp;id=3a2aa0376b",
     }
   },
 

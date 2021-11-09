@@ -187,6 +187,7 @@
 
 .textTitleSm {
   font-size: 1.875rem;
+  line-height: 1;
 
   strong {
     display: inline-block;
@@ -195,6 +196,7 @@
     font-weight: 600;
     padding-left: 5px;
     padding-right: 5px;
+    border-radius: 3px;
   }
 }
 
@@ -458,6 +460,14 @@
   text-transform: uppercase;
 }
 
+.labelMenuFooter {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: $cover-2;
+  text-transform: uppercase;
+}
+
 .textAuthor {
   font-size: 1rem;
   opacity: 0.65;
@@ -469,13 +479,12 @@
   .textTitleSemi {font-size: 2rem;}
   .textTitleLg {font-size: 1.625rem;}
   .textSubMd {font-size: 1rem;}
-  .textTitleDemi {font-size: 1.15rem;}
   .textSubTitleSecondary {font-size: 1.125rem;}
   .labelPrimaryMd {font-size: 1.1875rem;}
   .textWhiteRegular{font-size: 1rem;}
   .textWhiteDemi {font-size: 1rem;}
   .textTitleLight {font-size: 2rem;}
-  .textTitleSm {font-size: 1.125rem;}
+  .textTitleSm {font-size: 2rem;}
   .textRoman {font-size: 1rem;}
   .textTitleHero {font-size: 1.875rem;}
   .textMediumLg {font-size: 1.0625rem;}

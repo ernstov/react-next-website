@@ -109,6 +109,13 @@
 }
 
 .imgAdvacnedContainer {
+
+  bottom: -30px;
+
+  img, svg {
+    max-height: 460px;
+  }
+
   @include media-breakpoint-down(lg) {
     width: 430px;
     position: absolute;

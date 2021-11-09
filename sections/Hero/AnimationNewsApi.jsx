@@ -19,7 +19,7 @@ const AnimationNewsApi = () => {
   }, [])
 
   return (
-    <div ref={animationContainer} className={`${styles.hero}`}></div>
+    <div ref={animationContainer}></div>
   );
 }
 

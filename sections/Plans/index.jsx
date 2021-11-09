@@ -39,8 +39,10 @@ const Plans = ({ data, isVisible }) => {
     },
     breakpoints: {
       300: {
-        slidesPerView: 1,
+        centeredSlides: true,
+        spaceBetween: 0,
         initialSlide: 1,
+        slidesPerView: 1.3,
       },
       767: {
         slidesPerView: 2.3,
@@ -67,7 +69,7 @@ const Plans = ({ data, isVisible }) => {
         <div className="entry-3">
           <Swiper {...options}>
             {data.list.map((item, i) => (
-              <SwiperSlide className="pl-3 pr-3" key={`ci-${i}`}>
+              <SwiperSlide key={`ci-${i}`}>
                 <Block isYearly={isYearly} variant={data.variant} data={item} />
               </SwiperSlide>
             ))}

@@ -30,13 +30,24 @@ const Footer = ({ data, isVisible }) => {
             <Col xl={6} lg={7} className={`${styles.footerSocialsContainer}`}>
               <div className={`${styles.footerLinks} simple entry-2`}>
                 {mobileNavigation.map((sect, i) => (
-                  <div key={`sdr-${i}`}>
-                    <div><span className={typographyStyles.labelMenu}>{sect.label}</span></div>
+                  <div className={`${i == 1 ? "d-none d-md-block": ""}`} key={`sdr-${i}`}>
+                    <div><span className={typographyStyles.labelMenuFooter}>{sect.label}</span></div>
                     <ul>
                       {sect.links.map((nav, z) => (
                         <li key={`ds-${i}-${z}`} onClick={() => hideAll(true)} key={`${shortid.generate()}`}><Link href={nav.link}>{nav.name}</Link></li>
                       ))}
                     </ul>
+
+                    {i == 0 &&
+                      <div className="mt-4 d-block d-md-none">
+                        <div><span className={typographyStyles.labelMenuFooter}>{mobileNavigation[1].label}</span></div>
+                        <ul>
+                          {mobileNavigation[1].links.map((nav, k) => (
+                            <li key={`ds-${i}-${z}`} onClick={() => hideAll(true)} key={`${shortid.generate()}`}><Link href={nav.link}>{nav.name}</Link></li>
+                          ))}
+                        </ul>
+                      </div>
+                    }
                   </div>
                 ))}
               </div>

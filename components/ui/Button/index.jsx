@@ -73,9 +73,9 @@ const Button = ({ children, variant, className, onClick, as, link, isActive, dis
   const getIcons = () => {
     switch (variant) {
       case "primary-arrow":
-        return <span className="ml-3"><Icon variant="arrow-right" /></span>
+        return <span className="ml-3"><Icon variant="chevron-right-bold" /></span>
       case "outline-arrow":
-        return <span className="ml-3"><Icon variant="arrow-right" /></span>
+        return <span className="ml-3"><Icon variant="chevron-right-bold" /></span>
       case "primary-arrow-down":
         return <span className="ml-3"><Icon variant="arrow-down" /></span>
       default:

@@ -89,7 +89,7 @@ export const page = {
       { id: "id6", question: "Another question?", answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sed vestibulum ante. Pellentesque fermentum scelerisque libero, vel tristique massa sodales non. Fusce quis diam condimentum, congue massa tincidunt, aliquet mauris. Aliquam vestibulum faucibus eros a cursus. Mauris gravida mattis diam, a mattis arcu auctor sed." },
       { id: "id7", question: "Another question?", answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sed vestibulum ante. Pellentesque fermentum scelerisque libero, vel tristique massa sodales non. Fusce quis diam condimentum, congue massa tincidunt, aliquet mauris. Aliquam vestibulum faucibus eros a cursus. Mauris gravida mattis diam, a mattis arcu auctor sed." },
       { id: "id8", question: "Another question?", answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sed vestibulum ante. Pellentesque fermentum scelerisque libero, vel tristique massa sodales non. Fusce quis diam condimentum, congue massa tincidunt, aliquet mauris. Aliquam vestibulum faucibus eros a cursus. Mauris gravida mattis diam, a mattis arcu auctor sed." },
-      { id: "id9", question: "Another question?", answer: "In addition to national & world news, Gawq also gives you the ability to follow local news, weather, and events happening in over 100 cities around the globe. New cities are being added every month!" },
+      { id: "id9", question: "Another question?", answer: "In addition to national & world news, Perigon also gives you the ability to follow local news, weather, and events happening in over 100 cities around the globe. New cities are being added every month!" },
       { question: "News API", link: "/data-solutions/news-api" },
     ]
   },
@@ -100,7 +100,7 @@ export const page = {
     columns: [
       {
         title: "Helpful support",
-        description: "We’re here for you. Message us if you experience any problems or find ways to make Gawq work better for you.",
+        description: "We’re here for you. Message us if you experience any problems or find ways to make Perigon work better for you.",
         img: "support.svg",
       },
       {
@@ -118,7 +118,7 @@ export const page = {
 
   contact: {
     title: "Contact us",
-    description: "Send us an email or submit the contact form to get in touch. For Gawq API inquires only.",
+    description: "Send us an email or submit the contact form to get in touch. For Perigon API inquires only.",
     buttons: [
       {
         name: "data@goperigon.com",

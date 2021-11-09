@@ -46,15 +46,15 @@ const Columns = ({ data, isVisible }) => {
           <Container>
             <Row>
               <Col className="text-center mb-4 mb-md-0">
-                {data.title && <h3 className={`${styles.columnsTitle} ${typographyStyles.textTitleSm} mt-4 mb-0 entry-2`}>{data.title}</h3>}
-                {data.titleSPC && <div className={`${typographyStyles.textSubTitleSecondary} mb-4 entry-2`}>{data.titleSPC}</div>}
+                {data.title && <h3 className={`${styles.columnsTitle} ${typographyStyles.textTitleSm} ${data.titleCL ? data.titleCL : ""} mt-4 mb-0 entry-2`}>{data.title}</h3>}
+                {data.titleSPC && <div className={`${typographyStyles.textSubTitleSecondary} ${data.titleSPCCL ? data.titleSPCCL : ""} mb-4 entry-2 mx-auto`}>{data.titleSPC}</div>}
                 {data.description && <div className="entry-3"><p className="mb-0">{data.description}</p></div>}
                 {data.img && <div className={`${styles.columnsImg} entry-3`}><img src={`/img/${data.img}`} alt="" /></div>}
               </Col>
             </Row>
             <Row className={`${styles.columnsRow}`}>
               {data.columns.map((column, i) => (
-                <Col className="entry-3 d-flex align-items-stretch" md={6} key={`ci-${i}`}>
+                <Col className={`entry-3 d-flex align-items-stretch order-md-${i+1} ${column.mobileOrder ? `order-${column.mobileOrder}` : ""}`} md={6} key={`ci-${i}`}>
                   <div className={`${column.className ? `${column.className} pb-4 mb-4` : ""}`}>
                     <div className={`${styles.columnTitle} mb-3`}>{column.img && <img src={`/img/${column.img}`} />}<h4 className={`${typographyStyles.textTitleDemi} mb-0`}>{column.title}</h4></div>
                     <div><span className={`${typographyStyles.textMediumD}`}>{column.description}</span></div>

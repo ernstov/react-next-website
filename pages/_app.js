@@ -122,14 +122,14 @@ export default function App({ Component, pageProps }) {
   }
 
   const isHome = () => {
-    return router.pathname.indexOf("/account") == -1 || router.pathname.indexOf("/documentation") == -1 || router.pathname.indexOf("/data-solutions") == -1
+    return router.pathname.indexOf("/account") == -1 && router.pathname.indexOf("/documentation") == -1 && router.pathname.indexOf("/data-solutions") == -1
   }
 
 
   return <Context.Provider value={{ app, dispatchApp, lang, scrollB }}>
     <LayoutBase isWrap={wrap}>
       {/* {isLoader && <Loader loaderState={loaderState} />} */}
-      {wrap && <Header path={router.pathname} variant={`advanced`} isLoggedIn={isLoggedIn()} />}
+      {(wrap && !isHome()) && <Header path={router.pathname} variant={`advanced`} isLoggedIn={isLoggedIn()} />}
       {isHome() && <BottomMenu path={router.pathname} data={appConfig.bottomMenu}/>}
       {isSidebar() && <Sidebar variant={getSidebarVariant()} />}
       <Scrollbar className="scoll-bar" ref={e => { if (e && !scrollB.current) { scrollB.current = e; } }}>

@@ -115,7 +115,7 @@ const AboutGraph = ({ data, isVisible }) => {
                     <defs>
                       <linearGradient id="paint0_linear" x1="143.859" y1="27.7746" x2="143.859" y2="243.793" gradientUnits="userSpaceOnUse">
                         <stop stopColor="#F9C035" stopOpacity="0.0999781" />
-                        <stop offset="1" stopColor="#272727" stopOpacity="0.307201" />
+                        <stop offset="1" stopColor="#121212" stopOpacity="0.307201" />
                       </linearGradient>
                       <clipPath id="clip0">
                         <rect width="652" height="150" fill="white" transform="translate(50.3657 20.5757)" />

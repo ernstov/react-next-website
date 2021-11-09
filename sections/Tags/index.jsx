@@ -11,17 +11,17 @@ const Tags = ({ data, isVisible }) => {
       <Container className="tags-container title">
         <Row className="mb-4">
           <Col>
-            {data.title && <h3 className={`${styles.columnsTitle} ${typographyStyles.textTitleSm} mt-4 mb-0 entry-2 text-center`} dangerouslySetInnerHTML={{ __html: data.title }}></h3>}
+            {data.title && <h3 className={`${styles.columnsTitle} ${typographyStyles.textTitleSm} mt-4 mb-1 entry-2 text-center`} dangerouslySetInnerHTML={{ __html: data.title }}></h3>}
             {data.description && <div className={`${typographyStyles.textSubTitleSecondary} mb-4 entry-2 text-center`}>{data.description}</div>}
           </Col>
         </Row>
       </Container>
       <Container className="tags-container entry-2">
-        <Row>
-          {data?.rows?.map((tagsRow, i) => (
-            <Col key={`t-${i}`} xl={12} className="pr-0">
-              <div className="tags-tags">
-                <Scrollbar>
+        <Scrollbar>
+          <Row>
+            {data?.rows?.map((tagsRow, i) => (
+              <Col key={`t-${i}`} xl={12} className="pr-0">
+                <div className="tags-tags">
                   <div className="tags-tags-container">
                     {tagsRow.map((item, i) => (
                       <div key={`bi-${i}`}>
@@ -29,11 +29,11 @@ const Tags = ({ data, isVisible }) => {
                       </div>
                     ))}
                   </div>
-                </Scrollbar>
-              </div>
-            </Col>
-          ))}
-        </Row>
+                </div>
+              </Col>
+            ))}
+          </Row>
+        </Scrollbar>
       </Container>
     </div>
   );
