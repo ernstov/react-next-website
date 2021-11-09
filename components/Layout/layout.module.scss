@@ -15,6 +15,7 @@
 
   @include media-breakpoint-down(md) {
     padding-top: $header-height-md;
+    height: auto;
   }
 }
 

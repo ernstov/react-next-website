@@ -12,21 +12,42 @@ const BottomMenu = ({ data, isVisible, path }) => {
   const [delta, setDelta] = useState(0);
   const isCanDetect = useRef(true);
 
+  // useEffect(() => {
+  //   if (scrollB.current) scrollB.current.scrollbar.addListener((status) => {
+  //     if(window.innerWidth < 768) {
+  //       if (isCanDetect.current) {
+  //         isCanDetect.current = false;
+  //         setScrollTop(scrollTop => {setDelta(scrollTop - status.offset.y); return status.offset.y;})
+
+  //         const timer = setTimeout(() => {
+  //           isCanDetect.current = true;
+  //           clearTimeout(timer);
+  //         }, 100)
+  //       }
+  //     }
+  //   });
+  // }, [scrollB])
+
   useEffect(() => {
-    if (scrollB.current) scrollB.current.scrollbar.addListener((status) => {
-      if(window.innerWidth < 768) {
-        if (isCanDetect.current) {
-          isCanDetect.current = false;
-          setScrollTop(scrollTop => {setDelta(scrollTop - status.offset.y); return status.offset.y;})
-  
-          const timer = setTimeout(() => {
-            isCanDetect.current = true;
-            clearTimeout(timer);
-          }, 100)
-        }
+    document.addEventListener('scroll', onScroll)
+
+    return () => document.removeEventListener('scroll', onScroll)
+  }, [])
+
+  const onScroll = (e) => {
+    if (window.innerWidth < 768) {
+      if (isCanDetect.current) {
+        isCanDetect.current = false;
+        setScrollTop(scrollTop => { 
+          setDelta(parseInt(scrollTop - window.scrollY)); return window.scrollY; })
+
+        const timer = setTimeout(() => {
+          isCanDetect.current = true;
+          clearTimeout(timer);
+        }, 100)
       }
-    });
-  }, [scrollB])
+    }
+  }
 
   return (
     <div className={`${styles.bottomMenu} ${delta < 0 && data.for.indexOf(path) != -1 ? "active" : ""} ${isVisible ? "active" : ""}`}>
