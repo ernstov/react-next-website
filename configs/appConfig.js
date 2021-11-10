@@ -14,7 +14,7 @@ const app = {
   mobileNavigation: [
     {
       label: "For Everyone", links: [
-        { name: "News App", link: "/download" },
+        { name: "News App", link: "/news-app" },
       ]
     },
     {
@@ -86,7 +86,7 @@ const app = {
     { name: "Privacy", link: "/privacy", component: "Privacy", excludeNav: true },
     { name: "Coming Soon", link: "/support", component: "ComingSoon", excludeNav: true },
     { name: "Contact us", link: "/contact", component: "Contact", excludeNav: true },
-    { name: "Download", link: "/download", component: "Download", excludeNav: true },
+    { name: "Download", link: "/news-app", component: "Download", excludeNav: true },
     { name: "Post", link: "/wire/:postName", component: "Post", excludeNav: true },
   ],
 
@@ -159,7 +159,7 @@ const app = {
     label: "Free",
     button: {
       name: "Get app",
-      link: "/download",
+      link: "/news-app",
       variant: "primary",
     },
     for: ["/"]
@@ -168,7 +168,7 @@ const app = {
   header: {
     button: {
       name: "Get the app",
-      link: "/download",
+      link: "/news-app",
       exclude: ["/"]
     }
   },

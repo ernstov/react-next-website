@@ -122,7 +122,7 @@ export default function App({ Component, pageProps }) {
   }
 
   const isHome = () => {
-    return router.pathname.indexOf("/account") == -1 && router.pathname.indexOf("/documentation") == -1 && router.pathname.indexOf("/data-solutions") == -1
+    return router.pathname == "/"
   }
 
 
