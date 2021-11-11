@@ -1,10 +1,6 @@
-export const page = {
-  link: "/documentation",
-  title: "Documentation Getting started",
-  description: "Documentation Getting started",
-  html: `<h1>Introduction</h1>
+<h1>Introduction</h1>
 
-<p>Perigon News API is an HTTP REST API for retrieving recent news articles. Our API accepts HTTP GET requests, and returns JSON-encoded responses. It uses standard HTTP response codes to indicate request's response status. To use the API you must obtain an API key, see Authentication section. There are two main endpoints, one retrieving current news headlines, another for searching over all indexed articles.</p>
+<p>Perigon All API is an HTTP REST API for retrieving recent news articles. Our API accepts HTTP GET requests, and returns JSON-encoded responses. It uses standard HTTP response codes to indicate request's response status. To use the API you must obtain an API key, see Authentication section. There are two main endpoints, one retrieving current news headlines, another for searching over all indexed articles.</p>
 
 <div class='apiKey mt-3'>
     <h3>Your API Key</h3>
@@ -32,7 +28,7 @@ export const page = {
 
 <h2>Authentication</h2>
 
-<p>Perigon News API uses API keys to authenticate requests.</p>
+<p>Perigon All API uses API keys to authenticate requests.</p>
 
 <p>You can obtain an API key by registering on the <a href="https://goperigon.com/business">website</a>. The API key grants access to the API resources, therefore you should keep them secure. Do not share them with anyone. If you have registered you can find your personal API key on the account settings page.</p>
 
@@ -52,7 +48,7 @@ export const page = {
 
 <h2>Endpoints</h2>
 
-<p>Perigon News Search API consists of two main endpoints. Each uses HTTP requests to receive input parameters and send responses.</p>
+<p>Perigon All Search API consists of two main endpoints. Each uses HTTP requests to receive input parameters and send responses.</p>
 
 <p>To send responses of reasonable size, Search API uses <strong>pagination</strong>, the parameters <strong>page</strong> and <strong>size</strong> are used to show different part of search results. All parameters, except the <strong>API_KEY</strong> are optional, and may be omitted.</p>
 
@@ -73,7 +69,7 @@ export const page = {
 
 <h2>Errors</h2>
 
-<p>Perigon News API uses HTTP status codes to indicate success or failure of the API request.</p>
+<p>Perigon All API uses HTTP status codes to indicate success or failure of the API request.</p>
 
 <p>General summary:</p>
 
@@ -100,5 +96,3 @@ export const page = {
 <h2>Rate Limiting</h2>
 
 <p>Requests are being rate limited. If the number of requests made exceeds request quota associated with the API key, the request will be rejected. You will have to wait in order to make another request. You can increase your request quota by upgrading your plan.</p>
-`
-}

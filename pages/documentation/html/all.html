@@ -1,14 +1,10 @@
-export const page = {
-  link: "/documentation/headlines",
-  title: "Documentation Headlines",
-  description: "Documentation Headlines",
-  html: `<h1>Headlines</h1>
+<h1>All</h1>
 
-<p>You can retrieve clustered headlines with <strong>api.goperigon.com/v1/headlines</strong> endpoint.</p>
+<p>The endpoint allows search over whole news index using <strong>api.goperigon.com/v1/all</strong> url.</p>
 
 <p><strong>Example request:</strong></p>
 
-<code>curl -XGET 'api.goperigon.com/v1/headlines?q=Dow%20Jones&country=us&apiKey=YOUR_API_KEY'</code>
+<code>curl -XGET 'api.goperigon.com/v1/all?q=data%20privacy&from=2021-09-01&apiKey=YOUR_API_KEY'</code>
 
 <p><strong>Example response:</strong></p>
 
@@ -16,20 +12,39 @@ export const page = {
 <pre style="padding-top: 10px; white-space:pre-wrap;">
 {
    "status":200,
-   "clusters": [
+   "numResults":420,
+   "articles":[
       {
-         "clusterId": "6b237c10d95c457b9608ff1ddfc93a59",
-         "count": 20,
-         "hits": [
-            "url": "https://www.marketscreener.com/quote/index/DJ-INDUSTRIAL-4945/news/Dow-Jones-Industrial-Average-Wall-Street-rises-as-investors-bet-on-earnings-36723414/",
-            "source": { "domain": "marketscreener.com" },
-            "country": "us",
-            "language": "en",
-            "title": "Dow Jones Industrial Average : Wall Street rises as investors bet on earnings",
-            "description": "Dow Jones Industrial Average : Wall Street rises as investors bet on earnings  marketscreener",
-            "content": "Johnson & Johnson and Travelers helped push the blue-chip index up...",
-            ...
-         ]
+         "url":"https://datamatters.sidley.com/get-prepared-for-data-privacy-compliance-under-china-pipl",
+         "source":{
+            "domain":"datamatters.sidley.com"
+         },
+         "country":"us",
+         "language":"en",
+         "title":"Get Prepared for Data Privacy Compliance Under China PIPL",
+         "description":"Get Prepared for Data Privacy Compliance Under China PIPL",
+         "content":"China’s National People’s Congress passed the...",
+         "keywords":[...],
+         "topics":[...],
+         "categories":[...],
+         "sentiment":{
+            "positive":0.027191948,
+            "negative":0.030262038,
+            "neutral":0.942546
+         },
+         "summary":"PIPL requires a controller of large-scale personal data...",
+         "translation":"",
+         "locations":[...],
+         "reprint":true,
+         "authorsByline":"",
+         "articleId":"2ae90baa90c044c3bf2eb696a2414c9e",
+         "clusterId":"8c281c71cb6647b585c52cee7b1c22d0",
+         "imageUrl":"https://datamatters.sidley.com/wp-content/uploads/2021/07/MN-15519-LinkedIn-Graphic-Privacy-Blog-1.jpg",
+         "pubDate":"2021-09-23T21:15:46+00:00",
+         "addDate":"2021-09-23T21:24:54.366962+00:00",
+         "refreshDate":"2021-09-23T21:24:54.366962+00:00",
+         "matchedAuthors":[...],
+         ...
       }
    ]
 }
@@ -156,23 +171,22 @@ export const page = {
    </tr>
    <tr>
       <th scope="row">22</th>
-      <td>sortBy</td>
-      <td>'count' - sort by the number of articles in the cluster (desc); 'relevance' - sort by the relevance to the query (most relevant first); 'date' - sort by the publication time (desc).</td>
-   </tr>
+      <td>location</td>
+      <td>Return all articles that have the specified location. Location attributes are delimited by ':' between key and value, and '::' between attributes. Example: 'city:New York::state:NY'.</tr>
    <tr>
       <th scope="row">23</th>
-      <td>sortClusterBy</td>
-      <td>Sort articles in cluster by parameters, can be by \`relevance\` to search query or by \`date\` of publication.</td>
+      <td>sortBy</td>
+      <td>Either 'relevance' to sort by relevance to the query or 'date' to sort by the publication date (desc).</td>
    </tr>
    <tr>
       <th scope="row">24</th>
-      <td>maxClusters</td>
-      <td>Maximum number of clusters to return.</td>
+      <td>page</td>
+      <td>Zero-based page number. Up to 10000.</td>
    </tr>
    <tr>
       <th scope="row">25</th>
-      <td>maxSize</td>
-      <td>Maximum number of articles per cluster to return.</td>
+      <td>size</td>
+      <td>Page size, can be from 1 to 100.</td>
    </tr>
    <tr>
       <th scope="row">26</th>
@@ -181,10 +195,13 @@ export const page = {
    </tr>
    <tr>
       <th scope="row">27</th>
+      <td>showNumResults</td>
+      <td>Whether to show the total number of all matched articles. By default it's `false` which makes queries a bit more efficient but also counts up to 10000 articles.</td>
+   </tr>
+   <tr>
+      <th scope="row">28</th>
       <td>type</td>
-      <td>Returns only a specific type of articles in the result. If set to \`local\` - return local news, \`world\` - non-local news, \`all\` - all articles (the default).</td>
+      <td>Returns only a specific type of articles in the result. If set to `local` - return local news, `world` - non-local news, `all` - all articles (the default).</td>
    </tr>
    </tbody>
 </table>
-`
-}
