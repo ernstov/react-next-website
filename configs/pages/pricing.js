@@ -2,6 +2,7 @@ export const page = {
   link: "/data-solutions/pricing",
   title: "API pricing",
   description: "API pricing",
+  thumbnail: "logo-thumb.png",
   hero: {
     title: "API pricing",
     titleCL: "mw-450",

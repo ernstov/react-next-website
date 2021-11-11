@@ -1,6 +1,7 @@
 export const page = {
   title: "All API & business solutions",
   description: "Perigon All API & business solutions",
+  thumbnail: "logo-thumb.png",
   hero: {
     title: "A single access-point to the news that matters",
     titleCL: "mw-450",

@@ -46,7 +46,7 @@ const NewsApp = () => {
         <meta property="og:title" content={`${appConfig.projectName} - ${page.title}`}></meta>
         <meta name="description" content={`${page.description}`}></meta>
         <meta property="og:description" content={`${page.description}`}></meta>
-        <meta property="og:image" content={`/img/${page.thumbnail}`} id="og"></meta>
+        <meta property="og:image" content={`${appConfig.projectDomain}/img/${page.thumbnail}`} id="og"></meta>
       </Head>
       {sections.map((section, i) => (
         <VisibilitySensor minTopValue={100} partialVisibility={true} once={true} key={`p-${i}`}>

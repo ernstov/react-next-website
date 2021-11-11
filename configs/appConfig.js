@@ -7,6 +7,7 @@ const app = {
   gtmId: "GTM-KS798VW",
   gtmDataLayerName: "PageDataLayer",
   api: "https://api.goperigon.com",
+  projectDomain: "https://goperigon.com",
   apis: {
     signup: "#",
   },
