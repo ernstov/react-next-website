@@ -2,11 +2,14 @@ import React from "react"
 import Head from 'next/head'
 import appConfig from "../../configs/appConfig"
 import VisibilitySensor from '../../utils/react-visibility-sensor'
-import { page } from "../../configs/pages/documentationExamples"
+import { page } from "../../configs/pages/documentationHeadlines"
+import Page from "../../sections/Page";
 
 const Headlines = () => {
 
-  const sections = []
+  const sections = [
+    { component: Page, props: { data: page } },
+  ]
 
   return (
     <>

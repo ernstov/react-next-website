@@ -3,10 +3,13 @@ import Head from 'next/head'
 import appConfig from "../../configs/appConfig"
 import VisibilitySensor from '../../utils/react-visibility-sensor'
 import { page } from "../../configs/pages/documentationLanguages"
+import Page from "../../sections/Page";
 
 const CountriesLanguages = () => {
 
-  const sections = []
+  const sections = [
+    { component: Page, props: { data: page } },
+  ]
 
   return (
     <>

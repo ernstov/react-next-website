@@ -14,12 +14,12 @@ const app = {
   mobileNavigation: [
     {
       label: "For Everyone", links: [
-        { name: "News App", link: "/news-app" },
+        { name: "All App", link: "/news-app" },
       ]
     },
     {
       label: "For business", links: [
-        { name: "News API", link: "/data-solutions/news-api" },
+        { name: "All API", link: "/data-solutions/news-api" },
         { name: "Pricing", link: "/data-solutions/pricing" },
         { name: "Documentation", link: "/documentation" },
         { name: "Business Account", link: "/account" },
@@ -36,11 +36,11 @@ const app = {
   ],
 
   headerNavigation: [
-    { name: "News App", link: "/news-app", show: 0 },
+    { name: "All App", link: "/news-app", show: 0 },
     {
       name: "Data Solutions", link: "/data-solutions/news-api", show: 0,
       sub: [
-        { name: "News API", link: "/data-solutions/news-api" },
+        { name: "All API", link: "/data-solutions/news-api" },
         { name: "Pricing", link: "/data-solutions/pricing" },
         { name: "Documentation", link: "/documentation" },
         { name: "Get Started", link: "/sign-in" },
@@ -68,9 +68,8 @@ const app = {
   ],
 
   documentationNavigation: [
-    { name: "News", link: "/documentation/news" },
+    { name: "All", link: "/documentation/all" },
     { name: "Headlines", link: "/documentation/headlines" },
-    { name: "Sources", link: "/documentation/sources" },
     { name: "Advanced queries", link: "/documentation/advanced-queries" },
     { name: "Countries & languages", link: "/documentation/countries-languages" },
     { name: "Examples", link: "/documentation/examples" },

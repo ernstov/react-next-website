@@ -12,6 +12,6 @@ export const page = {
     className: "pb-4",
   },
   signIn: {
-    label: "News app account? Please login using the app."
+    label: "All app account? Please login using the app."
   }  
 }

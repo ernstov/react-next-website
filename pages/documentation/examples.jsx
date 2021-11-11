@@ -3,10 +3,13 @@ import Head from 'next/head'
 import appConfig from "../../configs/appConfig"
 import VisibilitySensor from '../../utils/react-visibility-sensor'
 import { page } from "../../configs/pages/documentationExamples"
+import Page from "../../sections/Page";
 
 const Examples = ({ tags, dataPosts, path }) => {
 
-  const sections = []
+  const sections = [
+    { component: Page, props: { data: page } },
+  ]
 
   return (
     <>

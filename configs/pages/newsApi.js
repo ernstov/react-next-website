@@ -1,6 +1,6 @@
 export const page = {
-  title: "News API & business solutions",
-  description: "Perigon News API & business solutions",
+  title: "All API & business solutions",
+  description: "Perigon All API & business solutions",
   hero: {
     title: "A single access-point to the news that matters",
     titleCL: "mw-450",
@@ -109,7 +109,7 @@ export const page = {
   features: {
     img: "",
     column2: {
-      label: "News from over 40,000 sources",
+      label: "All from over 40,000 sources",
       list: [
         {
           title: "Global media",
