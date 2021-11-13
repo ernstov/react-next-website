@@ -19,6 +19,19 @@ const Page = ({ data, isVisible }) => {
     }
   }, [isVisible])
 
+  useEffect(() => {
+    document.querySelectorAll("pre").forEach((el)=>{
+      let temp = ''
+      
+      const lines = el.innerHTML.split("\n")
+      lines.forEach((line)=>{
+        temp += `<span>${line}</span>`
+      })
+
+      el.innerHTML = temp
+    })
+  }, [])
+
   return (
     <div className={`${styles.page} ${data.className ? data.className : ""} ${visible ? "active" : ""}`}>
       <Container className="entry-1">

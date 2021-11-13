@@ -133,6 +133,100 @@
     }
   }
 
+  :global(.code-head), :global(.code-body) {
+    h3 {
+      text-transform: uppercase;
+      font-size: 0.7rem;
+      font-family: Arial, Helvetica, sans-serif;
+      color: $white;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.5rem;
+    }
+
+    label {
+      width: 100%;
+      background-color: $blackAdv;
+      color: $white;
+      height: 24px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      padding-left: 1rem;
+      margin-bottom: 0;
+      border-top-right-radius: $border-radius/2;
+      border-top-left-radius: $border-radius/2;
+    }
+  }
+
+  :global(.code-head){ 
+    background-color: $black;
+    padding: 1.6rem;
+    border-top-left-radius: $border-radius;
+    border-top-right-radius: $border-radius;
+    border-bottom: 2px solid $blackAdv;
+
+    code {
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      color: $black;
+      font-weight: 600;
+      margin-top: 0;
+      font-size: 0.9375rem;
+    }
+  }
+
+  :global(.code-body) {
+    border-bottom-left-radius: $border-radius;
+    border-bottom-right-radius: $border-radius;
+    background-color: $black;
+    padding: 1.6rem;
+
+    code {
+      color: $white;
+      background-color: transparent;
+      font-weight: 400;
+      margin-top: 0;
+      height: auto;
+      border: none;
+      font-size: 0.8125rem;
+      line-height: 1.6;
+      margin-bottom: 0;
+      padding: 0;
+
+      pre {
+        white-space:pre-wrap;
+        margin-bottom: 0;
+        counter-reset: line;
+        padding-bottom: 10px;
+        scrollbar-width: none;
+
+        &::-webkit-scrollbar {
+          width: 1em;
+          height: 3px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          background-color: rgba(255,255,255, 0.2);
+        }
+        
+        span {
+          display: block;
+          white-space:pre;
+        }
+        span:before {
+          counter-increment: line;
+          content: counter(line);
+          display: inline-block;
+          text-align: right;
+          padding: 0 .5em;
+          margin-right: .5em;
+          color: #888
+        }
+      }
+    }
+  }
+
   @include media-breakpoint-down(md) {
 
     h1, h2 {

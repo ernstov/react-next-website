@@ -6,14 +6,16 @@ export const page = {
 
 <p>You can retrieve clustered headlines with <strong>api.goperigon.com/v1/headlines</strong> endpoint.</p>
 
-<p><strong>Example request:</strong></p>
+<div class="code-head">
+  <h3>Request</h3>
+  <label>curl -XGET</label>
+  <code>api.goperigon.com/v1/headlines?q=Dow%20Jones&country=us&apiKey=YOUR_API_KEY</code>
+</div>
 
-<code>curl -XGET 'api.goperigon.com/v1/headlines?q=Dow%20Jones&country=us&apiKey=YOUR_API_KEY'</code>
-
-<p><strong>Example response:</strong></p>
-
-<code style="height: auto;">
-<pre style="padding-top: 10px; white-space:pre-wrap;">
+<div class="code-body">
+  <h3>Response</h3>
+  <code>
+   <pre>
 {
    "status":200,
    "clusters": [
@@ -32,9 +34,9 @@ export const page = {
          ]
       }
    ]
-}
-</pre>
-</code>
+}</pre>
+   </code>
+</div>
 
 <hr />
 
