@@ -12,22 +12,6 @@ const BottomMenu = ({ data, isVisible, path }) => {
   const [delta, setDelta] = useState(0);
   const isCanDetect = useRef(true);
 
-  // useEffect(() => {
-  //   if (scrollB.current) scrollB.current.scrollbar.addListener((status) => {
-  //     if(window.innerWidth < 768) {
-  //       if (isCanDetect.current) {
-  //         isCanDetect.current = false;
-  //         setScrollTop(scrollTop => {setDelta(scrollTop - status.offset.y); return status.offset.y;})
-
-  //         const timer = setTimeout(() => {
-  //           isCanDetect.current = true;
-  //           clearTimeout(timer);
-  //         }, 100)
-  //       }
-  //     }
-  //   });
-  // }, [scrollB])
-
   useEffect(() => {
     document.addEventListener('scroll', onScroll)
 

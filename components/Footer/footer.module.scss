@@ -19,12 +19,20 @@
   @include media-breakpoint-down(md) {
     padding-top: $section-spacer/2;
     padding-bottom: $section-spacer * 1.4;
+
+    &:global(.home) {
+      padding-bottom: $section-spacer*2;
+    }
   }
 
   @include media-breakpoint-down(sm) {
     &:global(.simple) {
       padding-bottom: $section-spacer/2;
       padding-top: $section-spacer;
+
+      &:global(.home) {
+        padding-bottom: $section-spacer*2;
+      }
     }
   }
 }

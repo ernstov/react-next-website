@@ -11,6 +11,13 @@
   padding-right: $gutter/2;
   overflow: hidden;
 
+  &:global(.home-hero) {
+    img {
+      max-width: 195px;
+      width: 100%;
+    }
+  }
+
   &:global(.blog) {
     &:global(.text-sub-title) {
       color: $gray-5;

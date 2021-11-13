@@ -11,7 +11,9 @@ import About from "../sections/About";
 import VisibilitySensor from '../utils/react-visibility-sensor'
 import moment from "moment"
 import TagManager from 'react-gtm-module'
-import {page} from "../configs/pages/home" 
+import { page } from "../configs/pages/home"
+import Illustration from "../sections/Illustration"
+import ColumnButtons from "../sections/ColumnButtons"
 
 const tagManagerArgs = {
   gtmId: appConfig.gtmId,
@@ -32,14 +34,16 @@ const Home = () => {
     // { component: Sources, props: { data: page.mediaSources } },
     // { component: Tranding, props: { data: { ...page.tranding, content: trandingContents } } },
     // { component: About, props: { data: page.about } },
-    //{ component: Footer, props: { data: {...appConfig.footer} } },
+    { component: ColumnButtons, props: { data: page.buttons } },
+    { component: Illustration, props: { data: page.illustration } },
+    { component: Footer, props: { data: { ...appConfig.footer } } },
   ]
 
-  // useEffect(() => {
-  //   TagManager.dataLayer(tagManagerArgs)
-  //   fetchContent()
-  //   setWrap(isWrap())
-  // }, [])
+  useEffect(() => {
+    TagManager.dataLayer(tagManagerArgs)
+    //fetchContent()
+    setWrap(isWrap())
+  }, [])
 
   // const fetchContent = async () => {
   //   const endTime = moment.utc().format('YYYY-MM-DDTHH:00:00')

@@ -7,12 +7,14 @@ import { Context } from "../../context/context"
 import appConfig from "../../configs/appConfig"
 import typographyStyles from '../../styles/global/typography.module.scss'
 import shortid from "shortid";
+import { useRouter } from "next/router"
 
 const Footer = ({ data, isVisible }) => {
 
   const [visible, setVisible] = useState(false);
   const { lang: { GetTheApp } } = useContext(Context);
   const { mobileNavigation } = appConfig
+  const router = useRouter()
 
   useEffect(() => {
     if (isVisible) {
@@ -21,6 +23,10 @@ const Footer = ({ data, isVisible }) => {
       }, 500)
     }
   }, [isVisible])
+
+  const isHome = () => {
+    return router.pathname == "/"
+  }
 
   const render = () => {
     switch (data.variant) {
@@ -34,7 +40,7 @@ const Footer = ({ data, isVisible }) => {
                     <div><span className={typographyStyles.labelMenuFooter}>{sect.label}</span></div>
                     <ul>
                       {sect.links.map((nav, z) => (
-                        <li key={`ds-${i}-${z}`} onClick={() => hideAll(true)} key={`${shortid.generate()}`}><Link href={nav.link}>{nav.name}</Link></li>
+                        <li key={`ds-${i}-${z}`} key={`${shortid.generate()}`}><Link href={nav.link}>{nav.name}</Link></li>
                       ))}
                     </ul>
 
@@ -43,7 +49,7 @@ const Footer = ({ data, isVisible }) => {
                         <div><span className={typographyStyles.labelMenuFooter}>{mobileNavigation[1].label}</span></div>
                         <ul>
                           {mobileNavigation[1].links.map((nav, k) => (
-                            <li key={`ds-${i}-${z}`} onClick={() => hideAll(true)} key={`${shortid.generate()}`}><Link href={nav.link}>{nav.name}</Link></li>
+                            <li key={`ds-${i}-${z}`} key={`${shortid.generate()}`}><Link href={nav.link}>{nav.name}</Link></li>
                           ))}
                         </ul>
                       </div>
@@ -111,7 +117,7 @@ const Footer = ({ data, isVisible }) => {
   }
 
   return (
-    <div className={`${styles.footer} ${data.className ? data.className : ""} ${visible ? "active" : ""} ${data.variant ? data.variant : ""}`}>
+    <div className={`${styles.footer} ${data.className ? data.className : ""} ${isHome() ? "home" : ""} ${visible ? "active" : ""} ${data.variant ? data.variant : ""}`}>
       {render()}
     </div>
   );

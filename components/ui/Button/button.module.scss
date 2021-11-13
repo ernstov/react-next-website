@@ -363,13 +363,18 @@
 }
 
 .secondary {
-  background-color: $cover-blue;
-  color: $secondary;
-  border-color: rgba($secondary, 0.25);
+  background-color: $secondary;
+  color: $white;
+  border-color: $secondary;
+
+  &:hover {
+    background-color: transparent;
+    color: $secondary;
+  }
 
   &:global(.active) {
-    background-color: $secondary;
-    color: $white;
+    background-color: transparent;
+    color: $secondary;
   }
 }
 

@@ -32,6 +32,8 @@ const Button = ({ children, variant, className, onClick, as, link, isActive, dis
         return `${styles.button} ${styles.primary} ${styles.arrow} ${size}`
       case "primary":
         return `${styles.button} ${styles.primary} ${size}`
+      case "primaryY":
+        return `${styles.button} ${styles.primaryY} ${size}`
       case "primary-home":
         return `${styles.button} ${styles.primaryHome} ${size}`
       case "primary-white":

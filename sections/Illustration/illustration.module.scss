@@ -1,0 +1,18 @@
+@import "../../styles/base/variables.scss";
+
+.illustration {
+
+  @include media-breakpoint-down(md) {
+
+  }
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+
+  @include media-breakpoint-down(md) {
+    max-width: 270px;
+    margin: 0 auto;
+  }
+}

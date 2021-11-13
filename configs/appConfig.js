@@ -160,7 +160,7 @@ const app = {
     button: {
       name: "Get app",
       link: "/news-app",
-      variant: "primary",
+      variant: "primaryY",
     },
     for: ["/"]
   },
