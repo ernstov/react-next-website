@@ -3,6 +3,7 @@ import styles from './hero.module.scss'
 import Button from '../../components/ui/Button'
 import typographyStyles from "../../styles/global/typography.module.scss"
 import appConfig from "../../configs/appConfig"
+import dynamic from 'next/dynamic'
 
 const Hero = ({ data, isVisible }) => {
 
@@ -15,6 +16,14 @@ const Hero = ({ data, isVisible }) => {
       }, appConfig.entryDelay * 2)
     }
   }, [isVisible])
+
+  const renderAnimation = (name) => {
+    switch (name) {
+      case "logo":
+        const Animation = dynamic(() => import('./AnimationLogo'))
+        return <div className={`${styles.homeAnimation}`}><Animation isVisible={isVisible} /></div>
+    }
+  }
 
   const render = () => {
     switch (data.variant) {
@@ -29,8 +38,10 @@ const Hero = ({ data, isVisible }) => {
       case "base":
       default:
         return <div className={`${styles.inner}`}>
-          {data.img &&
-            <img className={`${styles.img} entry-1 ${data.imgCL ? data.imgCL : ""}`} src={data.isExternal ? data.img : `/img/${data.img}`} />
+          {data.animation ?
+            <div className="entry-1">{renderAnimation(data.animation)}</div>
+            :
+            data.img && <img className={`${styles.img} entry-1 ${data.imgCL ? data.imgCL : ""}`} src={data.isExternal ? data.img : `/img/${data.img}`} />
           }
           <h1 className={`${typographyStyles.textTitle} mb-2 mb-md-2 entry-1 mx-auto ${data.titleCL ? data.titleCL : "mw-410"}`} dangerouslySetInnerHTML={{ __html: data.title }}></h1>
           <p className={`${typographyStyles.textSubTitle} entry-2 mx-auto ${data.descriptionCL ? data.descriptionCL : "mw-410"}`} dangerouslySetInnerHTML={{ __html: data.description }}></p>

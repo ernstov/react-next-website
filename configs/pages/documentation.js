@@ -20,9 +20,11 @@ export const page = {
 
 <p>The easiest way to start using the API is to use the <a href="https://curl.se/">curl</a> utility. It provides easy to use interface for performing HTTP requests to the REST API. You should include your API key in each request you are making.</p>
 
-<p><strong>Example request to get articles about SpaceX:</strong></p>
-
-<code>curl -XGET 'api.goperigon.com/v1/all?q=SpaceX&from=2021-11-01&apiKey=YOUR_API_KEY</code>
+<div class="code-head-separated mb-3">
+  <h3>Example request to get articles about SpaceX:</h3>
+  <label>curl -XGET</label>
+  <code>api.goperigon.com/v1/all?q=SpaceX&from=2021-07-01&to=2021-09-10</code>
+</div>
 
 <p>You can find more examples of queries on the <a href="/documentation/examples">Examples</a> page. <a href="/documentation/advanced-queries">Advanced queries</a> page covers how to build more advanced queries with special query language, including searching for exact matches, word combinations and other use cases.</p>
 

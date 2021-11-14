@@ -12,14 +12,16 @@ export const page = {
 
 <p>Find all articles that contain "SpaceX" and were published between 01/07/2021 and 10/09/2021.</p>
 
-<p><strong>Request:</strong></p>
+<div class="code-head">
+  <h3>Request</h3>
+  <label>curl -XGET</label>
+  <code>api.goperigon.com/v1/all?q=SpaceX&from=2021-07-01&to=2021-09-10</code>
+</div>
 
-<code>curl -XGET 'api.goperigon.com/v1/all?q=SpaceX&from=2021-07-01&to=2021-09-10'</code>
-
-<p><strong>Response:</strong></p>
-
-<code style="height: auto;">
-    <pre style="padding-top: 10px; white-space: pre-wrap;">
+<div class="code-body">
+  <h3>Response</h3>
+  <code>
+   <pre>
 {
    "status": 200,
    "numResults": 9,
@@ -44,9 +46,9 @@ export const page = {
          ...
       }
    ]
-}
-    </pre>
-</code>
+}</pre>
+   </code>
+</div>
 
 <hr />
 
@@ -54,14 +56,16 @@ export const page = {
 
 <p>Find all articles that contain "SpaceX" and were published between 10/11/2021 and 11/11/2021, and were published by <strong>techcrunch.com</strong>, <strong>nytimes.com</strong> or <strong>cnn.com</strong>.</p>
 
-<p><strong>Request:</strong></p>
+<div class="code-head">
+  <h3>Request</h3>
+  <label>curl -XGET</label>
+  <code>api.goperigon.com/v1/all?q=SpaceX&from=2021-11-10&to=2021-11-11&source=techcrunch.com&source=nytimes.com&source=cnn.com</code>
+</div>
 
-<code>curl -XGET 'api.goperigon.com/v1/all?q=SpaceX&from=2021-11-10&to=2021-11-11&source=techcrunch.com&source=nytimes.com&source=cnn.com'</code>
-
-<p><strong>Response:</strong></p>
-
-<code style="height: auto;">
-    <pre style="padding-top: 10px; white-space: pre-wrap;">
+<div class="code-body">
+  <h3>Response</h3>
+  <code>
+   <pre>
 {
    "status": 200,
    "numResults": 9,
@@ -113,9 +117,9 @@ export const page = {
          ...
       }
    ]
-}
-    </pre>
-</code>
+}</pre>
+   </code>
+</div>
 
 <hr />
 
@@ -123,14 +127,16 @@ export const page = {
 
 <p>Find all articles that contain the exact phrase "bitcoin rallied" and were published between 01/07/2021 and 10/09/2021. For the query to work correctly, it must be urlencoded, the mentioned query would be transformed int %22bitcoin%20rallied%22.</p>
 
-<p><strong>Request:</strong></p>
+<div class="code-head">
+  <h3>Request</h3>
+  <label>curl -XGET</label>
+  <code>api.goperigon.com/v1/all?q=%22bitcoin%20rallied%22&from=2021-07-01&to=2021-09-10</code>
+</div>
 
-<code>curl -XGET 'api.goperigon.com/v1/all?q=%22bitcoin%20rallied%22&from=2021-07-01&to=2021-09-10'</code>
-
-<p><strong>Response:</strong></p>
-
-<code style="height: auto;">
-    <pre style="padding-top: 10px; white-space: pre-wrap;">
+<div class="code-body">
+  <h3>Response</h3>
+  <code>
+   <pre>
 {
    "status": 200,
    "numResults": 9,
@@ -179,8 +185,8 @@ export const page = {
          ...
       }
    ]
-}
-    </pre>
-</code>
+}</pre>
+   </code>
+</div>
 `
 }

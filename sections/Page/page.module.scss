@@ -76,8 +76,8 @@
     background-color: $white;
     border: 1px solid $gray-18;
     border-radius: 4px;
-    padding: 0 1rem;
-    height: 50px;
+    padding: 0.4rem 1rem;
+    min-height: 50px;
     display: flex;
     align-items: center;
     color: rgba($black, 0.8);
@@ -133,7 +133,9 @@
     }
   }
 
-  :global(.code-head), :global(.code-body) {
+  :global(.code-head),
+  :global(.code-body),
+  :global(.code-head-separated) {
     h3 {
       text-transform: uppercase;
       font-size: 0.7rem;
@@ -159,7 +161,23 @@
     }
   }
 
-  :global(.code-head){ 
+  :global(.code-head-separated) {
+    background-color: $black;
+    padding: 1.6rem;
+    border-radius: $border-radius;
+    border-bottom: 2px solid $blackAdv;
+
+    code {
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      color: $black;
+      font-weight: 600;
+      margin-top: 0;
+      font-size: 0.9375rem;
+    }
+  }
+
+  :global(.code-head) {
     background-color: $black;
     padding: 1.6rem;
     border-top-left-radius: $border-radius;
@@ -195,7 +213,7 @@
       padding: 0;
 
       pre {
-        white-space:pre-wrap;
+        white-space: pre-wrap;
         margin-bottom: 0;
         counter-reset: line;
         padding-bottom: 10px;
@@ -207,37 +225,65 @@
         }
 
         &::-webkit-scrollbar-thumb {
-          background-color: rgba(255,255,255, 0.2);
+          background-color: rgba(255, 255, 255, 0.2);
         }
-        
+
         span {
           display: block;
-          white-space:pre;
+          white-space: pre;
         }
         span:before {
           counter-increment: line;
           content: counter(line);
           display: inline-block;
           text-align: right;
-          padding: 0 .5em;
-          margin-right: .5em;
-          color: #888
+          padding: 0 0.5em;
+          margin-right: 0.5em;
+          color: #888;
         }
       }
     }
   }
 
-  @include media-breakpoint-down(md) {
+  table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: $blackAdv;
+    background-color:$primary-cover;
+    border-collapse: collapse;
 
-    h1, h2 {
-      &::after{
+    thead {
+      th {
+        color: $white;
+        background-color: $blackAdv;
+        border-color: $blackAdv;
+        padding: 1.2rem 1.6rem;
+        font-weight: 600;
+      }
+    }
+
+    tbody {
+      th {
+        font-weight: 600;
+      }
+      td, th{
+        border: 1px solid $cover-18;
+        padding: 1.2rem 1.6rem;
+      }
+    }
+  }
+
+  @include media-breakpoint-down(md) {
+    h1,
+    h2 {
+      &::after {
         left: -20px;
       }
     }
 
     :global(.apiKey) {
       padding: 1rem;
-      
+
       input {
         width: auto;
       }

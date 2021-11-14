@@ -8,7 +8,7 @@ export const page = {
     description: "Compare news from all sides, decipher fact from fiction, and transform big media into actionable insights.",
     descriptionCL: "mw-550",
     variant: "home-hero",
-    img: "logo.svg",
+    animation: "logo",
     className: "pt-0"
     //description: "Compare the news, mute the noise, and read beyond the headlines.",
     // markets: [
