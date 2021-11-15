@@ -15,12 +15,12 @@ const app = {
   mobileNavigation: [
     {
       label: "For Everyone", links: [
-        { name: "All App", link: "/news-app" },
+        { name: "News App", link: "/news-app" },
       ]
     },
     {
       label: "For business", links: [
-        { name: "All API", link: "/data-solutions/news-api" },
+        { name: "News API", link: "/data-solutions/news-api" },
         { name: "Pricing", link: "/data-solutions/pricing" },
         { name: "Documentation", link: "/documentation" },
         { name: "Business Account", link: "/account" },
@@ -37,11 +37,11 @@ const app = {
   ],
 
   headerNavigation: [
-    { name: "All App", link: "/news-app", show: 0 },
+    { name: "News App", link: "/news-app", show: 0 },
     {
       name: "Data Solutions", link: "/data-solutions/news-api", show: 0,
       sub: [
-        { name: "All API", link: "/data-solutions/news-api" },
+        { name: "News API", link: "/data-solutions/news-api" },
         { name: "Pricing", link: "/data-solutions/pricing" },
         { name: "Documentation", link: "/documentation" },
         { name: "Get Started", link: "/sign-in" },
