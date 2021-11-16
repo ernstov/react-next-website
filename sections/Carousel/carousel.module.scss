@@ -48,7 +48,7 @@
   }
 
   @include media-breakpoint-down(sm) {
-    .swiper-pagination {
+    :global(.swiper-pagination) {
       display: block;
     }
   }

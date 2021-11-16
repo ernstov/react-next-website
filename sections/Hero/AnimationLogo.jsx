@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react"
 import styles from './hero.module.scss'
-import animationData from '../../components/animations/darkHorizontal.json'
+import animationData from '../../components/animations/lightHorizontal.json'
 import Lottie from 'lottie-web'
 
 const AnimationLogo = ({isVisible}) => {
