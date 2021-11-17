@@ -2,6 +2,7 @@ export const page = {
   link: "/documentation/headlines",
   title: "Documentation Headlines",
   description: "Documentation Headlines",
+  className: "pt-4",
   html: `<h1>Headlines</h1>
 
 <p>You can retrieve clustered headlines with <strong>api.goperigon.com/v1/headlines</strong> endpoint.</p>

@@ -102,7 +102,8 @@ export default function App({ Component, pageProps }) {
   }
 
   const isLoggedIn = () => {
-    return router.pathname.indexOf("/account") != -1 || router.pathname.indexOf("/documentation") != -1
+    return false
+    //return router.pathname.indexOf("/account") != -1 || router.pathname.indexOf("/documentation") != -1
   }
 
   const getSidebarVariant = () => {
@@ -127,7 +128,7 @@ export default function App({ Component, pageProps }) {
 
 
   return <Context.Provider value={{ app, dispatchApp, lang, scrollB }}>
-    <LayoutBase isWrap={wrap}>
+    <LayoutBase isWrap={wrap && !isHome()}>
       {/* {isLoader && <Loader loaderState={loaderState} />} */}
       {(wrap && !isHome()) && <Header path={router.pathname} variant={`advanced`} isLoggedIn={isLoggedIn()} />}
       {isHome() && <BottomMenu path={router.pathname} data={appConfig.bottomMenu}/>}

@@ -9,7 +9,7 @@ export const page = {
     descriptionCL: "mw-550",
     variant: "home-hero",
     animation: "logo",
-    className: "pt-0"
+    className: "pt-2 pt-md-5 pb-3 pb-md-5"
     //description: "Compare the news, mute the noise, and read beyond the headlines.",
     // markets: [
     //   { img: "logo-apple.png", link: "https://apps.apple.com/us/app/gawq-unbreaking-news/id1514212857" },

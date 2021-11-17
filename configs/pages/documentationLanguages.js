@@ -2,6 +2,7 @@ export const page = {
   link: "/documentation/countries-languages",
   title: "Documentation Countries Languages",
   description: "Documentation Countries Languages",
+  className: "pt-4",
   html: `<h1>Countries & languages</h1>
 
 <p>Perigon News API supports news extraction in multiple languages. Below you can find supported countries, and their corresponding country codes.</p>

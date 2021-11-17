@@ -18,7 +18,7 @@ import shortid from "shortid";
 
 const Header = ({ data, path, isLoggedIn, variant }) => {
 
-  const { app, lang: { GetTheApp } } = useContext(Context);
+  const { app, lang: { GetTheApp, Gettingstarted, Searchapi } } = useContext(Context);
   const [isVisible, setIsVisible] = useState(false);
   const [isActiveMobile, setIsActiveMobile] = useState(false)
   const { headerNavigation, mobileNavigation } = appConfig
@@ -53,6 +53,14 @@ const Header = ({ data, path, isLoggedIn, variant }) => {
 
   const hideAll = () => {
     setIsActiveMobile(false);
+  }
+
+  const isDocumentation = () => {
+    return router.pathname.indexOf("/documentation") != -1
+  }
+
+  const iAccount = () => {
+    return router.pathname.indexOf("/account") != -1
   }
 
   const isActive = (link) => {
@@ -150,7 +158,7 @@ const Header = ({ data, path, isLoggedIn, variant }) => {
                   </div>
                 </Col>
                 <Col lg={6} xs={6} className={`${styles.navigationCenter}`}>
-                  {!isLoggedIn &&
+                  {!iAccount() && !isDocumentation() &&
                     <div className={`${styles.navigation}`}>
                       {headerNavigation.map((link, i) => (
                         (link.show == 0 || (link.show == 1 && !app.isAuth) || (link.show == 2 && app.isAuth)) && <Button className={`${isActiveSub(link.link) ? "active" : ""} ml-1 mr-1`} link={link.link} key={`mn-${i}`} as="link" variant="light-simple">{link.name}</Button>
@@ -161,7 +169,7 @@ const Header = ({ data, path, isLoggedIn, variant }) => {
                 <Col lg={3} xs={3} className={`${styles.headerDesktopActions}`}>
                   <div className={`${styles.headerActions}`}>
                     <MenuUser />
-                    {!isLoggedIn && <div className={`${styles.headerToggler}`}><MenuToggler isActiveMobile={isActiveMobile} setIsActiveMobile={() => setIsActiveMobile(!isActiveMobile)} /></div>}
+                    {!iAccount() && <div className={`${styles.headerToggler}`}><MenuToggler isActiveMobile={isActiveMobile} setIsActiveMobile={() => setIsActiveMobile(!isActiveMobile)} /></div>}
                   </div>
                 </Col>
               </Row>
@@ -185,16 +193,28 @@ const Header = ({ data, path, isLoggedIn, variant }) => {
                 </div>
               </div>
               <div className="menu-container-middle">
-                {mobileNavigation.map((sect, i) => (
-                  <div className="pb-3" key={`sdr-${i}`}>
-                    <div><span className={typographyStyles.labelMenu}>{sect.label}</span></div>
+                {isDocumentation() ?
+                  <>
                     <ul>
-                      {sect.links.map((nav, z) => (
-                        <li key={`ds-${i}-${z}`} onClick={() => hideAll(true)} key={`${shortid.generate()}`}><Link href={nav.link}>{nav.name}</Link></li>
+                      <li onClick={() => hideAll(true)} className={`${router.pathname == "/documentation" ? "active" : ""}`}><Link href={"/documentation"}>{Gettingstarted}</Link></li>
+                    </ul>
+                    <div className="mb-2"><span className={typographyStyles.labelMenu}>{Searchapi}</span></div>
+                    <ul className="mb-2">
+                      {appConfig.documentationNavigation.map((item, i) => (
+                        <li className={`${router.pathname == item.link ? "active" : ""}`} onClick={() => hideAll(true)} key={`${shortid.generate()}`}><Link href={item.link}>{item.name}</Link></li>
                       ))}
                     </ul>
-                  </div>
-                ))}
+                  </>
+                  : mobileNavigation.map((sect, i) => (
+                    <div className="pb-3" key={`sdr-${i}`}>
+                      <div><span className={typographyStyles.labelMenu}>{sect.label}</span></div>
+                      <ul>
+                        {sect.links.map((nav, z) => (
+                          <li onClick={() => hideAll(true)} key={`${shortid.generate()}`}><Link href={nav.link}>{nav.name}</Link></li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
                 <div className="menu-container-stores">
                   <span className="menu-container-badge">{GetTheApp}</span>
                   {appConfig.navigationAdditional.stores && appConfig.navigationAdditional.stores.map((store, i) => (

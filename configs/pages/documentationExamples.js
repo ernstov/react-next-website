@@ -2,6 +2,7 @@ export const page = {
   link: "/documentation/examples",
   title: "Documentation Examples",
   description: "Documentation Examples",
+  className: "pt-4",
   html: `<h1>All API search examples</h1>
 
 <p>Below you can find different search examples that show varied ways of querying the API.</p>

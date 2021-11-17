@@ -30,6 +30,12 @@
   color: rgba($blackAdv, 0.8);
 }
 
+.textSubTitle2 {
+  font-size: 1.0625rem;
+  font-family: $font-family-secondary;
+  color: rgba($blackAdv, 0.8);
+}
+
 .textSubTitleM {
   font-size: 1.3125rem;
   font-family: $font-family-secondary;
@@ -502,6 +508,7 @@
   }
   .textTitle {font-size: 1.9375rem;}
   .textSubTitle {font-size: 1.0625rem;}
+  .textSubTitle2 {font-size: 0.9375rem;}
 
   .textTitle {
     span {

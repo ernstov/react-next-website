@@ -34,7 +34,7 @@ const ColumnButtons = ({ data, isVisible }) => {
                     />
                     <h2 className={`${typographyStyles.textDemi2}`}>{column.title}</h2>
                   </div>
-                  <p className={`${typographyStyles.textSubTitle}`}>{column.description}</p>
+                  <p className={`${typographyStyles.textSubTitle2}`}>{column.description}</p>
                 </div>
                 {column.button &&
                   <Button

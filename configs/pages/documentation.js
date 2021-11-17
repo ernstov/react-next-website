@@ -2,6 +2,7 @@ export const page = {
   link: "/documentation",
   title: "Documentation Getting started",
   description: "Documentation Getting started",
+  className: "pt-4",
   html: `<h1>Introduction</h1>
 
 <p>Perigon News API is an HTTP REST API for retrieving recent news articles. Our API accepts HTTP GET requests, and returns JSON-encoded responses. It uses standard HTTP response codes to indicate request's response status. To use the API you must obtain an API key, see Authentication section. There are two main endpoints, one retrieving current news headlines, another for searching over all indexed articles.</p>

@@ -2,6 +2,7 @@ export const page = {
   link: "/documentation/advanced-queries",
   title: "Documentation Advanced Queries",
   description: "Documentation Advanced Queries",
+  className: "pt-4",
   html: `<h1>Advanced search queries</h1>
 
 <p>

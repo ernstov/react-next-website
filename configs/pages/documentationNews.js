@@ -2,6 +2,7 @@ export const page = {
   link: "/documentation/news",
   title: "Documentation All",
   description: "Documentation All",
+  className: "pt-4",
   html: `<h1>All</h1>
 
 <p>The endpoint allows search over whole news index using <strong>api.goperigon.com/v1/all</strong> url.</p>
