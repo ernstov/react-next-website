@@ -14,6 +14,7 @@
     top: $header-height-md;
     height: calc(100% - #{$header-height-md});
     transform: translateX(calc(-100% - 14px));
+    position: fixed;
 
     &:global(.documentation) {
       >div {

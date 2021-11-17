@@ -23,7 +23,7 @@ const app = {
         { name: "News API", link: "/data-solutions/news-api" },
         { name: "Pricing", link: "/data-solutions/pricing" },
         { name: "Documentation", link: "/documentation" },
-        { name: "Business Account", link: "/account" },
+        { name: "Business Account", link: "/account/overview" },
       ]
     },
     {
