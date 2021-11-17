@@ -1,15 +1,14 @@
 @import "../../styles/base/variables.scss";
 
 .contact {
-  max-width: 1400px;
+  width: 100%;
+  max-width: 1000px;
+  padding: $section-spacer/2 $gutter/2;
+  padding-bottom: $section-spacer;
   margin: 0 auto;
-  width: calc(100% - #{$gutter});
-  padding: $section-spacer 0;
-  padding-top: $section-spacer/2;
-  box-shadow: $shadow-6;
 
-  @include media-breakpoint-down(md) {
-    padding: $section-spacer/2;
+  @media only screen and (max-width: 1450px) {
+    max-width: 860px;
   }
 }
 

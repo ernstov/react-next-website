@@ -49,7 +49,7 @@ const SupportSection = ({ data, isVisible, question, isWrap }) => {
           <Col lg={12} className="text-center text-md-left">
             <h2 className={`${typographyStyles.textDemi2} ${typographyStyles.fontBase} entry-1 mb-3`}>{Paymentsettings}</h2>
           </Col>
-          <Col xl={6}>
+          <Col xl={8}>
             <Block className={`entry-2 mb-xl-0 mb-4`} variant="badge-wrap">
               <Container fluid className="p-0">
                 <Row>
@@ -72,7 +72,7 @@ const SupportSection = ({ data, isVisible, question, isWrap }) => {
           <Col lg={12} className="text-center text-md-left mt-5">
             <h2 className={`${typographyStyles.textDemi2} ${typographyStyles.fontBase} entry-1 mb-3`}>{Pasttransactions}</h2>
           </Col>
-          <Col lg={6}>
+          <Col lg={8}>
             <Table className="w-100 simple" responsive>
               <thead>
                 <tr>
