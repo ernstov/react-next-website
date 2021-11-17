@@ -215,12 +215,14 @@ const Header = ({ data, path, isLoggedIn, variant }) => {
                       </ul>
                     </div>
                   ))}
-                <div className="menu-container-stores">
-                  <span className="menu-container-badge">{GetTheApp}</span>
-                  {appConfig.navigationAdditional.stores && appConfig.navigationAdditional.stores.map((store, i) => (
-                    <a key={`sti-${i}`} target="blank" href={store.link}><img className={`${footerStyles.footerStore} mt-2`} src={`/img/${store.img}`} alt="" /></a>
-                  ))}
-                </div>
+                {!isDocumentation() &&
+                  <div className="menu-container-stores">
+                    <span className="menu-container-badge">{GetTheApp}</span>
+                    {appConfig.navigationAdditional.stores && appConfig.navigationAdditional.stores.map((store, i) => (
+                      <a key={`sti-${i}`} target="blank" href={store.link}><img className={`${footerStyles.footerStore} mt-2`} src={`/img/${store.img}`} alt="" /></a>
+                    ))}
+                  </div>
+                }
               </div>
               <div className="menu-container-bottom">
                 <div className="menu-container-socials">
