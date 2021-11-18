@@ -128,15 +128,52 @@
     align-items: center;
     justify-content: center;
     margin-left: 0.5rem;
+    position: relative;
+    transition: opacity $transition ease;
+
+    &:hover {
+      opacity: 0.8;
+    }
+
+    &:global(.done) {
+      &::after {
+        opacity: 0;
+      }
+      &::before {
+        opacity: 1;
+      }
+    }
+
+    &::before {
+      content: "";
+      background-image: url(/img/copy-completed.svg);
+      width: 24px;
+      height: 24px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%);
+      background-position: center center;
+      background-size: 100%;
+      opacity: 0;
+      background-repeat: no-repeat;
+      transition: opacity $transition ease;
+    }
 
     &::after {
       content: "";
       background-image: url(/img/copy.svg);
       width: 24px;
       height: 24px;
+      opacity: 1;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%);
       background-position: center center;
       background-size: 100%;
       background-repeat: no-repeat;
+      transition: opacity $transition ease;
     }
   }
 

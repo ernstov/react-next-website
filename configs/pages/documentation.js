@@ -10,7 +10,7 @@ export const page = {
 <div class='apiKey mt-3'>
     <h3>Your API Key</h3>
     <div>
-        <input disabled value='01qv*&Ddshk35tqa8gerus' type='text' />
+        <input disabled value='Please sign in' type='text' />
         <button></button>
     </div>
 </div>

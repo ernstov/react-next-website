@@ -11,7 +11,7 @@ const Tags = ({ data, isVisible }) => {
       <Container className="tags-container title">
         <Row className="mb-4">
           <Col>
-            {data.title && <h3 className={`${styles.columnsTitle} ${typographyStyles.textTitleSm} mt-4 mb-1 entry-2 text-center`} dangerouslySetInnerHTML={{ __html: data.title }}></h3>}
+            {data.title && <h3 className={`${styles.columnsTitle} ${typographyStyles.textTitleSmShape} mt-4 mb-1 entry-2 text-center`} dangerouslySetInnerHTML={{ __html: data.title }}></h3>}
             {data.description && <div className={`${typographyStyles.textSubTitleSecondary} mb-4 entry-2 text-center`}>{data.description}</div>}
           </Col>
         </Row>
