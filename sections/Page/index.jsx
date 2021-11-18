@@ -60,7 +60,7 @@ const Page = ({ data, isVisible }) => {
 
     UserBillingService.getUser()
       .then((res) => {
-        setUserApiKey(res.User.apiKey)
+        setUserApiKey(res.apiKey)
       })
 
   }, [])

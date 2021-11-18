@@ -2,14 +2,16 @@
 
 <p>The endpoint allows search over whole news index using <strong>api.goperigon.com/v1/all</strong> url.</p>
 
-<p><strong>Example request:</strong></p>
+<div class="code-head">
+   <h3>Request</h3>
+   <label>curl -XGET</label>
+   <code><div style="overflow-wrap: anywhere;">api.goperigon.com/v1/all?q=data%20privacy&from=2021-09-01&apiKey=YOUR_API_KEY</div></code>
+</div>
 
-<code>curl -XGET 'api.goperigon.com/v1/all?q=data%20privacy&from=2021-09-01&apiKey=YOUR_API_KEY'</code>
-
-<p><strong>Example response:</strong></p>
-
-<code style="height: auto;">
-<pre style="padding-top: 10px; white-space:pre-wrap;">
+<div class="code-body">
+   <h3>Response</h3>
+   <code>
+   <pre>
 {
    "status":200,
    "numResults":420,
@@ -47,9 +49,8 @@
          ...
       }
    ]
-}
-</pre>
-</code>
+}</pre></code>
+</div>
 
 <hr />
 

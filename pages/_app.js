@@ -15,6 +15,7 @@ import 'swiper/swiper.scss'
 import 'swiper/components/lazy/lazy.scss'
 // import 'jsoneditor-react/es/editor.min.css';
 import ApiService from "../services/ApiService"
+import UserBillingService from "../services/UserBillingService"
 import BottomMenu from "../components/BottomMenu"
 import { isWrap } from "../utils";
 
@@ -71,13 +72,13 @@ export default function App({ Component, pageProps }) {
       setLoaderState("loaded")
     }, 500)
 
-    const userData = getCurrentUserData()
-
-    if (!isAuth(userData)) {
-      router.push("/sign-in")
-    } else {
-      dispatchApp({ type: "SET_USER", data: { user: { id: userData.sub, email: userData.email } } })
-    }
+    UserBillingService.getUser()
+      .then(data => dispatchApp({ type: "SET_USER", data: { user: { id: data.id, email: data.email } } }))
+      .catch(() => {
+        if (router.pathname.indexOf("/account") >= 0 || router.pathname.indexOf("/documentation") >= 0) {
+          router.push("/sign-in")
+        }
+      })
 
     Router.events.on("routeChangeStart", start);
     Router.events.on("routeChangeComplete", end);

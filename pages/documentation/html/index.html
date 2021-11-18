@@ -1,6 +1,6 @@
 <h1>Introduction</h1>
 
-<p>Perigon All API is an HTTP REST API for retrieving recent news articles. Our API accepts HTTP GET requests, and returns JSON-encoded responses. It uses standard HTTP response codes to indicate request's response status. To use the API you must obtain an API key, see Authentication section. There are two main endpoints, one retrieving current news headlines, another for searching over all indexed articles.</p>
+<p>Perigon News API is an HTTP REST API for retrieving recent news articles. Our API accepts HTTP GET requests, and returns JSON-encoded responses. It uses standard HTTP response codes to indicate request's response status. To use the API you must obtain an API key, see Authentication section. There are two main endpoints, one retrieving current news headlines, another for searching over all indexed articles.</p>
 
 <div class='apiKey mt-3'>
     <h3>Your API Key</h3>
@@ -16,9 +16,11 @@
 
 <p>The easiest way to start using the API is to use the <a href="https://curl.se/">curl</a> utility. It provides easy to use interface for performing HTTP requests to the REST API. You should include your API key in each request you are making.</p>
 
-<p><strong>Example request to get articles about SpaceX:</strong></p>
-
-<code>curl -XGET 'api.goperigon.com/v1/all?q=SpaceX&from=2021-11-01&apiKey=YOUR_API_KEY</code>
+<div class="code-head-separated mb-3">
+    <h3>Example request to get articles about <span style="color: #F9C035;">SpaceX</span>:</h3>
+    <label>curl -XGET</label>
+    <code><div style="overflow-wrap: anywhere;">api.goperigon.com/v1/all?q=SpaceX&from=2021-07-01&to=2021-09-10</div></code>
+</div>
 
 <p>You can find more examples of queries on the <a href="/documentation/examples">Examples</a> page. <a href="/documentation/advanced-queries">Advanced queries</a> page covers how to build more advanced queries with special query language, including searching for exact matches, word combinations and other use cases.</p>
 
@@ -28,9 +30,9 @@
 
 <h2>Authentication</h2>
 
-<p>Perigon All API uses API keys to authenticate requests.</p>
+<p>Perigon News API uses API keys to authenticate requests.</p>
 
-<p>You can obtain an API key by registering on the <a href="https://goperigon.com/business">website</a>. The API key grants access to the API resources, therefore you should keep them secure. Do not share them with anyone. If you have registered you can find your personal API key on the account settings page.</p>
+<p>You can obtain an API key by registering on the <a href="/data-solutions/news-api">website</a>. The API key grants access to the API resources, therefore you should keep them secure. Do not share them with anyone. If you have registered you can find your personal API key on the account settings page.</p>
 
 <p>You can pass the API key in the HTTP request in following ways:</p>
 
@@ -48,7 +50,7 @@
 
 <h2>Endpoints</h2>
 
-<p>Perigon All Search API consists of two main endpoints. Each uses HTTP requests to receive input parameters and send responses.</p>
+<p>Perigon News Search API consists of two main endpoints. Each uses HTTP requests to receive input parameters and send responses.</p>
 
 <p>To send responses of reasonable size, Search API uses <strong>pagination</strong>, the parameters <strong>page</strong> and <strong>size</strong> are used to show different part of search results. All parameters, except the <strong>API_KEY</strong> are optional, and may be omitted.</p>
 
@@ -69,7 +71,7 @@
 
 <h2>Errors</h2>
 
-<p>Perigon All API uses HTTP status codes to indicate success or failure of the API request.</p>
+<p>Perigon News API uses HTTP status codes to indicate success or failure of the API request.</p>
 
 <p>General summary:</p>
 

@@ -14,11 +14,13 @@ export const page = {
     label2: "Personal Project",
     label3: "Academic",
     optionsHow: [
-      { value: "Option 1", label: "Option 1" },
-      { value: "Option 2", label: "Option 2" },
-      { value: "Option 3", label: "Option 3" },
-      { value: "Option 4", label: "Option 4" },
-      { value: "Option 5", label: "Option 5" },
+      { value: "Google", label: "Google" },
+      { value: "Facebook", label: "Facebook" },
+      { value: "Twitter", label: "Twitter" },
+      { value: "LinkedIn", label: "LinkedIn" },
+      { value: "Perigon News App", label: "Perigon News App" },
+      { value: "Word of Mouth", label: "Word of Mouth" },
+      { value: "Other", label: "Other" },
     ]
   }
 }

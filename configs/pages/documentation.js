@@ -22,9 +22,9 @@ export const page = {
 <p>The easiest way to start using the API is to use the <a href="https://curl.se/">curl</a> utility. It provides easy to use interface for performing HTTP requests to the REST API. You should include your API key in each request you are making.</p>
 
 <div class="code-head-separated mb-3">
-  <h3>Example request to get articles about SpaceX:</h3>
+  <h3>Example request to get articles about <span style="color: #F9C035;">SpaceX</span>:</h3>
   <label>curl -XGET</label>
-  <code>api.goperigon.com/v1/all?q=SpaceX&from=2021-07-01&to=2021-09-10</code>
+  <code><div style="overflow-wrap: anywhere;">api.goperigon.com/v1/all?q=SpaceX&from=2021-07-01&to=2021-09-10</div></code>
 </div>
 
 <p>You can find more examples of queries on the <a href="/documentation/examples">Examples</a> page. <a href="/documentation/advanced-queries">Advanced queries</a> page covers how to build more advanced queries with special query language, including searching for exact matches, word combinations and other use cases.</p>
@@ -37,7 +37,7 @@ export const page = {
 
 <p>Perigon News API uses API keys to authenticate requests.</p>
 
-<p>You can obtain an API key by registering on the <a href="https://goperigon.com/business">website</a>. The API key grants access to the API resources, therefore you should keep them secure. Do not share them with anyone. If you have registered you can find your personal API key on the account settings page.</p>
+<p>You can obtain an API key by registering on the <a href="/data-solutions/news-api">website</a>. The API key grants access to the API resources, therefore you should keep them secure. Do not share them with anyone. If you have registered you can find your personal API key on the account settings page.</p>
 
 <p>You can pass the API key in the HTTP request in following ways:</p>
 

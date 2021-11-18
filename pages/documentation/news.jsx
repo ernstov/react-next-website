@@ -1,21 +1,12 @@
 import React from "react"
 import Head from 'next/head'
 import appConfig from "../../configs/appConfig"
-import Hero from "../../sections/Hero"
-import AccountPlan from "../../sections/AccountPlan"
 import VisibilitySensor from '../../utils/react-visibility-sensor'
-import {page} from "../../configs/pages/myDetails"
-import { useRouter } from "next/router"
+import { page } from "../../configs/pages/documentationNews"
 
-const Details = () => {
-  const router = useRouter()
+const News = () => {
 
-  const title = router.query.name ? `Welcome, ${router.query.name}` : 'Welcome!'
-
-  const sections = [
-    { component: Hero, props: { data: {...page.hero, title } } },
-    { component: AccountPlan, props: { data: page.accountPlan } },
-  ]
+  const sections = []
 
   return (
     <>
@@ -41,4 +32,4 @@ export async function getStaticProps() {
   }
 }
 
-export default Details;
+export default News;

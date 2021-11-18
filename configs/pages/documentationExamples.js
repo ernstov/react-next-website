@@ -16,7 +16,7 @@ export const page = {
 <div class="code-head">
   <h3>Request</h3>
   <label>curl -XGET</label>
-  <code>api.goperigon.com/v1/all?q=SpaceX&from=2021-07-01&to=2021-09-10</code>
+  <code><div style="overflow-wrap: anywhere;">api.goperigon.com/v1/all?q=SpaceX&from=2021-07-01&to=2021-09-10</div></code>
 </div>
 
 <div class="code-body">
@@ -60,7 +60,7 @@ export const page = {
 <div class="code-head">
   <h3>Request</h3>
   <label>curl -XGET</label>
-  <code>api.goperigon.com/v1/all?q=SpaceX&from=2021-11-10&to=2021-11-11&source=techcrunch.com&source=nytimes.com&source=cnn.com</code>
+  <code><div style="overflow-wrap: anywhere;">api.goperigon.com/v1/all?q=SpaceX&from=2021-11-10&to=2021-11-11&source=techcrunch.com&source=nytimes.com&source=cnn.com</div></code>
 </div>
 
 <div class="code-body">
@@ -131,7 +131,7 @@ export const page = {
 <div class="code-head">
   <h3>Request</h3>
   <label>curl -XGET</label>
-  <code>api.goperigon.com/v1/all?q=%22bitcoin%20rallied%22&from=2021-07-01&to=2021-09-10</code>
+  <code><div style="overflow-wrap: anywhere;">api.goperigon.com/v1/all?q=%22bitcoin%20rallied%22&from=2021-07-01&to=2021-09-10</div></code>
 </div>
 
 <div class="code-body">

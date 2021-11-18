@@ -18,15 +18,16 @@ import Label from "../../components/ui/Label"
 import { useRouter } from 'next/router'
 import UserBillingService from "../../services/UserBillingService"
 import ApiKey from "../../components/ui/ApiKey"
+import moment from "moment"
 
 const AccountOverview = ({ data, isVisible }) => {
 
-  const { lang: { Update, BusinessName, HomeCountry, Email, Firstname, Lastname, UseofAPI, Changepassword, Status, Plan, Billing, Nextpayment, Changeplan, Apiaccess, OfRequests, ViewKeys, APIDocs, APIUsage, UpdatePassword, currentPassword, newPassword, Passwordmustbe6 } } = useContext(Context)
+  const { lang: { Update, BusinessName, ProjectName, HomeCountry, Email, Firstname, Lastname, UseofAPI, Changepassword, Status, Plan, Billing, Nextpayment, Changeplan, Apiaccess, OfRequests, ViewKeys, APIDocs, APIUsage, UpdatePassword, currentPassword, newPassword, Passwordmustbe6 } } = useContext(Context)
   const form = useRef(null)
   const [isProcess, setIsProcess] = useState(false)
   const optionsCountry = useMemo(() => countryList().getData(), [])
   const [userBilling, setUserBilling] = useState({ User: {}, BillingPlan: {} })
-  const [useage, setUseage] = useState(null);
+  const [usage, setUsage] = useState(null);
   const [country, setCountry] = useState(null);
   const router = useRouter()
   const [oldPassword, setOldPassword] = useState("")
@@ -34,6 +35,11 @@ const AccountOverview = ({ data, isVisible }) => {
   const [password2, setPassword2] = useState("")
   const formChangePassword = useRef(null)
   const [notValid, setNotValid] = useState(true)
+  const [amount, setAmount] = useState("$0")
+  const [nextPaymentAt, setNextPaymentAt] = useState('N/A')
+  const [registeredSince, setRegisteredSince] = useState('')
+  const [billingPlanStatus, setBillingPlanStatus] = useState('INACTIVE')
+  const [numRequestsData, setNumRequestsData] = useState("<span class='inputLight'>No requests made</span>")
 
   const [visible, setVisible] = useState(false)
 
@@ -49,19 +55,36 @@ const AccountOverview = ({ data, isVisible }) => {
     UserBillingService.getUser()
       .then((res) => {
         setUserBilling(res)
-        setUseage(res.User.usage)
-        setCountry(res.User.homeCountry)
+        setUsage(res.usage)
+        setCountry(res.homeCountry)
+        setRegisteredSince(moment(res.createdAt).format('MMM DD, yyyy'))
+
+        if (res.billingMode === 'MONTHLY') {
+          setAmount(`\$${res.billingPlan.monthlyPrice.toLocaleString('en-US')}/M`)
+        } else if (res.billingMode === 'YEARLY') {
+          setAmount(`$${res.billingPlan.yearlyPrice.toLocaleString('en-US')}/Y`)
+        }
+
+        if (res.subscription?.nextPaymentAt) {
+          setNextPaymentAt(moment(res.subscription.nextPaymentAt).format('MMM DD, yyyy'))
+        }
+
+        if (res.subscription?.stripeSubscriptionStatus) {
+          setBillingPlanStatus(res.subscription.stripeSubscriptionStatus.toUpperCase().replace(/-/g, ' '))
+        }
+
+        if (res.tracking) {
+          setNumRequestsData(`${res.tracking.numRequests.toLocaleString('en-US')} <span class='inputLight ml-1 mr-1'>since</span> ${moment(res.tracking.since).format('MMM DD, yyyy')}`)
+        }
       });
   }, [])
+
   const onSubmit = async (e) => {
     e.preventDefault();
     e.stopPropagation();
     setIsProcess(true)
 
-    if (e.target.querySelectorAll(".not-valid").length > 0) {
-      setIsProcess(false)
-    } else {
-
+    if (e.target.querySelectorAll(".not-valid").length === 0) {
       const formData = new FormData(e.target)
 
       let fields = {}
@@ -69,38 +92,57 @@ const AccountOverview = ({ data, isVisible }) => {
       formData.forEach((value, key) => {
         fields[key] = value
       })
-      fields.usage = useage
+      fields.usage = usage
       fields.homeCountry = country
-      await UserBillingService.updateUser(fields);
-
+      try {
+        await UserBillingService.updateUser(fields);
+        alert("Updated user data");
+      } catch (e) {
+        alert(`Error: ${e}`);
+        console.log(e);
+      }
     }
 
+    setIsProcess(false)
   }
 
-  let amount = "0$"
-  if (userBilling.billingAmount && userBilling.billingMode) {
-    amount = `${userBilling.billingAmount}$/${userBilling.billingMode && userBilling.billingMode.charAt(0)}`
-  }
-
-  const onSubmitChangePassword = (e) => {
+  const onSubmitChangePassword = async (e) => {
     e.preventDefault();
     e.stopPropagation();
+
+    setIsProcess(true)
+
+    if (e.target.querySelectorAll(".not-valid").length === 0) {
+      const formData = new FormData(e.target)
+      try {
+        await UserBillingService.updatePassword({
+          oldPassword: formData.get('current-password'),
+          newPassword: formData.get('password')
+        });
+        alert("Updated password");
+      } catch (e) {
+        alert(`Error: ${e}`);
+        console.log(e);
+      }
+    }
+
+    setIsProcess(false)
   }
 
-  const onChange = () => {
-    if (!oldPassword || !password || !password2 || formChangePassword.current.querySelectorAll(".not-valid").length > 0 || (!password != !password2)) {
+  useEffect(() => {
+    if (!oldPassword || !password || !password2 || formChangePassword.current.querySelectorAll(".not-valid").length > 0 || password !== password2) {
       setNotValid(true)
     } else {
       setNotValid(false)
     }
-  }
+  }, [oldPassword, password, password2])
 
   return (
     <div className={`${styles.accountOverview} ${data.className ? data.className : ""} ${visible ? "active" : ""}`}>
       <Container fluid className="p-0 mb-g">
         <Row>
           <Col>
-            <div className="mt-3 mb-3 entry-1"><span className={`${typographyStyles.header3}`}>{data.title}</span></div>
+            <div className="mt-3 mb-3 entry-1"><span className={`${typographyStyles.header3}`}>{registeredSince && `${data.title} ${registeredSince}`}</span></div>
           </Col>
         </Row>
         <Row>
@@ -109,13 +151,13 @@ const AccountOverview = ({ data, isVisible }) => {
               <Container fluid className="p-0">
                 <Row>
                   <Col md={4} className="mb-4">
-                    <InputPreview variant="flat-light" defaultValue={userBilling.status || "ACTIVE"} label={Status} />
+                    <InputPreview variant="flat-light" defaultValue={billingPlanStatus} label={Status} />
                   </Col>
                   <Col md={8} className={`${styles.inputRow} mb-4`}>
                     <Container fluid className={`${styles.inputContainer}`}>
                       <Row>
-                        <Col md={6}><InputPreview variant="flat" defaultValue={userBilling.BillingPlan.planName || "Free Trial"} label={Plan} /></Col>
-                        <Col md={6} className="d-flex align-items-end mt-4 mt-md-0"><Button className="w-100" variant="outline-secondary-notround-small">{Changeplan}</Button></Col>
+                        <Col md={6}><InputPreview variant="flat" defaultValue={userBilling.billingPlan?.name || "Free Trial"} label={Plan} /></Col>
+                        <Col md={6} className="d-flex align-items-end mt-4 mt-md-0"><Button onClick={() => router.push('/account/plan')} className="w-100" variant="outline-secondary-notround-small">{Changeplan}</Button></Col>
                       </Row>
                     </Container>
                   </Col>
@@ -125,8 +167,8 @@ const AccountOverview = ({ data, isVisible }) => {
                   <Col md={8} className={`${styles.inputRow} mb-4 mb-md-0`}>
                     <Container fluid className={`${styles.inputContainer}`}>
                       <Row>
-                        <Col md={6}><InputPreview variant="flat" defaultValue={userBilling.nextPaymentAt || "N/A"} label={Nextpayment} /></Col>
-                        <Col md={6} className="d-flex align-items-end"><Button className="w-100 mt-4 mt-md-0" variant="outline-secondary-notround-small">{Billing}</Button></Col>
+                        <Col md={6}><InputPreview variant="flat" defaultValue={nextPaymentAt} label={Nextpayment} /></Col>
+                        <Col md={6} className="d-flex align-items-end"><Button onClick={() => router.push('/account/billing')} className="w-100 mt-4 mt-md-0" variant="outline-secondary-notround-small">{Billing}</Button></Col>
                       </Row>
                     </Container>
                   </Col>
@@ -140,7 +182,7 @@ const AccountOverview = ({ data, isVisible }) => {
                 <Row>
                   <Col md={12} className="mb-4">
                     <Label label={Apiaccess} />
-                    <ApiKey value={userBilling?.User?.apiKey} />
+                    <ApiKey value={userBilling.apiKey} />
                   </Col>
                   {/* <Col md={4} className="mb-4">
                     <InputPreview variant="flat" defaultValue={"AD7^#****"} label={ViewKeys} />
@@ -154,7 +196,7 @@ const AccountOverview = ({ data, isVisible }) => {
                     </Container>
                   </Col> */}
                   <Col md={6} className="mb-4 mb-md-0">
-                    <InputPreview variant="flat" defaultValue={"12,933 <span class='inputLight ml-1'>past 30 days</span>"} label={OfRequests} />
+                    <InputPreview variant="flat" defaultValue={numRequestsData} label={OfRequests} />
                   </Col>
                   {/* <Col md={6} className="d-flex align-items-end"><Button className="w-100" variant="outline-secondary-notround-small">{APIUsage}</Button></Col> */}
                 </Row>
@@ -171,13 +213,13 @@ const AccountOverview = ({ data, isVisible }) => {
                 <Container fluid className="p-0">
                   <Row>
                     <Col md={6} className="mb-4">
-                      <Input placeholder={`John`} defaultValue={userBilling.User.firstName} name="firstName" variant="flat" label={Firstname} required />
+                      <Input placeholder={`John`} defaultValue={userBilling.firstName} name="firstName" variant="flat" label={Firstname} required />
                     </Col>
                     <Col md={6} className="mb-4">
-                      <Input placeholder={`Smith`} defaultValue={userBilling.User.lastName} name="lastName" variant="flat" label={Lastname} required />
+                      <Input placeholder={`Smith`} defaultValue={userBilling.lastName} name="lastName" variant="flat" label={Lastname} required />
                     </Col>
                     <Col md={6} className="mb-4">
-                      <Input placeholder={`sample@gmail.com`} defaultValue={userBilling.User.email} name="email" variant="flat" label={Email} required />
+                      <Input placeholder={`sample@gmail.com`} defaultValue={userBilling.email} name="email" variant="flat" label={Email} required />
                     </Col>
                     <Col md={6} className="mb-4">
                       <Label label={HomeCountry} />
@@ -204,9 +246,9 @@ const AccountOverview = ({ data, isVisible }) => {
                               className="custom-checkbox-light mb-3 mb-md-0"
                               value={data.label1}
                               custom
-                              defaultChecked={data.label1 === userBilling.User.usage}
-                              checked={data.label1 === useage}
-                              onChange={e => setUseage(e.target.value)}
+                              defaultChecked={data.label1 === userBilling.usage}
+                              checked={data.label1 === usage}
+                              onChange={e => setUsage(e.target.value)}
                               type="radio"
                               id={data.label1}
                               label={data.label1}
@@ -217,9 +259,9 @@ const AccountOverview = ({ data, isVisible }) => {
                               className="custom-checkbox-light mb-3 mb-md-0"
                               value={data.label2}
                               custom
-                              defaultChecked={data.label2 === userBilling.User.usage}
-                              checked={data.label2 === useage}
-                              onChange={e => setUseage(e.target.value)}
+                              defaultChecked={data.label2 === userBilling.usage}
+                              checked={data.label2 === usage}
+                              onChange={e => setUsage(e.target.value)}
                               type="radio"
                               id={data.label2}
                               name="usage"
@@ -229,11 +271,11 @@ const AccountOverview = ({ data, isVisible }) => {
                           <Col md={3}>
                             <Form.Check
                               className="custom-checkbox-light"
-                              defaultChecked={data.label3 === userBilling.User.usage}
-                              checked={data.label3 === useage}
+                              defaultChecked={data.label3 === userBilling.usage}
+                              checked={data.label3 === usage}
                               value={data.label3}
                               custom
-                              onChange={e => setUseage(e.target.value)}
+                              onChange={e => setUsage(e.target.value)}
                               type="radio"
                               id={data.label3}
                               label={data.label3}
@@ -243,7 +285,7 @@ const AccountOverview = ({ data, isVisible }) => {
                       </Container>
                     </Col>
                     <Col md={6} className="mb-4">
-                      <Input placeholder={`Sample Co Inc.`} defaultValue={userBilling.User.businessName} name="businessName" variant="flat" label={BusinessName} required />
+                      <Input placeholder={`Sample Co Inc.`} defaultValue={userBilling.businessName} name="businessName" variant="flat" label={usage === data.label1 ? BusinessName : ProjectName} required />
                     </Col>
                     <Col md={12}>
                       <Button disabled={isProcess} className="w-100" variant="primary-notround-large">{Update}</Button>
@@ -268,17 +310,17 @@ const AccountOverview = ({ data, isVisible }) => {
                 <Container fluid className="p-0">
                   <Row>
                     <Col md={6} className="mb-4">
-                      <Input name="current-password" type="password" variant="flat" label={currentPassword} required onChange={(e) => { onChange(); setOldPassword(e.target.value) }} />
+                      <Input name="current-password" type="password" variant="flat" label={currentPassword} required onChange={(e) => { setOldPassword(e.target.value) }} />
                     </Col>
                     <Col md={6} className="mb-4">
 
                     </Col>
                     <Col md={6} className="mb-4">
-                      <Input name="password" variant="flat" type="password" label={newPassword} required onChange={(e) => { onChange(); setPassword(e.target.value) }} />
+                      <Input name="password" variant="flat" type="password" label={newPassword} required onChange={(e) => { setPassword(e.target.value) }} />
                       <div className="d-flex align-items-start mt-2"><Icon variant="lock" className={`${styles.signinLock}`} /><span className={`${typographyStyles.textRomanTiny} op-05 d-block lh-1`}>{Passwordmustbe6}</span></div>
                     </Col>
                     <Col md={6} className="mb-4">
-                      <Input name="password2" variant="flat" type="password" label={newPassword} required onChange={(e) => { onChange(); setPassword2(e.target.value) }} />
+                      <Input name="password2" variant="flat" type="password" label={newPassword} required onChange={(e) => { setPassword2(e.target.value) }} />
                     </Col>
                     <Col md={12}>
                       <Button disabled={isProcess || notValid} className="w-100" variant="primary-notround-large">{UpdatePassword}</Button>

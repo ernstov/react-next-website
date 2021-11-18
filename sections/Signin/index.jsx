@@ -40,14 +40,12 @@ const Signin = ({ data, isVisible }) => {
     }
   }, [login, password])
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault()
     e.stopPropagation()
     setIsProcess(true)
 
-    if (e.target.querySelectorAll(".not-valid").length > 0) {
-      setIsProcess(false)
-    } else {
+    if (e.target.querySelectorAll(".not-valid").length === 0) {
       const formData = new FormData(e.target)
       let fields = {}
 
@@ -55,19 +53,17 @@ const Signin = ({ data, isVisible }) => {
         fields[key] = value
       })
 
-      AuthService.login(JSON.stringify(fields)).then(response => {
-        let routeTo = "/account/overview"
-        router.push(routeTo)
-        setIsProcess(false)
-      }, error => {
-        setError(error)
-        setIsProcess(false)
-        
-        setTimeout(()=>{
-          setError(null)
-        }, 5000)
-      })
+      try {
+        await AuthService.login(JSON.stringify(fields));
+        await router.push("/account/overview");
+      } catch (e) {
+        setError(e);
+        console.log(e);
+        setTimeout(() => setError(null), 5000);
+      }
     }
+
+    setIsProcess(false)
   }
 
   return (

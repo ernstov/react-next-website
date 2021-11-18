@@ -62,7 +62,7 @@ const app = {
   accountNavigation: [
     { name: "Overview", link: "/account/overview" },
     { name: "My Plan", link: "/account/plan" },
-    { name: "API Keys", link: "/account/api-keys" },
+    // { name: "API Keys", link: "/account/api-keys" },
     { name: "Billing", link: "/account/billing" },
     { name: "Support", link: "/account/support" },
     { name: "Documentation", link: "/documentation" },

@@ -21,10 +21,11 @@ export function SetApiRequestHeader(customHeader = {}) {
 // Add a request interceptor
 instance.interceptors.request.use(
     config => {
-        const token = getToken();
-        if (token) {
-            config.headers.Authorization = `Bearer ${token}`;
-        }
+        config.withCredentials = true;
+        // const token = getToken();
+        // if (token) {
+        //     config.headers.Authorization = `Bearer ${token}`;
+        // }
         return config;
     },
     error => Promise.reject(error)
@@ -32,14 +33,14 @@ instance.interceptors.request.use(
 
 instance.interceptors.response.use(
     response => {
-        if (response.headers['access-token']) {
-            const token = response.headers['access-token'];
-            setToken(token);
-        }
+        // if (response.headers['access-token']) {
+        //     const token = response.headers['access-token'];
+        //     setToken(token);
+        // }
         return response.data;
     },
     error => {
-        const err = error?.response?.data?.msg ? error.response.data.msg : error.message ? error.message : JSON.stringify(error);
+        const err = error?.response?.data?.msg || error?.response?.data?.message || error?.message || error.message || JSON.stringify(error);
         console.log("error===> ", error);
 
         // TODO: Handle error with some UI pop-ups

@@ -19,18 +19,19 @@ import UserBillingService from "../../services/UserBillingService"
 
 const AccountPlan = ({ data, isVisible }) => {
 
-  const { lang: { Complete, BusinessName, HomeCountry, SelectOne, Howdidyouhearaboutus, UseofAPI } } = useContext(Context)
+  const { lang: { Complete, BusinessName, ProjectName, HomeCountry, SelectOne, Howdidyouhearaboutus, UseofAPI } } = useContext(Context)
   const { optionsHow } = data
   const form = useRef(null)
   const [isProcess, setIsProcess] = useState(false)
   const optionsCountry = useMemo(() => countryList().getData(), [])
-  const [userBilling, setUserBilling] = useState({ User: {}, BillingPlan: {} })
+  const [userBilling, setUserBilling] = useState({})
   const [useage, setUseage] = useState(null);
   const [country, setCountry] = useState(null);
   const [hearAboutUs, setHearAboutUs] = useState(null);
   const router = useRouter()
 
   const [visible, setVisible] = useState(false)
+  console.log(hearAboutUs)
 
   useEffect(() => {
     if (isVisible) {
@@ -44,9 +45,9 @@ const AccountPlan = ({ data, isVisible }) => {
     UserBillingService.getUser()
       .then((res) => {
         setUserBilling(res)
-        setUseage(res.User.usage)
-        setCountry(res.User.homeCountry)
-        setHearAboutUs(res.User.hearAboutUs)
+        setUseage(res.usage)
+        setCountry(res.homeCountry)
+        setHearAboutUs(res.hearAboutUs)
       });
   }, [])
 
@@ -100,7 +101,7 @@ const AccountPlan = ({ data, isVisible }) => {
                         className="custom-checkbox-light mb-3 mb-md-0"
                         value={data.label1}
                         custom
-                        defaultChecked={data.label1 === userBilling.User.usage}
+                        defaultChecked={data.label1 === userBilling.usage}
                         checked={data.label1 === useage}
                         onChange={e => setUseage(e.target.value)}
                         type="radio"
@@ -113,7 +114,7 @@ const AccountPlan = ({ data, isVisible }) => {
                         className="custom-checkbox-light mb-3 mb-md-0"
                         value={data.label2}
                         custom
-                        defaultChecked={data.label2 === userBilling.User.usage}
+                        defaultChecked={data.label2 === userBilling.usage}
                         checked={data.label2 === useage}
                         onChange={e => setUseage(e.target.value)}
                         type="radio"
@@ -125,7 +126,7 @@ const AccountPlan = ({ data, isVisible }) => {
                     <Col md={3}>
                       <Form.Check
                         className="custom-checkbox-light"
-                        defaultChecked={data.label3 === userBilling.User.usage}
+                        defaultChecked={data.label3 === userBilling.usage}
                         checked={data.label3 === useage}
                         value={data.label3}
                         custom
@@ -139,7 +140,7 @@ const AccountPlan = ({ data, isVisible }) => {
                 </Container>
               </Col>
               <Col md={6} className="mb-4">
-                <Input defaultValue={userBilling.User.businessName} name="businessName" variant="flat" label={BusinessName} required />
+                <Input defaultValue={userBilling.businessName} name="businessName" variant="flat" label={useage === data.label1 ? BusinessName : ProjectName} required />
               </Col>
               <Col md={6} className="mb-4">
                 <Label label={HomeCountry} />
@@ -163,7 +164,7 @@ const AccountPlan = ({ data, isVisible }) => {
                   className={`${presetsStyles.selectLight} white`}
                   classNamePrefix={'acr-select'}
                   options={optionsHow}
-                  placeholder={`${SelectOne}`}
+                  placeholder={SelectOne}
                   components={{
                     SingleValue: customSingleValue,
                     MenuList: scrollBar,

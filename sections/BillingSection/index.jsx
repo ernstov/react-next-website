@@ -7,12 +7,18 @@ import InputPreview from "../../components/ui//Input/previewInput"
 import Block from "../../components/Block"
 import UserBillingService from "../../services/UserBillingService"
 import presetsStyles from "../../styles/global/presets.module.scss"
+import moment from "moment"
 
 const SupportSection = ({ data, isVisible, question, isWrap }) => {
 
   const [visible, setVisible] = useState(false)
-  const { lang: { Paymentsettings, Pasttransactions, Plan, Billing, NextPayment, Billingisbeingmade, Transactiondate, TransactionID, Description, Amount } } = useContext(Context)
-  const [userBilling, setUserBilling] = useState({ User: {}, BillingPlan: {} })
+  const { lang: { Paymentsettings, Pasttransactions, Plan, Billing, NextPayment, Billingisbeingmade, Nocardprovided, Transactiondate, TransactionID, Description, Amount } } = useContext(Context)
+  const [userBilling, setUserBilling] = useState({  })
+  const [amount, setAmount] = useState("$0")
+  const [transactions, setTransactions] = useState([])
+  const [nextPaymentAt, setNextPaymentAt] = useState('N/A')
+  const [cardLast4, setCardLast4] = useState(null)
+  const [billingPlanStatus, setBillingPlanStatus] = useState('N/A')
 
   useEffect(() => {
     if (isVisible) {
@@ -23,24 +29,40 @@ const SupportSection = ({ data, isVisible, question, isWrap }) => {
   }, [isVisible])
 
   useEffect(() => {
-    UserBillingService.getUser()
+    UserBillingService.getBilling()
       .then((res) => {
         setUserBilling(res)
+
+        const mode = res.user.billingMode;
+        if (mode === 'MONTHLY') {
+          setAmount(`\$${res.user.billingPlan.monthlyPrice.toLocaleString('en-US')}/month`)
+        } else if (mode === 'YEARLY') {
+          setAmount(`\$${res?.user.billingPlan.yearlyPrice.toLocaleString('en-US')}/year`)
+        }
+
+        setTransactions(res.transactions)
+        setCardLast4(res.user.subscription?.cardLast4)
+
+        const planName = res.user.billingPlan.name
+        if (res.user.subscription?.stripeSubscriptionStatus === 'trialing') {
+          setBillingPlanStatus(`${planName} (TRIALING)`)
+        } else {
+          setBillingPlanStatus(planName)
+        }
+
+        if (res.user.subscription?.nextPaymentAt) {
+          setNextPaymentAt(moment(res.user.subscription.nextPaymentAt).format('MMM DD, yyyy'))
+        }
       });
   }, [])
 
-  let amount = "0$"
-  if (userBilling.billingAmount && userBilling.billingMode) {
-    amount = `${userBilling.billingAmount}$/${userBilling.billingMode && userBilling.billingMode.charAt(0)}`
-  }
-
-  const sampleData = [
-    { date: "09/01/2021", id: "347364287", description: "{Plan Name}, API", amount: "$349.00" },
-    { date: "08/01/2021", id: "433384588", description: "{Plan Name}, API", amount: "$349.00" },
-    { date: "07/01/2021", id: "482772994", description: "{Plan Name}, API", amount: "$349.00" },
-    { date: "06/01/2021", id: "489900239", description: "{Plan Name}, API", amount: "$349.00" },
-    { date: "05/23/2021", id: "883557026", description: "Account Setup", amount: "$125.50" },
-  ]
+  // const sampleData = [
+  //   { date: "09/01/2021", id: "347364287", description: "{Plan Name}, API", amount: "$349.00" },
+  //   { date: "08/01/2021", id: "433384588", description: "{Plan Name}, API", amount: "$349.00" },
+  //   { date: "07/01/2021", id: "482772994", description: "{Plan Name}, API", amount: "$349.00" },
+  //   { date: "06/01/2021", id: "489900239", description: "{Plan Name}, API", amount: "$349.00" },
+  //   { date: "05/23/2021", id: "883557026", description: "Account Setup", amount: "$125.50" },
+  // ]
 
   return (
     <div className={`${styles.billing} ${data.className ? data.className : ""} ${visible ? "active" : ""}`}>
@@ -54,16 +76,16 @@ const SupportSection = ({ data, isVisible, question, isWrap }) => {
               <Container fluid className="p-0">
                 <Row>
                   <Col md={4} className="mb-4">
-                    <InputPreview variant="flat" defaultValue={userBilling.BillingPlan.planName || "Free Trial"} label={Plan} />
+                    <InputPreview variant="flat" defaultValue={billingPlanStatus} label={Plan} />
                   </Col>
                   <Col md={4} className="mb-4">
                     <InputPreview variant="flat" defaultValue={amount} label={Billing} />
                   </Col>
                   <Col md={4} className="mb-4">
-                    <InputPreview variant="flat" defaultValue={userBilling.nextPaymentAt || "N/A"} label={NextPayment} />
+                    <InputPreview variant="flat" defaultValue={nextPaymentAt} label={NextPayment} />
                   </Col>
                   <Col md={12}>
-                    <div className={`${presetsStyles.labelSecondaryLight}`}><span>{Billingisbeingmade}</span></div>
+                    <div className={`${presetsStyles.labelSecondaryLight}`}><span>{cardLast4 ? `${Billingisbeingmade} ${cardLast4}` : Nocardprovided}</span></div>
                   </Col>
                 </Row>
               </Container>
@@ -76,19 +98,19 @@ const SupportSection = ({ data, isVisible, question, isWrap }) => {
             <Table className="w-100 simple" responsive>
               <thead>
                 <tr>
-                  <th>Transactiondate</th>
-                  <th>TransactionID</th>
+                  <th>Created At</th>
+                  <th>ID</th>
                   <th>Description</th>
                   <th>Amount</th>
                 </tr>
               </thead>
               <tbody>
-                {sampleData.map((item, i) => (
+                {transactions.map((item, i) => (
                   <tr key={`fdt-${i}`}>
-                    <td>{item.date}</td>
-                    <td className="op-08">{item.id}</td>
+                    <td>{moment(item.createdAt).format('MMM DD, yyyy LT')}</td>
+                    <td className="op-08">{item.stripeId}</td>
                     <td className="op-08">{item.description}</td>
-                    <td>{item.amount}</td>
+                    <td>{`\$${(item.amount / 100).toLocaleString('en-US', {maximumFractionDigits: 2})}`}</td>
                   </tr>
                 ))}
               </tbody>

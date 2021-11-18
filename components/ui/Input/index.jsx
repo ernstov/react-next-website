@@ -49,7 +49,7 @@ const Input = ({ variant, className, placeholder, name, onChange, defaultValue, 
       case 'password2':
       case 'current-password':
         bootstrapValidate(inputR.current, 'min:6:', setValidaion);
-        //bootstrapValidate(inputR.current, 'regex:^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-])(?!.* ).{6,}$:', setValidaion);
+        // bootstrapValidate(inputR.current, 'regex:^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-])(?!.* ).{6,}$:', setValidaion);
         break;
     }
   };

@@ -22,7 +22,7 @@ export const page = {
 <div class="code-head">
   <h3>Request</h3>
   <label>curl -XGET -G</label>
-  <code>api.goperigon.com/v1/all' --data-urlencode 'q="SpaceX Launch"</code>
+  <code><div style="overflow-wrap: anywhere;">api.goperigon.com/v1/all' --data-urlencode 'q="SpaceX Launch"</div></code>
 </div>
 
 <div class="code-body">
@@ -107,7 +107,7 @@ export const page = {
 <div class="code-head">
   <h3>Request</h3>
   <label>curl -XGET -G</label>
-  <code>api.goperigon.com/v1/all' --data-urlencode 'q="(Google AND (Facebook OR Apple) AND NOT Amazon)"</code>
+  <code><div style="overflow-wrap: anywhere;">api.goperigon.com/v1/all' --data-urlencode 'q="(Google AND (Facebook OR Apple) AND NOT Amazon)"</div></code>
 </div>
 
 <div class="code-body">

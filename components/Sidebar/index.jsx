@@ -7,6 +7,7 @@ import appConfig from "../../configs/appConfig"
 import { useRouter } from "next/router"
 import { Context } from "../../context/context"
 import typographyStyles from "../../styles/global/typography.module.scss"
+import AuthService from "../../services/AuthService";
 
 const Sidebar = ({ variant, isVisible }) => {
 
@@ -34,7 +35,7 @@ const Sidebar = ({ variant, isVisible }) => {
           {appConfig.accountNavigation.map((item, i) => (
             <Link key={`si-${i}`} href={item.link} passHref><a className={`${styles.sidebarLink} ${isActive(item.link) ? "active" : ""}`}><span>{item.name}</span></a></Link>
           ))}
-          <Link href={`/sign-up`} passHref><a className={`${styles.sidebarLink}`}><span>{SignOut}</span></a></Link>
+          <Link href="/sign-in"><a onClick={() => AuthService.logout()} className={`${styles.sidebarLink}`}><span>{SignOut}</span></a></Link>
         </>;
 
       case "documentation":

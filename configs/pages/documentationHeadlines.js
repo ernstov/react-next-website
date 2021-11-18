@@ -10,7 +10,7 @@ export const page = {
 <div class="code-head">
   <h3>Request</h3>
   <label>curl -XGET</label>
-  <code>api.goperigon.com/v1/headlines?q=Dow%20Jones&country=us&apiKey=YOUR_API_KEY</code>
+  <code><div style="overflow-wrap: anywhere;">api.goperigon.com/v1/headlines?q=Dow%20Jones&country=us&apiKey=YOUR_API_KEY</div></code>
 </div>
 
 <div class="code-body">

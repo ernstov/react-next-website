@@ -1,5 +1,5 @@
 import { useState, useContext, useEffect, useRef } from "react"
-import { Container, Row, Col, Badge, Form } from "react-bootstrap"
+import { Container, Row, Col, Badge, Form, Collapse } from "react-bootstrap"
 import Block from "../../components/Block"
 import styles from './signup.module.scss'
 import typographyStyles from "../../styles/global/typography.module.scss"
@@ -22,6 +22,7 @@ const Signup = ({ data, isVisible }) => {
   const form = useRef(null)
   const [isProcess, setIsProcess] = useState(false)
   const [isAgreed, setIsAgreed] = useState(false)
+  const [error, setError] = useState(null)
 
   const [visible, setVisible] = useState(false)
   const router = useRouter()
@@ -39,29 +40,41 @@ const Signup = ({ data, isVisible }) => {
     e.stopPropagation();
     setIsProcess(true)
 
-    if (e.target.querySelectorAll(".not-valid").length > 0) {
-      setIsProcess(false)
-    } else {
+    if (e.target.querySelectorAll(".not-valid").length === 0) {
       const formData = new FormData(e.target)
       let fields = {}
 
       formData.forEach((value, key) => {
         fields[key] = value
       })
+
       try {
         await AuthService.signup(JSON.stringify(fields))
         let routeTo = "/account/details"
-        router.push({ pathname: routeTo, query: { billingPlan: fields.billingPlan } })
+        await router.push({ pathname: routeTo, query: { billingPlan: fields.billingPlan, name: fields.firstName } })
       } catch (e) {
+        setError(e);
+        setTimeout(() => setError(null), 5000);
         console.log(e);
       }
-      setIsProcess(false)
     }
 
+    setIsProcess(false)
   }
 
   return (
     <div className={`${styles.signup} ${data.className ? data.className : ""} ${visible ? "active" : ""}`}>
+      <Collapse in={error}>
+        <div className={`${styles.signupError} pb-4 ${visible ? "active" : ""}`}>
+          <Container fluid className="p-0">
+            <Row>
+              <Col>
+                <div className={`${presetsStyles.labelError}`}><span>{error}</span></div>
+              </Col>
+            </Row>
+          </Container>
+        </div>
+      </Collapse>
       <Block className="entry-3" variant="badge-wrap">
         <form name="contactForm" onSubmit={onSubmit} ref={form}>
           <Container fluid className="p-0">

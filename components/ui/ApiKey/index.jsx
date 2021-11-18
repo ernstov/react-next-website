@@ -12,7 +12,7 @@ const ApiKey = ({ className, value }) => {
       setTimeout(()=>{
         setDone(false)
       }, 4000)
-    }, () => {
+    }, (err) => {
       console.error('Async: Could not copy text: ', err);
     });
   }
