@@ -17,7 +17,8 @@ import 'swiper/components/lazy/lazy.scss'
 import ApiService from "../services/ApiService"
 import UserBillingService from "../services/UserBillingService"
 import BottomMenu from "../components/BottomMenu"
-import { isWrap } from "../utils";
+import { isWrap } from "../utils"
+import Agreement from "../components/Agreement"
 
 export default function App({ Component, pageProps }) {
 
@@ -56,7 +57,7 @@ export default function App({ Component, pageProps }) {
 
   useEffect(() => {
 
-    if(!isWrap()) setWrap(false)
+    if (!isWrap()) setWrap(false)
 
     const start = (e) => {
       dispatchApp({ type: "SET_LOADING", data: { isLoading: true, nextPage: e } });
@@ -76,7 +77,7 @@ export default function App({ Component, pageProps }) {
       .then(data => dispatchApp({ type: "SET_USER", data: { user: { id: data.id, email: data.email } } }))
       .catch(() => {
         if (router.pathname.indexOf("/account") >= 0 || router.pathname.indexOf("/documentation") >= 0) {
-          router.push("/sign-in")
+          //router.push("/sign-in")
         }
       })
 
@@ -119,23 +120,27 @@ export default function App({ Component, pageProps }) {
     return true
   }
 
-  const getHeaderVariant = () => {
-    if(router.pathname.indexOf("/account") != -1 || router.pathname.indexOf("/documentation") != -1 || router.pathname.indexOf("/data-solutions") != -1) return "advanced"
-  }
-
   const isHome = () => {
     return router.pathname == "/"
   }
 
+  const isAccount = () => {
+    return router.pathname.includes("/account")
+  }
+
+  const isDocumentation = () => {
+    return router.pathname.includes("/documentation")
+  }
 
   return <Context.Provider value={{ app, dispatchApp, lang, scrollB }}>
-    <LayoutBase isWrap={wrap && !isHome()}>
+    <LayoutBase variant={isAccount() ? 'account' : ""} isWrap={wrap && !isHome()}>
       {/* {isLoader && <Loader loaderState={loaderState} />} */}
       {(wrap && !isHome()) && <Header path={router.pathname} variant={`advanced`} isLoggedIn={isLoggedIn()} />}
-      {isHome() && <BottomMenu path={router.pathname} data={appConfig.bottomMenu}/>}
+      {isHome() && <BottomMenu path={router.pathname} data={appConfig.bottomMenu} />}
       {isSidebar() && <Sidebar variant={getSidebarVariant()} />}
       <Scrollbar className="scoll-bar" ref={e => { if (e && !scrollB.current) { scrollB.current = e; } }}>
-        <Component {...pageProps} path={router.pathname} />
+        <div><Component {...pageProps} path={router.pathname} /></div>
+        {isAccount() || isDocumentation() && <Agreement />}
       </Scrollbar>
     </LayoutBase>
   </Context.Provider>

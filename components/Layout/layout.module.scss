@@ -13,6 +13,21 @@
     padding-top: 0;
   }
 
+  &:global(.account) {
+    section {
+      height: 100%;
+    }
+    :global(.scroll-content) {
+      height: 100%;
+      >div {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+    }
+  }
+
   @include media-breakpoint-down(md) {
     padding-top: $header-height-md;
     height: auto;

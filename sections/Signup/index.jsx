@@ -120,7 +120,7 @@ const Signup = ({ data, isVisible }) => {
                   id={`agree-item`}
                   label=""
                 />
-                <span className={`${typographyStyles.textMediumM} op-05 mr-1`}>{Ihaveread}</span><Button link="/agreement" as="link" variant="link-gray">{EndUserAgreement}</Button>
+                <span className={`${typographyStyles.textMediumM} op-05 mr-1`}>{Ihaveread}</span><Button link="/EULA.pdf" as="url" variant="link-gray">{EndUserAgreement}</Button>
               </Col>
               <Col md={12}>
                 <Button disabled={isProcess || !isAgreed} className="w-100" variant="primary-notround-large">{Signup}</Button>
