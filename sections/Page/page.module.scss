@@ -84,12 +84,6 @@
     margin: 0.2rem 0;
   }
 
-  :global(.col) {
-    div {
-      overflow-x: auto;
-    }
-  }
-
   :global(.apiKey) {
     background-color: $primary-cover-2;
     border: 1px solid $border-color;
@@ -322,6 +316,12 @@
     h2 {
       &::after {
         left: -20px;
+      }
+    }
+
+    :global(.col) {
+      div {
+        overflow-x: auto;
       }
     }
 
