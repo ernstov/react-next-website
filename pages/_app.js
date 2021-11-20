@@ -140,7 +140,7 @@ export default function App({ Component, pageProps }) {
       {isSidebar() && <Sidebar variant={getSidebarVariant()} />}
       <Scrollbar className="scoll-bar" ref={e => { if (e && !scrollB.current) { scrollB.current = e; } }}>
         <div><Component {...pageProps} path={router.pathname} /></div>
-        {isAccount() || isDocumentation() && <Agreement />}
+        {(isAccount() || isDocumentation()) && <Agreement />}
       </Scrollbar>
     </LayoutBase>
   </Context.Provider>

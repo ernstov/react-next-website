@@ -58,7 +58,7 @@ const Footer = ({ data, isVisible }) => {
                 ))}
               </div>
             </Col>
-            <Col className="d-flex justify-content-start justify-content-lg-end" xl={6} lg={5}>
+            <Col className={`${styles.footerStoresCont} d-flex justify-content-start justify-content-lg-end`} xl={6} lg={5}>
               <div className={`${styles.footerStoresInner}`}>
                 <div className="entry-1"><span className={`${styles.footerStoresBadge}`}>{GetTheApp}</span></div>
                 <div className={`${styles.footerStoresContainer}`}>

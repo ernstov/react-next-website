@@ -16,7 +16,7 @@ const Tags = ({ data, isVisible }) => {
           </Col>
         </Row>
       </Container>
-      <Container className="tags-container entry-2">
+      <Container className="tags-container pl-0 pr-0 entry-2">
         <Scrollbar>
           <Row>
             {data?.rows?.map((tagsRow, i) => (

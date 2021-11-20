@@ -40,12 +40,14 @@
 .footerStoresContainer {
   display: flex;
   justify-content: flex-end;
+  flex-wrap: wrap;
 
   @include media-breakpoint-down(sm) {
-    justify-content: center;
+    justify-content: flex-start;
     order: 1;
 
     a {
+      
       &:last-child {
         > * {
           margin-right: 0 !important;
@@ -239,8 +241,8 @@
       text-align: center;
       padding-top: 20px;
       margin-top: 20px;
-      padding-left: 0;
-      padding-right: 0;
+      padding-left: $gutter/2;
+      padding-right: $gutter/2;
       font-size: 0.84rem;
       border-top: 1px solid rgba($cover-13, 0.15);
     }
@@ -249,8 +251,8 @@
 
 .footerCopyrightCol {
   @include media-breakpoint-down(sm) {
-    padding-left: 0;
-    padding-right: 0;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
   }
 }
 
@@ -264,6 +266,7 @@
   background-color: $primary;
   color: $blackAdv;
   padding: 0.2rem 0.4rem;
+  padding-top: 0.28rem;
   border-radius: 2px;
   text-transform: uppercase;
   font-weight: 600;
@@ -295,5 +298,19 @@
 
   @include media-breakpoint-down(sm) {
     display: none;
+  }
+}
+
+.footerSocialsContainer {
+  @include media-breakpoint-down(sm) {
+    padding-left: 2.6rem !important;
+    padding-right: 2.6rem !important;
+  }
+}
+
+.footerStoresCont {
+  @include media-breakpoint-down(sm) {
+    padding-left: 2.6rem !important;
+    padding-right: 2.6rem !important;
   }
 }
