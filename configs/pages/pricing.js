@@ -91,7 +91,7 @@ export const page = {
       { id: "id7", question: "Another question?", answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sed vestibulum ante. Pellentesque fermentum scelerisque libero, vel tristique massa sodales non. Fusce quis diam condimentum, congue massa tincidunt, aliquet mauris. Aliquam vestibulum faucibus eros a cursus. Mauris gravida mattis diam, a mattis arcu auctor sed." },
       { id: "id8", question: "Another question?", answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sed vestibulum ante. Pellentesque fermentum scelerisque libero, vel tristique massa sodales non. Fusce quis diam condimentum, congue massa tincidunt, aliquet mauris. Aliquam vestibulum faucibus eros a cursus. Mauris gravida mattis diam, a mattis arcu auctor sed." },
       { id: "id9", question: "Another question?", answer: "In addition to national & world news, Perigon also gives you the ability to follow local news, weather, and events happening in over 100 cities around the globe. New cities are being added every month!" },
-      { question: "All API", link: "/data-solutions/news-api" },
+      { question: "News API", link: "/data-solutions/news-api" },
     ]
   },
 
