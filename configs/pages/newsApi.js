@@ -1,6 +1,6 @@
 export const page = {
-  title: "All API & business solutions",
-  description: "Perigon All API & business solutions",
+  title: "News API & business solutions",
+  description: "Perigon News API & business solutions",
   thumbnail: "logo-thumb.png",
   hero: {
     title: "A single access-point to the news that matters",
@@ -15,7 +15,7 @@ export const page = {
     buttons: [
       {
         name: "Free trial",
-        link: "#",
+        link: "/sign-up",
         variant: "primary-arrow",
       },
       {
@@ -101,7 +101,7 @@ export const page = {
     buttons: [
       {
         name: "Start building",
-        link: "#",
+        link: "/sign-up",
         variant: "primary-arrow",
       },
     ]
@@ -110,7 +110,7 @@ export const page = {
   features: {
     img: "",
     column2: {
-      label: "All from over 40,000 sources",
+      label: "News from over 40,000 sources",
       list: [
         {
           title: "Global media",
