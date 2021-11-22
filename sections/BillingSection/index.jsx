@@ -44,7 +44,7 @@ const SupportSection = ({ data, isVisible, question, isWrap }) => {
             setAmount(`\$${res?.user.billingPlan.yearlyPrice.toLocaleString('en-US')}/year`)
           }
 
-          setCardLast4(res.user.subscription?.cardLast4)
+          setCardLast4(res.user.paymentMethod?.cardLast4)
 
           const planName = res.user.billingPlan.name
           if (res.user.subscription?.stripeSubscriptionStatus === 'trialing') {
