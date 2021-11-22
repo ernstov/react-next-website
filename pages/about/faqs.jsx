@@ -6,7 +6,6 @@ import Footer from "../../components/Footer"
 import { isWrap, getUrlParam } from '../../utils'
 import Hero from "../../sections/Hero"
 import FaqViewer from "../../sections/FaqViewer"
-import Follow from "../../sections/Follow"
 import VisibilitySensor from '../../utils/react-visibility-sensor'
 import TagManager from 'react-gtm-module'
 import {page} from "../../configs/pages/faq"
@@ -27,10 +26,9 @@ const Faqs = ({ path }) => {
   useEffect(() => {
     TagManager.dataLayer(tagManagerArgs)
 
-    if (!isWrap()) {
-      setSections(current => current.filter((item, i)=>i < current.length-1))
-    }
-
+    // if (!isWrap()) {
+    //   setSections(current => current.filter((item, i)=>i < current.length-1))
+    // }
     setQuestion(getUrlParam("q"))
     setWrap(isWrap())
   }, [])

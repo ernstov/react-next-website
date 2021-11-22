@@ -1,16 +1,29 @@
-import React from "react"
+import React, {useEffect} from "react"
 import Head from 'next/head'
 import appConfig from "../configs/appConfig"
 import Hero from "../sections/Hero"
 import Signin from "../sections/Signin"
 import VisibilitySensor from '../utils/react-visibility-sensor'
 import { page } from "../configs/pages/signIn"
+import TagManager from 'react-gtm-module'
+
+const tagManagerArgs = {
+    gtmId: appConfig.gtmId,
+    dataLayerName: appConfig.gtmDataLayerName,
+    dataLayer: {
+        page: 'Sign In'
+    },
+}
 
 const SignIn = () => {
     const sections = [
         { component: Hero, props: { data: page.hero } },
         { component: Signin, props: { data: page.signIn } },
     ]
+
+    useEffect(() => {
+        TagManager.dataLayer(tagManagerArgs)
+    }, [])
 
     return (
         <>

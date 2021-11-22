@@ -4,17 +4,13 @@ import reducerApp from "../context/reducerApp"
 import appConfig from "../configs/appConfig"
 import languages from "../configs/languages"
 import Router, { useRouter } from "next/router"
-import { LayoutBase, LayoutRow } from "../components/Layout"
+import { LayoutBase } from "../components/Layout"
 import Scrollbar from "react-smooth-scrollbar"
-import Loader from "../components/Loader/"
 import Header from "../components/Header"
 import Sidebar from "../components/Sidebar"
-import { getCurrentUserData } from "../utils/AuthUtils"
 import "../styles/main.scss"
 import 'swiper/swiper.scss'
 import 'swiper/components/lazy/lazy.scss'
-// import 'jsoneditor-react/es/editor.min.css';
-import ApiService from "../services/ApiService"
 import UserBillingService from "../services/UserBillingService"
 import BottomMenu from "../components/BottomMenu"
 import { isWrap } from "../utils"
@@ -77,7 +73,7 @@ export default function App({ Component, pageProps }) {
       .then(data => dispatchApp({ type: "SET_USER", data: { user: { id: data.id, email: data.email } } }))
       .catch(() => {
         if (router.pathname.indexOf("/account") >= 0 || router.pathname.indexOf("/documentation") >= 0) {
-          //router.push("/sign-in")
+         router.push("/sign-in")
         }
       })
 
@@ -137,7 +133,7 @@ export default function App({ Component, pageProps }) {
       {/* {isLoader && <Loader loaderState={loaderState} />} */}
       {(wrap && !isHome()) && <Header path={router.pathname} variant={`advanced`} isLoggedIn={isLoggedIn()} />}
       {isHome() && <BottomMenu path={router.pathname} data={appConfig.bottomMenu} />}
-      {isSidebar() && <Sidebar variant={getSidebarVariant()} />}
+      {isSidebar() && <Sidebar isWrap={wrap} variant={getSidebarVariant()} />}
       <Scrollbar className="scoll-bar" ref={e => { if (e && !scrollB.current) { scrollB.current = e; } }}>
         <div><Component {...pageProps} path={router.pathname} /></div>
         {(isAccount() || isDocumentation()) && <Agreement />}

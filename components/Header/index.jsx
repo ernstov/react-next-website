@@ -18,10 +18,10 @@ import shortid from "shortid";
 
 const Header = ({ data, path, isLoggedIn, variant }) => {
 
-  const { app, lang: { GetTheApp, Gettingstarted, Searchapi } } = useContext(Context);
+  const { app, lang: { GetTheApp, Gettingstarted, Searchapi, SignOut } } = useContext(Context);
   const [isVisible, setIsVisible] = useState(false);
   const [isActiveMobile, setIsActiveMobile] = useState(false)
-  const { headerNavigation, mobileNavigation } = appConfig
+  const { headerNavigation, mobileNavigation, accountNavigation } = appConfig
   const [subActive, setSubActive] = useState(0)
   let sub = useRef({})
   const [line, setLine] = useState({ width: 80, position: sub.current })
@@ -59,7 +59,7 @@ const Header = ({ data, path, isLoggedIn, variant }) => {
     return router.pathname.indexOf("/documentation") != -1
   }
 
-  const iAccount = () => {
+  const isAccount = () => {
     return router.pathname.indexOf("/account") != -1
   }
 
@@ -158,7 +158,7 @@ const Header = ({ data, path, isLoggedIn, variant }) => {
                   </div>
                 </Col>
                 <Col lg={6} xs={6} className={`${styles.navigationCenter}`}>
-                  {!iAccount() && !isDocumentation() &&
+                  {!isAccount() && !isDocumentation() &&
                     <div className={`${styles.navigation}`}>
                       {headerNavigation.map((link, i) => (
                         (link.show == 0 || (link.show == 1 && !app.isAuth) || (link.show == 2 && app.isAuth)) && <Button className={`${isActiveSub(link.link) ? "active" : ""} ml-1 mr-1`} link={link.link} key={`mn-${i}`} as="link" variant="light-simple">{link.name}</Button>
@@ -169,7 +169,7 @@ const Header = ({ data, path, isLoggedIn, variant }) => {
                 <Col lg={3} xs={3} className={`${styles.headerDesktopActions}`}>
                   <div className={`${styles.headerActions}`}>
                     <MenuUser />
-                    {!iAccount() && <div className={`${styles.headerToggler}`}><MenuToggler isActiveMobile={isActiveMobile} setIsActiveMobile={() => setIsActiveMobile(!isActiveMobile)} /></div>}
+                    {!isAccount() && <div className={`${styles.headerToggler}`}><MenuToggler isActiveMobile={isActiveMobile} setIsActiveMobile={() => setIsActiveMobile(!isActiveMobile)} /></div>}
                   </div>
                 </Col>
               </Row>
@@ -193,7 +193,7 @@ const Header = ({ data, path, isLoggedIn, variant }) => {
                 </div>
               </div>
               <div className="menu-container-middle">
-                {isDocumentation() ?
+                {isDocumentation() &&
                   <>
                     <ul>
                       <li onClick={() => hideAll(true)} className={`${router.pathname == "/documentation" ? "active" : ""}`}><Link href={"/documentation"}>{Gettingstarted}</Link></li>
@@ -204,8 +204,17 @@ const Header = ({ data, path, isLoggedIn, variant }) => {
                         <li className={`${router.pathname == item.link ? "active" : ""}`} onClick={() => hideAll(true)} key={`${shortid.generate()}`}><Link href={item.link}>{item.name}</Link></li>
                       ))}
                     </ul>
-                  </>
-                  : mobileNavigation.map((sect, i) => (
+                  </>}
+                {isAccount() &&
+                  <ul>
+                    {accountNavigation.map((item, i) => (
+                      <li className={`${router.pathname == item.link ? "active" : ""}`} onClick={() => hideAll(true)} key={`${shortid.generate()}`}><Link href={item.link} passHref><a className={`${styles.sidebarLink} ${isActive(item.link) ? "active" : ""}`}><span>{item.name}</span></a></Link></li>
+                    ))}
+                    <li><Link href="/sign-in"><a onClick={() => AuthService.logout()} className={`${styles.sidebarLink}`}><span>{SignOut}</span></a></Link></li>
+                  </ul>
+                }
+                {(!isAccount() && !isDocumentation()) &&
+                  mobileNavigation.map((sect, i) => (
                     <div className="pb-3" key={`sdr-${i}`}>
                       <div><span className={typographyStyles.labelMenu}>{sect.label}</span></div>
                       <ul>
@@ -214,8 +223,9 @@ const Header = ({ data, path, isLoggedIn, variant }) => {
                         ))}
                       </ul>
                     </div>
-                  ))}
-                {!isDocumentation() &&
+                  ))
+                }
+                {(!isDocumentation() && !isAccount()) &&
                   <div className="menu-container-stores">
                     <span className="menu-container-badge">{GetTheApp}</span>
                     {appConfig.navigationAdditional.stores && appConfig.navigationAdditional.stores.map((store, i) => (

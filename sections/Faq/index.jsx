@@ -16,22 +16,30 @@ const Faq = ({ data, isVisible, question, isWrap }) => {
 
   const calcPosition = (position) => {
     if (window.innerWidth > 879) {
-      return isWrap ? position - appConfig.headerHeight - 32 : position - 32
+      return isWrap ? position - appConfig.headerHeight - 50 : position
     } else {
-      return isWrap ? position - appConfig.headerHeightMd - 32 : position - 32
+      return isWrap ? position - appConfig.headerHeightMd - 50 : position
     }
   }
 
   const scrollTo = (elmId) => {
-    const position = document.querySelector(`#${elmId}`).getBoundingClientRect().top
-    scrollB.current.scrollbar.scrollTo(0, calcPosition(position), 1000)
+    const elm = document.querySelector(`#${elmId}`)
+    const position = elm.getBoundingClientRect().top
+
+    if (window.innerWidth > 880) {
+      scrollB.current.scrollbar.scrollTo(0, calcPosition(position), 1000)
+    } else {
+      window.scrollTo({
+        top: window.pageYOffset + calcPosition(position),
+        behavior: "smooth"
+      })
+    }
   }
 
   useEffect(() => {
-
     if (question) {
-      for (const i in data) {
-        if (data[i].id == question) {
+      for (const i in data.list) {
+        if (data.list[i].id == question) {
           setOpen(open.map((item, z) => i == z ? true : false));
           setTimeout(() => {
             scrollTo(question);
@@ -68,7 +76,7 @@ const Faq = ({ data, isVisible, question, isWrap }) => {
           </Col>
         </Row>
         <Row>
-          <Col lg={12} className="entry-4">
+          <Col lg={12} className={question ? "" : "entry-4"}>
             {data.list.map((question, i) => (
               <Card id={question.id} className={`${question.link ? "faq-link" : ""} ${open[i] && question.answer ? "active" : ""}`} key={`ai-${i}`}>
                 <Card.Header onClick={() => { setOpen(open[i] ? open.map((item, z) => i == z ? false : item) : open.map((item, z) => z == i ? true : isMob() ? item : false)); if (question.link) router.push(question.link) }}>

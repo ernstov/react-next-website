@@ -10,11 +10,21 @@
   background-color: $cover-8;
   transition: transform $transition*2 $transition-timing;
 
+  &:global(.no-wrap) {
+    top: 0;
+    height: 100%;
+  }
+
   @include media-breakpoint-down(lg) {
     top: $header-height-md;
     height: calc(100% - #{$header-height-md});
     transform: translateX(calc(-100% - 14px));
     position: fixed;
+
+    &:global(.no-wrap) {
+      top: 0;
+      height: 100%;
+    }
 
     &:global(.documentation) {
       >div {

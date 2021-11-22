@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useState, useEffect} from "react"
 import Head from 'next/head'
 import appConfig from "../../configs/appConfig"
 import Footer from "../../components/Footer"
@@ -10,8 +10,20 @@ import FeaturesSimple from "../../sections/Features/FeaturesSimple"
 import Api from "../../sections/Api"
 import VisibilitySensor from '../../utils/react-visibility-sensor'
 import { page } from "../../configs/pages/newsApi"
+import {  isWrap } from '../../utils'
+import TagManager from 'react-gtm-module'
+
+const tagManagerArgs = {
+  gtmId: appConfig.gtmId,
+  dataLayerName: appConfig.gtmDataLayerName,
+  dataLayer: {
+    page: 'News Api'
+  },
+}
 
 const NewsAPI = () => {
+
+  const [wrap, setWrap] = useState(true)
 
   const sections = [
     { component: HeroAdvanced, props: { data: page.hero } },
@@ -22,6 +34,14 @@ const NewsAPI = () => {
     { component: Columns, props: { data: page.columns } },
     { component: Footer, props: { data: appConfig.footer } },
   ]
+
+  useEffect(() => {
+    TagManager.dataLayer(tagManagerArgs)
+
+    setWrap(isWrap())
+  }, [])
+
+  if (!wrap) sections.pop();
 
   return (
     <>

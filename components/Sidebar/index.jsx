@@ -9,7 +9,7 @@ import { Context } from "../../context/context"
 import typographyStyles from "../../styles/global/typography.module.scss"
 import AuthService from "../../services/AuthService";
 
-const Sidebar = ({ variant, isVisible }) => {
+const Sidebar = ({ variant, isVisible, isWrap }) => {
 
   const { lang: { SignOut, Gettingstarted, Searchapi } } = useContext(Context)
   const [visible, setVisible] = useState(false)
@@ -51,8 +51,8 @@ const Sidebar = ({ variant, isVisible }) => {
   }
 
   return (
-    <div className={`${styles.sidebar} ${isSidebarActive ? "active" : ""} ${visible ? "active" : ""} ${variant ? variant : ""}`}>
-      <div onClick={() => setIsSidebarActive(!isSidebarActive)} className={`${styles.sidebarToggler}`}><Icon variant={isSidebarActive ? "close" : "menu"} /></div>
+    <div className={`${styles.sidebar} ${isSidebarActive ? "active" : ""} ${!isWrap ? "no-wrap" : ""} ${visible ? "active" : ""} ${variant ? variant : ""}`}>
+      {/* <div onClick={() => setIsSidebarActive(!isSidebarActive)} className={`${styles.sidebarToggler}`}><Icon variant={isSidebarActive ? "close" : "menu"} /></div> */}
       {render()}
     </div>
   );

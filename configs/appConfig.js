@@ -1,10 +1,10 @@
 const app = {
   lang: "eng",
   projectName: "Perigon",
-  headerHeight: 80,
-  headerHeightMd: 75,
+  headerHeight: 75,
+  headerHeightMd: 60,
   entryDelay: 500,
-  gtmId: "GTM-KS798VW",
+  gtmId: "GTM-WFD4ZWD",
   gtmDataLayerName: "PageDataLayer",
   api: "https://api.goperigon.com",
   projectDomain: "https://goperigon.com",
