@@ -11,7 +11,7 @@ import AuthService from "../../services/AuthService";
 
 const Sidebar = ({ variant, isVisible, isWrap }) => {
 
-  const { lang: { SignOut, Gettingstarted, Searchapi } } = useContext(Context)
+  const { lang: { SignOut, Gettingstarted, Searchapi }, dispatchApp } = useContext(Context)
   const [visible, setVisible] = useState(false)
   const [isSidebarActive, setIsSidebarActive] = useState(false)
   const router = useRouter()
@@ -28,6 +28,8 @@ const Sidebar = ({ variant, isVisible, isWrap }) => {
     return router.pathname == link
   }
 
+  const onLogout = () => AuthService.logout().then(() => dispatchApp({ type: 'SET_USER', data: { user: undefined } }))
+
   const render = () => {
     switch (variant) {
       case "account":
@@ -35,7 +37,7 @@ const Sidebar = ({ variant, isVisible, isWrap }) => {
           {appConfig.accountNavigation.map((item, i) => (
             <Link key={`si-${i}`} href={item.link} passHref><a className={`${styles.sidebarLink} ${isActive(item.link) ? "active" : ""}`}><span>{item.name}</span></a></Link>
           ))}
-          <Link href="/sign-in"><a onClick={() => AuthService.logout()} className={`${styles.sidebarLink}`}><span>{SignOut}</span></a></Link>
+          <Link href="/sign-in"><a onClick={onLogout} className={`${styles.sidebarLink}`}><span>{SignOut}</span></a></Link>
         </>;
 
       case "documentation":

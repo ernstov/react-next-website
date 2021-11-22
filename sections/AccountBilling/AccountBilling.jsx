@@ -20,9 +20,10 @@ import {
   CardElement
 } from "@stripe/react-stripe-js"
 import { useRouter } from 'next/router'
+import { useNotyf } from "../../utils/hooks"
 
 const AccountBilling = ({ data, isVisible }) => {
-  const { lang: { Startplan, UpdatePlan, plan, APIplan, BillingUSD, Monthly, Yearly, mo, yr, Save10, Billingdetails, CardNumber, CardholderName, CVC, Expiration, digitcode }, app } = useContext(Context)
+  const { lang: { Startplan, UpdatePlan, plan, APIplan, BillingUSD, Monthly, Yearly, mo, yr, Save10, Billingdetails, CardNumber, Unsubscribe, Changepaymentmethod, CardholderName, CVC, Expiration, digitcode }, app } = useContext(Context)
   const { optionsExpirationMonths, optionsExpirationYears, pricing: { plans } } = data
   const form = useRef(null)
   const [isProcess, setIsProcess] = useState(false)
@@ -37,6 +38,7 @@ const AccountBilling = ({ data, isVisible }) => {
   const elements = useElements();
   const router = useRouter();
   const features = Object.fromEntries(plans.list.map(({name, features}) => [name, features]))
+  const notyf = useNotyf()
 
   const CARD_OPTIONS = {
     style: {
@@ -77,7 +79,6 @@ const AccountBilling = ({ data, isVisible }) => {
     promises.push(BillingPlanService.getAllBillingPlans())
     promises.push(UserBillingService.getUser())
     Promise.all(promises).then(res => {
-      console.log(res)
       setBillingPlan(res[0])
       setUserPlan(res[1].billingPlan)
       setUserData(res[1])
@@ -89,48 +90,76 @@ const AccountBilling = ({ data, isVisible }) => {
     e.stopPropagation()
     setIsProcess(true)
 
-    if (e.target.querySelectorAll(".not-valid").length > 0) {
-      setIsProcess(false)
-    } else {
+    if (e.target.querySelectorAll(".not-valid").length === 0) {
       const body = {
         billingMode: isYearly ? "YEARLY" : "MONTHLY",
         billingPlanId: billingPlan[selectedPlan.value].id
       }
 
-      const data = await UserBillingService.updatePlan(body);
-      const cardElement = elements.getElement(CardElement)
-
-      if (data.secret && cardElement) {
-        // Confirm card payment only if it's necessary.
-
-        // Use card Element to tokenize payment details
-        let { error, paymentIntent } = await stripe.confirmCardPayment(data.secret, {
-          payment_method: {
-            card: cardElement,
-            billing_details: {
-              email: data.user.email
-            }
-          }
-        });
+      try {
+        const userData = await UserBillingService.updatePlan(body)
+        setUserPlan(userData.billingPlan)
+        setUserData(userData)
+        notyf.success("Updated!")
+      } catch (e) {
+        notyf.error(e)
+        console.log(e)
       }
-      // if (userPlan && userPlan.status === "ACTIVE") {
-      //   const data = await UserBillingService.updatePlan(body);
+    }
 
-      // } else {
-      //   const cardElement = elements.getElement(CardElement)
+    setIsProcess(false)
+  }
 
-      //   const data = await UserBillingService.addPlan(body);
-      //   // Use card Element to tokenize payment details
-      //   let { error, paymentIntent } = await stripe.confirmCardPayment(data.clientSecret, {
-      //     payment_method: {
-      //       card: cardElement,
-      //       billing_details: {
-      //         email: app.user.email
-      //       }
-      //     }
-      //   });
-      // }
-      router.push("/account/overview")
+  const onUnsubscribe = async () => {
+    setIsProcess(true)
+
+    try {
+      const userData = await UserBillingService.deletePlan()
+      setUserPlan(userData.billingPlan)
+      setUserData(userData)
+      notyf.success("Unsubscribed")
+    } catch (e) {
+      notyf.error(e)
+      console.log(e)
+    }
+
+    setIsProcess(false)
+  }
+
+  const changePaymentMethod = async () => {
+    const cardElement = elements.getElement(CardElement)
+    if (!cardElement) {
+      notyf.error("Internal error. Try reloading the page.")
+      return
+    }
+
+    const intent = await UserBillingService.setupIntent()
+    const { error, setupIntent } = await stripe.confirmCardSetup(intent.secret, {
+      payment_method: {
+        card: cardElement,
+        billing_details: {
+          name: intent.name,
+          email: intent.email
+        }
+      }
+    })
+
+    if (error) {
+      notyf.error(error)
+      console.log(error)
+      return
+    }
+
+    await UserBillingService.updatePaymentMethod({ paymentMethodId: setupIntent.payment_method })
+    notyf.success("Updated!")
+  }
+
+  const onChangePaymentMethod = async () => {
+    try {
+      setIsProcess(true)
+      await changePaymentMethod()
+    } finally {
+      setIsProcess(false)
     }
   }
 
@@ -211,23 +240,6 @@ const AccountBilling = ({ data, isVisible }) => {
                 </Block>
               </Col>
             </Row>
-            {!activePlan && (
-              <>
-                <Row className="mb-3">
-                  <Col><div className={`${styles.bilingTitles}`}><Icon className="mr-2" variant="lock" /><span className={`${typographyStyles.textSubTitleM}`}>{Billingdetails}</span></div></Col>
-                </Row>
-                <Row>
-                  <Col md={12} className="mb-4">
-                    <div className={`${styles.cardLabel}`}><Label label={CardNumber} /><div><img src="/img/visa.png" alt="" /><img src="/img/master.png" alt="" /><img src="/img/card.png" alt="" /></div></div>
-                  </Col>
-                </Row>
-                <Row>
-                  <Col md={12} className="mb-4">
-                    <CardElement options={CARD_OPTIONS} />
-                  </Col>
-                </Row>
-              </>
-            )}
             {/* <Row>
               <Col md={12}>
                 <div className="text-center mb-4">
@@ -242,6 +254,35 @@ const AccountBilling = ({ data, isVisible }) => {
             </Row>
           </Container>
         </form>
+        {activePlan && (
+          <Row className="mt-3">
+            <Col md={12}>
+              <Button onClick={onUnsubscribe} disabled={isProcess} className="w-100" variant="outline-primary">{Unsubscribe}</Button>
+            </Col>
+          </Row>
+        )}
+      </Block>
+      <Block className="entry-3 mt-3" variant="badge-wrap">
+        <Container fluid className="p-0">
+          <Row className="mb-3">
+            <Col><div className={`${styles.bilingTitles}`}><Icon className="mr-2" variant="lock" /><span className={`${typographyStyles.textSubTitleM}`}>{Billingdetails}</span></div></Col>
+          </Row>
+          <Row>
+            <Col md={12} className="mb-4">
+              <div className={`${styles.cardLabel}`}><Label label={CardNumber} /><div><img src="/img/visa.png" alt="" /><img src="/img/master.png" alt="" /><img src="/img/card.png" alt="" /></div></div>
+            </Col>
+          </Row>
+          <Row>
+            <Col md={12} className="mb-4">
+              <CardElement options={CARD_OPTIONS} />
+            </Col>
+          </Row>
+          <Row>
+            <Col md={12}>
+              <Button onClick={onChangePaymentMethod} disabled={isProcess} className="w-100" variant="primary-notround-large">{Changepaymentmethod}</Button>
+            </Col>
+          </Row>
+        </Container>
       </Block>
     </div >
   );

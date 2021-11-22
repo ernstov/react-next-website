@@ -4,15 +4,16 @@ import typographyStyles from "../../styles/global/typography.module.scss"
 import { Context } from "../../context/context"
 import { numberWithCommas } from "../../utils/"
 import Button from "../ui/Button"
+import { useRouter } from "next/router"
 
 const Block = ({ data, i, variant, isYearly, children, className }) => {
 
   const { lang: { USD, month, Startnow } } = useContext(Context);
-
+  const router = useRouter()
 
 
   const getButtonOptions = (button) => {
-    if (button.link) return { link: button.link }
+    if (button.link) return { link: button.link, as: "link" }
     if (button.jump) return { jump: button.jump }
   }
 
@@ -61,7 +62,7 @@ const Block = ({ data, i, variant, isYearly, children, className }) => {
               </ul>
             </div>
           </div>
-          <div className={`${styles.blockBottomShape} text-center`} style={{ backgroundColor: data.color }}>
+          <div onClick={() => router.push("/sign-up")} className={`${styles.blockBottomShape} text-center`} style={{ backgroundColor: data.color }}>
             <span className={`${typographyStyles.textWhiteDemi}`}>{Startnow}</span>
           </div>
         </div>

@@ -176,14 +176,14 @@ export const isEmpty = (obj) => {
 
 export const getSkeletonVariant = (pages, nextPage) => {
 	if(nextPage.includes("news/")) return "article"
-	
+
 	return filterIt(pages, nextPage == "/" ? "/" : nextPage.replace("/", ""), "link")[0]?.skeleton
 }
 
 export const getSidebarAvailability = (pages, nextPage) => {
 
 	if(nextPage.includes("news/")) return false
-	
+
 	return filterIt(pages, (nextPage == "/" || nextPage == "") ? "/" : nextPage.replace("/", ""), "link")[0]?.isSidebar
 }
 
@@ -220,4 +220,13 @@ export const filterItFull = (array, value, key) => {
 		? a => a[key].toLowerCase().indexOf(value.toLowerCase()) !== -1
 		: a => Object.keys(a).some(k => a[k].toLowerCase().indexOf(value.toLowerCase()) !== -1)
 	);
+}
+
+export const parseStripeSubscriptionStatus = (value) => {
+	if (!value) {
+		return 'INACTIVE'
+	}
+
+	const status = value.toUpperCase().replace(/-/g, ' ')
+	return status === 'TRIALING' ? 'TRIAL' : status
 }

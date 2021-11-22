@@ -59,7 +59,7 @@ export const page = {
         list: ["20 requests/day", "Real-time news", "Local, city-specific news", "World news", "All AI features"],
         button: {
           variant: "primary-arrow",
-          link: "#",
+          link: "/sign-up",
           name: "Start trial"
         }
       },
@@ -132,6 +132,6 @@ export const page = {
         link: "tel:888.202.0521",
       }
     ],
-    label: "Mon - Fri, 9:00AM - 5:00PM CT"
+    // label: "Mon - Fri, 9:00AM - 5:00PM CT"
   }
 }

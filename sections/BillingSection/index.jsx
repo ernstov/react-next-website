@@ -32,22 +32,26 @@ const SupportSection = ({ data, isVisible, question, isWrap }) => {
     UserBillingService.getBilling()
       .then((res) => {
         setUserBilling(res)
-
-        const mode = res.user.billingMode;
-        if (mode === 'MONTHLY') {
-          setAmount(`\$${res.user.billingPlan.monthlyPrice.toLocaleString('en-US')}/month`)
-        } else if (mode === 'YEARLY') {
-          setAmount(`\$${res?.user.billingPlan.yearlyPrice.toLocaleString('en-US')}/year`)
-        }
-
         setTransactions(res.transactions)
-        setCardLast4(res.user.subscription?.cardLast4)
 
-        const planName = res.user.billingPlan.name
-        if (res.user.subscription?.stripeSubscriptionStatus === 'trialing') {
-          setBillingPlanStatus(`${planName} (TRIALING)`)
+        if (!res.user.billingPlan) {
+          setBillingPlanStatus("NOT SUBSCRIBED")
         } else {
-          setBillingPlanStatus(planName)
+          const mode = res.user.billingMode;
+          if (mode === 'MONTHLY') {
+            setAmount(`\$${res.user.billingPlan.monthlyPrice.toLocaleString('en-US')}/month`)
+          } else if (mode === 'YEARLY') {
+            setAmount(`\$${res?.user.billingPlan.yearlyPrice.toLocaleString('en-US')}/year`)
+          }
+
+          setCardLast4(res.user.subscription?.cardLast4)
+
+          const planName = res.user.billingPlan.name
+          if (res.user.subscription?.stripeSubscriptionStatus === 'trialing') {
+            setBillingPlanStatus(`${planName} (TRIAL)`)
+          } else {
+            setBillingPlanStatus(planName)
+          }
         }
 
         if (res.user.subscription?.nextPaymentAt) {

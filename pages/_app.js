@@ -15,6 +15,7 @@ import UserBillingService from "../services/UserBillingService"
 import BottomMenu from "../components/BottomMenu"
 import { isWrap } from "../utils"
 import Agreement from "../components/Agreement"
+import "notyf/notyf.min.css"
 
 export default function App({ Component, pageProps }) {
 
@@ -70,10 +71,15 @@ export default function App({ Component, pageProps }) {
     }, 500)
 
     UserBillingService.getUser()
-      .then(data => dispatchApp({ type: "SET_USER", data: { user: { id: data.id, email: data.email } } }))
+      .then(data => {
+        dispatchApp({ type: "SET_USER", data: { user: { id: data.id, email: data.email } } })
+        if (router.pathname === '/sign-in') {
+          router.push("/account/overview")
+        }
+      })
       .catch(() => {
         if (router.pathname.indexOf("/account") >= 0 || router.pathname.indexOf("/documentation") >= 0) {
-         router.push("/sign-in")
+          router.push("/sign-in")
         }
       })
 

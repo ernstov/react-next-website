@@ -17,6 +17,6 @@ export const page = {
         link: "tel:888.202.0521",
       }
     ],
-    label: "Mon - Fri, 9:00AM - 5:00PM CT"
+    // label: "Mon - Fri, 9:00AM - 5:00PM CT"
   }
 }

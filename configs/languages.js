@@ -89,6 +89,8 @@ const languages = {
     Description: "Description",
     Amount: "Amount",
     ResetPassword: "Reset Password",
+    Unsubscribe: "Unsubscribe",
+    Changepaymentmethod: "Change payment method"
   }
 }
 

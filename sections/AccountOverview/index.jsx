@@ -19,6 +19,9 @@ import { useRouter } from 'next/router'
 import UserBillingService from "../../services/UserBillingService"
 import ApiKey from "../../components/ui/ApiKey"
 import moment from "moment"
+import { Notyf } from "notyf"
+import { parseStripeSubscriptionStatus } from "../../utils"
+import { useNotyf } from "../../utils/hooks"
 
 const AccountOverview = ({ data, isVisible }) => {
 
@@ -40,6 +43,7 @@ const AccountOverview = ({ data, isVisible }) => {
   const [registeredSince, setRegisteredSince] = useState('')
   const [billingPlanStatus, setBillingPlanStatus] = useState('INACTIVE')
   const [numRequestsData, setNumRequestsData] = useState("<span class='inputLight'>No requests made</span>")
+  const notyf = useNotyf()
 
   const [visible, setVisible] = useState(false)
 
@@ -59,18 +63,22 @@ const AccountOverview = ({ data, isVisible }) => {
         setCountry(res.homeCountry)
         setRegisteredSince(moment(res.createdAt).format('MMM DD, yyyy'))
 
-        if (res.billingMode === 'MONTHLY') {
-          setAmount(`\$${res.billingPlan.monthlyPrice.toLocaleString('en-US')}/M`)
-        } else if (res.billingMode === 'YEARLY') {
-          setAmount(`$${res.billingPlan.yearlyPrice.toLocaleString('en-US')}/Y`)
-        }
+        if (!res.billingPlan) {
+          setBillingPlanStatus("INACTIVE")
+        } else {
+          if (res.billingMode === 'MONTHLY') {
+            setAmount(`\$${res.billingPlan.monthlyPrice.toLocaleString('en-US')}/mo`)
+          } else if (res.billingMode === 'YEARLY') {
+            setAmount(`$${res.billingPlan.yearlyPrice.toLocaleString('en-US')}/yr`)
+          }
 
-        if (res.subscription?.nextPaymentAt) {
-          setNextPaymentAt(moment(res.subscription.nextPaymentAt).format('MMM DD, yyyy'))
-        }
+          if (res.subscription?.nextPaymentAt) {
+            setNextPaymentAt(moment(res.subscription.nextPaymentAt).format('MMM DD, yyyy'))
+          }
 
-        if (res.subscription?.stripeSubscriptionStatus) {
-          setBillingPlanStatus(res.subscription.stripeSubscriptionStatus.toUpperCase().replace(/-/g, ' '))
+          if (res.subscription?.stripeSubscriptionStatus) {
+            setBillingPlanStatus(parseStripeSubscriptionStatus(res.subscription.stripeSubscriptionStatus))
+          }
         }
 
         if (res.tracking) {
@@ -96,9 +104,9 @@ const AccountOverview = ({ data, isVisible }) => {
       fields.homeCountry = country
       try {
         await UserBillingService.updateUser(fields);
-        alert("Updated user data");
+        notyf.success("Updated user data!");
       } catch (e) {
-        alert(`Error: ${e}`);
+        notyf.error(e);
         console.log(e);
       }
     }
@@ -119,9 +127,9 @@ const AccountOverview = ({ data, isVisible }) => {
           oldPassword: formData.get('current-password'),
           newPassword: formData.get('password')
         });
-        alert("Updated password");
+        notyf.success("Updated password!");
       } catch (e) {
-        alert(`Error: ${e}`);
+        notyf.error(e);
         console.log(e);
       }
     }
@@ -156,7 +164,7 @@ const AccountOverview = ({ data, isVisible }) => {
                   <Col md={8} className={`${styles.inputRow} mb-4`}>
                     <Container fluid className={`${styles.inputContainer}`}>
                       <Row>
-                        <Col md={6}><InputPreview variant="flat" defaultValue={userBilling.billingPlan?.name || "Free Trial"} label={Plan} /></Col>
+                        <Col md={6}><InputPreview variant="flat" defaultValue={userBilling.billingPlan?.name || "N/A"} label={Plan} /></Col>
                         <Col md={6} className="d-flex align-items-end mt-4 mt-md-0"><Button onClick={() => router.push('/account/plan')} className="w-100" variant="outline-secondary-notround-small">{Changeplan}</Button></Col>
                       </Row>
                     </Container>

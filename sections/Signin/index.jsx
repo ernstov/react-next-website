@@ -14,7 +14,7 @@ import presetsStyles from "../../styles/global/presets.module.scss"
 
 const Signin = ({ data, isVisible }) => {
 
-  const { lang: { SignIn, Email, Password, Notregisteredyet, Signup } } = useContext(Context)
+  const { dispatchApp, lang: { SignIn, Email, Password, Notregisteredyet, Signup } } = useContext(Context)
   const form = useRef(null)
   const [isProcess, setIsProcess] = useState(false)
   const [visible, setVisible] = useState(false)
@@ -54,7 +54,8 @@ const Signin = ({ data, isVisible }) => {
       })
 
       try {
-        await AuthService.login(JSON.stringify(fields));
+        const user = await AuthService.login(JSON.stringify(fields));
+        dispatchApp({ type: 'SET_USER', data: { user } })
         await router.push("/account/overview");
       } catch (e) {
         setError(e);
