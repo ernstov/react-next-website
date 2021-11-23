@@ -9,7 +9,6 @@ import Follow from "../Follow";
 import { filterIt } from "../../utils";
 import { Context } from "../../context/context";
 import presetsStyles from "../../styles/global/typography.module.scss"
-import appConfig from "../../configs/appConfig"
 
 import styles from './postslist.module.scss'
 
