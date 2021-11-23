@@ -47,7 +47,6 @@ export default function App({ Component, pageProps }) {
     user: null,
     trands: [],
     blog: [],
-    selectedPlan: null,
   });
 
   useEffect(() => {

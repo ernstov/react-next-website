@@ -17,7 +17,7 @@ import { useRouter } from 'next/router'
 
 const Signup = ({ data, isVisible }) => {
 
-  const { dispatchApp, app: {selectedPlan}, lang: { Signup, SignIn, APIplan, Viewpricingplans, Firstname, Lastname, Email, Password, Passwordmustbe6, Ihaveread, EndUserAgreement } } = useContext(Context)
+  const { dispatchApp, lang: { Signup, SignIn, APIplan, Viewpricingplans, Firstname, Lastname, Email, Password, Passwordmustbe6, Ihaveread, EndUserAgreement } } = useContext(Context)
   const { bottom, options } = data
   const form = useRef(null)
   const [isProcess, setIsProcess] = useState(false)
