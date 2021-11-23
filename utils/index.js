@@ -230,3 +230,13 @@ export const parseStripeSubscriptionStatus = (value) => {
 	const status = value.toUpperCase().replace(/-/g, ' ')
 	return status === 'TRIALING' ? 'TRIAL' : status
 }
+
+export const isSmoothScroll = () => {
+	const smooth = getUrlParam("smooth");
+
+	if (smooth) {
+		return JSON.parse(smooth);
+	} else {
+		return true;
+	}
+}

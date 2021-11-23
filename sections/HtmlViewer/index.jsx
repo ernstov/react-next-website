@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
+import appConfig from "../../configs/appConfig"
 
 import styles from './htmlViewer.module.scss'
 
@@ -11,7 +12,7 @@ const HtmlViewer = ({ data, isVisible }) => {
     if (isVisible) {
       setTimeout(() => {
         setVisible(true)
-      }, 500)
+      }, appConfig.entryDelay)
     }
   }, [isVisible])
 

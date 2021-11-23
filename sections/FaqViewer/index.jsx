@@ -4,6 +4,7 @@ import Icon from "../../components/Icon";
 import { Context } from "../../context/context";
 import appConfig from "../../configs/appConfig";
 import { useRouter } from "next/router";
+import appConfig from "../../configs/appConfig"
 
 import styles from './faqViewer.module.scss'
 
@@ -60,7 +61,7 @@ const FaqViewer = ({ data, isVisible, question, isWrap }) => {
     if (isVisible) {
       setTimeout(() => {
         setVisible(true)
-      }, 500)
+      }, appConfig.entryDelay)
     }
   }, [isVisible])
 

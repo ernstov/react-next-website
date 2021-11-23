@@ -20,7 +20,7 @@ const Footer = ({ data, isVisible }) => {
     if (isVisible) {
       setTimeout(() => {
         setVisible(true)
-      }, 500)
+      }, appConfig.entryDelay)
     }
   }, [isVisible])
 

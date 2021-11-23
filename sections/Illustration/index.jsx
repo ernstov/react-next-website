@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 import { Container, Row, Col } from "react-bootstrap"
 import styles from './illustration.module.scss'
 import Image from "next/image"
+import appConfig from "../../configs/appConfig"
 
 const Illustration = ({ data, isVisible }) => {
 
@@ -11,7 +12,7 @@ const Illustration = ({ data, isVisible }) => {
     if (isVisible) {
       setTimeout(() => {
         setVisible(true)
-      }, 1000)
+      }, appConfig.entryDelay)
     }
   }, [isVisible])
 

@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import { Container, Row, Col, } from "react-bootstrap";
 import Button from "../../components/ui/Button";
 import typographyStyles from "../../styles/global/typography.module.scss"
+import appConfig from "../../configs/appConfig"
 
 import styles from './about.module.scss'
 
@@ -13,7 +14,7 @@ const About = ({ data, isVisible }) => {
     if(isVisible) {
       setTimeout(()=>{
         setVisible(true)
-      }, 500)
+      }, appConfig.entryDelay)
     }
   }, [isVisible])
 

@@ -4,6 +4,7 @@ import ReactMarkdown from 'react-markdown';
 import gfm from 'remark-gfm';
 import { isObjectEmpty } from "../../utils";
 import { Context } from "../../context/context";
+import appConfig from "../../configs/appConfig"
 
 import styles from './pageviewer.module.scss'
 
@@ -35,7 +36,7 @@ const PageViewer = ({ isVisible, data }) => {
     if (isVisible) {
       setTimeout(() => {
         setVisible(true)
-      }, 1000)
+      }, appConfig.entryDelay)
     }
   }, [isVisible])
 

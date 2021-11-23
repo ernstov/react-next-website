@@ -10,6 +10,7 @@ import Input from "../../components/ui/Input"
 import Select from "react-select"
 import { customSingleValue, scrollBar } from '../../components/ui/Helpers/UiComponents'
 import presetsStyles from "../../styles/global/presets.module.scss"
+import appConfig from "../../configs/appConfig"
 
 const Contact = ({ data, isVisible, question, isWrap }) => {
 

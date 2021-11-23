@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import typographyStyles from "../../styles/global/typography.module.scss"
 import presetsStyles from "../../styles/global/presets.module.scss"
+import appConfig from "../../configs/appConfig"
 
 import styles from './contactViewer.module.scss'
 
@@ -13,7 +14,7 @@ const ContactViewer = ({ data, isVisible }) => {
     if (isVisible) {
       setTimeout(() => {
         setVisible(true)
-      }, 500)
+      }, appConfig.entryDelay)
     }
   }, [isVisible])
 

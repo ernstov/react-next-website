@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import Icon from "../../components/Icon";
 import MailchimpSubscribe from "react-mailchimp-subscribe";
+import appConfig from "../../configs/appConfig"
 
 import styles from './follow.module.scss'
 
@@ -16,7 +17,7 @@ const Follow = ({ data, isVisible, variant }) => {
     if (isVisible) {
       setTimeout(() => {
         setVisible(true)
-      }, 500)
+      }, appConfig.entryDelay)
     }
   }, [isVisible])
 

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Icon from "../../components/Icon";
 import Media from "./media";
 import presetsStyles from "../../styles/global/presets.module.scss"
+import appConfig from "../../configs/appConfig"
 
 import styles from './sources.module.scss'
 
@@ -14,7 +15,7 @@ const Sources = ({ data, isVisible }) => {
     if(isVisible) {
       setTimeout(()=>{
         setVisible(true)
-      }, 1000)
+      }, appConfig.entryDelay)
     }
   }, [isVisible])
 

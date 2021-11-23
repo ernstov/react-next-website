@@ -8,11 +8,12 @@ import Block from "../../components/Block"
 import UserBillingService from "../../services/UserBillingService"
 import presetsStyles from "../../styles/global/presets.module.scss"
 import moment from "moment"
+import appConfig from "../../configs/appConfig"
 
 const SupportSection = ({ data, isVisible, question, isWrap }) => {
   const [visible, setVisible] = useState(false)
   const { lang: { Paymentsettings, Pasttransactions, Plan, Billing, NextPayment, Billingisbeingmade, Nocardprovided, Transactiondate, TransactionID, Description, Amount } } = useContext(Context)
-  const [userBilling, setUserBilling] = useState({  })
+  const [userBilling, setUserBilling] = useState({})
   const [amount, setAmount] = useState("$0")
   const [transactions, setTransactions] = useState([])
   const [nextPaymentAt, setNextPaymentAt] = useState('N/A')
@@ -23,7 +24,7 @@ const SupportSection = ({ data, isVisible, question, isWrap }) => {
     if (isVisible) {
       setTimeout(() => {
         setVisible(true)
-      }, 500)
+      }, appConfig.entryDelay)
     }
   }, [isVisible])
 
@@ -97,7 +98,7 @@ const SupportSection = ({ data, isVisible, question, isWrap }) => {
           <Col lg={12} className="text-center text-md-left mt-5">
             <h2 className={`${typographyStyles.textDemi2} ${typographyStyles.fontBase} entry-1 mb-3`}>{Pasttransactions}</h2>
           </Col>
-          <Col lg={8}>
+          <Col lg={12}>
             <Table className="w-100 simple" responsive>
               <thead>
                 <tr>
@@ -108,14 +109,19 @@ const SupportSection = ({ data, isVisible, question, isWrap }) => {
                 </tr>
               </thead>
               <tbody>
-                {transactions.map((item, i) => (
+                {transactions?.length ? transactions.map((item, i) => (
                   <tr key={`fdt-${i}`}>
                     <td>{moment(item.createdAt).format('MMM DD, yyyy LT')}</td>
                     <td className="op-08">{item.stripeId}</td>
                     <td className="op-08">{item.description}</td>
-                    <td>{`\$${(item.amount / 100).toLocaleString('en-US', {maximumFractionDigits: 2})}`}</td>
+                    <td>{`\$${(item.amount / 100).toLocaleString('en-US', { maximumFractionDigits: 2 })}`}</td>
                   </tr>
-                ))}
+                )) :
+                  <tr>
+                    <td colSpan={4} className="border-bottom">
+                      <div className="text-center pt-4 pb-4">No transactions have been made</div>
+                    </td>
+                  </tr>}
               </tbody>
             </Table>
           </Col>

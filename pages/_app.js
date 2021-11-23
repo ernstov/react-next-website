@@ -13,7 +13,7 @@ import 'swiper/swiper.scss'
 import 'swiper/components/lazy/lazy.scss'
 import UserBillingService from "../services/UserBillingService"
 import BottomMenu from "../components/BottomMenu"
-import { isWrap } from "../utils"
+import { isWrap, isSmoothScroll } from "../utils"
 import Agreement from "../components/Agreement"
 import "notyf/notyf.min.css"
 import { isLoggedIn } from "../utils/AuthUtils"
@@ -26,6 +26,7 @@ export default function App({ Component, pageProps }) {
   const scrollB = useRef(null)
   const [isLoader, setIsLoader] = useState(true)
   const [wrap, setWrap] = useState(true)
+  const [smooth, setSmooth] = useState(true)
 
   const [app, dispatchApp] = useReducer(reducerApp, {
     isLoading: false,
@@ -38,7 +39,7 @@ export default function App({ Component, pageProps }) {
     offset: null,
     nextPage: router.asPath,
     isAuth: false,
-    user: {},
+    user: null,
     trands: [],
     blog: [],
   });
@@ -56,6 +57,7 @@ export default function App({ Component, pageProps }) {
   useEffect(() => {
 
     if (!isWrap()) setWrap(false)
+    setSmooth(isSmoothScroll)
 
     const start = (e) => {
       if (isLoggedIn() && e === '/sign-in') {
@@ -137,12 +139,12 @@ export default function App({ Component, pageProps }) {
   }
 
   return <Context.Provider value={{ app, dispatchApp, lang, scrollB }}>
-    <LayoutBase variant={isAccount() ? 'account' : ""} isWrap={wrap && !isHome()}>
+    <LayoutBase isSmoothScroll={smooth} variant={isAccount() ? 'account' : ""} isWrap={wrap && !isHome()}>
       {/* {isLoader && <Loader loaderState={loaderState} />} */}
       {(wrap && !isHome()) && <Header path={router.pathname} variant={`advanced`} isLoggedIn={isLoggedIn()} />}
       {isHome() && <BottomMenu path={router.pathname} data={appConfig.bottomMenu} />}
       {isSidebar() && <Sidebar isWrap={wrap} variant={getSidebarVariant()} />}
-      <Scrollbar className="scoll-bar" ref={e => { if (e && !scrollB.current) { scrollB.current = e; } }}>
+      <Scrollbar damping={0.2} className="scoll-bar" ref={e => { if (e && !scrollB.current) { scrollB.current = e; } }}>
         <div><Component {...pageProps} path={router.pathname} /></div>
         {(isAccount() || isDocumentation()) && <Agreement />}
       </Scrollbar>

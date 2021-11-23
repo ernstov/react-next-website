@@ -5,6 +5,7 @@ import styles from './contactSupport.module.scss'
 import typographyStyles from "../../styles/global/typography.module.scss"
 import Button from "../../components/ui/Button"
 import presetsStyles from "../../styles/global/presets.module.scss"
+import appConfig from "../../configs/appConfig"
 
 const ContactSupport = ({ data, isVisible, question, isWrap }) => {
 
@@ -15,7 +16,7 @@ const ContactSupport = ({ data, isVisible, question, isWrap }) => {
     if (isVisible) {
       setTimeout(() => {
         setVisible(true)
-      }, 500)
+      }, appConfig.entryDelay)
     }
   }, [isVisible])
 

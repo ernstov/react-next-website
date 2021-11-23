@@ -23,7 +23,7 @@ const Plans = ({ data, isVisible }) => {
     if (isVisible) {
       setTimeout(() => {
         setVisible(true)
-      }, appConfig.entryDelay*2)
+      }, appConfig.entryDelay)
     }
   }, [isVisible])
 

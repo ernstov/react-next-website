@@ -458,10 +458,6 @@ $snappy: cubic-bezier(0.694, 0.048, 0.335, 1);
 
 .menuUser {
   margin-left: 1rem;
-  img {
-    width: 1.875rem;
-    height: 1.875rem;
-  }
 
   @include media-breakpoint-down(lg) {
     margin-right: 2.4rem;
@@ -596,4 +592,30 @@ $snappy: cubic-bezier(0.694, 0.048, 0.335, 1);
   :global(a) {
     height: 50px;
   }
+}
+
+.userDetails {
+  display: flex;
+  align-items: center;
+}
+
+.userAvatar {
+  width: 46px;
+  height: 46px;
+  background-color: $secondary;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $white;
+  font-size: 2rem;
+  font-family: $font-family-advanced;
+  border-radius: 50%;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.userEmptyIcon {
+  width: 46px;
+  height: 46px;
+  cursor: pointer;
 }

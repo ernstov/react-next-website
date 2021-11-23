@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 import { Container, Row, Col } from "react-bootstrap"
 import typographyStyles from "../../styles/global/typography.module.scss"
 import styles from './quote.module.scss'
+import appConfig from "../../configs/appConfig"
 
 const Quote = ({ data, isVisible }) => {
 
@@ -11,7 +12,7 @@ const Quote = ({ data, isVisible }) => {
     if (isVisible) {
       setTimeout(() => {
         setVisible(true)
-      }, 1000)
+      }, appConfig.entryDelay)
     }
   }, [isVisible])
 

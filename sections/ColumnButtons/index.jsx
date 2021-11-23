@@ -4,6 +4,7 @@ import styles from './columnButtons.module.scss'
 import Image from "next/image"
 import Button from "../../components/ui/Button"
 import typographyStyles from "../../styles/global/typography.module.scss"
+import appConfig from "../../configs/appConfig"
 
 const ColumnButtons = ({ data, isVisible }) => {
 
@@ -14,7 +15,7 @@ const ColumnButtons = ({ data, isVisible }) => {
     if (isVisible) {
       setTimeout(() => {
         setVisible(true)
-      }, 1000)
+      }, appConfig.entryDelay)
     }
   }, [isVisible])
 

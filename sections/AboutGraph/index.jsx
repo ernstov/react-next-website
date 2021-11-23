@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { Container, Row, Col, } from "react-bootstrap";
 import Scrollbar from 'react-smooth-scrollbar';
 import typographyStyles from "../../styles/global/typography.module.scss"
+import appConfig from "../../configs/appConfig"
 
 import styles from './aboutGraph.module.scss'
 
@@ -21,7 +22,7 @@ const AboutGraph = ({ data, isVisible }) => {
     if (isVisible) {
       setTimeout(() => {
         setVisible(true)
-      }, 500)
+      }, appConfig.entryDelay)
     }
   }, [isVisible])
 

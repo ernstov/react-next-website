@@ -9,6 +9,7 @@ import { dateFormat, isObjectEmpty } from "../../utils";
 import {Context} from "../../context/context";
 import { useRouter } from "next/router";
 import presetsStyles from "../../styles/global/typography.module.scss"
+import appConfig from "../../configs/appConfig"
 
 import styles from './postviewer.module.scss'
 
@@ -22,7 +23,7 @@ const PostViewer = ({ isVisible, data }) => {
     if (isVisible) {
       setTimeout(() => {
         setVisible(true)
-      }, 1000)
+      }, appConfig.entryDelay)
     }
   }, [isVisible])
 

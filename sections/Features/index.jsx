@@ -5,6 +5,7 @@ import typographyStyles from "../../styles/global/typography.module.scss"
 import { Container, Row, Col, Badge } from "react-bootstrap"
 import presetsStyles from "../../styles/global/presets.module.scss"
 import Particles from '../../components/Particles'
+import appConfig from "../../configs/appConfig"
 
 const Features = ({ data, isVisible }) => {
 
@@ -15,7 +16,7 @@ const Features = ({ data, isVisible }) => {
     if (isVisible) {
       setTimeout(() => {
         setVisible(true)
-      }, 1000)
+      }, appConfig.entryDelay)
     }
   }, [isVisible])
 

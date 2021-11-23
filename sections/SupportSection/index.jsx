@@ -5,6 +5,7 @@ import styles from './supportSection.module.scss'
 import typographyStyles from "../../styles/global/typography.module.scss"
 import Button from "../../components/ui/Button"
 import Block from "../../components/Block"
+import appConfig from "../../configs/appConfig"
 
 const SupportSection = ({ data, isVisible, question, isWrap }) => {
 
@@ -15,7 +16,7 @@ const SupportSection = ({ data, isVisible, question, isWrap }) => {
     if (isVisible) {
       setTimeout(() => {
         setVisible(true)
-      }, 500)
+      }, appConfig.entryDelay)
     }
   }, [isVisible])
 
