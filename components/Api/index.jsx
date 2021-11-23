@@ -6,16 +6,34 @@ import "ace-builds/src-noconflict/mode-json"
 import "./theme-monokai"
 import Beautify from 'ace-builds/src-noconflict/ext-beautify'
 
+const CAPTCHA_PUBLIC_KEY = process.env.NEXT_PUBLIC_CAPTCHA_PUBLIC_KEY || "6LevMlEdAAAAAACZkPb62nXA0MFNco_U9CljvD4G"
+
 const Api = ({ data, isVisible }) => {
 
-  const { title, tab, label, getLabel, api, dateLabel, button, query, date } = data.inner
+  const { title, tab, label, getLabel, api, button, query } = data.inner
   const [isLoading, setIsLoading] = useState(false)
   const [editorJson, setEditorJson] = useState(JSON.stringify({}, null, '\t'))
   const [urlQuery, setUrlQuery] = useState(query)
 
+  useEffect(() => {
+    grecaptcha.ready(function() {
+      grecaptcha.render("recaptcha-container", {
+        "sitekey": CAPTCHA_PUBLIC_KEY
+      })
+    })
+  }, [])
+
   const getData = () => {
-    fetch(`https://${api}${urlQuery}`, {
-      method: 'GET',
+    const captchaResponse = grecaptcha.getResponse();
+    console.log(captchaResponse)
+    const request = `https://${api}${urlQuery}`
+    fetch(`https://api.goperigon.com/v1/demo/news`, {
+      method: 'POST',
+      headers: {
+        "captcha-response": captchaResponse,
+        "content-type": "application/json"
+      },
+      body: JSON.stringify({ url: request })
     }).then(response => response.json())
       .then(result => {
         setIsLoading(false)
@@ -23,12 +41,7 @@ const Api = ({ data, isVisible }) => {
       })
   }
 
-  useEffect(() => {
-    getData()
-  }, [])
-
   const onClick = () => {
-
     setIsLoading(true)
     getData()
   }
@@ -46,13 +59,10 @@ const Api = ({ data, isVisible }) => {
           <div className={`${styles.labelBar}`}><span>{getLabel}</span></div>
           <div className={`${styles.input}`}><span>{api}</span><input name="url" onChange={(e) => setUrlQuery(e.target.value)} defaultValue={urlQuery} type="text" /></div>
         </div>
-        <div className={`${styles.date}`}>
-          <div className={`${styles.labelBar}`}><span>{dateLabel}</span></div>
-          <div className={`${styles.input}`}><input name="date" defaultValue={date} type="text" /></div>
-        </div>
         <button onClick={onClick} className={`${styles.button} ${isLoading ? "disabled" : ""}`}>
           <Icon variant="refresh" /> <span>{button}</span>
         </button>
+        <div id="recaptcha-container" className={`${styles.captcha}`}></div>
       </div>
       <div className={`${styles.content}`}>
         {/* <div id="jsoneditor" className={`${styles.editor}`}></div> */}

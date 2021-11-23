@@ -164,9 +164,10 @@ $font-family-console: "Consolas";
 
 .url {
   width: 100%;
+  padding-right: 1rem;
 }
 
-.date {
+.captcha {
   display: inline-block;
   padding-left: 0.5rem;
   padding-right: 1rem;

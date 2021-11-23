@@ -143,11 +143,9 @@ export const page = {
       tab: "REQUEST",
       label: "REST API",
       getLabel: "curl -XGET",
-      dateLabel: "FROM DATE",
       button: "Refresh",
-      api: "app.gawq.com/",
-      query: "tags/trending",
-      date: "2020-07-01",
+      api: "api.goperigon.com",
+      query: "/v1/all?source=techcrunch.com",
     }
   },
   tags: {
