@@ -4,7 +4,6 @@ import Icon from "../../components/Icon";
 import { Context } from "../../context/context";
 import appConfig from "../../configs/appConfig";
 import { useRouter } from "next/router";
-import appConfig from "../../configs/appConfig"
 
 import styles from './faqViewer.module.scss'
 

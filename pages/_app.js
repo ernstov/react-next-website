@@ -17,6 +17,11 @@ import { isWrap, isSmoothScroll } from "../utils"
 import Agreement from "../components/Agreement"
 import "notyf/notyf.min.css"
 import { isLoggedIn } from "../utils/AuthUtils"
+import TagManager from 'react-gtm-module'
+
+const tagManagerArgs = {
+  gtmId: appConfig.gtmId,
+}
 
 export default function App({ Component, pageProps }) {
 
@@ -58,6 +63,7 @@ export default function App({ Component, pageProps }) {
 
     if (!isWrap()) setWrap(false)
     setSmooth(isSmoothScroll)
+    TagManager.initialize(tagManagerArgs)
 
     const start = (e) => {
       if (isLoggedIn() && e === '/sign-in') {
