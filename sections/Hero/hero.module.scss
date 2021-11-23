@@ -37,6 +37,10 @@
         max-width: 100%;
       }
     }
+
+    &:global(.reduce-mobile) {
+      padding-top: $section-spacer*0.8;
+    }
   }
 }
 

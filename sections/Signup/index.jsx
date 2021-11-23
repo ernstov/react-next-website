@@ -17,7 +17,7 @@ import { useRouter } from 'next/router'
 
 const Signup = ({ data, isVisible }) => {
 
-  const { dispatchApp, lang: { Signup, SignIn, APIplan, Viewpricingplans, Firstname, Lastname, Email, Password, Passwordmustbe6, Ihaveread, EndUserAgreement } } = useContext(Context)
+  const { dispatchApp, app: {selectedPlan}, lang: { Signup, SignIn, APIplan, Viewpricingplans, Firstname, Lastname, Email, Password, Passwordmustbe6, Ihaveread, EndUserAgreement } } = useContext(Context)
   const { bottom, options } = data
   const form = useRef(null)
   const [isProcess, setIsProcess] = useState(false)
@@ -82,7 +82,7 @@ const Signup = ({ data, isVisible }) => {
             <Row>
               <Col md={6} className="mb-4">
                 <Select
-                  defaultValue={options[0]}
+                  defaultValue={selectedPlan ? {value: selectedPlan, label: selectedPlan} : options[0]}
                   onChange={e => { }}
                   className={`${presetsStyles.selectLight}`}
                   classNamePrefix={'acr-select'}

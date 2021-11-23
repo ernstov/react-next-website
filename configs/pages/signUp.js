@@ -9,7 +9,7 @@ export const page = {
     descriptionCL: "mw-600",
     img: "account-hero.svg",
     variant: "small",
-    className: "pb-4"
+    className: "pb-4 reduce-mobile"
   },
   signup: {
     bottom: "Existing business user?",

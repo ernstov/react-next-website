@@ -8,9 +8,8 @@ import { useRouter } from "next/router"
 
 const Block = ({ data, i, variant, isYearly, children, className }) => {
 
-  const { lang: { USD, month, Startnow } } = useContext(Context);
+  const { dispatchApp, lang: { USD, month, Startnow } } = useContext(Context);
   const router = useRouter()
-
 
   const getButtonOptions = (button) => {
     if (button.link) return { link: button.link, as: "link" }
@@ -62,7 +61,10 @@ const Block = ({ data, i, variant, isYearly, children, className }) => {
               </ul>
             </div>
           </div>
-          <div onClick={() => router.push("/sign-up")} className={`${styles.blockBottomShape} text-center`} style={{ backgroundColor: data.color }}>
+          <div onClick={() => {
+            router.push("/sign-up");
+            dispatchApp({ type: 'SET_APP_VALUES', data: { selectedPlan: data.name } });
+          }} className={`${styles.blockBottomShape} text-center`} style={{ backgroundColor: data.color }}>
             <span className={`${typographyStyles.textWhiteDemi}`}>{Startnow}</span>
           </div>
         </div>
