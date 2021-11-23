@@ -17,7 +17,7 @@ import { useRouter } from 'next/router'
 
 const Signup = ({ data, isVisible }) => {
 
-  const { lang: { Signup, SignIn, APIplan, Viewpricingplans, Firstname, Lastname, Email, Password, Passwordmustbe6, Ihaveread, EndUserAgreement } } = useContext(Context)
+  const { dispatchApp, lang: { Signup, SignIn, APIplan, Viewpricingplans, Firstname, Lastname, Email, Password, Passwordmustbe6, Ihaveread, EndUserAgreement } } = useContext(Context)
   const { bottom, options } = data
   const form = useRef(null)
   const [isProcess, setIsProcess] = useState(false)
@@ -49,9 +49,10 @@ const Signup = ({ data, isVisible }) => {
       })
 
       try {
-        await AuthService.signup(JSON.stringify(fields))
+        const user = await AuthService.signup(JSON.stringify(fields));
+        dispatchApp({ type: 'SET_USER', data: { user } });
         let routeTo = "/account/details"
-        await router.push({ pathname: routeTo, query: { billingPlan: fields.billingPlan, name: fields.firstName } })
+        await router.push({ pathname: routeTo, query: { billingPlan: fields.billingPlan, name: fields.firstName } });
       } catch (e) {
         setError(e);
         setTimeout(() => setError(null), 5000);

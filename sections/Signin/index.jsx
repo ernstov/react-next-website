@@ -55,7 +55,7 @@ const Signin = ({ data, isVisible }) => {
 
       try {
         const user = await AuthService.login(JSON.stringify(fields));
-        dispatchApp({ type: 'SET_USER', data: { user } })
+        dispatchApp({ type: 'SET_USER', data: { user } });
         await router.push("/account/overview");
       } catch (e) {
         setError(e);

@@ -16,6 +16,7 @@ import BottomMenu from "../components/BottomMenu"
 import { isWrap } from "../utils"
 import Agreement from "../components/Agreement"
 import "notyf/notyf.min.css"
+import { isLoggedIn } from "../utils/AuthUtils"
 
 export default function App({ Component, pageProps }) {
 
@@ -57,9 +58,15 @@ export default function App({ Component, pageProps }) {
     if (!isWrap()) setWrap(false)
 
     const start = (e) => {
-      dispatchApp({ type: "SET_LOADING", data: { isLoading: true, nextPage: e } });
-      scrollB.current?.scrollbar.scrollTo(0, 0, 500);
-      setLoaderState("preload")
+      if (isLoggedIn() && e === '/sign-in') {
+        router.push("/account/overview")
+      } else if (!isLoggedIn() && e.includes("/account")) {
+        router.push("/sign-in")
+      } else {
+        dispatchApp({ type: "SET_LOADING", data: { isLoading: true, nextPage: e } });
+        scrollB.current?.scrollbar.scrollTo(0, 0, 500);
+        setLoaderState("preload")
+      }
     };
     const end = (e) => {
       dispatchApp({ type: "SET_LOADING", data: { isLoading: false, nextPage: e } });
@@ -70,18 +77,18 @@ export default function App({ Component, pageProps }) {
       setLoaderState("loaded")
     }, 500)
 
-    UserBillingService.getUser()
-      .then(data => {
-        dispatchApp({ type: "SET_USER", data: { user: { id: data.id, email: data.email } } })
-        if (router.pathname === '/sign-in') {
-          router.push("/account/overview")
-        }
-      })
-      .catch(() => {
-        if (router.pathname.indexOf("/account") >= 0 || router.pathname.indexOf("/documentation") >= 0) {
-          router.push("/sign-in")
-        }
-      })
+    // UserBillingService.getUser()
+    //   .then(data => {
+    //     dispatchApp({ type: "SET_USER", data: { user: { id: data.id, email: data.email } } })
+    //     if (router.pathname === '/sign-in') {
+    //       router.push("/account/overview")
+    //     }
+    //   })
+    //   .catch(() => {
+    //     if (router.pathname.indexOf("/account") >= 0 || router.pathname.indexOf("/documentation") >= 0) {
+    //       router.push("/sign-in")
+    //     }
+    //   })
 
     Router.events.on("routeChangeStart", start);
     Router.events.on("routeChangeComplete", end);
@@ -103,11 +110,6 @@ export default function App({ Component, pageProps }) {
 
   const isSidebar = () => {
     return router.pathname.indexOf("/account") != -1 || router.pathname.indexOf("/documentation") != -1
-  }
-
-  const isLoggedIn = () => {
-    return false
-    //return router.pathname.indexOf("/account") != -1 || router.pathname.indexOf("/documentation") != -1
   }
 
   const getSidebarVariant = () => {

@@ -10,7 +10,6 @@ import presetsStyles from "../../styles/global/presets.module.scss"
 import moment from "moment"
 
 const SupportSection = ({ data, isVisible, question, isWrap }) => {
-
   const [visible, setVisible] = useState(false)
   const { lang: { Paymentsettings, Pasttransactions, Plan, Billing, NextPayment, Billingisbeingmade, Nocardprovided, Transactiondate, TransactionID, Description, Amount } } = useContext(Context)
   const [userBilling, setUserBilling] = useState({  })

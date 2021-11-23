@@ -15,10 +15,11 @@ import Icon from "../Icon"
 import { filterItFull } from "../../utils"
 import typographyStyles from '../../styles/global/typography.module.scss'
 import shortid from "shortid";
+import AuthService from "../../services/AuthService";
 
 const Header = ({ data, path, isLoggedIn, variant }) => {
 
-  const { app, lang: { GetTheApp, Gettingstarted, Searchapi, SignOut } } = useContext(Context);
+  const { app, dispatchApp, lang: { GetTheApp, Gettingstarted, Searchapi, SignOut } } = useContext(Context);
   const [isVisible, setIsVisible] = useState(false);
   const [isActiveMobile, setIsActiveMobile] = useState(false)
   const { headerNavigation, mobileNavigation, accountNavigation } = appConfig
@@ -92,6 +93,12 @@ const Header = ({ data, path, isLoggedIn, variant }) => {
 
     return `/${l[1]}`
   }
+
+  const onLogout = () => AuthService.logout().then(() => {
+    dispatchApp({ type: 'SET_USER', data: { user: undefined } })
+    router.push("/sign-in")
+  })
+  .catch((e) => console.log(e))
 
   const render = () => {
     switch (variant) {
@@ -210,7 +217,7 @@ const Header = ({ data, path, isLoggedIn, variant }) => {
                     {accountNavigation.map((item, i) => (
                       <li className={`${router.pathname == item.link ? "active" : ""}`} onClick={() => hideAll(true)} key={`${shortid.generate()}`}><Link href={item.link} passHref><a className={`${styles.sidebarLink} ${isActive(item.link) ? "active" : ""}`}><span>{item.name}</span></a></Link></li>
                     ))}
-                    <li><Link href="/sign-in"><a onClick={() => AuthService.logout()} className={`${styles.sidebarLink}`}><span>{SignOut}</span></a></Link></li>
+                    <li><a onClick={onLogout} className={`${styles.sidebarLink}`}><span>{SignOut}</span></a></li>
                   </ul>
                 }
                 {(!isAccount() && !isDocumentation()) &&
