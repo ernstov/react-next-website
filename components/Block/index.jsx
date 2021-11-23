@@ -5,6 +5,7 @@ import { Context } from "../../context/context"
 import { numberWithCommas } from "../../utils/"
 import Button from "../ui/Button"
 import { useRouter } from "next/router"
+import Link from "next/link"
 
 const Block = ({ data, i, variant, isYearly, children, className }) => {
 
@@ -61,12 +62,13 @@ const Block = ({ data, i, variant, isYearly, children, className }) => {
               </ul>
             </div>
           </div>
-          <div onClick={() => {
-            router.push("/sign-up");
-            dispatchApp({ type: 'SET_APP_VALUES', data: { selectedPlan: data.name } });
-          }} className={`${styles.blockBottomShape} text-center`} style={{ backgroundColor: data.color }}>
-            <span className={`${typographyStyles.textWhiteDemi}`}>{Startnow}</span>
-          </div>
+          <Link href={`/sign-up?planName=${data.name}`} passHref>
+            <a>
+              <div className={`${styles.blockBottomShape} text-center`} style={{ backgroundColor: data.color }}>
+                <span className={`${typographyStyles.textWhiteDemi}`}>{Startnow}</span>
+              </div>
+            </a>
+          </Link>
         </div>
       case "fluid":
         return <div className={`${styles.block} ${className ? className : ""} fluid`}>

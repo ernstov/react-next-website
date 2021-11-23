@@ -26,6 +26,13 @@ const Signup = ({ data, isVisible }) => {
 
   const [visible, setVisible] = useState(false)
   const router = useRouter()
+  const [selectedPlan, setSelectedPlan] = useState(options.find(el => el.value === "Free trial"))
+
+  useEffect(() => {
+    if (router.query.planName) {
+      setSelectedPlan(options.find(el => el.value === router.query.planName))
+    }
+  }, [router.isReady])
 
   useEffect(() => {
     if (isVisible) {
@@ -82,8 +89,8 @@ const Signup = ({ data, isVisible }) => {
             <Row>
               <Col md={6} className="mb-4">
                 <Select
-                  defaultValue={selectedPlan ? {value: selectedPlan, label: selectedPlan} : options[0]}
-                  onChange={e => { }}
+                  value={selectedPlan}
+                  onChange={setSelectedPlan}
                   className={`${presetsStyles.selectLight}`}
                   classNamePrefix={'acr-select'}
                   options={options}

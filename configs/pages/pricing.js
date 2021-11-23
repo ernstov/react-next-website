@@ -59,7 +59,7 @@ export const page = {
         list: ["20 requests/day", "Real-time news", "Local, city-specific news", "World news", "All AI features"],
         button: {
           variant: "primary-arrow",
-          link: "/sign-up",
+          link: "/sign-up?planName=Free trial",
           name: "Start trial"
         }
       },
