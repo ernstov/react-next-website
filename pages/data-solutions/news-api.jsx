@@ -52,7 +52,6 @@ const NewsAPI = () => {
         <meta name="description" content={`${page.description}`}></meta>
         <meta property="og:description" content={`${page.description}`}></meta>
         <meta property="og:image" content={`${appConfig.projectDomain}/img/${page.thumbnail}`} id="og"></meta>
-        <script src='https://www.google.com/recaptcha/api.js'></script>
       </Head>
       {sections.map((section, i) => (
         <VisibilitySensor minTopValue={100} partialVisibility={true} once={true} key={`p-${i}`}>

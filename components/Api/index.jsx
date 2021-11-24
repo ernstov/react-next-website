@@ -5,8 +5,10 @@ import AceEditor from "react-ace"
 import "ace-builds/src-noconflict/mode-json"
 import "./theme-monokai"
 import Beautify from 'ace-builds/src-noconflict/ext-beautify'
+import ReCAPTCHA from "react-google-recaptcha"
+import React from "react"
 
-const CAPTCHA_PUBLIC_KEY = process.env.NEXT_PUBLIC_CAPTCHA_PUBLIC_KEY || "6LevMlEdAAAAAACZkPb62nXA0MFNco_U9CljvD4G"
+const CAPTCHA_PUBLIC_KEY = process.env.NEXT_PUBLIC_CAPTCHA_PUBLIC_KEY || "6Ldd41YdAAAAAE8C3trY_scKmJCfAgiqc33E3XOR"
 
 const Api = ({ data, isVisible }) => {
 
@@ -15,19 +17,9 @@ const Api = ({ data, isVisible }) => {
   const [editorJson, setEditorJson] = useState(JSON.stringify({}, null, '\t'))
   const [urlQuery, setUrlQuery] = useState(query)
 
-  useEffect(() => {
-    grecaptcha.ready(function() {
-      grecaptcha.render("recaptcha-container", {
-        "sitekey": CAPTCHA_PUBLIC_KEY
-      })
-    })
-  }, [])
-
-  const getData = () => {
-    const captchaResponse = grecaptcha.getResponse();
-    console.log(captchaResponse)
+  const getData = (captchaResponse) => {
     const request = `https://${api}${urlQuery}`
-    fetch(`https://api.goperigon.com/v1/demo/news`, {
+    fetch(`http://localhost:8080/v1/demo/news`, {
       method: 'POST',
       headers: {
         "captcha-response": captchaResponse,
@@ -41,9 +33,15 @@ const Api = ({ data, isVisible }) => {
       })
   }
 
-  const onClick = () => {
+  const recaptchaRef = React.useRef()
+
+  const onClick = async () => {
     setIsLoading(true)
-    getData()
+    recaptchaRef.current.reset()
+    const token = await recaptchaRef.current.executeAsync()
+    console.log(`Public key: ${CAPTCHA_PUBLIC_KEY}`)
+    console.log(`Captcha: ${token}`)
+    getData(token)
   }
 
   return (
@@ -62,7 +60,7 @@ const Api = ({ data, isVisible }) => {
         <button onClick={onClick} className={`${styles.button} ${isLoading ? "disabled" : ""}`}>
           <Icon variant="refresh" /> <span>{button}</span>
         </button>
-        <div id="recaptcha-container" className={`${styles.captcha}`}></div>
+        <ReCAPTCHA ref={recaptchaRef} size="invisible" sitekey={CAPTCHA_PUBLIC_KEY} className={`${styles.captcha}`}/>
       </div>
       <div className={`${styles.content}`}>
         {/* <div id="jsoneditor" className={`${styles.editor}`}></div> */}

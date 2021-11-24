@@ -474,3 +474,7 @@ select:-webkit-autofill:focus {
     max-width: 260px !important;
   }
 }
+
+.grecaptcha-badge {
+  visibility: hidden !important;
+}
