@@ -19,7 +19,7 @@ const Api = ({ data, isVisible }) => {
 
   const getData = (captchaResponse) => {
     const request = `https://${api}${urlQuery}`
-    fetch(`http://localhost:8080/v1/demo/news`, {
+    fetch(`https://api.goperigon.com/v1/demo/news`, {
       method: 'POST',
       headers: {
         "captcha-response": captchaResponse,
