@@ -11,7 +11,6 @@ import Sidebar from "../components/Sidebar"
 import "../styles/main.scss"
 import 'swiper/swiper.scss'
 import 'swiper/components/lazy/lazy.scss'
-import UserBillingService from "../services/UserBillingService"
 import BottomMenu from "../components/BottomMenu"
 import { isWrap, isSmoothScroll } from "../utils"
 import Agreement from "../components/Agreement"
@@ -60,21 +59,25 @@ export default function App({ Component, pageProps }) {
   }, [router.pathname])
 
   useEffect(() => {
+    if (router.pathname) {
+      if (router.pathname.includes("/account") && !isLoggedIn()) {
+        router.push("/sign-in")
+      } else if (router.pathname === "/sign-in" && isLoggedIn()) {
+        router.push("/account/overview")
+      }
+    }
+  }, [router.pathname])
+
+  useEffect(() => {
 
     if (!isWrap()) setWrap(false)
     setSmooth(isSmoothScroll)
     TagManager.initialize(tagManagerArgs)
 
     const start = (e) => {
-      if (isLoggedIn() && e === '/sign-in') {
-        router.push("/account/overview")
-      } else if (!isLoggedIn() && e.includes("/account")) {
-        router.push("/sign-in")
-      } else {
-        dispatchApp({ type: "SET_LOADING", data: { isLoading: true, nextPage: e } });
-        scrollB.current?.scrollbar.scrollTo(0, 0, 500);
-        setLoaderState("preload")
-      }
+      dispatchApp({ type: "SET_LOADING", data: { isLoading: true, nextPage: e } });
+      scrollB.current?.scrollbar.scrollTo(0, 0, 500);
+      setLoaderState("preload")
     };
     const end = (e) => {
       dispatchApp({ type: "SET_LOADING", data: { isLoading: false, nextPage: e } });
@@ -84,19 +87,6 @@ export default function App({ Component, pageProps }) {
     setTimeout(() => {
       setLoaderState("loaded")
     }, 500)
-
-    // UserBillingService.getUser()
-    //   .then(data => {
-    //     dispatchApp({ type: "SET_USER", data: { user: { id: data.id, email: data.email } } })
-    //     if (router.pathname === '/sign-in') {
-    //       router.push("/account/overview")
-    //     }
-    //   })
-    //   .catch(() => {
-    //     if (router.pathname.indexOf("/account") >= 0 || router.pathname.indexOf("/documentation") >= 0) {
-    //       router.push("/sign-in")
-    //     }
-    //   })
 
     Router.events.on("routeChangeStart", start);
     Router.events.on("routeChangeComplete", end);
@@ -123,13 +113,6 @@ export default function App({ Component, pageProps }) {
   const getSidebarVariant = () => {
     if (router.pathname.indexOf("/account") != -1) return "account"
     if (router.pathname.indexOf("/documentation") != -1) return "documentation"
-  }
-
-  const isAuth = (userData) => {
-    if (router.pathname.indexOf("/account") >= 0 || router.pathname.indexOf("/details") >= 0) {
-      return userData?.sub && userData?.email && userData?.exp > Date.now()
-    }
-    return true
   }
 
   const isHome = () => {
