@@ -98,7 +98,7 @@ const Header = ({ data, path, isLoggedIn, variant }) => {
     dispatchApp({ type: 'SET_USER', data: { user: undefined } })
     router.push("/sign-in")
   })
-  .catch((e) => console.log(e))
+    .catch((e) => console.log(e))
 
   const render = () => {
     switch (variant) {
@@ -161,7 +161,7 @@ const Header = ({ data, path, isLoggedIn, variant }) => {
                 <Col lg={3} xs={12} className="d-flex align-items-center">
                   <Logo />
                   <div className={`${styles.mobileActions} ${isActiveMobile ? "active" : ""}`}>
-                    {!isLoggedIn && <div className={`${styles.headerToggler}`}><MenuToggler isActiveMobile={isActiveMobile} setIsActiveMobile={() => setIsActiveMobile(!isActiveMobile)} /></div>}
+                    <div className={`${styles.headerToggler}`}><MenuToggler isActiveMobile={isActiveMobile} setIsActiveMobile={() => setIsActiveMobile(!isActiveMobile)} /></div>
                   </div>
                 </Col>
                 <Col lg={6} xs={6} className={`${styles.navigationCenter}`}>
@@ -192,73 +192,71 @@ const Header = ({ data, path, isLoggedIn, variant }) => {
               </div>
             </div>
           }
-          {!isLoggedIn &&
-            <MenuContainer className="business" isActiveMobile={isActiveMobile} onHide={() => setIsActiveMobile(false)}>
-              <div className="menu-container-top">
-                <div className="menu-container-title">
-                  <Link onClick={() => hideAll(true)} href="/"><img className={`${styles.logoMobile}`} src={`/img/logo-light.svg`} /></Link>
-                </div>
+          <MenuContainer className="business" isActiveMobile={isActiveMobile} onHide={() => setIsActiveMobile(false)}>
+            <div className="menu-container-top">
+              <div className="menu-container-title">
+                <Link onClick={() => hideAll(true)} href="/"><img className={`${styles.logoMobile}`} src={`/img/logo-light.svg`} /></Link>
               </div>
-              <div className="menu-container-middle">
-                {isDocumentation() &&
-                  <>
+            </div>
+            <div className="menu-container-middle">
+              {isDocumentation() &&
+                <>
+                  <ul>
+                    <li onClick={() => hideAll(true)} className={`${router.pathname == "/documentation" ? "active" : ""}`}><Link href={"/documentation"}>{Gettingstarted}</Link></li>
+                  </ul>
+                  <div className="mb-2"><span className={typographyStyles.labelMenu}>{Searchapi}</span></div>
+                  <ul className="mb-2">
+                    {appConfig.documentationNavigation.map((item, i) => (
+                      <li className={`${router.pathname == item.link ? "active" : ""}`} onClick={() => hideAll(true)} key={`${shortid.generate()}`}><Link href={item.link}>{item.name}</Link></li>
+                    ))}
+                  </ul>
+                </>}
+              {isAccount() &&
+                <ul>
+                  {accountNavigation.map((item, i) => (
+                    <li className={`${router.pathname == item.link ? "active" : ""}`} onClick={() => hideAll(true)} key={`${shortid.generate()}`}><Link href={item.link} passHref><a className={`${styles.sidebarLink} ${isActive(item.link) ? "active" : ""}`}><span>{item.name}</span></a></Link></li>
+                  ))}
+                  <li><a onClick={onLogout} className={`${styles.sidebarLink}`}><span>{SignOut}</span></a></li>
+                </ul>
+              }
+              {(!isAccount() && !isDocumentation()) &&
+                mobileNavigation.map((sect, i) => (
+                  <div className="pb-3" key={`sdr-${i}`}>
+                    <div><span className={typographyStyles.labelMenu}>{sect.label}</span></div>
                     <ul>
-                      <li onClick={() => hideAll(true)} className={`${router.pathname == "/documentation" ? "active" : ""}`}><Link href={"/documentation"}>{Gettingstarted}</Link></li>
-                    </ul>
-                    <div className="mb-2"><span className={typographyStyles.labelMenu}>{Searchapi}</span></div>
-                    <ul className="mb-2">
-                      {appConfig.documentationNavigation.map((item, i) => (
-                        <li className={`${router.pathname == item.link ? "active" : ""}`} onClick={() => hideAll(true)} key={`${shortid.generate()}`}><Link href={item.link}>{item.name}</Link></li>
+                      {sect.links.map((nav, z) => (
+                        <li onClick={() => hideAll(true)} key={`${shortid.generate()}`}><Link href={nav.link}>{nav.name}</Link></li>
                       ))}
                     </ul>
-                  </>}
-                {isAccount() &&
-                  <ul>
-                    {accountNavigation.map((item, i) => (
-                      <li className={`${router.pathname == item.link ? "active" : ""}`} onClick={() => hideAll(true)} key={`${shortid.generate()}`}><Link href={item.link} passHref><a className={`${styles.sidebarLink} ${isActive(item.link) ? "active" : ""}`}><span>{item.name}</span></a></Link></li>
-                    ))}
-                    <li><a onClick={onLogout} className={`${styles.sidebarLink}`}><span>{SignOut}</span></a></li>
-                  </ul>
-                }
-                {(!isAccount() && !isDocumentation()) &&
-                  mobileNavigation.map((sect, i) => (
-                    <div className="pb-3" key={`sdr-${i}`}>
-                      <div><span className={typographyStyles.labelMenu}>{sect.label}</span></div>
-                      <ul>
-                        {sect.links.map((nav, z) => (
-                          <li onClick={() => hideAll(true)} key={`${shortid.generate()}`}><Link href={nav.link}>{nav.name}</Link></li>
-                        ))}
-                      </ul>
-                    </div>
-                  ))
-                }
-                {(!isDocumentation() && !isAccount()) &&
-                  <div className="menu-container-stores">
-                    <span className="menu-container-badge">{GetTheApp}</span>
-                    {appConfig.navigationAdditional.stores && appConfig.navigationAdditional.stores.map((store, i) => (
-                      <a key={`sti-${i}`} target="blank" href={store.link}><img className={`${footerStyles.footerStore} mt-2`} src={`/img/${store.img}`} alt="" /></a>
+                  </div>
+                ))
+              }
+              {(!isDocumentation() && !isAccount()) &&
+                <div className="menu-container-stores">
+                  <span className="menu-container-badge">{GetTheApp}</span>
+                  {appConfig.navigationAdditional.stores && appConfig.navigationAdditional.stores.map((store, i) => (
+                    <a key={`sti-${i}`} target="blank" href={store.link}><img className={`${footerStyles.footerStore} mt-2`} src={`/img/${store.img}`} alt="" /></a>
+                  ))}
+                </div>
+              }
+            </div>
+            <div className="menu-container-bottom">
+              <div className="menu-container-socials">
+                {appConfig.footer.socials.map((social, i) => (
+                  <a key={`ski-${i}`} href={social.link} target="blank"><Icon variant={social.icon} /></a>
+                ))}
+              </div>
+              <div className="menu-container-links">
+                {appConfig.navigationAdditional.links.map((row, i) => (
+                  <div key={`rki-${i}`}>
+                    {row.row.map((link, i) => (
+                      <div onClick={() => hideAll(true)} key={`lki-${i}`}><Link href={link.link}>{link.name}</Link></div>
                     ))}
                   </div>
-                }
+                ))}
               </div>
-              <div className="menu-container-bottom">
-                <div className="menu-container-socials">
-                  {appConfig.footer.socials.map((social, i) => (
-                    <a key={`ski-${i}`} href={social.link} target="blank"><Icon variant={social.icon} /></a>
-                  ))}
-                </div>
-                <div className="menu-container-links">
-                  {appConfig.navigationAdditional.links.map((row, i) => (
-                    <div key={`rki-${i}`}>
-                      {row.row.map((link, i) => (
-                        <div onClick={() => hideAll(true)} key={`lki-${i}`}><Link href={link.link}>{link.name}</Link></div>
-                      ))}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </MenuContainer>
-          }
+            </div>
+          </MenuContainer>
         </div>
     }
   }
