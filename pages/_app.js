@@ -107,7 +107,7 @@ export default function App({ Component, pageProps }) {
     if (!app.user) {
       UserBillingService.getUser()
         .then(data => {
-          dispatchApp({ type: "SET_USER", data: { user: { data } } })
+          dispatchApp({ type: "SET_USER", data: { data } })
           if (router.pathname === '/sign-in') {
             router.push("/account/overview")
           }
