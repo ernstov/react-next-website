@@ -17,6 +17,7 @@ import Agreement from "../components/Agreement"
 import "notyf/notyf.min.css"
 import { isLoggedIn } from "../utils/AuthUtils"
 import TagManager from 'react-gtm-module'
+import UserBillingService from "../services/UserBillingService"
 
 const tagManagerArgs = {
   gtmId: appConfig.gtmId,
@@ -59,6 +60,10 @@ export default function App({ Component, pageProps }) {
   }, [router.pathname])
 
   useEffect(() => {
+    redirect()
+  }, [router.pathname])
+
+  const redirect = () => {
     if (router.pathname) {
       if (router.pathname.includes("/account") && !isLoggedIn()) {
         router.push("/sign-in")
@@ -66,7 +71,7 @@ export default function App({ Component, pageProps }) {
         router.push("/account/overview")
       }
     }
-  }, [router.pathname])
+  }
 
   useEffect(() => {
 
@@ -98,6 +103,19 @@ export default function App({ Component, pageProps }) {
     //   dispatchApp({ type: "SET_APP_VALUES", data: { trands: result.slice(0, 4), blog: result.slice(4, 5)[0] } });
     // })
     // .catch((err) => console.error(err));
+
+    if (!app.user) {
+      UserBillingService.getUser()
+        .then(data => {
+          dispatchApp({ type: "SET_USER", data: { user: { data } } })
+          if (router.pathname === '/sign-in') {
+            router.push("/account/overview")
+          }
+        })
+        .catch(() => {
+          redirect()
+        })
+    }
 
     return () => {
       Router.events.off("routeChangeStart", start);
