@@ -12,9 +12,9 @@ export const page = {
         link: "mailto:data@goperigon.com"
       },
       {
-        name: "888.202.0521",
+        name: "512.394.4645",
         icon: "phone",
-        link: "tel:888.202.0521",
+        link: "tel:512.394.4645",
       }
     ],
     // label: "Mon - Fri, 9:00AM - 5:00PM CT"

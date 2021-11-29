@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react"
+import React, { useEffect, useState, useContext, useMemo } from "react"
 import { Container, Row, Col, Collapse, Card } from "react-bootstrap"
 import Icon from "../../components/Icon"
 import { Context } from "../../context/context"
@@ -11,14 +11,16 @@ import Select from "react-select"
 import { customSingleValue, scrollBar } from '../../components/ui/Helpers/UiComponents'
 import presetsStyles from "../../styles/global/presets.module.scss"
 import appConfig from "../../configs/appConfig"
+import ContactService from "../../services/ContactService"
 
 const Contact = ({ data, isVisible, question, isWrap }) => {
 
   const [visible, setVisible] = useState(false)
-  const { title, description, buttons, label } = data
+  const { title, description, buttons, label, options } = data
   const { lang: { Submit, Name, yourEmail, SelectOne, Typeyourmessagehere, successMessage } } = useContext(Context)
   const [isProcess, setIsProcess] = useState(false)
   const [isCompleted, setIsCompleted] = useState(false)
+  const inquiryOptions = useMemo(() => options.map(({ name }) => ({ label: name, value: name })), [])
 
   useEffect(() => {
     if (isVisible) {
@@ -28,14 +30,12 @@ const Contact = ({ data, isVisible, question, isWrap }) => {
     }
   }, [isVisible])
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     e.stopPropagation();
     setIsProcess(true)
 
-    if (e.target.querySelectorAll(".not-valid").length > 0) {
-      setIsProcess(false)
-    } else {
+    if (e.target.querySelectorAll(".not-valid").length === 0) {
       const formData = new FormData(e.target)
       let json = {
         user: {}
@@ -48,20 +48,16 @@ const Contact = ({ data, isVisible, question, isWrap }) => {
 
       json = fields
 
-      fetch(apiConfig.contact, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json;charset=utf-8'
-        },
-        body: JSON.stringify(json)
-      }).then(response => response.json())
-        .then(result => {
-          setIsProcess(false)
-          setIsCompleted(true)
-          console.log(result)
-        })
+      try {
+        const resp = await ContactService.contact(fields)
+        console.log(resp)
+        setIsCompleted(true)
+      } catch (e) {
+        console.log(e)
+      }
     }
 
+    setIsProcess(false)
   }
 
   return (
@@ -90,10 +86,10 @@ const Contact = ({ data, isVisible, question, isWrap }) => {
                       <Input className="mb-3" tyle="email" required placeholder={yourEmail} name="email" />
                       <Select
                         placeholder={SelectOne}
-                        name="select"
+                        name="option"
                         className={`${presetsStyles.selectLight} white neutral mb-4`}
                         classNamePrefix={'acr-select'}
-                        options={[{value: "Option 1", label: "Option 1"}, {value: "Option 2", label: "Option 2"}, {value: "Option 2", label: "Option 2"}]}
+                        options={inquiryOptions}
                         components={{
                           SingleValue: customSingleValue,
                           MenuList: scrollBar,
