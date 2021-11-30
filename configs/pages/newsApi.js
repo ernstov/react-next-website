@@ -127,12 +127,12 @@ export const page = {
     buttons: [
       {
         name: "View sources",
-        link: "#",
+        link: "/data-solutions/pricing?q=which-media-sources-are-supported",
         variant: "rounded-dark",
       },
       {
         name: "View cities",
-        link: "#",
+        link: "/data-solutions/pricing?q=which-cities-are-supported",
         variant: "rounded-dark",
       },
     ]
