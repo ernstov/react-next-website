@@ -25,7 +25,7 @@ import { useNotyf } from "../../utils/hooks"
 
 const AccountOverview = ({ data, isVisible }) => {
 
-  const { lang: { Update, BusinessName, ProjectName, HomeCountry, Email, Firstname, Lastname, UseofAPI, Changepassword, Status, Plan, Billing, Nextpayment, Changeplan, Apiaccess, OfRequests, ViewKeys, APIDocs, APIUsage, UpdatePassword, currentPassword, newPassword, Passwordmustbe6 } } = useContext(Context)
+  const { lang: { Update, BusinessName, ProjectName, HomeCountry, VerifiedEmail, NotVerifiedEmail, Firstname, Lastname, UseofAPI, Changepassword, Status, Plan, Billing, Nextpayment, Changeplan, Apiaccess, OfRequests, ViewKeys, APIDocs, APIUsage, UpdatePassword, currentPassword, newPassword, Passwordmustbe6 } } = useContext(Context)
   const form = useRef(null)
   const [isProcess, setIsProcess] = useState(false)
   const optionsCountry = useMemo(() => countryList().getData(), [])
@@ -227,7 +227,7 @@ const AccountOverview = ({ data, isVisible }) => {
                       <Input placeholder={`Smith`} defaultValue={userBilling.lastName} name="lastName" variant="flat" label={Lastname} required />
                     </Col>
                     <Col md={6} className="mb-4">
-                      <Input placeholder={`sample@gmail.com`} defaultValue={userBilling.email} name="email" variant="flat" label={Email} required />
+                      <Input placeholder={`sample@gmail.com`} defaultValue={userBilling.email} name="email" variant="flat" label={userBilling.verified ? VerifiedEmail : NotVerifiedEmail} required />
                     </Col>
                     <Col md={6} className="mb-4">
                       <Label label={HomeCountry} />

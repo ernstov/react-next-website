@@ -19,6 +19,8 @@ const languages = {
     Firstname: "First name",
     Lastname: "Last name",
     Email: "Email",
+    VerifiedEmail: "Email (verified)",
+    NotVerifiedEmail: "Email (not verified)",
     Password: "Password",
     Passwordmustbe: "Password must be at least 6 characters, contain one special character and number",
     Ihaveread: "I have read & agree to the",
