@@ -55,36 +55,37 @@ const AccountOverview = ({ data, isVisible }) => {
     }
   }, [isVisible])
 
+  const setData = (res) => {
+    setUserBilling(res)
+    setUsage(res.usage)
+    setCountry(res.homeCountry)
+    setRegisteredSince(moment(res.createdAt).format('MMM DD, yyyy'))
+
+    if (!res.billingPlan) {
+      setBillingPlanStatus("INACTIVE")
+    } else {
+      if (res.billingMode === 'MONTHLY') {
+        setAmount(`\$${res.billingPlan.monthlyPrice.toLocaleString('en-US')}/mo`)
+      } else if (res.billingMode === 'YEARLY') {
+        setAmount(`$${res.billingPlan.yearlyPrice.toLocaleString('en-US')}/yr`)
+      }
+
+      if (res.subscription?.nextPaymentAt) {
+        setNextPaymentAt(moment(res.subscription.nextPaymentAt).format('MMM DD, yyyy'))
+      }
+
+      if (res.subscription?.stripeSubscriptionStatus) {
+        setBillingPlanStatus(parseStripeSubscriptionStatus(res.subscription.stripeSubscriptionStatus))
+      }
+    }
+
+    if (res.tracking) {
+      setNumRequestsData(`${res.tracking.numRequests.toLocaleString('en-US')} <span class='inputLight ml-1 mr-1'>since</span> ${moment(res.tracking.since).format('MMM DD, yyyy')}`)
+    }
+  }
+
   useEffect(() => {
-    UserBillingService.getUser()
-      .then((res) => {
-        setUserBilling(res)
-        setUsage(res.usage)
-        setCountry(res.homeCountry)
-        setRegisteredSince(moment(res.createdAt).format('MMM DD, yyyy'))
-
-        if (!res.billingPlan) {
-          setBillingPlanStatus("INACTIVE")
-        } else {
-          if (res.billingMode === 'MONTHLY') {
-            setAmount(`\$${res.billingPlan.monthlyPrice.toLocaleString('en-US')}/mo`)
-          } else if (res.billingMode === 'YEARLY') {
-            setAmount(`$${res.billingPlan.yearlyPrice.toLocaleString('en-US')}/yr`)
-          }
-
-          if (res.subscription?.nextPaymentAt) {
-            setNextPaymentAt(moment(res.subscription.nextPaymentAt).format('MMM DD, yyyy'))
-          }
-
-          if (res.subscription?.stripeSubscriptionStatus) {
-            setBillingPlanStatus(parseStripeSubscriptionStatus(res.subscription.stripeSubscriptionStatus))
-          }
-        }
-
-        if (res.tracking) {
-          setNumRequestsData(`${res.tracking.numRequests.toLocaleString('en-US')} <span class='inputLight ml-1 mr-1'>since</span> ${moment(res.tracking.since).format('MMM DD, yyyy')}`)
-        }
-      });
+    UserBillingService.getUser().then(setData);
   }, [])
 
   const onSubmit = async (e) => {
@@ -103,7 +104,8 @@ const AccountOverview = ({ data, isVisible }) => {
       fields.usage = usage
       fields.homeCountry = country
       try {
-        await UserBillingService.updateUser(fields);
+        const user = await UserBillingService.updateUser(fields);
+        setData(user);
         notyf.success("Updated user data!");
       } catch (e) {
         notyf.error(e);
