@@ -15,9 +15,9 @@ import BottomMenu from "../components/BottomMenu"
 import { isWrap, isSmoothScroll } from "../utils"
 import Agreement from "../components/Agreement"
 import "notyf/notyf.min.css"
-import { isLoggedIn } from "../utils/AuthUtils"
 import TagManager from 'react-gtm-module'
 import UserBillingService from "../services/UserBillingService"
+import Loader from "../components/Loader"
 
 const tagManagerArgs = {
   gtmId: appConfig.gtmId,
@@ -29,9 +29,10 @@ export default function App({ Component, pageProps }) {
   const [loaderState, setLoaderState] = useState("load")
   const router = useRouter()
   const scrollB = useRef(null)
-  const [isLoader, setIsLoader] = useState(true)
+  const [isLoader, setIsLoader] = useState(false)
   const [wrap, setWrap] = useState(true)
   const [smooth, setSmooth] = useState(true)
+  const [checkUserState, setCheckUserState] = useState()
 
   const [app, dispatchApp] = useReducer(reducerApp, {
     isLoading: false,
@@ -49,29 +50,24 @@ export default function App({ Component, pageProps }) {
     blog: [],
   });
 
-  useEffect(() => {
-    if (router.pathname.indexOf("/account") != -1 || router.pathname.indexOf("/documentation") != -1) {
-      setTimeout(() => {
-        setIsLoader(false)
-      }, 1200)
-    } else {
-      setIsLoader(true)
-    }
-  }, [router.pathname])
+  const isAuth = () => !!app.user
 
   useEffect(() => {
-    redirect()
-  }, [router.pathname])
+    setCheckUserState('running')
+    UserBillingService.getUser()
+      .then(user => dispatchApp({ type: "SET_USER", data: { user } }))
+      .finally(() => setCheckUserState('finished'))
+  }, [])
 
-  const redirect = () => {
-    if (router.pathname) {
-      if (router.pathname.includes("/account") && !isLoggedIn()) {
+  useEffect(() => {
+    if (checkUserState === 'finished') {
+      if (isAccount() && !isAuth()) {
         router.push("/sign-in")
-      } else if (router.pathname === "/sign-in" && isLoggedIn()) {
+      } else if (router.pathname === '/sign-in' && isAuth()) {
         router.push("/account/overview")
       }
     }
-  }
+  }, [router.pathname, checkUserState])
 
   useEffect(() => {
 
@@ -104,19 +100,6 @@ export default function App({ Component, pageProps }) {
     // })
     // .catch((err) => console.error(err));
 
-    if (!app.user) {
-      UserBillingService.getUser()
-        .then(data => {
-          dispatchApp({ type: "SET_USER", data: { data } })
-          if (router.pathname === '/sign-in') {
-            router.push("/account/overview")
-          }
-        })
-        .catch(() => {
-          redirect()
-        })
-    }
-
     return () => {
       Router.events.off("routeChangeStart", start);
       Router.events.off("routeChangeComplete", end);
@@ -138,17 +121,17 @@ export default function App({ Component, pageProps }) {
   }
 
   const isAccount = () => {
-    return router.pathname.includes("/account")
+    return !!router.pathname?.includes("/account")
   }
 
   const isDocumentation = () => {
-    return router.pathname.includes("/documentation")
+    return !!router.pathname?.includes("/documentation")
   }
 
   return <Context.Provider value={{ app, dispatchApp, lang, scrollB }}>
     <LayoutBase isSmoothScroll={smooth} variant={isAccount() ? 'account' : ""} isWrap={wrap && !isHome()}>
-      {/* {isLoader && <Loader loaderState={loaderState} />} */}
-      {(wrap && !isHome()) && <Header path={router.pathname} variant={`advanced`} isLoggedIn={isLoggedIn()} />}
+      {isLoader && <Loader loaderState={loaderState} />}
+      {(wrap && !isHome()) && <Header path={router.pathname} variant={`advanced`} isLoggedIn={isAuth()} />}
       {isHome() && <BottomMenu path={router.pathname} data={appConfig.bottomMenu} />}
       {isSidebar() && <Sidebar isWrap={wrap} variant={getSidebarVariant()} />}
       <Scrollbar damping={0.2} className="scoll-bar" ref={e => { if (e && !scrollB.current) { scrollB.current = e; } }}>

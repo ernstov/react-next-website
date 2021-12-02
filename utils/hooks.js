@@ -11,10 +11,18 @@ export const useNotyf = (params) => {
           {
             type: 'success',
             background: 'rgba(42, 46, 50, 0.95)',
+            position: {
+              x: 'center',
+              y: 'bottom'
+            }
           },
           {
             type: 'error',
-            background: 'rgba(252, 84, 36, 0.95)'
+            background: 'rgba(252, 84, 36, 0.95)',
+            position: {
+              x: 'center',
+              y: 'bottom'
+            }
           }
         ],
         dismissible: true,

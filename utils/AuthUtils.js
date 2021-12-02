@@ -1,5 +1,3 @@
-import Cookies from "js-cookie"
-
 // const TOKEN = "CT_TOKEN";
 
 // export function getToken() {
@@ -23,11 +21,3 @@ import Cookies from "js-cookie"
 //   }
 //   return {};
 // }
-
-const LOGGED_IN_COOKIE_NAME = "perigon-signed-in"
-
-export const isLoggedIn = () => {
-  return !!Cookies.get(LOGGED_IN_COOKIE_NAME)
-}
-
-export const getLoggedInData = () => isLoggedIn() ? JSON.parse(atob(Cookies.get(LOGGED_IN_COOKIE_NAME))) : undefined
