@@ -3,6 +3,7 @@ import styles from './button.module.scss'
 import Link from 'next/link'
 import Icon from "../../Icon"
 import { Context } from "../../../context/context"
+import appConfig from "../../../configs/appConfig"
 
 const Button = ({ children, variant, className, onClick, as, link, isActive, disabled, jump, size, ref }) => {
 
@@ -92,8 +93,18 @@ const Button = ({ children, variant, className, onClick, as, link, isActive, dis
   }
 
   const scrollTo = (elmId) => {
-    const position = document.querySelector(`#${elmId}`).offsetTop;
-    scrollB.current.scrollbar.scrollTo(0, position, 1000);
+    const elm = document.querySelector(`#${elmId}`)
+    const position = elm.getBoundingClientRect().top
+    const positionW = elm.offsetTop
+
+    if (window.innerWidth > 880) {
+      scrollB.current.scrollbar.scrollTo(0, positionW, 1000)
+    } else {
+      window.scrollTo({
+        top: window.pageYOffset + position - appConfig.headerHeightMd - 100,
+        behavior: "smooth"
+      })
+    }
   }
 
   const render = () => {
