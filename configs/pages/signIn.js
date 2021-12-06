@@ -12,6 +12,6 @@ export const page = {
     className: "pb-4 reduce-mobile",
   },
   signIn: {
-    label: "News app account? Please login using the app."
-  }  
+    label: "News app user? Please login on the app."
+  }
 }

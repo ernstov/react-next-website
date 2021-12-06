@@ -32,7 +32,7 @@ export default function App({ Component, pageProps }) {
   const [isLoader, setIsLoader] = useState(false)
   const [wrap, setWrap] = useState(true)
   const [smooth, setSmooth] = useState(true)
-  const [checkUserState, setCheckUserState] = useState()
+  const [checkedUserState, setCheckedUserState] = useState(false)
 
   const [app, dispatchApp] = useReducer(reducerApp, {
     isLoading: false,
@@ -53,21 +53,20 @@ export default function App({ Component, pageProps }) {
   const isAuth = () => !!app.user
 
   useEffect(() => {
-    setCheckUserState('running')
     UserBillingService.getUser()
       .then(user => dispatchApp({ type: "SET_USER", data: { user } }))
-      .finally(() => setCheckUserState('finished'))
+      .finally(() => setCheckedUserState(true))
   }, [])
 
   useEffect(() => {
-    if (checkUserState === 'finished') {
+    if (checkedUserState) {
       if (isAccount() && !isAuth()) {
-        router.push("/sign-in")
+        router.push({ pathname: "/sign-in", query: { redirect: router.pathname } })
       } else if (router.pathname === '/sign-in' && isAuth()) {
         router.push("/account/overview")
       }
     }
-  }, [router.pathname, checkUserState])
+  }, [router.pathname, checkedUserState])
 
   useEffect(() => {
 

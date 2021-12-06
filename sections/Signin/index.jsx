@@ -13,7 +13,6 @@ import { useRouter } from 'next/router'
 import presetsStyles from "../../styles/global/presets.module.scss"
 
 const Signin = ({ data, isVisible }) => {
-
   const { dispatchApp, lang: { SignIn, Email, Password, Notregisteredyet, Signup } } = useContext(Context)
   const form = useRef(null)
   const [isProcess, setIsProcess] = useState(false)
@@ -23,6 +22,13 @@ const Signin = ({ data, isVisible }) => {
   const [login, setLogin] = useState("")
   const [password, setPassword] = useState("")
   const [error, setError] = useState("")
+  const [redirectUrl, setRedirectUrl] = useState("/account/overview")
+
+  useEffect(() => {
+    if (router.query && router.query.redirect) {
+      setRedirectUrl(router.query.redirect)
+    }
+  }, [router.isReady])
 
   useEffect(() => {
     if (isVisible) {
@@ -56,7 +62,7 @@ const Signin = ({ data, isVisible }) => {
       try {
         const user = await AuthService.login(JSON.stringify(fields));
         dispatchApp({ type: 'SET_USER', data: { user } });
-        await router.push("/account/overview");
+        await router.push(redirectUrl);
       } catch (e) {
         setError(e);
         console.log(e);
