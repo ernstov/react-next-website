@@ -17,9 +17,9 @@ import countryList from 'react-select-country-list'
 import Label from "../../components/ui/Label"
 import { useRouter } from 'next/router'
 import UserBillingService from "../../services/UserBillingService"
+import AuthService from "../../services/AuthService"
 import ApiKey from "../../components/ui/ApiKey"
 import moment from "moment"
-import { Notyf } from "notyf"
 import { parseStripeSubscriptionStatus } from "../../utils"
 import { useNotyf } from "../../utils/hooks"
 
@@ -87,6 +87,19 @@ const AccountOverview = ({ data, isVisible }) => {
   useEffect(() => {
     UserBillingService.getUser().then(setData);
   }, [])
+
+  useEffect(() => {
+    const verifyEmailToken = router.query?.verifyEmail
+    if (verifyEmailToken) {
+      AuthService.verifyEmail(verifyEmailToken)
+        .then(() => notyf.success("Your email address has been confirmed."))
+        .catch(e => notyf.error(e))
+        .finally(() => {
+          router.replace(router.pathname)
+          UserBillingService.getUser().then(setData)
+        })
+    }
+  }, [router.isReady])
 
   const onSubmit = async (e) => {
     e.preventDefault();

@@ -11,12 +11,12 @@ const MenuUser = () => {
   return (
     <div className={`${styles.menuUser}`}>
       {app.user ?
-        <div className={`${styles.userDetails}`}>
+        <div onClick={() => router.push("/account/overview")} className={`${styles.userDetails}`} role="button">
           <span className={`${typographyStyles.titleDemi} mr-3`}>{app.user.firstName}</span>
-          <div onClick={()=>router.push("/account/overview")} className={`${styles.userAvatar}`}>{app.user.firstName && app.user.firstName[0]}</div>
+          <div className={`${styles.userAvatar}`}>{app.user.firstName && app.user.firstName[0]}</div>
         </div>
         :
-        <img onClick={()=>router.push("/sign-in")} className={`${styles.userEmptyIcon}`} src='/img/account-icon.svg' />
+        <img onClick={() => router.push("/sign-in")} className={`${styles.userEmptyIcon}`} src='/img/account-icon.svg' />
       }
     </div>
   )
