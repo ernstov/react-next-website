@@ -27,6 +27,12 @@
     &:first-child {
       border-top: 1px solid $border-color;
     }
+
+    &:global(.active) {
+      :global(.card-header) {
+        color: $secondary;
+      }
+    }
   }
 
   :global(.card-header) {
@@ -50,7 +56,7 @@
     }
 
     &:hover {
-      color: $primary;
+      color: $secondary;
     }
   }
 
