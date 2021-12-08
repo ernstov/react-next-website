@@ -62,7 +62,7 @@ export default function App({ Component, pageProps }) {
     if (checkedUserState) {
       if (isAccount() && !isAuth()) {
         router.push({ pathname: "/sign-in", query: { redirect: router.pathname } })
-      } else if (router.pathname === '/sign-in' && isAuth()) {
+      } else if ((router.pathname === '/sign-in' || router.pathname === '/sign-up') && isAuth()) {
         router.push("/account/overview")
       }
     }
