@@ -39,8 +39,6 @@ const Api = ({ data, isVisible }) => {
     setIsLoading(true)
     recaptchaRef.current.reset()
     const token = await recaptchaRef.current.executeAsync()
-    console.log(`Public key: ${CAPTCHA_PUBLIC_KEY}`)
-    console.log(`Captcha: ${token}`)
     getData(token)
   }
 
