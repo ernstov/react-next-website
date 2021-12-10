@@ -7,7 +7,7 @@ import typographyStyles from "../../styles/global/typography.module.scss"
 const Tags = ({ data, isVisible }) => {
 
   return (
-    <div className={`${styles.tags} ${isVisible ? "active" : ""}`}>
+    <div id={data.id ? data.id : ""} className={`${styles.tags} ${isVisible ? "active" : ""}`}>
       <Container className="tags-container title">
         <Row className="mb-4">
           <Col>

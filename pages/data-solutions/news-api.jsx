@@ -26,7 +26,7 @@ const NewsAPI = () => {
   const [wrap, setWrap] = useState(true)
 
   const sections = [
-    { component: HeroAdvanced, props: { data: page.hero } },
+    { component: HeroAdvanced, props: { data: page.hero, isWrap: wrap } },
     { component: FeaturesSimple, props: { data: page.features } },
     { component: Carousel, props: { data: page.carousel } },
     { component: Api, props: { data: page.console } },

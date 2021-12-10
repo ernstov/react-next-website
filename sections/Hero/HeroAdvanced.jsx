@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, useContext } from "react"
 import styles from './hero.module.scss'
 import Button from '../../components/ui/Button'
 import typographyStyles from "../../styles/global/typography.module.scss"
@@ -7,11 +7,25 @@ import appConfig from "../../configs/appConfig"
 import { Container, Row, Col } from "react-bootstrap"
 import Badge from '../../components/ui/Badge'
 import dynamic from 'next/dynamic'
+import { Context } from "../../context/context"
 
-const Hero = ({ data, isVisible }) => {
+const Hero = ({ data, isVisible, isWrap }) => {
 
   const [visible, setVisible] = useState(false)
+  const { scrollB } = useContext(Context)
   const { list, label, buttons, isBlank, img, isExternal, imgCL, titleCL, descriptionCL, description, title, btnsClassName, className, variant, animation } = data
+
+  useEffect(()=>{
+    document.querySelectorAll('[href*="#"]').forEach((item)=>{
+      item.addEventListener("click", onScrollToSection)
+    })
+
+    return ()=> {
+      document.querySelectorAll('[href*="#"]').forEach((item)=>{
+        item.removeEventListener("click", onScrollToSection)
+      })
+    }
+  },[])
 
   useEffect(() => {
     if (isVisible) {
@@ -20,6 +34,35 @@ const Hero = ({ data, isVisible }) => {
       }, appConfig.entryDelay * 2)
     }
   }, [isVisible])
+
+  const scrollTo = (elmId) => {
+    const elm = document.querySelector(`#${elmId}`)
+    const position = elm.getBoundingClientRect().top
+
+    if (window.innerWidth > 880) {
+      scrollB.current.scrollbar.scrollTo(0, calcPosition(position), 1000)
+    } else {
+      window.scrollTo({
+        top: window.pageYOffset + calcPosition(position),
+        behavior: "smooth"
+      })
+    }
+  }
+
+  const calcPosition = (position) => {
+    if (window.innerWidth > 879) {
+      return isWrap ? position - appConfig.headerHeight - 50 : position
+    } else {
+      return isWrap ? position - appConfig.headerHeightMd - 50 : position
+    }
+  }
+
+  const onScrollToSection = (e) => {
+    e.preventDefault()
+    const id = e.target.href.split("#")[1]
+
+    scrollTo(id)
+  }
 
   const renderAnimation = (name) => {
     switch (name) {
@@ -41,7 +84,7 @@ const Hero = ({ data, isVisible }) => {
               {list &&
                 <ul className={`${presetsStyles.listHero} entry-3`}>
                   {list.map((item, i) => (
-                    <li key={`lui-${i}`}>{item}</li>
+                    <li key={`lui-${i}`} dangerouslySetInnerHTML={{ __html: item }}></li>
                   ))}
                 </ul>
               }

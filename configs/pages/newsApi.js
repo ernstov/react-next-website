@@ -9,7 +9,7 @@ export const page = {
     descriptionCL: "mw-500",
     img: "news-api.png",
     animation: "newsApi",
-    list: ["AI-powered", "NLP-enriched", "Comprehensive", "Cleansed, structured", "25+ data points per article"],
+    list: ["AI-powered", "NLP-enriched", "Cleansed, structured", "<a href='#data-points'>25+ data points</a> per article"],
     btnsClassName: "mt-4",
     label: "A smarter news API",
     buttons: [
@@ -151,6 +151,7 @@ export const page = {
   tags: {
     title: "<strong>25+</strong> data points on each article",
     description: "Cut the noise and capture what matters from each story",
+    id: "data-points",
     rows: [
       ["Headline", "Language", "Media Source", "Category", "Smart Labels"],
       ["Date & Time", "City", "Paywall Indicator", "Topics", "Named Entities"],
