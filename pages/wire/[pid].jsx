@@ -10,6 +10,7 @@ import { useRouter } from "next/router"
 import VisibilitySensor from '../../utils/react-visibility-sensor'
 import TagManager from 'react-gtm-module'
 import { page } from "../../configs/pages/post"
+import ApiService from '../../services/ApiService'
 
 const tagManagerArgs = {
   gtmId: appConfig.gtmId,
@@ -23,19 +24,27 @@ const Post = () => {
 
   const { app, lang: { home } } = useContext(Context);
   const router = useRouter();
-  const postId = router.query.pid;
-  const p = filterIt(app.blog, postId, "alias");
-  const [post, setPost] = useState(p.length > 0 ? p[0] : {});
+  const [post, setPost] = useState({});
   const [wrap, setWrap] = useState(true)
+  const postId = router.query.pid;
 
   useEffect(()=>{
-    const pg = filterIt(app.blog, postId, "alias");
-    setPost(pg.length > 0 ? p[0] : {});
-  }, [app.blog])
+    if(postId) {
+      getArticleRequest(postId)
+    }
+  }, [postId])
+
+  const getArticleRequest = (id) => {
+    ApiService.getArticle(id).then(response => {
+      if (response) {
+        setPost(response[0])
+      }
+    })
+  }
 
   const sections = [
     { component: Hero, props: { data: { ...page.hero, title: post?.title, description: post?.subTitle } } },
-    { component: PostViewer, props: { data: post } },
+    { component: PostViewer, props: { data: post} },
     { component: Footer, props: { data: { ...appConfig.footer, className: "small-container"} } },
   ]
 

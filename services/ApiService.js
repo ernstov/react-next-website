@@ -118,12 +118,17 @@ const ApiService = {
   },
 
   async getArticles() {
-    const res = await fetch(`${appConfig.api}/blogs?_sort=created_at:DESC`)
+    const res = await fetch(`${appConfig.blogApi}/blogs?_sort=created_at:DESC`)
+    return res.json()
+  },
+
+  async getArticle(alias) {
+    const res = await fetch(`${appConfig.blogApi}/blogs?alias=${alias}`)
     return res.json()
   },
 
   async getPage(page) {
-    const res = await fetch(`${appConfig.api}/pages?alias=${page}`)
+    const res = await fetch(`${appConfig.blogApi}/pages?alias=${page}`)
     return res.json()
   }
 }

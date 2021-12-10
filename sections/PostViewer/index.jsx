@@ -6,9 +6,10 @@ import BlogShare from "../../components/Blog/BlogShare";
 import ReactMarkdown from 'react-markdown';
 import gfm from 'remark-gfm';
 import { dateFormat, isObjectEmpty } from "../../utils";
-import {Context} from "../../context/context";
+import { Context } from "../../context/context";
 import { useRouter } from "next/router";
-import presetsStyles from "../../styles/global/typography.module.scss"
+import typographyStyles from "../../styles/global/typography.module.scss"
+import presetsStyles from "../../styles/global/presets.module.scss"
 import appConfig from "../../configs/appConfig"
 
 import styles from './postviewer.module.scss'
@@ -16,7 +17,7 @@ import styles from './postviewer.module.scss'
 const PostViewer = ({ isVisible, data }) => {
 
   const [visible, setVisible] = useState(false)
-  const { lang: { Postnotfound, m, read } } = useContext(Context)
+  const { dispatchApp, lang: { Postnotfound, m, read } } = useContext(Context)
   const router = useRouter()
 
   useEffect(() => {
@@ -40,7 +41,10 @@ const PostViewer = ({ isVisible, data }) => {
             <Col md={12}>
               <div className="blog-post-title">
                 {data.blog_author && <BlogAuthor data={data.blog_author} />}
-                <div className="mb-4"><span className={`${presetsStyles.textMediumLgt}`}>{dateFormat(data.created_at, "mmm dd, yyyy")}</span><span className={`${presetsStyles.textMediumLgt} dot-before`}>{data.timeToRead ? data.timeToRead : "1"}{m} {read}</span></div>
+                <div className="mb-4">
+                  <span className={`${typographyStyles.textMediumLgt}`}>{dateFormat(data.created_at, "mmm dd, yyyy")}</span>
+                  <span className={`${typographyStyles.textMediumLgt} ${presetsStyles.dotBefore} `}>{data.timeToRead ? data.timeToRead : "1"}{m} {read}</span>
+                </div>
               </div>
             </Col>
           </Row>
