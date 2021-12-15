@@ -56,7 +56,7 @@ export const page = {
         name: "Free trial",
         variant: "badge",
         description: "Temporary access to all features for testing purposes",
-        list: ["20 requests/day", "Real-time news", "Local, city-specific news", "World news", "All AI features"],
+        list: ["1000 requests", "Real-time news", "Local, city-specific news", "World news", "All AI features"],
         button: {
           variant: "primary-arrow",
           link: "/sign-up?planName=Free trial",
