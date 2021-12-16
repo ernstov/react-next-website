@@ -157,7 +157,7 @@ export const page = {
    </tr>
    <tr>
       <th scope="row">18</th>
-      <td>taxonomy</td>
+      <td>taxonomy (coming soon)</td>
       <td>Filter by taxonomy codes. Taxonomy codes are codes for specific industry. Based on content, each article could be tagged with different taxonomy codes, which say that the article is relevant to certain industry. If multiple parameters are passed, they will be applied as OR operation.</td>
    </tr>
    <tr>

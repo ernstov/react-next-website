@@ -84,6 +84,10 @@
     margin: 0.2rem 0;
   }
 
+  :global(.col-orange) {
+    color: #F9C035;
+  }
+
   :global(.apiKey) {
     background-color: $primary-cover-2;
     border: 1px solid $border-color;

@@ -31,7 +31,7 @@ const Page = ({ data, isVisible }) => {
   }, [userApiKey])
 
   useEffect(() => {
-    document.querySelectorAll("pre").forEach((el) => {
+    document.querySelectorAll(".code-body pre").forEach((el) => {
       let temp = ''
 
       const lines = el.innerHTML.split("\n")
@@ -70,9 +70,7 @@ const Page = ({ data, isVisible }) => {
       <Container className="entry-1">
         <Row>
           <Col>
-            <ReactMarkdown plugins={[gfm]} allowDangerousHtml={true}>
-              {data.html}
-            </ReactMarkdown>
+            <div dangerouslySetInnerHTML={{__html: data.html}}></div>
           </Col>
         </Row>
       </Container>

@@ -139,7 +139,7 @@ export const page = {
    </tr>
    <tr>
       <th scope="row">18</th>
-      <td>taxonomy</td>
+      <td>taxonomy (coming soon)</td>
       <td>Filter by taxonomy codes. Taxonomy codes are codes for specific industry. Based on content, each article could be tagged with different taxonomy codes, which say that the article is relevant to certain industry. If multiple parameters are passed, they will be applied as OR operation.</td>
    </tr>
    <tr>
@@ -170,12 +170,12 @@ export const page = {
    <tr>
       <th scope="row">24</th>
       <td>maxClusters</td>
-      <td>Maximum number of clusters to return.</td>
+      <td>Maximum number of clusters to return. From 1 to 100.</td>
    </tr>
    <tr>
       <th scope="row">25</th>
       <td>maxSize</td>
-      <td>Maximum number of articles per cluster to return.</td>
+      <td>Maximum number of articles per cluster to return. From 1 to 10.</td>
    </tr>
    <tr>
       <th scope="row">26</th>
