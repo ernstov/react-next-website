@@ -43,6 +43,7 @@ const AccountOverview = ({ data, isVisible }) => {
   const [registeredSince, setRegisteredSince] = useState('')
   const [billingPlanStatus, setBillingPlanStatus] = useState('INACTIVE')
   const [numRequestsData, setNumRequestsData] = useState("<span class='inputLight'>No requests made</span>")
+  const [planName, setPlanName] = useState("N/A")
   const notyf = useNotyf()
 
   const [visible, setVisible] = useState(false)
@@ -64,6 +65,8 @@ const AccountOverview = ({ data, isVisible }) => {
     if (!res.billingPlan) {
       setBillingPlanStatus("INACTIVE")
     } else {
+      setPlanName(res.billingPlan.custom ? 'Custom' : res.billingPlan.name)
+
       if (res.billingMode === 'MONTHLY') {
         setAmount(`\$${res.billingPlan.monthlyPrice.toLocaleString('en-US')}/mo`)
       } else if (res.billingMode === 'YEARLY') {
@@ -179,7 +182,7 @@ const AccountOverview = ({ data, isVisible }) => {
                   <Col md={8} className={`${styles.inputRow} mb-4`}>
                     <Container fluid className={`${styles.inputContainer}`}>
                       <Row>
-                        <Col md={6}><InputPreview variant="flat" defaultValue={userBilling.billingPlan?.name || "N/A"} label={Plan} /></Col>
+                        <Col md={6}><InputPreview variant="flat" defaultValue={planName} label={Plan} /></Col>
                         <Col md={6} className="d-flex align-items-end mt-4 mt-md-0"><Button onClick={() => router.push('/account/plan')} className="w-100" variant="outline-secondary-notround-small">{Changeplan}</Button></Col>
                       </Row>
                     </Container>
