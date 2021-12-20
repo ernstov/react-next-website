@@ -94,7 +94,7 @@ const languages = {
     Unsubscribe: "Unsubscribe",
     Changepaymentmethod: "Change payment method",
     EmailVerificationWarningMessage: "Your email needs to be verified before your API key will work. Check your email (including spam) to verify.",
-    TrialExpirationWarningMessage: "Your free trial expires on "
+    TrialExpirationWarningMessage: "Your free trial expires on"
   }
 }
 

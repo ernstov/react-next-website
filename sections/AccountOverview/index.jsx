@@ -68,7 +68,7 @@ const AccountOverview = ({ data, isVisible }) => {
       setVerificationMessage(EmailVerificationWarningMessage)
     }
 
-    if (res.subscription.trialExpiresAt && moment(res.subscription.trialExpiresAt).isAfter(moment.now())) {
+    if (res.subscription.trialExpiresAt && res.subscription.stripeSubscriptionStatus === 'trialing') {
       setTrialMessage(`${TrialExpirationWarningMessage} ${moment(res.subscription.trialExpiresAt).format('MMM DD, yyyy')}`)
     }
 
