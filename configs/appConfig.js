@@ -3,7 +3,7 @@ const app = {
   projectName: "Perigon",
   headerHeight: 75,
   headerHeightMd: 60,
-  entryDelay: 500,
+  entryDelay: 0,
   gtmId: "GTM-WFD4ZWD",
   gtmDataLayerName: "PageDataLayer",
   api: "https://api.goperigon.com",

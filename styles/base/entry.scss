@@ -1,9 +1,10 @@
 @import "./variables.scss";
 
 $entry-transition: 500ms;
+$entry-offset: 100px;
 
 .entry-1, .entry-2, .entry-3, .entry-4, .entry-5, .entry-6{
-  transform: translateY(100px);
+  transform: translateY($entry-offset);
   opacity: 0;
 }
 
@@ -50,3 +51,17 @@ $entry-transition: 500ms;
 
 .active .entry-bounce-1{transition-delay: $entry-transition*1.5; transition-duration: $entry-transition*0.7;}
 .active .entry-bounce-2{transition-delay: $entry-transition*1.5; transition-duration: $entry-transition*0.9;}
+
+@include media-breakpoint-down(md) {
+  .entry-bounce-1, .entry-bounce-2{
+    transform: translateY(0);
+    opacity: 1;
+  }
+  .entry-op-1, .entry-op-2, .entry-op-3, .entry-op-4, .entry-op-5, .entry-op-6{
+    opacity: 1;
+  }
+  .entry-1, .entry-2, .entry-3, .entry-4, .entry-5, .entry-6{
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

@@ -54,8 +54,8 @@ export default function App({ Component, pageProps }) {
 
   useEffect(() => {
     UserBillingService.getUser()
-      .then(user => dispatchApp({ type: "SET_USER", data: { user } }))
-      .finally(() => setCheckedUserState(true))
+      .then(user => {console.log(1);dispatchApp({ type: "SET_USER", data: { user } })})
+      .finally(() => {console.log(2);setCheckedUserState(true)})
   }, [])
 
   useEffect(() => {

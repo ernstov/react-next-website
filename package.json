@@ -16,7 +16,7 @@
     "bootstrap": "^4.6.0",
     "bootstrap-validate": "^2.2.0",
     "lodash.uniqby": "^4.7.0",
-    "lottie-web": "^5.7.11",
+    "lottie-web": "^5.8.1",
     "moment": "^2.29.1",
     "next": "^10.0.0",
     "notyf": "^3.10.0",
