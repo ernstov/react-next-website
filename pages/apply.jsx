@@ -59,11 +59,4 @@ const Apply = () => {
   )
 }
 
-export async function getStaticProps() {
-
-  return {
-    props: { data: {} },
-  }
-}
-
 export default Apply;

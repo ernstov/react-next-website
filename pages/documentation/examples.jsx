@@ -41,11 +41,4 @@ const Examples = ({ tags, dataPosts, path }) => {
   )
 }
 
-export async function getStaticProps() {
-
-  return {
-    props: { data: {} },
-  }
-}
-
 export default Examples;

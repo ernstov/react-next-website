@@ -92,13 +92,6 @@ export default function App({ Component, pageProps }) {
     Router.events.on("routeChangeComplete", end);
     Router.events.on("routeChangeError", end);
 
-    // ApiService.getPages()
-    // .then((responses) => Promise.all(responses.map((response) => response.json())))
-    // .then((result) => {
-    //   dispatchApp({ type: "SET_APP_VALUES", data: { trands: result.slice(0, 4), blog: result.slice(4, 5)[0] } });
-    // })
-    // .catch((err) => console.error(err));
-
     return () => {
       Router.events.off("routeChangeStart", start);
       Router.events.off("routeChangeComplete", end);

@@ -56,11 +56,4 @@ const Contact = ({ path }) => {
   )
 }
 
-export async function getStaticProps() {
-
-  return {
-    props: { data: {} },
-  }
-}
-
 export default Contact;

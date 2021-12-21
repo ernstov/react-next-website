@@ -41,11 +41,4 @@ const Headlines = () => {
   )
 }
 
-export async function getStaticProps() {
-
-  return {
-    props: { data: {} },
-  }
-}
-
 export default Headlines;

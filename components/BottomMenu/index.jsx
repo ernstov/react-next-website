@@ -41,7 +41,7 @@ const BottomMenu = ({ data, isVisible, path }) => {
             <Col>
               <div className="d-flex align-items-center">
                 <div className="bottomMenu-logo">
-                  <img src={`/img/${data.img}`} alt="" />
+                  <img width={57} height={57} src={`/img/${data.img}`} alt="" />
                 </div>
                 <div>
                   <div className="bottomMenu-title"><span>{data.title}</span></div>

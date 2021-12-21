@@ -43,11 +43,4 @@ const SignUp = ({ tags, dataPosts, path }) => {
   )
 }
 
-export async function getStaticProps() {
-
-  return {
-    props: { data: {} },
-  }
-}
-
 export default SignUp;

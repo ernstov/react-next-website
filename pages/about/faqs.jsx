@@ -26,9 +26,6 @@ const Faqs = ({ path }) => {
   useEffect(() => {
     TagManager.dataLayer(tagManagerArgs)
 
-    // if (!isWrap()) {
-    //   setSections(current => current.filter((item, i)=>i < current.length-1))
-    // }
     setQuestion(getUrlParam("q"))
     setWrap(isWrap())
   }, [])
@@ -61,13 +58,6 @@ const Faqs = ({ path }) => {
       ))}
     </>
   )
-}
-
-export async function getStaticProps() {
-
-  return {
-    props: { data: {} },
-  }
 }
 
 export default Faqs;

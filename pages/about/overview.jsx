@@ -5,7 +5,6 @@ import appConfig from "../../configs/appConfig"
 import Footer from "../../components/Footer"
 import {  isWrap } from '../../utils'
 import Hero from "../../sections/Hero"
-import Follow from "../../sections/Follow"
 import Carousel from "../../sections/Carousel"
 import Blocks from "../../sections/Blocks"
 import AboutGraph from "../../sections/AboutGraph"
@@ -34,7 +33,6 @@ const About = () => {
     { component: Quote, props: { data: page.quote } },
     { component: Blocks, props: { data: page.cooperation } },
     { component: Typer, props: { data: page.whatWeAsk } },
-    // { component: Follow, props: { data: appConfig.follow } },
     { component: Footer, props: { data: { ...appConfig.footer, className: "small-container"} } },
   ]
 
@@ -65,13 +63,6 @@ const About = () => {
       ))}
     </>
   )
-}
-
-export async function getStaticProps() {
-
-  return {
-    props: { data: {} },
-  }
 }
 
 export default About;

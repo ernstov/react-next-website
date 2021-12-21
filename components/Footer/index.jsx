@@ -63,7 +63,7 @@ const Footer = ({ data, isVisible }) => {
                 <div className="entry-1"><span className={`${styles.footerStoresBadge}`}>{GetTheApp}</span></div>
                 <div className={`${styles.footerStoresContainer}`}>
                   {data.stores && data.stores.map((store, i) => (
-                    <a key={`si-${i}`} target="blank" className={`entry-${i + 1}`} href={store.link}><img className={`${styles.footerStore} ${i < data.stores.length - 1 ? "mr-3" : ""}`} src={`/img/${store.img}`} alt="" /></a>
+                    <a key={`si-${i}`} target="blank" className={`entry-${i + 1}`} href={store.link}><img width={130} height={42} className={`${styles.footerStore} ${i < data.stores.length - 1 ? "mr-3" : ""}`} src={`/img/${store.img}`} alt="" /></a>
                   ))}
                 </div>
               </div>

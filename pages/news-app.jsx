@@ -6,7 +6,6 @@ import Footer from "../components/Footer"
 import {  isWrap } from '../utils'
 import Hero from "../sections/Hero"
 import Stores from "../sections/Stores";
-import Follow from "../sections/Follow";
 import VisibilitySensor from '../utils/react-visibility-sensor'
 import TagManager from 'react-gtm-module'
 import {page} from "../configs/pages/download"
@@ -26,7 +25,6 @@ const NewsApp = () => {
   const sections = [
     { component: Hero, props: { data: page.hero } },
     { component: Stores, props: { data: page.stores } },
-    // { component: Follow, props: { data: appConfig.follow } },
     { component: Footer, props: { data: { ...appConfig.footer, className: "small-container"} } },
   ]
 
@@ -57,13 +55,6 @@ const NewsApp = () => {
       ))}
     </>
   )
-}
-
-export async function getStaticProps() {
-
-  return {
-    props: { data: {} },
-  }
 }
 
 export default NewsApp;

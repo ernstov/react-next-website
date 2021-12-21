@@ -5,7 +5,6 @@ import appConfig from "../../configs/appConfig"
 import Footer from "../../components/Footer"
 import {  isWrap } from '../../utils'
 import Hero from "../../sections/Hero"
-import ContactViewer from "../../sections/ContactViewer";
 import VisibilitySensor from '../../utils/react-visibility-sensor'
 import TagManager from 'react-gtm-module'
 import Contact from "../../sections/Contact"
@@ -58,13 +57,6 @@ const ContactComp = () => {
       ))}
     </>
   )
-}
-
-export async function getStaticProps() {
-
-  return {
-    props: { data: {} },
-  }
 }
 
 export default ContactComp;
