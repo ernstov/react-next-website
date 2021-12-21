@@ -1,5 +1,5 @@
 import { useState, useContext, useEffect, useRef, useMemo } from "react"
-import { Container, Row, Col, Badge, Form } from "react-bootstrap"
+import { Container, Row, Col, Badge, Form, Collapse } from "react-bootstrap"
 import Block from "../../components/Block"
 import styles from './overview.module.scss'
 import typographyStyles from "../../styles/global/typography.module.scss"
@@ -25,7 +25,7 @@ import { useNotyf } from "../../utils/hooks"
 
 const AccountOverview = ({ data, isVisible }) => {
 
-  const { lang: { Update, BusinessName, ProjectName, HomeCountry, VerifiedEmail, NotVerifiedEmail, Firstname, Lastname, UseofAPI, Changepassword, Status, Plan, Billing, Nextpayment, Changeplan, Apiaccess, OfRequests, ViewKeys, APIDocs, APIUsage, UpdatePassword, currentPassword, newPassword, Passwordmustbe6 } } = useContext(Context)
+  const { lang: { Update, BusinessName, ProjectName, HomeCountry, TrialExpirationWarningMessage, EmailVerificationWarningMessage, VerifiedEmail, NotVerifiedEmail, Firstname, Lastname, UseofAPI, Changepassword, Status, Plan, Billing, Nextpayment, Changeplan, Apiaccess, OfRequests, ViewKeys, APIDocs, APIUsage, UpdatePassword, currentPassword, newPassword, Passwordmustbe6 } } = useContext(Context)
   const form = useRef(null)
   const [isProcess, setIsProcess] = useState(false)
   const optionsCountry = useMemo(() => countryList().getData(), [])
@@ -43,6 +43,9 @@ const AccountOverview = ({ data, isVisible }) => {
   const [registeredSince, setRegisteredSince] = useState('')
   const [billingPlanStatus, setBillingPlanStatus] = useState('INACTIVE')
   const [numRequestsData, setNumRequestsData] = useState("<span class='inputLight'>No requests made</span>")
+  const [planName, setPlanName] = useState("N/A")
+  const [verificationMessage, setVerificationMessage] = useState()
+  const [trialMessage, setTrialMessage] = useState()
   const notyf = useNotyf()
 
   const [visible, setVisible] = useState(false)
@@ -61,9 +64,19 @@ const AccountOverview = ({ data, isVisible }) => {
     setCountry(res.homeCountry)
     setRegisteredSince(moment(res.createdAt).format('MMM DD, yyyy'))
 
+    if (!res.verified) {
+      setVerificationMessage(EmailVerificationWarningMessage)
+    }
+
+    if (res.subscription.trialExpiresAt && res.subscription.stripeSubscriptionStatus === 'trialing') {
+      setTrialMessage(`${TrialExpirationWarningMessage} ${moment(res.subscription.trialExpiresAt).format('MMM DD, yyyy')}`)
+    }
+
     if (!res.billingPlan) {
       setBillingPlanStatus("INACTIVE")
     } else {
+      setPlanName(res.billingPlan.custom ? 'Custom' : res.billingPlan.name)
+
       if (res.billingMode === 'MONTHLY') {
         setAmount(`\$${res.billingPlan.monthlyPrice.toLocaleString('en-US')}/mo`)
       } else if (res.billingMode === 'YEARLY') {
@@ -179,7 +192,7 @@ const AccountOverview = ({ data, isVisible }) => {
                   <Col md={8} className={`${styles.inputRow} mb-4`}>
                     <Container fluid className={`${styles.inputContainer}`}>
                       <Row>
-                        <Col md={6}><InputPreview variant="flat" defaultValue={userBilling.billingPlan?.name || "N/A"} label={Plan} /></Col>
+                        <Col md={6}><InputPreview variant="flat" defaultValue={planName} label={Plan} /></Col>
                         <Col md={6} className="d-flex align-items-end mt-4 mt-md-0"><Button onClick={() => router.push('/account/plan')} className="w-100" variant="outline-secondary-notround-small">{Changeplan}</Button></Col>
                       </Row>
                     </Container>
@@ -227,6 +240,30 @@ const AccountOverview = ({ data, isVisible }) => {
             </Block>
           </Col>
         </Row>
+      </Container>
+      <Container fluid className="p-0">
+        <Collapse in={trialMessage}>
+          <div className={`pb-4 ${visible ? "active" : ""}`}>
+            <Container fluid className="p-0 entry-3">
+              <Row>
+                <Col>
+                  <div className={`${presetsStyles.labelError}`}><span>{trialMessage}</span></div>
+                </Col>
+              </Row>
+            </Container>
+          </div>
+        </Collapse>
+        <Collapse in={verificationMessage}>
+          <div className={`pb-4 ${visible ? "active" : ""}`}>
+            <Container fluid className="p-0 entry-3">
+              <Row>
+                <Col>
+                  <div className={`${presetsStyles.labelError}`}><span>{verificationMessage}</span></div>
+                </Col>
+              </Row>
+            </Container>
+          </div>
+        </Collapse>
       </Container>
       <Container fluid className="p-0">
         <Row>

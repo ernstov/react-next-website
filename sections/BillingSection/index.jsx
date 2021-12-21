@@ -46,7 +46,7 @@ const SupportSection = ({ data, isVisible, question, isWrap }) => {
 
           setCardLast4(res.user.paymentMethod?.cardLast4)
 
-          const planName = res.user.billingPlan.name
+          const planName = res.user.billingPlan.custom ? 'Custom' : res.user.billingPlan.name
           if (res.user.subscription?.stripeSubscriptionStatus === 'trialing') {
             setBillingPlanStatus(`${planName} (TRIAL)`)
           } else {
