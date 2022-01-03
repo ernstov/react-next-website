@@ -19,7 +19,7 @@ import AuthService from "../../services/AuthService";
 
 const Header = ({ data, path, isLoggedIn, variant }) => {
 
-  const { app, dispatchApp, lang: { GetTheApp, Gettingstarted, Searchapi, Journalistapi, SignOut } } = useContext(Context);
+  const { app, dispatchApp, lang: { GetTheApp, Gettingstarted, Searchapi, JournalistApi, SignOut } } = useContext(Context);
   const [isVisible, setIsVisible] = useState(false);
   const [isActiveMobile, setIsActiveMobile] = useState(false)
   const { headerNavigation, mobileNavigation, accountNavigation } = appConfig
@@ -210,7 +210,7 @@ const Header = ({ data, path, isLoggedIn, variant }) => {
                       <li className={`${router.pathname == item.link ? "active" : ""}`} onClick={() => hideAll(true)} key={`${shortid.generate()}`}><Link href={item.link}>{item.name}</Link></li>
                     ))}
                   </ul>
-                  <div className="mb-2"><span className={typographyStyles.labelMenu}>{Journalistapi} <span style={{"color": "#F9C035"}}>BETA</span></span></div>
+                  <div className="mb-2"><span className={typographyStyles.labelMenu}>{JournalistApi} <span style={{"color": "#F9C035"}}>BETA</span></span></div>
                   <ul className="mb-2">
                     {appConfig.documentationJournalistApiNavigation.map((item, i) => (
                       <li className={`${router.pathname == item.link ? "active" : ""}`} onClick={() => hideAll(true)} key={`${shortid.generate()}`}><Link href={item.link}>{item.name}</Link></li>

@@ -80,7 +80,7 @@ const app = {
 
   documentationJournalistApiNavigation: [
     { name: "Overview", link: "/documentation/journalist-overview" },
-    { name: "Lookup By Id", link: "/documentation/journalist-by-id" },
+    { name: "Lookup By ID", link: "/documentation/journalist-by-id" },
     { name: "Search", link: "/documentation/journalist-search"},
   ],
 

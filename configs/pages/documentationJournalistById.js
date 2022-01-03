@@ -1,6 +1,6 @@
 export const page = {
     link: "/documentation/journalist-by-id",
-    title: "Journalist Lookup By id",
+    title: "Journalist Lookup By ID",
     description: "Journalist Lookup By ID API reference",
     className: "pt-4",
     html: `<h1>Lookup Journalist By ID <span class="col-orange">BETA</span></h1>
