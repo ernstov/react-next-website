@@ -148,7 +148,7 @@ export const page = {
    <tr>
       <th scope="row">16</th>
       <td>topic</td>
-      <td>Filter by topics. Each topic is some kind of an entity that the article is about. Example of topics: Google, Facebook, Joe Biden, etc. If multiple parameters are passed, they will be applied as OR operation.</td>
+      <td>Filter by topics. Each topic is some kind of entity that the article is about. Example of topics: Google, Facebook, Joe Biden, etc. If multiple parameters are passed, they will be applied as OR operation.</td>
    </tr>
    <tr>
       <th scope="row">17</th>
@@ -162,50 +162,55 @@ export const page = {
    </tr>
    <tr>
       <th scope="row">19</th>
+      <td>journalistId</td>
+      <td>Filter by journalist id. Journalist ids are unique journalist identifiers, you can find them through Journalist API, or in <strong>matchedAuthors</strong> field.</td>  
+   </tr>
+   <tr>
+      <th scope="row">20</th>
       <td>state</td>
       <td>Filter local news by state. Applies only to local news, when this param is passed non-local news will not be returned. If multiple parameters are passed, they will be applied as OR operation.</td>
    </tr>
    <tr>
-      <th scope="row">20</th>
+      <th scope="row">21</th>
       <td>city</td>
       <td>Filter local news by city. Applies only to local news, when this param is passed non-local news will not be returned. If multiple parameters are passed, they will be applied as OR operation.</td>
    </tr>
    <tr>
-      <th scope="row">21</th>
+      <th scope="row">22</th>
       <td>area</td>
       <td>Filter local news by area. Applies only to local news, when this param is passed non-local news will not be returned. If multiple parameters are passed, they will be applied as OR operation.</td>
    </tr>
    <tr>
-      <th scope="row">22</th>
+      <th scope="row">23</th>
       <td>location</td>
       <td>Return all articles that have the specified location. Location attributes are delimited by ':' between key and value, and '::' between attributes. Example: 'city:New York::state:NY'.</tr>
    <tr>
-      <th scope="row">23</th>
+      <th scope="row">24</th>
       <td>sortBy</td>
       <td>Either 'relevance' to sort by relevance to the query or 'date' to sort by the publication date (desc).</td>
    </tr>
    <tr>
-      <th scope="row">24</th>
+      <th scope="row">25</th>
       <td>page</td>
       <td>Zero-based page number. Up to 10000.</td>
    </tr>
    <tr>
-      <th scope="row">25</th>
+      <th scope="row">26</th>
       <td>size</td>
       <td>Page size, can be from 1 to 100.</td>
    </tr>
    <tr>
-      <th scope="row">26</th>
+      <th scope="row">27</th>
       <td>showReprints</td>
       <td>Whether to return reprints in the response or not</td>
    </tr>
    <tr>
-      <th scope="row">27</th>
+      <th scope="row">28</th>
       <td>showNumResults</td>
-      <td>Whether to show the total number of all matched articles. By default it's \`false\` which makes queries a bit more efficient but also counts up to 10000 articles.</td>
+      <td>Whether to show the total number of all matched articles. Default value is \`false\` which makes queries a bit more efficient but also counts up to 10000 articles.</td>
    </tr>
    <tr>
-      <th scope="row">28</th>
+      <th scope="row">29</th>
       <td>type</td>
       <td>Returns only a specific type of articles in the result. If set to \`local\` - return local news, \`world\` - non-local news, \`all\` - all articles (the default).</td>
    </tr>

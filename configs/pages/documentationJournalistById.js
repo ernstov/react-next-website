@@ -3,7 +3,7 @@ export const page = {
     title: "Journalist Lookup By id",
     description: "Journalist Lookup By ID API reference",
     className: "pt-4",
-    html: `<h1>Lookup Journalist By ID</h1>
+    html: `<h1>Lookup Journalist By ID <span class="col-orange">BETA</span></h1>
 
 <p>The endpoint allows to find a journalist profile information by journalist ID. You can retrieve journalist ID from <strong>matchedAuthors</strong> field, that it present with each news article.</p>
 

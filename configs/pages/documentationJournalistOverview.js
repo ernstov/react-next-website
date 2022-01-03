@@ -3,7 +3,7 @@ export const page = {
   title: "Journalist API Overview",
   description: "Overview of the Journalist API functionality",
   className: "pt-4",
-  html: `<h1>Introduction</h1>
+  html: `<h1>Introduction <span class="col-orange">BETA</span></h1>
 
 <p>
 Journalist API provides endpoints for retrieving journalist information associated with the news articles. 
