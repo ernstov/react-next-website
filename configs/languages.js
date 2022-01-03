@@ -64,6 +64,7 @@ const languages = {
     APIUsage: "API Usage",
     Gettingstarted: "Getting started",
     Searchapi: "Search api",
+    JournalistApi: "Journalist api",
     Postsnotfound: "Posts not found",
     Postnotfound: "The Post not found",
     m: "m",

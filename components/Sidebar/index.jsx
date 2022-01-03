@@ -11,7 +11,7 @@ import AuthService from "../../services/AuthService";
 
 const Sidebar = ({ variant, isVisible, isWrap }) => {
 
-  const { lang: { SignOut, Gettingstarted, Searchapi }, dispatchApp } = useContext(Context)
+  const { lang: { SignOut, Gettingstarted, Searchapi, JournalistApi }, dispatchApp } = useContext(Context)
   const [visible, setVisible] = useState(false)
   const [isSidebarActive, setIsSidebarActive] = useState(false)
   const router = useRouter()
@@ -50,10 +50,13 @@ const Sidebar = ({ variant, isVisible, isWrap }) => {
         return <>
           <Link href={"/documentation"} passHref><a className={`${styles.sidebarLink} ${isActive("/documentation") ? "active" : ""}`}><span>{Gettingstarted}</span></a></Link>
           <div className={`${styles.sidebarPadding} mt-3 mb-3`}><span className={`${typographyStyles.labelBig}`}>{Searchapi}</span></div>
-          {appConfig.documentationNavigation.map((item, i) => (
+          {appConfig.documentationSearchApiNavigation.map((item, i) => (
             <Link key={`si-${i}`} href={item.link} passHref><a className={`${styles.sidebarLink} ${isActive(item.link) ? "active" : ""}`}><span>{item.name}</span></a></Link>
           ))}
-
+          <div className={`${styles.sidebarPadding} mt-3 mb-3`}><span className={`${typographyStyles.labelBig}`}>{JournalistApi}</span></div>
+          {appConfig.documentationJournalistApiNavigation.map((item, i) => (
+              <Link key={`si-${i}`} href={item.link} passHref><a className={`${styles.sidebarLink} ${isActive(item.link) ? "active" : ""}`}><span>{item.name}</span></a></Link>
+          ))}
         </>;
     }
   }

@@ -1,7 +1,7 @@
 export const page = {
   link: "/documentation/news",
-  title: "Documentation All",
-  description: "Documentation All",
+  title: "Documentation All Endpoint",
+  description: "Documentation All Endpoint",
   className: "pt-4",
   html: `<h1>All</h1>
 

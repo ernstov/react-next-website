@@ -33,86 +33,6 @@ export const page = {
 
 <hr />
 
-<h2>Python /all endpoint example</h2>
-
-<p>To use the Perigon API with Python, you can use Python's <a href="https://pypi.org/project/requests/">requests</a> library. It provides an easy interface for performing HTTP requests from Python.</p>
-
-<p><strong>/all</strong> endpoint returns a list of news articles that match provided conditions. As part of the search query, you can specify a query to search by, a set of sources, topics, categories to filter by, limit articles by a date range, sort the returned results by date or relevance.</p>
-
-<p>Below you can find an example sample code, which uses the <span class="col-orange">requests</span> library to make a request to <strong>api.goperigon.com/v1/all</strong> endpoint.</p>
-
-<div class="code-body">
-  <h3>Making request to Perigon API with <span class="col-orange">requests</span> library</h3>
-  <code>
-   <pre>
-import requests
-
-api_key = "YOUR_API_KEY"
-
-url = f"https://api.goperigon.com/v1/all?apiKey={api_key}&q=SpaceX&source=techcrunch.com&page=0&size=3&from=2021-09-01&to=2021-11-01&sortBy=relevance"<br>
-
-r = requests.get(url)
-
-print(r.json())</pre>
-</code>
-</div>
-
-<p style="margin-top: 10px;">Let's break down the query into small parts:</p>
-
-<ul>
-    <li><strong>apiKey={api_key}</strong> - means that <strong>apiKey</strong> will equal to value of <strong>api_key</strong> variable.</li>
-    <li><strong>q=SpaceX</strong> - search the API with "SpaceX" as a search query.</li>
-    <li><strong>source=techcrunch.com</strong> - limit the returned articles to be from <strong>techcrunch.com</strong> source. You can pass multiple sources with a simple syntax: <strong>source=cnn.com&source=nytimes.com&source=techradar.com</strong>.</li>
-    <li><strong>page=0</strong> - return the first page, index zero. Pagination is zero-based, first page is 0, then 1, etc. Maximum page number is 10000. The size of the page could be from 0 to 100. If you want to retrieve multiple pages, you will need to iterate over them and make multiple requests.</li>
-    <li><strong>size=3</strong> - limit the number of results to maximum of 3 records. Page size could be from 0 to 100.</li>
-    <li><strong>from=2021-09-01</strong> - return the articles whose publish date is after <strong>2021-09-01</strong>. The date format is <strong>YYYY-MM-DD</strong>, time part is also available.</li>
-    <li><strong>to=2021-11-01</strong> - return the articles whose publish date is before <strong>2021-11-01</strong>.</li>
-    <li><strong>sortBy=relevance</strong> - sort the returned result set by the relevance to the provided query. <strong>sortBy</strong> could either be by "date" or "relevance".</li>
-</ul>
-
-<p>For the above code to work, you will need to set your API key to <strong>api_key</strong> variable. The code will then create a url to query, fetch the results, and print them to console in a json format.</p>
-
-<hr />
-
-<h2>Python /headlines endpoint example</h2>
-
-<p><strong>/headlines</strong> endpoint returns a list of news clusters that match provided conditions. As part of the search query, you can specify a query to search by, a set of sources, topics, categories to filter by, limit articles by a date range, sort the returned results by date or relevance. The returned clusters contain only items that completely matched the query, but the clusters overall may contain more articles. You can retrieve all articles from cluster by using <strong>clusterId=abc</strong> parameter.</p>
-
-<p>Below you can find an example sample code, which uses the <span class="col-orange">requests</span> library to make a request to <strong>api.goperigon.com/v1/headlines</strong> endpoint.</p>
-
-<div class="code-body">
-  <h3>Making request to Perigon API with <span class="col-orange">requests</span> library</h3>
-  <code>
-   <pre>
-import requests
-
-api_key = "YOUR_API_KEY"
-
-url = f"https://api.goperigon.com/v1/headlines?apiKey={api_key}&q=SpaceX&maxSize=2&maxClusters=3&from=2021-10-01&to=2021-11-01&sortBy=relevance&language=en"<br>
-
-r = requests.get(url)
-
-print(r.json())</pre>
-</code>
-</div>
-
-<p style="margin-top: 10px;">Let's break down the query into small parts:</p>
-
-<ul>
-    <li><strong>apiKey={api_key}</strong> - means that <strong>apiKey</strong> will equal to value of <strong>api_key</strong> variable.</li>
-    <li><strong>q=SpaceX</strong> - search the API with "SpaceX" as a search query.</li>
-    <li><strong>maxSize=2</strong> - limit the number of articles returned per cluster to a maximum of 2. <strong>maxSize</strong> could be in the range of 1 to 10.</li>
-    <li><strong>maxClusters=3</strong> - limit the number of clusters to maximum of 3. <strong>maxClusters</strong> could be in the range of 1 to 100.</li>
-    <li><strong>from=2021-10-01</strong> - return the articles whose publish date is after <strong>2021-09-01</strong>. The date format is <strong>YYYY-MM-DD</strong>, time part is also available.</li>
-    <li><strong>to=2021-11-01</strong> - return the articles whose publish date is before <strong>2021-11-01</strong>.</li>
-    <li><strong>sortBy=relevance</strong> - sort the returned clusters by the relevance to the provided query. <strong>sortBy</strong> could either be by "date" or "relevance" or "count".</li>
-    <li><strong>language=en</strong> - limit the returned articles to those in english.</li>
-</ul>
-
-<p>For the above code to work, you will need to set your API key to <strong>api_key</strong> variable. The code will then create a url to query, fetch the results, and print them to console in a json format.</p>
-
-<hr />
-
 <h2>Authentication</h2>
 
 <p>Perigon News API uses API keys to authenticate requests.</p>
@@ -122,9 +42,9 @@ print(r.json())</pre>
 <p>You can pass the API key in the HTTP request in following ways:</p>
 
 <ul>
-    <li>as the <strong>apiKey=API_KEY</strong> query string parameter</li>
-    <li>as the <strong>Authorization: Bearer API_KEY</strong> header</li>
-    <li>as the <strong>x-api-key: API_KEY</strong> header</li>
+    <li class="mt-2">as the <strong>apiKey=API_KEY</strong> query string parameter</li>
+    <li class="mt-2">as the <strong>Authorization: Bearer API_KEY</strong> header</li>
+    <li class="mt-2">as the <strong>x-api-key: API_KEY</strong> header</li>
 </ul>
 
 <p>Requests that do not have an API key, or have an invalid API key would result in an error. You can find possible error codes in the <strong>Errors</strong> section.</p>
@@ -142,8 +62,19 @@ print(r.json())</pre>
 <p><strong>Search API endpoints:</strong></p>
 
 <ul>
-    <li>All <strong>api.goperigon.com/v1/all</strong> - returns search results over all indexed news articles</li>
-    <li>Headlines <strong>api.goperigon.com/v1/headlines</strong> - returns clustered search results over all indexed news articles</li>
+    <li class="mt-2">All <strong>api.goperigon.com/v1/all</strong> - returns search results over all indexed news articles</li>
+    <li class="mt-2">Headlines <strong>api.goperigon.com/v1/headlines</strong> - returns clustered search results over all indexed news articles</li>
+</ul>
+
+<p>Perigon Journalist API consists of two main endpoints. Each uses HTTP requests to receive input parameters and send responses.</p>
+
+<p>Journalist API returns top results only and does not support pagination.</p>
+
+<p><strong>Journalist API endpoints:</strong></p>
+
+<ul>
+  <li class="mt-2">ID Lookup <strong>api.goperigon.com/v1/journalists/:id</strong> - returns journalist record by id, or error if such a record does not exist</li>
+  <li class="mt-2">Search <strong>api.goperigon.com/v1/journalists</strong> - returns search results over all indexed journalist records</li>
 </ul>
 
 <hr />
@@ -156,7 +87,7 @@ print(r.json())</pre>
 
 <ul>
     <li><strong>page</strong> - defines the index of the page to return. Page numbering is zero based, e.g. the first page has index 0, second has index 1, etc. Maximum page index is 10000. Example: <strong>page=25</strong>, returns page with index 25.</li>
-    <li><strong>size</strong> - defines the size of the page to return. Page size could be from 0 to 100. Example: <strong>size=100</strong> will return a maximum 100 articles per request.</li>
+    <li class="mt-2"><strong>size</strong> - defines the size of the page to return. Page size could be from 0 to 100. Example: <strong>size=100</strong> will return a maximum 100 articles per request.</li>
 </ul>
 
 <p> Total number of results of the query is returned in <strong>numResults</strong> field. You can use it inside the fetching loop to understand how many requests you need to make to download all the results.</p>
@@ -177,20 +108,20 @@ print(r.json())</pre>
 
 <ul>
     <li>Codes <strong>2xx</strong> indicate successful request.</li>
-    <li>Codes <strong>4xx</strong> indicate an error with error message provided in the response body.</li>
-    <li>Codes <strong>5xx</strong> indicate Perigon API server errors.</li>
+    <li class="mt-2">Codes <strong>4xx</strong> indicate an error with error message provided in the response body.</li>
+    <li class="mt-2">Codes <strong>5xx</strong> indicate Perigon API server errors.</li>
 </ul>
 
 <p>For each response the server returns the status code. Below are all possible response codes from the server.</p>
 
 <ul>
     <li>200 OK - Request succeeded.</li>
-    <li>400 Bad Request - The provided request was invalid.</li>
-    <li>401 Unauthorized - No valid API key provided.</li>
-    <li>403 Forbidden - The account is unconfirmed or is disabled.</li>
-    <li>404 Not Found - The requested resource does not exist.</li>
-    <li>429 Too Many Requests - Too many requests hit the API.</li>
-    <li>500, 502, 503, 504 Server Errors - Perigon API backend errors.</li>
+    <li class="mt-2">400 Bad Request - The provided request was invalid.</li>
+    <li class="mt-2">401 Unauthorized - No valid API key provided.</li>
+    <li class="mt-2">403 Forbidden - The account is unconfirmed or is disabled.</li>
+    <li class="mt-2">404 Not Found - The requested resource does not exist.</li>
+    <li class="mt-2">429 Too Many Requests - Too many requests hit the API.</li>
+    <li class="mt-2">500, 502, 503, 504 Server Errors - Perigon API backend errors.</li>
 </ul>
 
 <hr />

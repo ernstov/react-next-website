@@ -69,12 +69,19 @@ const app = {
     { name: "Documentation", link: "/documentation" },
   ],
 
-  documentationNavigation: [
+  documentationSearchApiNavigation: [
     { name: "All", link: "/documentation/all" },
     { name: "Headlines", link: "/documentation/headlines" },
     { name: "Advanced queries", link: "/documentation/advanced-queries" },
     { name: "Countries & languages", link: "/documentation/countries-languages" },
     { name: "Examples", link: "/documentation/examples" },
+    { name: "Python Examples", link: "/documentation/python-examples" }
+  ],
+
+  documentationJournalistApiNavigation: [
+    { name: "Overview", link: "/documentation/journalist-overview" },
+    { name: "Lookup By Id", link: "/documentation/journalist-by-id" },
+    { name: "Search", link: "/documentation/journalist-search"},
   ],
 
   navigation: [

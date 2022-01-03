@@ -1,5 +1,5 @@
 import { Container, Row, Col } from "react-bootstrap"
-import { useState, useRef, useContext, useEffect } from "react";
+import React, { useState, useRef, useContext, useEffect } from "react";
 import styles from './header.module.scss'
 import footerStyles from "../Footer/footer.module.scss"
 import MenuToggler from "./MenuToggler"
@@ -19,7 +19,7 @@ import AuthService from "../../services/AuthService";
 
 const Header = ({ data, path, isLoggedIn, variant }) => {
 
-  const { app, dispatchApp, lang: { GetTheApp, Gettingstarted, Searchapi, SignOut } } = useContext(Context);
+  const { app, dispatchApp, lang: { GetTheApp, Gettingstarted, Searchapi, Journalistapi, SignOut } } = useContext(Context);
   const [isVisible, setIsVisible] = useState(false);
   const [isActiveMobile, setIsActiveMobile] = useState(false)
   const { headerNavigation, mobileNavigation, accountNavigation } = appConfig
@@ -206,7 +206,13 @@ const Header = ({ data, path, isLoggedIn, variant }) => {
                   </ul>
                   <div className="mb-2"><span className={typographyStyles.labelMenu}>{Searchapi}</span></div>
                   <ul className="mb-2">
-                    {appConfig.documentationNavigation.map((item, i) => (
+                    {appConfig.documentationSearchApiNavigation.map((item, i) => (
+                      <li className={`${router.pathname == item.link ? "active" : ""}`} onClick={() => hideAll(true)} key={`${shortid.generate()}`}><Link href={item.link}>{item.name}</Link></li>
+                    ))}
+                  </ul>
+                  <div className="mb-2"><span className={typographyStyles.labelMenu}>{Journalistapi}</span></div>
+                  <ul className="mb-2">
+                    {appConfig.documentationJournalistApiNavigation.map((item, i) => (
                       <li className={`${router.pathname == item.link ? "active" : ""}`} onClick={() => hideAll(true)} key={`${shortid.generate()}`}><Link href={item.link}>{item.name}</Link></li>
                     ))}
                   </ul>
