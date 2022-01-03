@@ -53,7 +53,7 @@ const Sidebar = ({ variant, isVisible, isWrap }) => {
           {appConfig.documentationSearchApiNavigation.map((item, i) => (
             <Link key={`si-${i}`} href={item.link} passHref><a className={`${styles.sidebarLink} ${isActive(item.link) ? "active" : ""}`}><span>{item.name}</span></a></Link>
           ))}
-          <div className={`${styles.sidebarPadding} mt-3 mb-3`}><span className={`${typographyStyles.labelBig}`}>{JournalistApi}</span></div>
+          <div className={`${styles.sidebarPadding} mt-3 mb-3`}><span className={`${typographyStyles.labelBig}`}>{JournalistApi} <span style={{"color": "#F9C035"}}>BETA</span></span></div>
           {appConfig.documentationJournalistApiNavigation.map((item, i) => (
               <Link key={`si-${i}`} href={item.link} passHref><a className={`${styles.sidebarLink} ${isActive(item.link) ? "active" : ""}`}><span>{item.name}</span></a></Link>
           ))}
