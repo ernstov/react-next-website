@@ -69,6 +69,11 @@ const app = {
     { name: "Documentation", link: "/documentation" },
   ],
 
+  adminNavigation: [
+    { name: "Url Mappings", link: "/admin/url-mappings" },
+    { name: "Headline Mappings", link: "/admin/headline-mappings" },
+  ],
+
   documentationSearchApiNavigation: [
     { name: "All", link: "/documentation/all" },
     { name: "Headlines", link: "/documentation/headlines" },

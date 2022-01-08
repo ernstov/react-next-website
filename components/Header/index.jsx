@@ -64,6 +64,10 @@ const Header = ({ data, path, isLoggedIn, variant }) => {
     return router.pathname.indexOf("/account") != -1
   }
 
+  const isAdmin = () => {
+    return router.pathname.indexOf("/admin") != -1
+  }
+
   const isActive = (link) => {
     if (link == "/") {
       return router.pathname == link
@@ -165,7 +169,7 @@ const Header = ({ data, path, isLoggedIn, variant }) => {
                   </div>
                 </Col>
                 <Col lg={6} xs={6} className={`${styles.navigationCenter}`}>
-                  {!isAccount() && !isDocumentation() &&
+                  {!isAccount() && !isDocumentation() && !isAdmin() &&
                     <div className={`${styles.navigation}`}>
                       {headerNavigation.map((link, i) => (
                         (link.show == 0 || (link.show == 1 && !app.isAuth) || (link.show == 2 && app.isAuth)) && <Button className={`${isActiveSub(link.link) ? "active" : ""} ml-1 mr-1`} link={link.link} key={`mn-${i}`} as="link" variant="light-simple">{link.name}</Button>
@@ -225,7 +229,7 @@ const Header = ({ data, path, isLoggedIn, variant }) => {
                   <li><a onClick={onLogout} className={`${styles.sidebarLink}`}><span>{SignOut}</span></a></li>
                 </ul>
               }
-              {(!isAccount() && !isDocumentation()) &&
+              {(!isAccount() && !isDocumentation() && !isAdmin()) &&
                 mobileNavigation.map((sect, i) => (
                   <div className="pb-3" key={`sdr-${i}`}>
                     <div><span className={typographyStyles.labelMenu}>{sect.label}</span></div>
@@ -237,7 +241,7 @@ const Header = ({ data, path, isLoggedIn, variant }) => {
                   </div>
                 ))
               }
-              {(!isDocumentation() && !isAccount()) &&
+              {(!isDocumentation() && !isAccount() && !isAdmin()) &&
                 <div className="menu-container-stores">
                   <span className="menu-container-badge">{GetTheApp}</span>
                   {appConfig.navigationAdditional.stores && appConfig.navigationAdditional.stores.map((store, i) => (

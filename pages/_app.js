@@ -51,6 +51,9 @@ export default function App({ Component, pageProps }) {
   });
 
   const isAuth = () => !!app.user
+  const userIsAdmin = () => {
+    return !!app.user && app.user.isAdmin
+  }
 
   useEffect(() => {
     UserBillingService.getUser()
@@ -60,9 +63,11 @@ export default function App({ Component, pageProps }) {
 
   useEffect(() => {
     if (checkedUserState) {
-      if (isAccount() && !isAuth()) {
+      if ((isAccount() || isAdmin()) && !isAuth()) {
         router.push({ pathname: "/sign-in", query: { redirect: router.pathname } })
       } else if ((router.pathname === '/sign-in' || router.pathname === '/sign-up') && isAuth()) {
+        router.push("/account/overview")
+      } else if (isAdmin() && !userIsAdmin()) {
         router.push("/account/overview")
       }
     }
@@ -100,12 +105,15 @@ export default function App({ Component, pageProps }) {
   }, [])
 
   const isSidebar = () => {
-    return router.pathname.indexOf("/account") != -1 || router.pathname.indexOf("/documentation") != -1
+    return router.pathname.indexOf("/account") != -1 ||
+        router.pathname.indexOf("/documentation") != -1 ||
+        router.pathname.indexOf("/admin") != -1
   }
 
   const getSidebarVariant = () => {
     if (router.pathname.indexOf("/account") != -1) return "account"
     if (router.pathname.indexOf("/documentation") != -1) return "documentation"
+    if (router.pathname.indexOf("/admin") != -1) return "admin"
   }
 
   const isHome = () => {
@@ -114,6 +122,10 @@ export default function App({ Component, pageProps }) {
 
   const isAccount = () => {
     return !!router.pathname?.includes("/account")
+  }
+
+  const isAdmin = () => {
+    return !!router.pathname?.includes("/admin")
   }
 
   const isDocumentation = () => {

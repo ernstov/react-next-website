@@ -58,6 +58,13 @@ const Sidebar = ({ variant, isVisible, isWrap }) => {
               <Link key={`si-${i}`} href={item.link} passHref><a className={`${styles.sidebarLink} ${isActive(item.link) ? "active" : ""}`}><span>{item.name}</span></a></Link>
           ))}
         </>;
+      case "admin":
+        return <>
+          {appConfig.adminNavigation.map((item, i) => (
+              <Link key={`si-${i}`} href={item.link} passHref><a className={`${styles.sidebarLink} ${isActive(item.link) ? "active" : ""}`}><span>{item.name}</span></a></Link>
+          ))}
+          <a onClick={onLogout} className={`${styles.sidebarLink} cursor-pointer`}><span>{SignOut}</span></a>
+        </>
     }
   }
 
