@@ -3,6 +3,7 @@ import {useDebounce} from "use-debounce";
 import InternalUsersService from "../../services/InternalUsersService";
 import SimpleTable from "../SimpleTable";
 import Toolbar from "./Toolbar";
+import moment from "moment"
 
 const UsersTable = (props) => {
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -17,6 +18,9 @@ const UsersTable = (props) => {
   const [nameSearch, setNameSearch] = useState("");
   const [debouncedNameSearch] = useDebounce(nameSearch, 250);
 
+  const formatDate = (date, format = 'yyyy-MM-DD HH:mm:ss') =>
+    date != null ? moment(date).format(format) : date
+
   useEffect(() => {
     InternalUsersService
       .getAllUsers({
@@ -28,15 +32,17 @@ const UsersTable = (props) => {
       .then(({ count, results }) => {
         const data = results.map(({billingPlan, subscription, paymentMethod, tracking, ...rest}) => ({
           ...rest,
+          createdAt: formatDate(rest.createdAt),
           billingPlanName: billingPlan?.name,
           monthlyPrice: billingPlan?.monthlyPrice,
           yearlyPrice: billingPlan?.yearlyPrice,
           requestLimit: billingPlan?.requestLimit,
           subscriptionStatus: subscription?.stripeSubscriptionStatus ?? "not subscribed",
-          trialExpiresAt: subscription?.trialExpiresAt,
-          nextPaymentAt: subscription?.nextPaymentAt,
+          trialExpiresAt: formatDate(subscription?.trialExpiresAt),
+          nextPaymentAt: formatDate(subscription?.nextPaymentAt),
           numRequests: tracking?.numRequests ?? 0,
-          since: tracking?.since,
+          since: formatDate(tracking?.since),
+          lastMadeAt: formatDate(tracking?.lastMadeAt),
           verified: `${rest.verified}`
         }))
         setResults(data);
@@ -46,7 +52,7 @@ const UsersTable = (props) => {
   }, [debouncedEmailSearch, debouncedNameSearch, page, rowsPerPage])
 
   const attributes = [
-    {text: "Id", value: "id"},
+    {text: "Created at", value: "createdAt"},
     {text: "Email", value: "email"},
     {text: "First name", value: "firstName"},
     {text: "Last name", value: "lastName"},
@@ -62,6 +68,7 @@ const UsersTable = (props) => {
     {text: "Subscription status", value: "subscriptionStatus"},
     {text: "Requests made", value: "numRequests"},
     {text: "Requests made since", value: "since"},
+    {text: "Last request at", value: "lastMadeAt"},
   ];
 
   return (
