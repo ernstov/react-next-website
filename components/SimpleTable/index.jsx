@@ -18,13 +18,16 @@ import clsx from "clsx";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    padding: 0
+    padding: 0,
+    width: "100%"
   },
   content: {
-    padding: 0
+    padding: 0,
+    overflow: "auto",
+    width: "100%"
   },
   inner: {
-    minWidth: 1050
+    // minWidth: 1050
   },
   nameContainer: {
     display: "flex",
@@ -78,7 +81,7 @@ const SimpleTable = ({
                 <TableRow>
                   {attributes.map((item) => (
                     <TableCell key={item.value + Math.random()}
-                               className={classes.hoverable}
+                               className={`${classes.hoverable} ${item.className ?? ''}`}
                     >
                       <span>{item.text}</span>
                     </TableCell>
