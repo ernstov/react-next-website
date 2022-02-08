@@ -293,12 +293,11 @@
 
 .homeAnimation {
   margin: 1rem auto;
-  max-width: 195px;
-  height: 93px;
+  max-width: 240px;
   display: flex;
 
   @include media-breakpoint-down(md) {
-    max-width: 145px;
+    max-width: 200px;
     margin-bottom: 0.5rem;
   }
 }
