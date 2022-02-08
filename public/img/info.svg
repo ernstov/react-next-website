@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="17px" viewBox="0 0 16 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Info-Icon@2x</title>
+    <defs>
+        <path d="M0,3.25 L0,12.75 C2.19814969e-16,14.5449254 1.45507456,16 3.25,16 L12.75,16 C14.5449254,16 16,14.5449254 16,12.75 L16,3.25 C16,1.45507456 14.5449254,-3.29722454e-16 12.75,0 L3.25,0 C1.45507456,3.29722454e-16 -2.19814969e-16,1.45507456 0,3.25 Z" id="path-1"></path>
+        <filter x="-3.1%" y="-3.1%" width="106.2%" height="112.5%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feColorMatrix values="0 0 0 0 0.779353487   0 0 0 0 0.76675285   0 0 0 0 0.728950939  0 0 0 1 0" type="matrix" in="shadowOffsetOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Info-Icon-Pricing" fill-rule="nonzero">
+            <g id="Info-Icon">
+                <g id="Shape">
+                    <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                    <use fill="#EBE8DF" xlink:href="#path-1"></use>
+                </g>
+                <path d="M8.95056821,10.9210881 C8.95056821,11.3958761 8.53054621,11.780085 8,11.780085 C7.46945379,11.780085 7.04943179,11.3958556 7.04943179,10.9210881 L7.04943179,8.11012328 C7.04943179,7.63533523 7.46945379,7.25 8,7.25 C8.53054621,7.25 8.95056821,7.63533523 8.95056821,8.11012328 L8.95056821,10.9210881 Z" id="Path" fill="#272727"></path>
+                <path d="M8.95056821,5.43166546 L8.95056821,5.43156781 C8.95056821,5.77121538 8.769417,6.08508814 8.47527161,6.25481193 C8.18112371,6.42463572 7.81882629,6.42463572 7.52470339,6.25481193 C7.2305555,6.08508564 7.04940679,5.77121538 7.04940679,5.43156781 L7.04940679,5.20061196 C7.04940679,4.86096439 7.230558,4.54719163 7.52470339,4.37736784 C7.81884879,4.20754405 8.18114871,4.20754405 8.47527161,4.37736784 C8.7693945,4.54719163 8.95056821,4.86096439 8.95056821,5.20061196 L8.95056821,5.43166546 Z" id="Path" fill="#272727"></path>
+            </g>
+        </g>
+    </g>
+</svg>

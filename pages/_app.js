@@ -9,8 +9,6 @@ import Scrollbar from "react-smooth-scrollbar"
 import Header from "../components/Header"
 import Sidebar from "../components/Sidebar"
 import "../styles/main.scss"
-import 'swiper/swiper.scss'
-import 'swiper/components/lazy/lazy.scss'
 import BottomMenu from "../components/BottomMenu"
 import { isWrap, isSmoothScroll } from "../utils"
 import Agreement from "../components/Agreement"
@@ -18,6 +16,10 @@ import "notyf/notyf.min.css"
 import TagManager from 'react-gtm-module'
 import UserBillingService from "../services/UserBillingService"
 import Loader from "../components/Loader"
+
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
 const tagManagerArgs = {
   gtmId: appConfig.gtmId,
@@ -33,6 +35,7 @@ export default function App({ Component, pageProps }) {
   const [wrap, setWrap] = useState(true)
   const [smooth, setSmooth] = useState(true)
   const [checkedUserState, setCheckedUserState] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
 
   const [app, dispatchApp] = useReducer(reducerApp, {
     isLoading: false,
@@ -74,6 +77,10 @@ export default function App({ Component, pageProps }) {
   }, [router.pathname, checkedUserState])
 
   useEffect(() => {
+
+    if (typeof window !== "undefined") {
+      setIsMobile(window.innerWidth < 720)
+    }
 
     if (!isWrap()) setWrap(false)
     setSmooth(isSmoothScroll)
@@ -132,7 +139,7 @@ export default function App({ Component, pageProps }) {
     return !!router.pathname?.includes("/documentation")
   }
 
-  return <Context.Provider value={{ app, dispatchApp, lang, scrollB }}>
+  return <Context.Provider value={{ app, dispatchApp, lang, scrollB, isMobile }}>
     <LayoutBase isSmoothScroll={smooth} variant={isAccount() ? 'account' : ""} isWrap={wrap && !isHome()}>
       {isLoader && <Loader loaderState={loaderState} />}
       {(wrap && !isHome()) && <Header path={router.pathname} variant={`advanced`} isLoggedIn={isAuth()} />}

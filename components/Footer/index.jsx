@@ -12,8 +12,8 @@ import { useRouter } from "next/router"
 const Footer = ({ data, isVisible }) => {
 
   const [visible, setVisible] = useState(false);
-  const { lang: { GetTheApp } } = useContext(Context);
-  const { mobileNavigation } = appConfig
+  const { lang: { GetTheApp, Followus } } = useContext(Context);
+  const { footer: { navigation } } = appConfig
   const router = useRouter()
 
   useEffect(() => {
@@ -28,49 +28,66 @@ const Footer = ({ data, isVisible }) => {
     return router.pathname == "/"
   }
 
+  const renderLink = (nav, i, z,) => (
+    <li key={`ds-${i}-${z}`} key={`${shortid.generate()}`}><Link href={nav.link}>{nav.name}</Link></li>
+  )
+
   const render = () => {
     switch (data.variant) {
       case "simple":
         return <Container>
           <Row>
-            <Col xl={6} lg={7} className={`${styles.footerSocialsContainer}`}>
+            <Col md={12} className={`${styles.footerSocialsContainer}`}>
               <div className={`${styles.footerLinks} simple entry-2`}>
-                {mobileNavigation.map((sect, i) => (
-                  <div className={`${i == 1 ? "d-none d-md-block": ""}`} key={`sdr-${i}`}>
-                    <div><span className={typographyStyles.labelMenuFooter}>{sect.label}</span></div>
-                    <ul>
-                      {sect.links.map((nav, z) => (
-                        <li key={`ds-${i}-${z}`} key={`${shortid.generate()}`}><Link href={nav.link}>{nav.name}</Link></li>
-                      ))}
-                    </ul>
+                {navigation.map((sect, i) => (
+                  <div key={`sdr-${i}`}>
+                    <div className="mb-2"><span className={`${typographyStyles.labelMenuFooter} ${styles.footerLabel} ${i == 1 ? "d-block w-100 pr-0" : ""}`}>{sect.label}</span></div>
+                    <div className={`${styles.listsRow}`}>
+                      <ul>
+                        {sect.links.map((nav, z) => (
+                          i != 1 ? renderLink(nav, i, z) : z < 4 && renderLink(nav, i, z)
+                        ))}
+                      </ul>
 
-                    {i == 0 &&
-                      <div className="mt-4 d-block d-md-none">
-                        <div><span className={typographyStyles.labelMenuFooter}>{mobileNavigation[1].label}</span></div>
-                        <ul>
-                          {mobileNavigation[1].links.map((nav, k) => (
-                            <li key={`ds-${i}-${z}`} key={`${shortid.generate()}`}><Link href={nav.link}>{nav.name}</Link></li>
+                      {i == 1 &&
+                        <ul className="pl-0 pl-md-5">
+                          {sect.links.map((nav, z) => (
+                            z > 3 && renderLink(nav, i, z)
                           ))}
                         </ul>
-                      </div>
+                      }
+                      {i == 2 &&
+                        <div className={`${styles.footerSocialsMobile} entry-1`}>
+                          <div>
+                            <div><span>{Followus}:</span></div>
+                            <div className="d-flex align-items-center">
+                              {data.socials.map((social, i) => (
+                                <a key={`si-${i}`} href={social.link} target="blank"><Icon variant={social.icon} /></a>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+                      }
+                    </div>
+                    {i == 0 &&
+                      <>
+                        <div className={`${styles.footerStoresInner}`}>
+                          <div className="entry-1"><span className={`${styles.footerStoresBadge}`}>{GetTheApp}</span></div>
+                          <div className={`${styles.footerStoresContainer}`}>
+                            {data.stores && data.stores.map((store, i) => (
+                              <a key={`si-${i}`} target="blank" className={`entry-${i + 1}`} href={store.link}><img width={130} height={42} className={`${styles.footerStore} ${i < data.stores.length - 1 ? "mr-0 mr-md-3" : ""}`} src={`/img/${store.img}`} alt="" /></a>
+                            ))}
+                          </div>
+                        </div>
+                      </>
                     }
                   </div>
                 ))}
               </div>
             </Col>
-            <Col className={`${styles.footerStoresCont} d-flex justify-content-start justify-content-lg-end`} xl={6} lg={5}>
-              <div className={`${styles.footerStoresInner}`}>
-                <div className="entry-1"><span className={`${styles.footerStoresBadge}`}>{GetTheApp}</span></div>
-                <div className={`${styles.footerStoresContainer}`}>
-                  {data.stores && data.stores.map((store, i) => (
-                    <a key={`si-${i}`} target="blank" className={`entry-${i + 1}`} href={store.link}><img width={130} height={42} className={`${styles.footerStore} ${i < data.stores.length - 1 ? "mr-3" : ""}`} src={`/img/${store.img}`} alt="" /></a>
-                  ))}
-                </div>
-              </div>
-            </Col>
           </Row>
           <Row className={`${styles.footerBorder}`}>
-            <Col md={6} className="d-flex align-items-center pt-0 pt-md-3 entry-2">
+            <Col md={5} className="d-flex align-items-center pt-0 pt-md-3 entry-2">
               <img className={`${styles.footerLogo} mr-3`} src="/img/logo-shape.svg" alt="" />
               <div className={`${styles.footerSocials} simple entry-1`}>
                 {data.socials.map((social, i) => (
@@ -78,10 +95,10 @@ const Footer = ({ data, isVisible }) => {
                 ))}
               </div>
             </Col>
-            <Col md={6} className={`${styles.footerCopyrightCol}`}>
+            <Col md={7} className={`${styles.footerCopyrightCol}`}>
               <div className={`${styles.footerCopyright} simple entry-3`}>
                 {data.additional &&
-                  <div dangerouslySetInnerHTML={{ __html: data.additional }}></div>
+                  <div className="d-inline d-md-block" dangerouslySetInnerHTML={{ __html: data.additional }}></div>
                 }
                 {data.copyright}
               </div>

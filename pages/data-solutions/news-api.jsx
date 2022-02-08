@@ -1,17 +1,20 @@
-import React, {useState, useEffect} from "react"
+import React, { useState, useEffect, useContext } from "react"
 import Head from 'next/head'
 import appConfig from "../../configs/appConfig"
 import Footer from "../../components/Footer"
-import HeroAdvanced from "../../sections/Hero/HeroAdvanced"
-import Carousel from "../../sections/Carousel"
-import Columns from "../../sections/Columns"
-import Tags from "../../sections/Tags"
-import FeaturesSimple from "../../sections/Features/FeaturesSimple"
+import Hero from "../../sections/Hero/HeroLanding"
+import Carousel from "../../sections/Carousel/CarouselDark"
+import Columns from "../../sections/Columns/ColumnsAdvanced"
+import TagsUseCases from "../../sections/Tags/TagsUseCases"
+import Features from "../../sections/Features/FeaturesLight"
 import Api from "../../sections/Api"
 import VisibilitySensor from '../../utils/react-visibility-sensor'
 import { page } from "../../configs/pages/newsApi"
-import {  isWrap } from '../../utils'
+import { globalData } from "../../configs/pages/globalData"
+import { isWrap } from '../../utils'
 import TagManager from 'react-gtm-module'
+import { Context } from "../../context/context"
+import Compare from "../../sections/Compare"
 
 const tagManagerArgs = {
   gtmId: appConfig.gtmId,
@@ -24,14 +27,16 @@ const tagManagerArgs = {
 const NewsAPI = () => {
 
   const [wrap, setWrap] = useState(true)
+  const { lang: { Moreusecases } } = useContext(Context)
 
   const sections = [
-    { component: HeroAdvanced, props: { data: page.hero, isWrap: wrap } },
-    { component: FeaturesSimple, props: { data: page.features } },
-    { component: Carousel, props: { data: page.carousel } },
-    { component: Api, props: { data: page.console } },
-    { component: Tags, props: { data: page.tags } },
-    { component: Columns, props: { data: page.columns } },
+    { component: Hero, props: { data: page.hero, liveDemos:page.liveDemos, isWrap: wrap } },
+    { component: Features, props: { data: globalData.features } },
+    { component: Carousel, props: { data: globalData.carousel } },
+    // { component: Api, props: { data: page.console } },
+    { component: TagsUseCases, props: { data: {title: Moreusecases, list: [...appConfig.headerNavigation[1].sub[1].sub]} } },
+    { component: Compare, props: { data: globalData.compare } },
+    { component: Columns, props: { data: globalData.industries } },
     { component: Footer, props: { data: appConfig.footer } },
   ]
 

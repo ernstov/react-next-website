@@ -3,14 +3,12 @@ import { Container, Row, Col, Badge } from "react-bootstrap";
 import Icon from "../../components/Icon";
 import Scrollbar from 'react-smooth-scrollbar';
 import Block from "../../components/Block";
-import { Swiper, SwiperSlide } from "swiper/react"
 import { Context } from '../../context/context';
 import { useRouter } from "next/router"
 import styles from './tranding.module.scss'
-import SwiperCore, { Pagination } from 'swiper/core';
 import typographyStyles from "../../styles/global/typography.module.scss"
-
-SwiperCore.use([Pagination]);
+import { Navigation, Pagination } from 'swiper'
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 const Tranding = ({ data, isVisible }) => {
 
@@ -20,6 +18,7 @@ const Tranding = ({ data, isVisible }) => {
   const options = {
     slidesPerView: 3,
     spaceBetween: 30,
+    modules:[Navigation, Pagination],
     loop: false,
     autoplay: {
       delay: 5000,

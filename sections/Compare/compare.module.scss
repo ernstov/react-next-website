@@ -1,0 +1,213 @@
+@import "../../styles/base/variables.scss";
+
+$row-height: 41px;
+
+.compare {
+  padding: $section-spacer 0;
+  border-bottom: 2px solid $stroke-2;
+
+  :global(.container) {
+    max-width: 760px;
+  }
+
+  @include media-breakpoint-down(lg) {
+  }
+
+  @include media-breakpoint-down(md) {
+  }
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  > * {
+    margin: 0 1rem;
+  }
+
+  @include media-breakpoint-down(md) {
+    > * {
+      margin: 0 0.5rem;
+      &:last-child{
+        display: none;
+      }
+    }
+  }
+}
+
+.compareRow {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+
+  > * {
+    width: calc(27% - 30px);
+
+    &:first-child {
+      width: calc(46% - 30px);
+    }
+  }
+
+  @include media-breakpoint-down(md) {
+    > * {
+      width: calc(27% - 5px);
+  
+      &:first-child {
+        width: calc(46% - 5px);
+      }
+    }
+  }
+}
+
+.compareTitle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: $row-height;
+  background-color: $gray-20;
+  color: $blackAdv;
+  font-weight: 600;
+  font-size: 1.1875rem;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  margin-top: 20px;
+  text-align: center;
+
+  @include media-breakpoint-down(md) {
+    font-size: 0.875rem;
+  }
+}
+
+.compareRowName {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $cover-19;
+  height: $row-height;
+  color: $secondary;
+  font-weight: 600;
+  font-size: 1.0625rem;
+  margin: 7px 0;
+  text-align: center;
+
+  > div {
+    display: inline-block;
+  }
+
+  &:global(.with-tooltip) {
+    > div {
+      cursor: pointer;
+      border-bottom: 2px dashed $secondary;
+    }
+  }
+
+  @include media-breakpoint-down(md) {
+    font-size: 0.875rem;
+  }
+}
+
+.compareText {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $dark-8;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  background-color: $cover-20;
+  padding: 0 1rem;
+  text-align: center;
+
+  &:global(.primary) {
+    background-color: rgba($secondary, 0.05);
+  }
+
+  @include media-breakpoint-down(md) {
+    font-size: 0.75rem;
+  }
+}
+
+.compareLogo {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 20px;
+  position: relative;
+
+  &::after {
+    content: "";
+    width: 100%;
+    height: 8px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: $blackAdv;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-left-radius: 1px;
+    border-bottom-right-radius: 1px;
+  }
+
+  @include media-breakpoint-down(md) {
+    img {
+      width: 38px;
+      height: 38px;
+    }
+  }
+}
+
+.compareLogoText {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 20px;
+  font-size: 1.375rem;
+  font-weight: 600;
+  color: $blackAdv;
+  position: relative;
+
+  &::after {
+    content: "";
+    width: 100%;
+    height: 8px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: $dark-2;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-left-radius: 1px;
+    border-bottom-right-radius: 1px;
+  }
+
+  @include media-breakpoint-down(md) {
+    font-size:0.875rem;
+  }
+}
+
+.compareAvailable {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $dark-8;
+  font-size: 0.9125rem;
+  background-color: $cover-20;
+
+  &:global(.primary) {
+    color: $blackAdv;
+    background-color: rgba($secondary, 0.05);
+  }
+}
+.compareUnAvailable {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $dark-8;
+  font-size: 0.9125rem;
+  background-color: $cover-20;
+
+  &:global(.primary) {
+    color: $blackAdv;
+    background-color: rgba($secondary, 0.05);
+  }
+}

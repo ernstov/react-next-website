@@ -6,16 +6,16 @@ import Lottie from 'lottie-web'
 const AnimationNewsApi = () => {
 
   const animationContainer = useRef(null)
-  let animation = null
 
   useEffect(() => {
-    animation = Lottie.loadAnimation({
+    const animation = Lottie.loadAnimation({
       container: animationContainer.current,
       renderer: 'svg',
       loop: true,
       autoplay: true,
       animationData: animationData,
     });
+    return () => animation.destroy()
   }, [])
 
   return (

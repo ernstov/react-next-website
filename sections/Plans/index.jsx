@@ -1,16 +1,14 @@
 import { useState, useContext, useEffect } from "react"
 import { Container, Row, Col, Badge } from "react-bootstrap"
 import Block from "../../components/Block"
-import { Swiper, SwiperSlide } from "swiper/react"
 import styles from './plans.module.scss'
 import typographyStyles from "../../styles/global/typography.module.scss"
-import SwiperCore, { Pagination } from 'swiper/core'
 import AvancedSwitch from "../../components/ui/AdvancedSwitch"
 import { Context } from "../../context/context"
 import Particles from '../../components/Particles'
 import appConfig from "../../configs/appConfig"
-
-SwiperCore.use([Pagination]);
+import { Navigation, Pagination } from 'swiper'
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 const Plans = ({ data, isVisible }) => {
 
@@ -29,6 +27,7 @@ const Plans = ({ data, isVisible }) => {
 
   const options = {
     slidesPerView: 4,
+    modules:[Navigation, Pagination],
     loop: false,
     pagination: {
       clickable: true
@@ -79,7 +78,7 @@ const Plans = ({ data, isVisible }) => {
           <Container>
             <Row>
               {data.columns.map((item, i) => (
-                <Col className="pb-3" md={6} key={`cri-${i}`}>
+                <Col className="pb-3" md={4} key={`cri-${i}`}>
                   <Block variant={item.variant} data={item} />
                 </Col>
               ))}

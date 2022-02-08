@@ -64,18 +64,26 @@ const AccountOverview = ({ data, isVisible }) => {
     setCountry(res.homeCountry)
     setRegisteredSince(moment(res.createdAt).format('MMM DD, yyyy'))
 
-    if (!res.verified) {
+    if (res.verified) {
+      setVerificationMessage()
+    } else {
       setVerificationMessage(EmailVerificationWarningMessage)
     }
 
-    if (res.subscription.trialExpiresAt && res.subscription.stripeSubscriptionStatus === 'trialing') {
+    if (res.subscription?.trialExpiresAt && res.subscription?.stripeSubscriptionStatus === 'trialing') {
       setTrialMessage(`${TrialExpirationWarningMessage} ${moment(res.subscription.trialExpiresAt).format('MMM DD, yyyy')}`)
+    } else {
+      setTrialMessage()
     }
 
     if (!res.billingPlan) {
       setBillingPlanStatus("INACTIVE")
     } else {
-      setPlanName(res.billingPlan.custom ? 'Custom' : res.billingPlan.name)
+      if (res.billingPlan.custom && !res.billingPlan.name.toLowerCase().endsWith('(legacy)')) {
+        setPlanName('Custom')
+      } else {
+        setPlanName(res.billingPlan.name)
+      }
 
       if (res.billingMode === 'MONTHLY') {
         setAmount(`\$${res.billingPlan.monthlyPrice.toLocaleString('en-US')}/mo`)
@@ -85,10 +93,14 @@ const AccountOverview = ({ data, isVisible }) => {
 
       if (res.subscription?.nextPaymentAt) {
         setNextPaymentAt(moment(res.subscription.nextPaymentAt).format('MMM DD, yyyy'))
+      } else {
+        setNextPaymentAt('N/A')
       }
 
       if (res.subscription?.stripeSubscriptionStatus) {
         setBillingPlanStatus(parseStripeSubscriptionStatus(res.subscription.stripeSubscriptionStatus))
+      } else {
+        setBillingPlanStatus('INACTIVE')
       }
     }
 

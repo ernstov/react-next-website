@@ -6,7 +6,7 @@
 
   &:global(.small-container) {
     :global(.container) {
-      max-width: $small-container;
+      max-width: $extra-small-container;
     }
   }
 
@@ -21,7 +21,7 @@
     padding-bottom: $section-spacer * 1.4;
 
     &:global(.home) {
-      padding-bottom: $section-spacer*2;
+      padding-bottom: $section-spacer * 2;
     }
   }
 
@@ -31,7 +31,20 @@
       padding-top: $section-spacer;
 
       &:global(.home) {
-        padding-bottom: $section-spacer*2;
+        padding-bottom: $section-spacer * 2;
+      }
+    }
+  }
+}
+
+.listsRow {
+  display: flex;
+
+  @include media-breakpoint-down(sm) {
+    > * {
+      width: 50%;
+      &:first-child {
+        width: 50%;
       }
     }
   }
@@ -39,15 +52,25 @@
 
 .footerStoresContainer {
   display: flex;
-  justify-content: flex-end;
-  flex-wrap: wrap;
+  flex-direction: column;
+
+  a {
+    &:first-child {
+      margin-bottom: 0.5rem;
+    }
+  }
 
   @include media-breakpoint-down(sm) {
     justify-content: flex-start;
-    order: 1;
+    flex-direction: row;
+    margin-bottom: 1rem;
 
     a {
-      
+      margin-right: 0.5rem;
+
+      &:first-child {
+        margin-bottom: 1rem;
+      }
       &:last-child {
         > * {
           margin-right: 0 !important;
@@ -126,6 +149,8 @@
   }
 
   @include media-breakpoint-down(sm) {
+    display: none;
+
     &:global(.simple) {
       justify-content: center;
       margin-top: 2rem;
@@ -135,6 +160,41 @@
         margin: 0 1.4rem;
       }
     }
+  }
+}
+
+.footerSocialsMobile {
+  width: 50%;
+  display: none;
+  align-items: center;
+  font-weight: 500;
+  font-size: 0.9375rem;
+  color: rgba($white, 0.4);
+
+  > div {
+    width: 100%;
+    > div {
+      &:last-child {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+    }
+  }
+
+  a {
+    font-size: 1.4375rem;
+    color: $white;
+    opacity: 0.3;
+    transition: opacity $transition ease;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+  @include media-breakpoint-down(sm) {
+    display: flex;
   }
 }
 
@@ -163,6 +223,7 @@
       a {
         text-decoration: none;
         font-size: 1.0625rem;
+        margin-right: 1rem;
 
         &:hover {
           text-decoration: underline;
@@ -171,17 +232,15 @@
     }
 
     a {
-      margin-right: 2rem;
-
       &:hover {
-        color: $secondary;
+        color: $cover-2;
       }
     }
   }
 
   a {
-    font-weight: 600;
-    color: $secondary;
+    font-weight: 500;
+    color: $cover-2;
     text-decoration: underline;
     transition: color $transition ease;
 
@@ -192,21 +251,18 @@
   }
 
   @include media-breakpoint-down(sm) {
+    > div {
+      width: 100%;
+    }
     &:global(.simple) {
       justify-content: space-between;
       flex-wrap: wrap;
 
-      > * {
-        &:nth-child(2) {
-          order: 3;
-        }
-        &:nth-child(3) {
-          order: 2;
-        }
+      ul a {
+        font-size: 0.9375rem;
       }
 
       a {
-        margin-right: 1.6rem;
         &:last-child {
           margin-right: 0;
         }
@@ -256,6 +312,15 @@
   }
 }
 
+.footerLabel {
+  padding-right: 1rem;
+  display: inline-block;
+
+  @include media-breakpoint-down(sm) {
+    width: 100%;
+  }
+}
+
 .footerStoresBadge {
   display: flex;
   justify-content: center;
@@ -273,15 +338,22 @@
   font-size: 0.6875rem;
   letter-spacing: 0.1em;
   margin-bottom: 10px;
+
+  @include media-breakpoint-down(sm) {
+    display: none;
+  }
 }
 
 .footerStoresInner {
   display: inline-flex;
   flex-direction: column;
+  margin-top: 0.5rem;
   padding-bottom: 1rem;
 
   @include media-breakpoint-down(sm) {
     padding-bottom: 0;
+    margin-top: 0;
+    display: flex;
   }
 }
 
@@ -303,8 +375,8 @@
 
 .footerSocialsContainer {
   @include media-breakpoint-down(sm) {
-    padding-left: 2.6rem !important;
-    padding-right: 2.6rem !important;
+    padding-left: 1.6rem !important;
+    padding-right: 1.6rem !important;
   }
 }
 

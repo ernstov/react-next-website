@@ -3,7 +3,7 @@ import styles from './hero.module.scss'
 import Button from '../../components/ui/Button'
 import typographyStyles from "../../styles/global/typography.module.scss"
 import appConfig from "../../configs/appConfig"
-import dynamic from 'next/dynamic'
+import Animation from "./AnimationLogo"
 
 const Hero = ({ data, isVisible }) => {
 
@@ -20,7 +20,6 @@ const Hero = ({ data, isVisible }) => {
   const renderAnimation = (name) => {
     switch (name) {
       case "logo":
-        const Animation = dynamic(() => import('./AnimationLogo'))
         return <div className={`${styles.homeAnimation}`}><Animation isVisible={isVisible} /></div>
     }
   }

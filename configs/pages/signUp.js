@@ -14,11 +14,11 @@ export const page = {
   signup: {
     bottom: "Existing business user?",
     options: [
-      { value: "Free trial", label: "Free trial" },
+      // { value: "Free trial", label: "Free trial" },
       { value: "Lite", label: "Lite" },
       { value: "Standard", label: "Standard" },
+      { value: "Pro", label: "Pro" },
       { value: "Business", label: "Business" },
-      { value: "Enterprise", label: "Enterprise" },
     ]
   }
 }

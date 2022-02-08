@@ -32,7 +32,7 @@ const Columns = ({ data, isVisible }) => {
               {data.columns.map((column, i) => (
                 <Col className={`d-flex align-items-stretch entry-${i+1}`} md={4} key={`ci-${i}`}>
                   <div className={`${column.className ? `${column.className} ${i < data.columns.length-1 ? "pb-5 pb-md-0" : ""}` : `${i < data.columns.length-1 ? "pb-5 pb-md-0" : ""}`}`}>
-                    <div className={`${styles.columnTitleAdvanced} mb-3`}>{column.img && <img src={`/img/${column.img}`} />}<h4 className={`${typographyStyles.titleDemiWhiteSm} ${typographyStyles.fontBase} mb-0`}>{column.title}</h4></div>
+                    <div className={`${styles.columnTitleAdvanced} mb-3`}>{column.img && <img src={`/img/${column.img}`} />}<h4 className={`${typographyStyles.titleDemiWhiteSm} ${typographyStyles.c10} mb-0`}>{column.title}</h4></div>
                     <div><span className={`${typographyStyles.textDemiWhite}`}>{column.description}</span></div>
                   </div>
                 </Col>

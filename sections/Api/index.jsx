@@ -4,11 +4,11 @@ import styles from './api.module.scss'
 import dynamic from 'next/dynamic'
 import appConfig from "../../configs/appConfig"
 
-const ApiContainer = ({ data, isVisible }) => {
+const Api = dynamic(() => import('../../components/Api'), {
+  ssr: false
+});
 
-  const Api = dynamic(() => import('../../components/Api'), {
-    ssr: false
-  });
+const ApiContainer = ({ data, isVisible }) => {
 
   const [visible, setVisible] = useState(false)
 

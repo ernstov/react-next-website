@@ -7,7 +7,7 @@ export const page = {
     title: "API pricing",
     titleCL: "mw-450",
     className: "pb-0",
-    description: "Choose a plan and begin using the API right away.",
+    description: "Choose a plan or start a trial to begin using the API right away",
     descriptionCL: "mw-600",
   },
   plans: {
@@ -16,62 +16,120 @@ export const page = {
     list: [
       {
         name: "Lite",
-        label: "LOCAL",
+        //label: "LOCAL",
         color: "#969696",
         variant: "gray",
-        description: "Access to city-specific local news in over 100 cities",
-        price: 150,
-        features: ["100,000 requests/month", "3 requests/second", "Real-time news", "Local, city-specific news", "Topic & entity tagging", "Standard support"]
+        description: "For simple projects, includes only basic article data",
+        price: 75,
+        features: [
+          { name: "10,000 requests/month" },
+          { name: "News with 1-hour delay", tooltip: "<h3>News with 1-hour delay</h3>Articles and news data returned through the API will be delayed by one hour. If you need real-time news, please consider the Pro or Business plans." },
+          { name: "2 requests/second" },
+          { name: "Standard article data", tooltip: "<h3>Standard article data</h3>This includes core article details like the published date/time, headline, URL, author, description or summary content, article image URL, type (article or video), language, and country." },
+        ]
       },
       {
         name: "Standard",
-        label: "World",
-        color: "#5B5A59",
+        //label: "World",
+        color: "#F9C035",
+        btnTextColor: "#121212",
         variant: "dark",
-        description: "Access to all world news along with journalists data",
+        description: "For projects with moderate usage + enriched data",
+        price: 150,
+        features: [
+          { name: "25,000 requests/month" },
+          { name: "News with 1-hour delay", tooltip: "<h3>News with 1-hour delay</h3>Articles and news data returned through the API will be delayed by one hour. If you need real-time news, please consider the Pro or Business plans." },
+          { name: "2 requests/second" },
+          { name: "Standard article data", tooltip: "<h3>Standard article data</h3>This includes core article details like the published date/time, headline, URL, author, description or summary content, article image URL, type (article or video), language, and country." },
+          { name: "Enriched datapoints", tooltip: "<h3>Enriched datapoints</h3>Use enriched article data for searching, filtering, analyzing, or highlighting context inside your application. Enriched datapoints include article categorization, topics, location (city and state), smart labels, named entities, sentiment analysis, taxonomy, paywall indicator, and reprint indicator." },
+          { name: "Topic & entity tagging" },
+          { name: "Article sentiment data" },
+        ]
+      },
+      {
+        name: "Pro",
+        //label: "Local + world",
+        color: "#227C9D",
+        variant: "secondary",
+        description: "For mid-sized projects and growth-stage companies",
         price: 395,
-        features: ["250,000 requests/month", "5 requests/second", "Real-time news", "World news", "Topic & entity tagging", "Journalists data", "Standard support"]
+        features: [
+          { name: "250,000 requests/month" },
+          { name: "Real-time news", tooltip: "<h3>Real-time news</h3>All results are returned without delay and immediately after being analyzed by Perigon, offering up-to-the-minute news coverage for any query." },
+          { name: "3 requests/second" },
+          { name: "Standard article data", tooltip: "<h3>Standard article data</h3>This includes core article details like the published date/time, headline, URL, author, description or summary content, article image URL, type (article or video), language, and country." },
+          { name: "Enriched datapoints", tooltip: "<h3>Enriched datapoints</h3>Use enriched article data for searching, filtering, analyzing, or highlighting context inside your application. Enriched datapoints include article categorization, topics, location (city and state), smart labels, named entities, sentiment analysis, taxonomy, paywall indicator, and reprint indicator." },
+          { name: "Topic & entity tagging" },
+          { name: "Article sentiment data" },
+          { name: "Event clustering", tooltip: "<h3>Event clustering</h3>Perigon automatically groups related articles together into thread-like clusters. Event clusters determine contextual relevance between articles that cover the same story or event. You can use our Headlines endpoint to search and expand clusters, or to sort headlines by popularity." },
+        ]
       },
       {
         name: "Business",
-        label: "Local + world",
-        color: "#227C9D",
-        variant: "secondary",
-        description: "Total access to local + world news, some AI features",
-        price: 750,
-        features: ["500,000 requests/month", "8 requests/second", "Real-time news", "World news", "Local, city-specific news", "Topic & entity tagging", "Event clustering", "Journalists data", "Trending stories", "Article sentiment data", "Priority support"]
-      },
-      {
-        name: "Enterprise",
-        label: "Local + World",
-        color: "#F9C035",
+        //label: "Local + World",
+        color: "#121212",
         variant: "primary",
-        description: "High-scale access to local + world news, all AI features",
-        price: 1250,
-        features: ["1,000,000 requests/month", "10 requests/second", "Real-time news", "World news", "Local, city-specific news", "Topic & entity tagging", "Event clustering", "Journalists data", "Trending stories", "Article sentiment data", "Article summarization", "99.95% uptime SLA", "Priority support"]
+        description: "For companies seeking full access and higher scale",
+        price: 750,
+        features: [
+          { name: "500,000 requests/month" },
+          { name: "Real-time news", tooltip: "<h3>Real-time news</h3>All results are returned without delay and immediately after being analyzed by Perigon, offering up-to-the-minute news coverage for any query." },
+          { name: "8 requests/second" },
+          { name: "Standard article data", tooltip: "<h3>Standard article data</h3>This includes core article details like the published date/time, headline, URL, author, description or summary content, article image URL, type (article or video), language, and country." },
+          { name: "Enriched datapoints", tooltip: "<h3>Enriched datapoints</h3>Use enriched article data for searching, filtering, analyzing, or highlighting context inside your application. Enriched datapoints include article categorization, topics, location (city and state), smart labels, named entities, sentiment analysis, taxonomy, paywall indicator, and reprint indicator." },
+          { name: "Topic & entity tagging" },
+          { name: "Article sentiment data" },
+          { name: "Event clustering", tooltip: "<h3>Event clustering</h3>Perigon automatically groups related articles together into thread-like clusters. Event clusters determine contextual relevance between articles that cover the same story or event. You can use our Headlines endpoint to search and expand clusters, or to sort headlines by popularity." },
+          { name: "Expanded journalists data", tooltip: "<h3>Expanded journalists data</h3>Perigon’s Journalist database includes over 40,000 authors and reporters from around the world. When available, Perigon will automatically match named authors with their respective database record, allowing you to retrieve additional details about the journalist - like their biography, job title, Twitter handle, LinkedIn profile, location, and more." },
+        ]
       }
     ],
     columns: [
       {
-        name: "Free trial",
-        variant: "badge",
-        description: "Temporary access to all features for testing purposes",
-        list: ["1000 requests", "Real-time news", "Local, city-specific news", "World news", "All AI features"],
+        name: "Free trial access",
+        variant: "badge-plans",
+        label: "15-day free access for testing",
+        list: [
+          { name: "All features" },
+          { name: "No credit card required" },
+          { name: "150 requests/day" },
+          { name: "300 results/request, paginated", tooltip: "<h3>300 results/request, paginated</h3>The free trial allows for up to 300 results (articles) per search request. The API will return a maximum of 100 results per page, and the free trial will allow for up to 3 full pages of results. See the API Documentation for details on how to use pagination." },
+        ],
         button: {
           variant: "primary-arrow",
-          link: "/sign-up?planName=Free trial",
+          link: "/sign-up",
           name: "Start trial"
         }
       },
       {
-        name: "Custom plan",
-        variant: "badge",
-        description: "Let us tailor a package to fit your project needs, good for:",
-        list: ["Custom volume/scale", "Adding unsupported sources", "Tailored AI", "Unique data-mapping needs", "Deeper integrations"],
+        name: "Enterprise</br>& Data Exports",
+        variant: "badge-plans",
+        list: [
+          { name: "High-demand usage" },
+          { name: "Tailored AI" },
+          { name: "One-off data exports" },
+          { name: "Custom requests or features" },
+        ],
         button: {
-          variant: "primary-arrow-down",
+          variant: "light-adv",
           jump: "contact",
-          name: "Contact us"
+          name: "Let's discuss"
+        }
+      },
+      {
+        name: "Startup discount",
+        description: "Qualify for a 20% plan discount 🚀",
+        variant: "badge-plans",
+        list: [
+          { name: "Under $1M in funding" },
+          { name: "Under $500K in revenue" },
+          { name: "Early-stage concepts" },
+          { name: "All criteria must be met" },
+        ],
+        button: {
+          variant: "light-adv",
+          jump: "contact",
+          name: "Contact us to apply"
         }
       },
     ]
@@ -116,23 +174,23 @@ export const page = {
   },
 
   columns: {
-    title: "Business-grade quality for all plans",
+    title: "Upgrade or cancel your plan anytime",
     variant: "advanced",
     columns: [
       {
         title: "Helpful support",
-        description: "We’re here for you. Message us if you experience any problems or find ways to make Perigon work better for you.",
-        img: "support.svg",
+        description: "We're here for you. Message us if you experience any problems or find ways to make Perigon work better for you.",
+        img: "icon-support.svg",
       },
       {
         title: "Blazingly fast",
         description: "Response-times <1s. Query by keywords, date ranges, sources, languages, topics, countries & more.",
-        img: "bolt.svg",
+        img: "icon-bolt.svg",
       },
       {
         title: "Built for developers",
-        description: "We provide client libraries that offer full access to the API with as little as a few lines of code.",
-        img: "developers.svg",
+        description: "We provide client libraries that offer full access to the API with just a few lines of code.",
+        img: "icon-developers.svg",
       },
     ],
   },

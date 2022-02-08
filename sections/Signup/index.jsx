@@ -17,7 +17,7 @@ import { useRouter } from 'next/router'
 
 const Signup = ({ data, isVisible }) => {
 
-  const { dispatchApp, lang: { Signup, SignIn, APIplan, Viewpricingplans, Firstname, Lastname, Email, Password, Passwordmustbe6, Ihaveread, EndUserAgreement } } = useContext(Context)
+  const { dispatchApp, lang: { Signup, SignIn, APIplan, Viewpricingplans, Firstname, Lastname, Email, Password, trialIncluded, Passwordmustbe6, Ihaveread, EndUserAgreement } } = useContext(Context)
   const { bottom, options } = data
   const form = useRef(null)
   const [isProcess, setIsProcess] = useState(false)
@@ -26,11 +26,14 @@ const Signup = ({ data, isVisible }) => {
 
   const [visible, setVisible] = useState(false)
   const router = useRouter()
-  const [selectedPlan, setSelectedPlan] = useState(options.find(el => el.value === "Free trial"))
+  const [selectedPlan, setSelectedPlan] = useState(options.find(el => el.value === "Standard"))
 
   useEffect(() => {
     if (router.query.planName) {
-      setSelectedPlan(options.find(el => el.value === router.query.planName))
+      const plan = options.find(el => el.value === router.query.planName)
+      if (plan) {
+        setSelectedPlan(plan)
+      }
     }
   }, [router.isReady])
 
@@ -58,8 +61,10 @@ const Signup = ({ data, isVisible }) => {
       try {
         const user = await AuthService.signup(JSON.stringify(fields));
         dispatchApp({ type: 'SET_USER', data: { user } });
-        let routeTo = "/account/details"
-        await router.push({ pathname: routeTo, query: { billingPlan: fields.billingPlan, name: fields.firstName } });
+        await router.push({
+          pathname: "/account/details",
+          query: { billingPlan: fields.billingPlan, name: fields.firstName }
+        });
       } catch (e) {
         setError(e);
         setTimeout(() => setError(null), 5000);
@@ -87,7 +92,7 @@ const Signup = ({ data, isVisible }) => {
         <form name="contactForm" onSubmit={onSubmit} ref={form}>
           <Container fluid className="p-0">
             <Row>
-              <Col md={6} className="mb-4">
+              <Col md={6} className="mb-4 mb-md-0">
                 <Select
                   value={selectedPlan}
                   onChange={setSelectedPlan}
@@ -100,9 +105,15 @@ const Signup = ({ data, isVisible }) => {
                   }}
                   name="billingPlan"
                 />
+                <div className="d-block d-md-none mt-2">
+                  <span className={`${typographyStyles.textRomanTiny} op-05 d-block lh-1`}>{trialIncluded}</span>
+                </div>
               </Col>
-              <Col md={6} className="mb-4 d-flex align-items-center">
+              <Col md={6} className="mb-4 mb-md-0 d-flex align-items-center">
                 <Button link="/data-solutions/pricing" as="link" variant="link-nondec">{Viewpricingplans}</Button>
+              </Col>
+              <Col md={12} className="mb-4 mt-2 d-none d-md-block">
+                <span className={`${typographyStyles.textRomanTiny} op-05 d-block lh-1`}>{trialIncluded}</span>
               </Col>
               <Col md={6} className="mb-4">
                 <Input name="firstName" variant="flat" label={Firstname} required />

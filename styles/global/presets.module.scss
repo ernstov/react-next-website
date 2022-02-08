@@ -321,6 +321,75 @@
   background: white;
 }
 
+.listAdvHero {
+  background-color: $gray-21;
+  border: 1px solid $cover-14;
+  box-shadow: $shadow-6;
+  border-radius: 4px;
+  padding: 1.6rem;
+  display: inline-block;
+  border-left: 8px solid $blackAdv;
+  
+  ul {
+    list-style: none;
+    font-weight: 600;
+    font-size: 1rem;
+    margin: 0;
+    padding: 0;
+    color: $black;
+
+    li {
+      display: flex;
+      align-items: center;
+      padding-top: 0.2rem;
+      padding-bottom: 0.2rem;
+
+      span {
+        display: inline-block;
+        color: $secondary;
+        margin-left: 0.3em;
+        margin-right: 0.3em;
+        border-bottom: 1px dashed $secondary;
+      }
+
+      a {
+        display: inline-block;
+        color: inherit;
+        font-weight: 600;
+        margin-right: 0.5rem;
+        text-decoration: none;
+        background-image: linear-gradient(to right, black 33%, rgba(255, 255, 255, 0) 0%);
+        background-position: bottom;
+        background-size: 5px 2px;
+        background-repeat: repeat-x;
+        padding-bottom: 2px;
+        font-family: $font-family-secondary;
+      }
+
+      &::before {
+        content: "";
+        width: 10px;
+        height: 10px;
+        margin-right: 1rem;
+        background-image: url(/img/list-bullet-adv.svg);
+        background-position: center center;
+        background-size: 100% auto;
+      }
+    }
+  }
+
+  @include media-breakpoint-down(lg) {
+    padding: 0.8rem 1rem;
+    ul {
+      font-size: 1rem;
+    }
+  }
+
+  @include media-breakpoint-down(sm) {
+    width: 100%;
+  }
+}
+
 .listHero {
   list-style: none;
   font-weight: 500;
@@ -408,4 +477,9 @@
     margin: 0 10px;
     color: $primary;
   }
+}
+
+.infoIcon {
+  width: 16px;
+  height: auto;
 }

@@ -14,7 +14,7 @@
 
   :global(.swiper-pagination) {
     text-align: center;
-    display: none;
+    // display: none;
     top: -40px;
     bottom: auto;
     left: 50%;
@@ -42,14 +42,89 @@
     padding-top: $section-spacer/2;
     padding-bottom: $section-spacer/2;
 
-    &:global(.reduce-padding-md){
+    &:global(.reduce-padding-md) {
       padding-bottom: 0;
     }
   }
 
   @include media-breakpoint-down(sm) {
     :global(.swiper-pagination) {
-      display: block;
+      display: flex;
+      justify-content: center;
+    }
+  }
+}
+
+.carouselDark {
+  width: 100vw;
+  background-color: $blackAdv;
+  padding: $section-spacer;
+  padding-right: $gutter;
+  overflow: hidden;
+
+  &:global(.with-bullets) {
+    :global(.swiper-pagination) {
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+  :global(.swiper-pagination){
+    align-items: center;
+  }
+
+  :global(.pagination-left), :global(.pagination-right) {
+    width: 2rem;
+    opacity: 0.3;
+    margin: 0 0.3rem;
+    transition: opacity $transition ease;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  :global(.swiper-pagination) {
+    text-align: center;
+    // display: none;
+    top: -40px;
+    bottom: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    position: absolute;
+
+    :global(.swiper-pagination-bullet) {
+      width: 10px;
+      height: 10px;
+      display: inline-block;
+      margin: 0 5px;
+      cursor: pointer;
+      border-radius: 50%;
+      background-color: rgba($white, 0.2);
+      transition: all $transition ease;
+
+      &:global(.swiper-pagination-bullet-active) {
+        background-color: $white;
+        transform: scale(1.2);
+      }
+    }
+  }
+
+  @include media-breakpoint-down(md) {
+    padding-top: $section-spacer/2;
+    padding-bottom: $section-spacer/2;
+    padding-left: 0;
+    padding-right: 0;
+
+    &:global(.reduce-padding-md) {
+      padding-bottom: 0;
+    }
+  }
+
+  @include media-breakpoint-down(sm) {
+    :global(.swiper-pagination) {
+      display: flex;
+      justify-content: center;
     }
   }
 }
@@ -67,7 +142,7 @@
   margin-top: 4rem;
   padding-left: 15px;
 
-  :global(.swiper-container) {
+  :global(.swiper) {
     overflow: visible;
   }
 

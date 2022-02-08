@@ -1,17 +1,18 @@
+import moment from "moment"
+
 export const page = {
-  title: "News API & business solutions",
-  description: "Perigon News API & business solutions",
+  title: "News Data API, Global Media from 40,000 Sources",
+  description: "Get up-to-the-minute news and events data from thousands of local and global media sources and publishers. News data powered and enriched by AI.",
   thumbnail: "logo-thumb.png",
   hero: {
-    title: "A single access-point to the news that matters",
+    title: "A smarter news API",
     titleCL: "mw-450",
-    description: "Perigon tracks, organizes, and analyzes up-to-the-minute news and events data from thousands of sources across the web.",
-    descriptionCL: "mw-500",
-    img: "news-api.png",
+    description: "Up-to-the-minute news and events data from over 40,000 sources across the web. Structured and enriched by Perigon AI.",
+    descriptionCL: "mw-590",
     animation: "newsApi",
-    list: ["AI-powered", "NLP-enriched", "Cleansed, structured", "<a href='#data-points'>25+ data points</a> per article"],
+    imgCL: "mw-450 mobile-offset",
     btnsClassName: "mt-4",
-    label: "A smarter news API",
+    variant: "lp",
     buttons: [
       {
         name: "Free trial",
@@ -32,110 +33,11 @@ export const page = {
       },
     ]
   },
-  carousel: {
-    variant: "fluid",
-    className: "with-bullets news-api",
-    slidesLg: 3.3,
-    slidesMd: 2.3,
-    loop: false,
-    columns: [
-      { title: "Topic & entity extraction", description: "Machine learning automatically extracts events, people, businesses, places, & topics in the news.", img: "/img/topic-extraction.png", imgClass: "fluid offset20" },
-      { title: "Event clustering", description: "Articles are systematically scored for similarity and then organized into a clean feed. Analyze each of them individually, or filter for unique headlines.", img: "/img/event-clustering.png", imgClass: "fluid offset20" },
-      { title: "Real-time signals", description: "Perigon analyzes over 500 articles every minute. Search by source, date, location, and/or custom keywords for up-to-the-minute news.", img: "/img/real-time-signals.png", imgClass: "fluid offset120" },
-      { title: "Easy integration", description: "Apply Perigon’s API to your next project with simple HTTP get requests and JSON results. Start using the API with as little as 4 lines of code.", img: "/img/easy-integrations.png", imgClass: "fluid offset50" },
-    ]
+  liveDemo: {
+    title: "All <strong>cryptocurrency</strong> articles in the <strong>US</strong> from <strong>yesterday</strong>",
   },
   image: {
     img: ""
-  },
-  columns: {
-    title: "Industries & use cases",
-    titleSPC: "Transform today’s news into powerful business insight",
-    titleCL: "mw-md-210",
-    titleSPCCL: "mw-md-260",
-    img: "power-of-intelligence.svg",
-    className: "reduce-padding-md",
-    columns: [
-      {
-        title: "Media monitoring",
-        description: "Monitor your brand, competitors, industry trends, or keywords to identify and investigate mentions, risks and opportunities in real-time.",
-        img: "media-monitoring.svg",
-        className: "border-bottom-half",
-        mobileOrder: 1,
-      },
-      {
-        title: "Financial services",
-        description: "Elevate your investment strategy by harnessing the power of current and historical news data. Gain actionable insights or minimize risk by integrating our feeds into your business’s predictive modeling.",
-        img: "financial-services.svg",
-        className: "border-bottom-half",
-        mobileOrder: 3,
-      },
-      {
-        title: "Enrich your app",
-        description: "Increase user engagement by adding real-time news to your application. Allow your users to customize their feed with fresh content on the topics that matter most to them.",
-        img: "enrich-your-app.svg",
-        className: "border-bottom-half",
-        mobileOrder: 2,
-      },
-      {
-        title: "Data collection & analysis",
-        description: "Supercharge your analytics strategy with news content. Our data includes timely information about events, business risks, global trends, and more.",
-        img: "data-collection.svg",
-        className: "border-bottom-half",
-        mobileOrder: 4,
-      },
-      {
-        title: "Fight misinformation",
-        description: "Improve the integrity of your existing data pipeline or distributed content. Integrate Perigon into your workflows and proactively detect or filter inaccurate or potentially misleading information.",
-        img: "fight-misinformation.svg",
-        className: "border-bottom-half-mobile",
-        mobileOrder: 5,
-      },
-      {
-        title: "Historical, research",
-        description: "Find historical trends or major events from within your industry. Learn more about the media, topics, and stories relevant to your business.",
-        img: "historical-research.svg",
-        mobileOrder: 6,
-      },
-    ],
-    buttons: [
-      {
-        name: "Start building",
-        link: "/sign-up",
-        variant: "primary-arrow",
-      },
-    ]
-  },
-
-  features: {
-    img: "",
-    column2: {
-      label: "News from over 40,000 sources",
-      list: [
-        {
-          title: "Global media",
-          img: "globe.svg",
-          description: "Up-to-the-minute coverage from national & world news sources — from major media brands to smaller niche publishers.",
-        },
-        {
-          title: "Local city media",
-          img: "location.svg",
-          description: "Search by city, state or province and filter for news published by local city papers & broadcasters.",
-        }
-      ]
-    },
-    buttons: [
-      {
-        name: "View sources",
-        link: "/data-solutions/pricing?q=which-media-sources-are-supported",
-        variant: "rounded-dark",
-      },
-      {
-        name: "View cities",
-        link: "/data-solutions/pricing?q=which-cities-are-supported",
-        variant: "rounded-dark",
-      },
-    ]
   },
   console: {
     inner: {
@@ -159,5 +61,32 @@ export const page = {
       ["Article URL", "Country", "Article Reprint Indicator", "Medium / Type", "Content Keywords"],
       ["Article Image", "Related Articles", "Cluster Grouping ID", "AI-Summarized Text", "Taxonomy"],
     ]
-  }
+  },
+  liveDemos: [
+    {
+      title: "All news mentioning <strong>SpaceX OR Tesla</strong> from <strong>last week</strong>",
+      id: 0,
+      // url: `api.goperigon.com/v1/all?apiKey=[KEY]&q=SpaceX OR Tesla&from=${moment().subtract(7, 'days').format('YYYY-MM-DD')}`
+    },
+    {
+      title: `All local <strong>Crime</strong> news for <strong>Chicago</strong>, <strong>IL</strong> from <strong>yesterday</strong>`,
+      id: 1,
+      // url: `api.goperigon.com/v1/all?apiKey=[KEY]&topic=Crime&location=city:Chicago::state:IL&from=${moment().subtract(1, 'days').format('YYYY-MM-DD')}`
+    },
+    {
+      title: `News about <strong>Startups</strong> from <strong>last month</strong> by <strong>top 100</strong> sources`,
+      id: 2,
+      // url: `api.goperigon.com/v1/all?apiKey=[KEY]&topic=Startups&sourceGroup=top100&from=${moment().subtract(30, 'days').format('YYYY-MM-DD')}`
+    },
+    {
+      title: "All articles by <strong>nbcnews.com, cnbc.com, bbc.co.uk</strong> from <strong>yesterday</strong>",
+      id: 3,
+      // url: `api.goperigon.com/v1/all?apiKey=[KEY]&source=nbcnews.com&source=cnbc.com&source=bbc.co.uk&from=${moment().subtract(1, 'days').format('YYYY-MM-DD')}`
+    },
+    {
+      title: "All <strong>Sports</strong> articles from <strong>yesterday</strong>",
+      id: 4,
+      // url: `api.goperigon.com/v1/all?apiKey=[KEY]?label=Opinion&category=Sports&topic=Basketball&from=${moment().subtract(1, 'days').format('YYYY-MM-DD')}`
+    }
+  ]
 }

@@ -57,7 +57,7 @@
       display: block;
     }
 
-    :global(.swiper-container){
+    :global(.swiper){
       overflow: visible;
       margin-top: 4rem;
     }
@@ -122,6 +122,9 @@
 }
 
 .columns {
-  max-width: 700px;
   margin: 0 auto;
+
+  :global(.container){
+    max-width: 1400px;
+  }
 }

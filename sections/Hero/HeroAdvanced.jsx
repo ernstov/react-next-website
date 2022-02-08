@@ -6,8 +6,8 @@ import presetsStyles from "../../styles/global/presets.module.scss"
 import appConfig from "../../configs/appConfig"
 import { Container, Row, Col } from "react-bootstrap"
 import Badge from '../../components/ui/Badge'
-import dynamic from 'next/dynamic'
 import { Context } from "../../context/context"
+import Animation from "./AnimationNewsApi"
 
 const Hero = ({ data, isVisible, isWrap }) => {
 
@@ -67,7 +67,6 @@ const Hero = ({ data, isVisible, isWrap }) => {
   const renderAnimation = (name) => {
     switch (name) {
       case "newsApi":
-        const Animation = dynamic(() => import('./AnimationNewsApi'))
         return <Animation />
     }
   }

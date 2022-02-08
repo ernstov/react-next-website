@@ -56,10 +56,7 @@ const AccountPlan = ({ data, isVisible }) => {
     e.stopPropagation();
     setIsProcess(true)
 
-    if (e.target.querySelectorAll(".not-valid").length > 0) {
-      setIsProcess(false)
-    } else {
-
+    if (e.target.querySelectorAll(".not-valid").length === 0) {
       const formData = new FormData(e.target)
 
       let fields = {}
@@ -72,18 +69,13 @@ const AccountPlan = ({ data, isVisible }) => {
       fields.hearAboutUs = hearAboutUs
       try {
         await UserBillingService.updateUser(fields);
-        debugger;
-        if (router?.query?.billingPlan !== "Free trial") {
-          router.push("/account/plan")
-        } else {
-          router.push("/account/overview")
-        }
+        router.push("/account/overview")
       } catch (e) {
         console.log(e);
       }
-      setIsProcess(false)
     }
 
+    setIsProcess(false)
   }
 
   return (

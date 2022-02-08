@@ -29,6 +29,8 @@ $dark-3:                    #6F6F6F;
 $dark-4:                    #D6D3CE;
 $dark-5:                    #191919;
 $dark-6:                    #212121;
+$dark-7:                    #474644;
+$dark-8:                    #6F6E69;
 $gray-6:                    #848484;
 $gray-7:                    #7A7A7A;
 $gray-8:                    #CCCCCC;
@@ -45,6 +47,7 @@ $gray-18:                   #ECE9E0;
 $gray-19:                   #67655D;
 $gray-20:                   #EBE7D8;
 $gray-21:                   #F6F1E3;
+$gray-22:                   #919191;
 $primary-strong:            #E7AD00;
 $c1:                        #716F6B;
 $cover-2:                   #FDF8EB;
@@ -70,7 +73,12 @@ $cover-15:                  #E4E0D4;
 $cover-16:                  #F4FAFD;
 $cover-17:                  #F2EDE1;
 $cover-18:                  #f1f4f8;
+$cover-19:                  #F9F4E7;
+$cover-20:                  #F8F2E5;
 $error:                     #FC5424;
+$stroke-1:                  #F1ECDE;
+$stroke-2:                  #EDE8DB;
+$stroke-3:                  #D8D5CB;
 
 $theme-colors: ();
 
@@ -102,13 +110,14 @@ $grid-breakpoints: (
 );
 
 $small-container:             1080px;
+$extra-small-container:       880px;
 
 $body-bg:                     $light;
 $body-color:                  $black;
 $border-color:                $gray;
 $border-color-2:              $dark-4;
 
-$header-height:               75px;
+$header-height:               82px;
 $header-height-md:            60px;
 
 $sidebar-width:               200px;
@@ -163,14 +172,14 @@ $transition-timing:           cubic-bezier(.76,0,.175,1);
 
 $project-preview:             50vw;
 
-$tooltip-font-size:             1rem;
-$tooltip-bg:                    $primary-cover-2;
-$tooltip-border-radius:         0;
+$tooltip-font-size:             0.875rem;
+$tooltip-bg:                    rgba($blackAdv, 0.95);
+$tooltip-border-radius:         4px;
 $tooltip-arrow-color:           $tooltip-bg;
-$tooltip-padding-y:             .5rem;
-$tooltip-padding-x:             1rem;
+$tooltip-padding-y:             1rem;
+$tooltip-padding-x:             1.6rem;
 $tooltip-margin:                0 0.5rem;
-$tooltip-color:                 $black;
+$tooltip-color:                 $white;
 $tooltip-arrow-width:           .8rem;
 
 $input-height:                  45px;

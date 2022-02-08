@@ -62,11 +62,13 @@ const Button = ({ children, variant, className, onClick, as, link, isActive, dis
       case "flat-light":
         return `${styles.flatLight} ${size}`
       case "light-simple":
-        return `${styles.buttonR} ${styles.lightSimple} ${size}`
+        return `${styles.button} ${styles.lightSimple} ${size}`
       case "outline-arrow":
         return `${styles.button} ${styles.outlineArrow} ${styles.arrow} ${size}`
       case "rounded-dark":
         return `${styles.buttonR} ${styles.darkLight} ${size}`
+      case "light-adv":
+        return `${styles.button} ${styles.lightAdv} ${size}`
       case "light":
       default:
         return `${styles.button} ${styles.light} ${size}`
@@ -110,9 +112,11 @@ const Button = ({ children, variant, className, onClick, as, link, isActive, dis
   const render = () => {
     switch (as) {
       case "link":
-        return <Link ref={ref} href={`..${link}`} passHref>
-          <a className={`${getStyles()} ${className ? className : ""}`} onClick={onClickIn}>{children} {getIcons()}</a>
-        </Link>
+        return link ?
+          <Link ref={ref} href={`${link}`} passHref>
+            <a className={`${getStyles()} ${className ? className : ""}`} onClick={onClickIn}>{children} {getIcons()}</a>
+          </Link> :
+          <div className={`not-link ${getStyles()} ${className ? className : ""}`} onClick={onClickIn}>{children} {getIcons()}</div>
       case "url":
         return <a ref={ref} className={`${getStyles()} ${className ? className : ""}`} href={link} target="_blank" onClick={onClickIn}>{children} {getIcons()}</a>
       case "url-same":

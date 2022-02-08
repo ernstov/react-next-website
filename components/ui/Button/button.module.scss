@@ -24,6 +24,12 @@
     padding-right: 1.4rem;
   }
 
+  &:global(.md) {
+    font-size: 1.0625rem;
+    padding-left: 1.4rem;
+    padding-right: 1.4rem;
+  }
+
   &:global([disabled]) {
     opacity: 0.5;
     pointer-events: none;
@@ -44,6 +50,7 @@
   }
 
   @include media-breakpoint-down(md) {
+    height: $btn-height-sm;
     padding-left: 1.4rem;
     padding-right: 1.4rem;
   }
@@ -151,6 +158,21 @@
   &:hover {
     background-color: $secondary;
     color: $white;
+  }
+}
+
+.lightAdv {
+  background-color: $cover-2;
+  border-color: $cover-2;
+  color: $dark;
+  box-shadow: 0px 2px 0px $stroke-3;
+  transition: all $transition ease;
+
+  &:hover {
+    background-color: $cover-2;
+    color:  $dark;
+    border-color: $stroke-3;
+    box-shadow: none;
   }
 }
 
@@ -322,10 +344,25 @@
   background-color: $gray-21;
   color: $black;
   border:none;
+  height: 53px;
+  padding-left: 1.4rem;
+  padding-right: 1.4rem;
+  border: 1px solid $stroke-1;
+
+  :global(svg) {
+    margin-right: 0.5rem;
+    opacity: 0.8;
+    font-size: 1.35rem;
+    transition: opacity $transition ease;
+  }
 
   &:global(.active) {
     background-color: $black;
     color: $white;
+
+    :global(svg) { 
+      opacity: 1;
+    }
 
     &:hover {
       color: $white;
@@ -424,16 +461,18 @@
 .flatLight {
   font-size: 1.125rem;
   font-weight: 600;
-  color: $dark;
-  opacity: 0.7;
+  color: rgba($dark, 0.8);
   text-decoration: none;
   display: flex;
   align-items: center;
   padding: 0.5rem 0;
   flex-shrink: 0;
   position: relative;
-  overflow: hidden;
-  transition: opacity $transition ease;
+  transition: color $transition ease;
+
+  &:global(.not-link) {
+    cursor: pointer;
+  }
 
   // &::after{
   //   content: '';
@@ -450,7 +489,7 @@
   // }
 
   &:global(.active) {
-    opacity: 1;
+    color: rgba($dark, 1);
 
     // &::after{
     //   transform: translateY(0);

@@ -163,7 +163,7 @@ const AccountBilling = ({ data, isVisible }) => {
     }
   }
 
-  const activePlan = userData?.subscription?.stripeSubscriptionStatus === 'active'
+  const activePlan = userData?.subscription != null
 
   return (
     <div className={`${styles.accountBilling} ${data.className ? data.className : ""} ${visible ? "active" : ""}`}>
@@ -234,7 +234,7 @@ const AccountBilling = ({ data, isVisible }) => {
                   <div className="mt-3 mb-3"><span className={`${typographyStyles.titleSmallD}`}>{billingPlan[selectedPlan.value] ? billingPlan[selectedPlan.value].description : ""}</span></div>
                   <ul className="list-gray">
                     {!!features[selectedPlan.label] && features[selectedPlan.label].map((feature, i) => (
-                      <li key={`lif-${i}`}><span className={`${typographyStyles.titleSmallD}`}>{feature}</span></li>
+                      <li key={`lif-${i}`}><span className={`${typographyStyles.titleSmallD}`}>{feature.name}</span></li>
                     ))}
                   </ul>
                 </Block>

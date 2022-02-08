@@ -1,18 +1,17 @@
 import { Container, Row, Col, Badge } from "react-bootstrap"
 import Block from "../../components/Block"
-import { Swiper, SwiperSlide } from "swiper/react"
 import styles from './carousel.module.scss'
 import typographyStyles from "../../styles/global/typography.module.scss"
-import SwiperCore, {Pagination} from 'swiper/core'
 import shortid from "shortid"
-
-SwiperCore.use([Pagination]);
+import { Navigation, Pagination } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 const Carousel = ({ data, isVisible }) => {
 
   const options = {
     slidesPerView: 4,
     spaceBetween: 30,
+    modules:[Navigation, Pagination],
     loop: data.hasOwnProperty('loop') ? data.loop : true,
     autoplay: {
       delay: 5000,

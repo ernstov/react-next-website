@@ -149,3 +149,49 @@
     }
   }
 }
+
+.useCasesTitle {
+  white-space: nowrap;
+  padding-right: 1rem;
+
+  @include media-breakpoint-down(md) {
+    margin-bottom: 1rem;
+    padding-right: 0;
+  }
+}
+
+.useCasesContainer {
+  width: 100%;
+}
+
+.useCasesInner {
+  display: flex;
+  align-items: center;
+
+  @include media-breakpoint-down(md) {
+    flex-direction: column;
+  }
+}
+
+.tagsUseCases {
+  background-color: $gray-21;
+  border-bottom: 5px solid $stroke-2;
+  padding: 3rem 0;
+
+  @include media-breakpoint-down(md) {
+    :global(.col) {
+      padding: 0;
+    }
+  }
+}
+
+.useCasesRow {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+
+  @include media-breakpoint-down(md) {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}

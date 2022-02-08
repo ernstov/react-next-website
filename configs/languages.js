@@ -95,7 +95,21 @@ const languages = {
     Unsubscribe: "Unsubscribe",
     Changepaymentmethod: "Change payment method",
     EmailVerificationWarningMessage: "Your email needs to be verified before your API key will work. Check your email (including spam) to verify.",
-    TrialExpirationWarningMessage: "Your free trial expires on"
+    TrialExpirationWarningMessage: "Your free trial expires on",
+    Moreusecases: "More use cases",
+    Readmore: "Read more",
+    Followus: "Follow us",
+    results: "results",
+    Livedemo: "Live demo",
+    Tophit: "Top hit",
+    characters: "characters",
+    MostlyPositive: "Mostly Positive",
+    sentimentT: "sentiment",
+    Relatedto: "Related to",
+    otherarticles: "other articles",
+    chars: "chars",
+    Mostly: "Mostly",
+    trialIncluded: "No credit card required, 15 days of free trial",
   }
 }
 
