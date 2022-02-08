@@ -280,8 +280,8 @@ export const globalData = {
     columns: [
       { title: "Topic & entity extraction", description: "Machine learning automatically extracts events, people, businesses, places, & topics in the news.", img: "/img/topic-extraction.png", imgClass: "fluid offset20" },
       { title: "Event clustering", description: "Articles are systematically scored for similarity and then organized into headline clusters. Analyze each of them individually, or filter for unique headlines.", img: "/img/event-clustering.png", imgClass: "fluid offset20" },
-      { title: "Real-time signals", description: "Perigon analyzes up to 1,000,000 articles every day. Search by source, date, location, author, or keyword for current news.", img: "/img/real-time-signals.png", imgClass: "fluid offset120" },
-      { title: "Easy integration", description: "Apply Perigon's API to your next project with simple HTTP 'GET' requests and JSON results. Use the API with just 4 lines of code.", img: "/img/easy-integrations.png", imgClass: "fluid offset50" },
+      { title: "Real-time signals", description: "Perigon analyzes up to 1,000,000 articles every day. Search by source, location, author, or keyword for news.", img: "/img/real-time-signals.png", imgClass: "fluid offset100" },
+      { title: "Easy integration", description: "Apply Perigon's API to your project with simple HTTP 'GET' requests and JSON results. Start with just 4 lines of code.", img: "/img/easy-integrations.png", imgClass: "fluid offset50" },
     ]
   },
   liveDemo:{

@@ -7,7 +7,7 @@ export const page = {
   hero: {
     title: "A smarter news API",
     titleCL: "mw-450",
-    description: "Up-to-the-minute news and events data from over 40,000 sources across the web. Structured and enriched by Perigon AI.",
+    description: "Up-to-the-minute news & events data from over 40,000 sources across the web. Structured & enriched by AI.",
     descriptionCL: "mw-590",
     animation: "newsApi",
     imgCL: "mw-450 mobile-offset",
@@ -64,14 +64,14 @@ export const page = {
   },
   liveDemos: [
     {
-      title: "All news mentioning <strong>SpaceX OR Tesla</strong> from <strong>last week</strong>",
-      id: 0,
-      // url: `api.goperigon.com/v1/all?apiKey=[KEY]&q=SpaceX OR Tesla&from=${moment().subtract(7, 'days').format('YYYY-MM-DD')}`
-    },
-    {
       title: `All local <strong>Crime</strong> news for <strong>Chicago</strong>, <strong>IL</strong> from <strong>yesterday</strong>`,
       id: 1,
       // url: `api.goperigon.com/v1/all?apiKey=[KEY]&topic=Crime&location=city:Chicago::state:IL&from=${moment().subtract(1, 'days').format('YYYY-MM-DD')}`
+    },
+    {
+      title: "All news mentioning <strong>SpaceX OR Tesla</strong> from <strong>last week</strong>",
+      id: 0,
+      // url: `api.goperigon.com/v1/all?apiKey=[KEY]&q=SpaceX OR Tesla&from=${moment().subtract(7, 'days').format('YYYY-MM-DD')}`
     },
     {
       title: `News about <strong>Startups</strong> from <strong>last month</strong> by <strong>top 100</strong> sources`,
