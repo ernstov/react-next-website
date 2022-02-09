@@ -14,6 +14,7 @@ export const page = {
     label2: "Personal Project",
     label3: "Academic",
     optionsHow: [
+      { value: "Hacker News", label: "Hacker News" },
       { value: "Google", label: "Google" },
       { value: "Facebook", label: "Facebook" },
       { value: "Twitter", label: "Twitter" },

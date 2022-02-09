@@ -15,7 +15,7 @@ export const page = {
     variant: "lp",
     buttons: [
       {
-        name: "Free trial",
+        name: "Get API key",
         link: "/sign-up",
         variant: "primary-arrow",
       },

@@ -15,6 +15,8 @@ import { customSingleValue, scrollBar } from '../../components/ui/Helpers/UiComp
 import AuthService from "../../services/AuthService"
 import { useRouter } from 'next/router'
 
+const ALLOWED_COUPONS = {}
+
 const Signup = ({ data, isVisible }) => {
 
   const { dispatchApp, lang: { Signup, SignIn, APIplan, Viewpricingplans, Firstname, Lastname, Email, Password, trialIncluded, Passwordmustbe6, Ihaveread, EndUserAgreement } } = useContext(Context)
@@ -26,11 +28,22 @@ const Signup = ({ data, isVisible }) => {
 
   const [visible, setVisible] = useState(false)
   const router = useRouter()
-  const [selectedPlan, setSelectedPlan] = useState(options.find(el => el.value === "Standard"))
+
+  const [billingPlanOptions, setBillingPlanOptions] = useState([{value: "Hacker News", label: "Hacker News (Free)"}, ...options])
+  const [selectedPlan, setSelectedPlan] = useState(billingPlanOptions.find(el => el.value === "Standard"))
 
   useEffect(() => {
-    if (router.query.planName) {
-      const plan = options.find(el => el.value === router.query.planName)
+    if (!router.isReady || !router.query) {
+      return
+    }
+
+    const { planName, coupon } = router.query
+
+    if (coupon && ALLOWED_COUPONS[coupon]) {
+      setBillingPlanOptions([ALLOWED_COUPONS[coupon], ...options])
+      setSelectedPlan(ALLOWED_COUPONS[coupon])
+    } else if (planName) {
+      const plan = billingPlanOptions.find(el => el.value === router.query.planName)
       if (plan) {
         setSelectedPlan(plan)
       }
@@ -98,7 +111,7 @@ const Signup = ({ data, isVisible }) => {
                   onChange={setSelectedPlan}
                   className={`${presetsStyles.selectLight}`}
                   classNamePrefix={'acr-select'}
-                  options={options}
+                  options={billingPlanOptions}
                   components={{
                     SingleValue: customSingleValue,
                     MenuList: scrollBar,
