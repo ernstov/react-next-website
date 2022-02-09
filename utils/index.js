@@ -1,4 +1,4 @@
-import {headerHeight,	headerHeightMd} from "../configs/appConfig"
+import { headerHeight, headerHeightMd } from "../configs/appConfig"
 
 export const randomIntFromInterval = (min, max) => {
 	return Math.floor(Math.random() * (max - min + 1) + min);
@@ -177,28 +177,28 @@ export const isEmpty = (obj) => {
 }
 
 export const getSkeletonVariant = (pages, nextPage) => {
-	if(nextPage.includes("news/")) return "article"
+	if (nextPage.includes("news/")) return "article"
 
 	return filterIt(pages, nextPage == "/" ? "/" : nextPage.replace("/", ""), "link")[0]?.skeleton
 }
 
 export const getSidebarAvailability = (pages, nextPage) => {
 
-	if(nextPage.includes("news/")) return false
+	if (nextPage.includes("news/")) return false
 
 	return filterIt(pages, (nextPage == "/" || nextPage == "") ? "/" : nextPage.replace("/", ""), "link")[0]?.isSidebar
 }
 
 export const filterItIndex = (array, value, key) => {
-  let index = -1;
+	let index = -1;
 
-  array.forEach((item, i) => {
-    if (index == -1) {
-      item[key] == value ? index = i : index = -1;
-    }
-  })
+	array.forEach((item, i) => {
+		if (index == -1) {
+			item[key] == value ? index = i : index = -1;
+		}
+	})
 
-  return index;
+	return index;
 }
 
 export const sortArrayOfObjects = (array, key) => {
@@ -206,15 +206,15 @@ export const sortArrayOfObjects = (array, key) => {
 }
 
 export const filterBySourceBias = (array, name) => {
-	return array.filter((article)=>(article.overallBiasRating == name))
+	return array.filter((article) => (article.overallBiasRating == name))
 }
 
 export const excludeByKey = (array, key, value) => {
-	return array.filter((article)=>(article[key] != value))
+	return array.filter((article) => (article[key] != value))
 }
 
 export const numberWithCommas = (x) => {
-  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+	return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 };
 
 export const filterItFull = (array, value, key) => {
@@ -245,15 +245,17 @@ export const isSmoothScroll = () => {
 
 export const scrollTo = (elmId, isWrap, scrollB) => {
 	const elm = document.querySelector(`#${elmId}`)
-	const position = elm.getBoundingClientRect().top
+	if (elm) {
+		const position = elm.getBoundingClientRect().top
 
-	if (window.innerWidth > 880) {
-		scrollB.current.scrollbar.scrollTo(0, calcPosition(position, isWrap), 1000)
-	} else {
-		window.scrollTo({
-			top: window.pageYOffset + calcPosition(position, isWrap),
-			behavior: "smooth"
-		})
+		if (window.innerWidth > 880) {
+			scrollB.current.scrollbar.scrollTo(0, window.pageYOffset + calcPosition(position, isWrap), 1000)
+		} else {
+			window.scrollTo({
+				top: window.pageYOffset + calcPosition(position, isWrap),
+				behavior: "smooth"
+			})
+		}
 	}
 }
 

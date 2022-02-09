@@ -10,7 +10,7 @@ import Header from "../components/Header"
 import Sidebar from "../components/Sidebar"
 import "../styles/main.scss"
 import BottomMenu from "../components/BottomMenu"
-import { isWrap, isSmoothScroll } from "../utils"
+import { isWrap, isSmoothScroll, scrollTo } from "../utils"
 import Agreement from "../components/Agreement"
 import "notyf/notyf.min.css"
 import TagManager from 'react-gtm-module'
@@ -88,7 +88,9 @@ export default function App({ Component, pageProps }) {
 
     const start = (e) => {
       dispatchApp({ type: "SET_LOADING", data: { isLoading: true, nextPage: e } });
-      scrollB.current?.scrollbar.scrollTo(0, 0, 500);
+
+      if (router.asPath.indexOf("#") == -1) scrollB.current?.scrollbar.scrollTo(0, 0, 500)
+
       setLoaderState("preload")
     };
     const end = (e) => {
@@ -99,6 +101,18 @@ export default function App({ Component, pageProps }) {
     setTimeout(() => {
       setLoaderState("loaded")
     }, 500)
+
+    if (router.asPath.indexOf("#") >= 0) {
+      setTimeout(() => {
+        scrollB.current?.scrollbar.scrollTo(0, 0, 0)
+        window.scrollTo(0, 0);
+      }, 10)
+      setTimeout(() => {
+        const ltmp = router.asPath.split("#")
+        const id = ltmp[ltmp.length - 1]
+        scrollTo(id, isWrap(), scrollB)
+      }, 1000)
+    }
 
     Router.events.on("routeChangeStart", start);
     Router.events.on("routeChangeComplete", end);
@@ -113,8 +127,8 @@ export default function App({ Component, pageProps }) {
 
   const isSidebar = () => {
     return router.pathname.indexOf("/account") != -1 ||
-        router.pathname.indexOf("/documentation") != -1 ||
-        router.pathname.indexOf("/admin") != -1
+      router.pathname.indexOf("/documentation") != -1 ||
+      router.pathname.indexOf("/admin") != -1
   }
 
   const getSidebarVariant = () => {
