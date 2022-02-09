@@ -266,4 +266,7 @@ const app = {
   ]
 }
 
+export const headerHeight = app.headerHeight
+export const headerHeightMd = app.headerHeightMd
+
 export default app;

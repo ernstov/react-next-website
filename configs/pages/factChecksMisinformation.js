@@ -14,7 +14,7 @@ export const page = {
     btnsClassName: "mt-4",
     variant: "lp",
     listAdv: {
-      items: ["Search and filter by <span>25+</span> variables", "Find fact-checks on any topic", "Identify news vs opinions or gossip", "Capture detailed author data", "Compare related coverage"]
+      items: ["Search and filter by <a href='#comparison'>25+</a> variables", "Find fact-checks on any topic", "Identify news vs opinions or gossip", "Capture detailed author data", "Compare related coverage"]
     },
     buttons: [
       {
@@ -46,7 +46,7 @@ export const page = {
     btnsClassName: "mt-4",
     variant: "lp",
     listAdv: {
-      items: ["Search and filter by <span>25+</span> variables", "Find fact-checks on any topic", "Identify news vs opinions or gossip", "Capture detailed author data", "Compare related coverage"]
+      items: ["Search and filter by <a href='#comparison'>25+</a> variables", "Find fact-checks on any topic", "Identify news vs opinions or gossip", "Capture detailed author data", "Compare related coverage"]
     },
     buttons: [
       {

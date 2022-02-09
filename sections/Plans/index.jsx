@@ -46,10 +46,10 @@ const Plans = ({ data, isVisible }) => {
       767: {
         slidesPerView: 2.3,
       },
-      1100: {
+      991: {
         slidesPerView: 3.3,
       },
-      1500: {
+      1100: {
         slidesPerView: 4,
       }
     }

@@ -8,11 +8,13 @@ import { Container, Row, Col } from "react-bootstrap"
 import Badge from '../../components/ui/Badge'
 import LiveDemo from "../../components/LiveDemo"
 import Animation from "./AnimationNewsApi"
+import {scrollTo} from "../../utils"
 
 const HeroSpecial = ({ data, isVisible, isWrap, liveDemo }) => {
 
   const [visible, setVisible] = useState(false)
   const { list, label, buttons, isBlank, img, isExternal, imgCL, titleCL, descriptionCL, description, title, btnsClassName, className, variant, animation, listAdv } = data
+  const { scrollB } = useContext(Context)
 
   useEffect(() => {
     if (isVisible) {
@@ -21,6 +23,26 @@ const HeroSpecial = ({ data, isVisible, isWrap, liveDemo }) => {
       }, appConfig.entryDelay * 2)
     }
   }, [isVisible])
+
+  useEffect(()=>{
+    document.querySelectorAll('[href*="#"]').forEach((item)=>{
+      item.addEventListener("click", onScrollToSection)
+    })
+
+    return ()=> {
+      document.querySelectorAll('[href*="#"]').forEach((item)=>{
+        item.removeEventListener("click", onScrollToSection)
+      })
+    }
+  },[])
+
+  
+  const onScrollToSection = (e) => {
+    e.preventDefault()
+    const id = e.target.href.split("#")[1]
+
+    scrollTo(id, isWrap, scrollB)
+  }
 
   const renderAnimation = (name) => {
     switch (name) {

@@ -11,7 +11,7 @@ const Compare = ({ data, isVisible }) => {
   const {title, description, list, buttons} = data
 
   return (
-    <div className={`${styles.compare} sect-spacer-lg ${isVisible ? "active" : ""}`}>
+    <div id='comparison' className={`${styles.compare} sect-spacer-lg ${isVisible ? "active" : ""}`}>
       <Container className="entry-1">
         <Row className="mb-4">
           <Col md={12}>

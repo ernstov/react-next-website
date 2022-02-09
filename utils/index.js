@@ -1,3 +1,5 @@
+import {headerHeight,	headerHeightMd} from "../configs/appConfig"
+
 export const randomIntFromInterval = (min, max) => {
 	return Math.floor(Math.random() * (max - min + 1) + min);
 }
@@ -238,5 +240,27 @@ export const isSmoothScroll = () => {
 		return JSON.parse(smooth);
 	} else {
 		return true;
+	}
+}
+
+export const scrollTo = (elmId, isWrap, scrollB) => {
+	const elm = document.querySelector(`#${elmId}`)
+	const position = elm.getBoundingClientRect().top
+
+	if (window.innerWidth > 880) {
+		scrollB.current.scrollbar.scrollTo(0, calcPosition(position, isWrap), 1000)
+	} else {
+		window.scrollTo({
+			top: window.pageYOffset + calcPosition(position, isWrap),
+			behavior: "smooth"
+		})
+	}
+}
+
+export const calcPosition = (position, isWrap) => {
+	if (window.innerWidth > 879) {
+		return isWrap ? position - headerHeight - 50 : position
+	} else {
+		return isWrap ? position - headerHeightMd : position
 	}
 }
