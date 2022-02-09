@@ -9,6 +9,7 @@ import Badge from '../../components/ui/Badge'
 import LiveDemo from "../../components/LiveDemo"
 import Animation from "./AnimationNewsApi"
 import {scrollTo} from "../../utils"
+import { Context } from "../../context/context"
 
 const HeroSpecial = ({ data, isVisible, isWrap, liveDemo }) => {
 
