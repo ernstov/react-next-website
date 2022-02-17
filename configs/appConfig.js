@@ -154,7 +154,7 @@ const app = {
     img: "periscope.svg",
     variant: "simple",
     className: "small-container",
-    additional: "Use of Perigon is subject to our <a href='/terms'>Terms</a>, <a href='/privacy'>Privacy Policy</a> & <a href='/eula'>EULA</a>. ",
+    additional: "Use of Perigon is subject to our <a href='/terms'>Terms</a>, <a href='/privacy'>Privacy Policy</a> & <a href='/EULA.pdf'>EULA</a>. ",
     stores: [
       { img: "app-store-badge.png", link: "https://apps.apple.com/us/app/gawq-unbreaking-news/id1514212857" },
       { img: "google-play-badge.png", link: "https://play.google.com/store/apps/details?id=com.gawq" },
