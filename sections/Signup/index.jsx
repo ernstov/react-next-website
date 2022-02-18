@@ -15,6 +15,7 @@ import { customSingleValue, scrollBar } from '../../components/ui/Helpers/UiComp
 import AuthService from "../../services/AuthService"
 import { useRouter } from 'next/router'
 
+// Coupons are not used at the moment.
 const ALLOWED_COUPONS = {}
 
 const Signup = ({ data, isVisible }) => {
@@ -29,7 +30,7 @@ const Signup = ({ data, isVisible }) => {
   const [visible, setVisible] = useState(false)
   const router = useRouter()
 
-  const [billingPlanOptions, setBillingPlanOptions] = useState([{value: "Hacker News", label: "Hacker News (Free)"}, ...options])
+  const [billingPlanOptions, setBillingPlanOptions] = useState(options)
   const [selectedPlan, setSelectedPlan] = useState(billingPlanOptions.find(el => el.value === "Standard"))
 
   useEffect(() => {
