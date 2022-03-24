@@ -10,6 +10,11 @@ export default function reducer(state, action) {
         ...state,
         filter: action.data
       }
+    case 'SET_DEMO_FILTER':
+      return {
+        ...state,
+        selectedFilters: {...state.selectedFilters, ...action.data}
+      }
     case 'SET_LOADING':
       return {
         ...state,
@@ -22,7 +27,7 @@ export default function reducer(state, action) {
         [`${action.data.name}Offset`]: state.isDataLoading ? state[`${action.data.name}Offset`] : state[`${action.data.name}Offset`] ? state[`${action.data.name}Offset`] + 1 : 1,
         currentData: action.data.name,
         currentType: action.data.type,
-        isOffset:false,
+        isOffset: false,
       }
 
     case 'ADD_LOADED_DATA':
@@ -62,7 +67,7 @@ export default function reducer(state, action) {
         offset: action.data.offset,
         isOffset: true,
       }
-    
+
     case "SET_USER": {
       return {
         ...state,

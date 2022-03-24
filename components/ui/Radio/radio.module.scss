@@ -1,0 +1,63 @@
+@import "../../../styles/base/variables.scss";
+
+.root {
+  height: 42px;
+  width: 100%;
+  border: 1px solid $stroke-6;
+  border-radius: $btn-radius;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+
+  @include media-breakpoint-down(lg) {
+
+  }
+}
+
+.option {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  height: 100%;
+  color: $dark-7;
+  cursor: pointer;
+  border-right: 1px solid $stroke-6;
+  transition: all $transition ease;
+
+  &:first-child{
+    border-top-left-radius: $btn-radius;
+    border-bottom-left-radius: $btn-radius;
+  }
+
+  &:last-child{
+    border-top-right-radius: $btn-radius;
+    border-bottom-right-radius: $btn-radius;
+  }
+
+  &:global(.active){
+    background-color: $blackAdv;
+    color: $white;
+
+    &::before{
+      border-width: 4px;
+      border-color: $white;
+    }
+  }
+
+  &:last-child{
+    border-right: none;
+  }
+
+  &::before{
+    content: '';
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    margin-left: 1rem;
+    margin-right: 0.5rem;
+    border: 1px solid $dark-7;
+    transition: all $transition ease;
+  }
+}

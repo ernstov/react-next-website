@@ -36,9 +36,28 @@ const Follow = ({ data, isVisible, variant }) => {
     subscribe(fields);
   }
 
-  if (variant === 'form-only') {
-    return (
-      <div className={`${styles.follow} form-only ${data.className ? data.className : ""} ${visible ? "active" : ""}`}>
+  switch (variant) {
+    case "form-blog":
+      return <div className={`${styles.follow} form-blog ${data.className ? data.className : ""} ${visible ? "active" : ""}`}>
+        <MailchimpSubscribe
+          url={data.button.action}
+          render={({ subscribe, status, message }) => (
+            <div className={`position-relative w-100 ${status === "success" ? `${styles.followMessage}`: ""}`}>
+              <form onSubmit={(e) => onSubmit(e, subscribe)} className={`follow-form w-100 ${data.bg} ${status === "success" ? "hide" : ""}`}>
+                <div className="follow-input-container bg-white w-100">
+                  <input name="EMAIL" type="email" required placeholder={data.placeholder} />
+                  <button disabled={status === "sending"} type="submit">{data.button.name}</button>
+                  <div className={`follow-notification ${status === "error" ? "active" : ""}`} dangerouslySetInnerHTML={{ __html: message }}></div>
+                </div>
+                {status === "sending" && <div className="follow-loader"><Icon variant="loader" /></div>}
+              </form>
+              <div className={`follow-message ${status === "success" ? "show" : ""}`}><div className={`${styles.followIcon}`}><Icon variant="allow"/></div>{data.message}</div>
+            </div>
+          )}
+        />
+      </div>
+    case "form-only":
+      return <div className={`${styles.follow} form-only ${data.className ? data.className : ""} ${visible ? "active" : ""}`}>
         <MailchimpSubscribe
           url={data.button.action}
           render={({ subscribe, status, message }) => (
@@ -56,10 +75,8 @@ const Follow = ({ data, isVisible, variant }) => {
           )}
         />
       </div>
-    )
-  } else {
-    return (
-      <div className={`${styles.follow} ${data.className ? data.className : ""} ${visible ? "active" : ""}`}>
+    default:
+      return <div className={`${styles.follow} ${data.className ? data.className : ""} ${visible ? "active" : ""}`}>
         <Container>
           <Row>
             <Col lg={12} className="text-center position-relative entry-1">
@@ -84,9 +101,7 @@ const Follow = ({ data, isVisible, variant }) => {
           </Row>
         </Container>
       </div>
-    )
   }
-
 }
 
 export default Follow;

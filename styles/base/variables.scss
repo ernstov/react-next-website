@@ -3,8 +3,10 @@
 @import "../../node_modules/bootstrap/scss/mixins";
 
 $primary:                   #F9C035;
+$primarySpc:                #BB9027;
 $primary-cover:             #FDFBF5;
 $secondary:                 #227C9D;
+$secondary-adv:             #196079;
 $white:                     #ffffff;
 $black:                     #272727;
 $blackAdv:                  #121212;
@@ -48,6 +50,9 @@ $gray-19:                   #67655D;
 $gray-20:                   #EBE7D8;
 $gray-21:                   #F6F1E3;
 $gray-22:                   #919191;
+$gray-23:                   #B0B0B0;
+$gray-24:                   #828282;
+$grey-25:                   #6E6D68;
 $primary-strong:            #E7AD00;
 $c1:                        #716F6B;
 $cover-2:                   #FDF8EB;
@@ -75,10 +80,24 @@ $cover-17:                  #F2EDE1;
 $cover-18:                  #f1f4f8;
 $cover-19:                  #F9F4E7;
 $cover-20:                  #F8F2E5;
+$cover-21:                  #EAE4D5;
+$cover-22:                  #FFFBF1;
+$cover-23:                  #FFF7E4;
+$cover-24:                  #F6F1E2;
+$cover-25:                  #EFF3F4;
+$cover-26:                  #FFFDF8;
+$cover-27:                  #DED8CB;
+$cover-28:                  #FFF7DE;
+$cover-29:                  #EFF1ED;
+$cover-30:                  #DCD9D2;
 $error:                     #FC5424;
 $stroke-1:                  #F1ECDE;
 $stroke-2:                  #EDE8DB;
 $stroke-3:                  #D8D5CB;
+$stroke-4:                  #E1DCCE;
+$stroke-5:                  #E6E4DD;
+$stroke-6:                  #DEDBCC;
+$fblack:                    #000000;
 
 $theme-colors: ();
 
@@ -119,6 +138,7 @@ $border-color-2:              $dark-4;
 
 $header-height:               82px;
 $header-height-md:            60px;
+$header-height-adv-md:        70px;
 
 $sidebar-width:               200px;
 
@@ -186,8 +206,10 @@ $input-height:                  45px;
 $input-border-radius:           25px;
 $input-padding:                 0 2rem;
 
+$btn-height-tn:                 33px;
 $btn-height-small:              42px;
 $btn-height-sm:                 46px;
+$btn-height-spc:                48px;
 $btn-height:                    55px;
 $btn-height-large:              64px;
 $btn-height-large-md:           48px;
@@ -207,6 +229,9 @@ $shadow-4:                      0px 6px 10px rgba(0, 0, 0, 0.10383);
 $shadow-5:                      0px 0px 30px 4px rgba(0, 0, 0, 0.3);
 $shadow-6:                      0px 2px 0px #F3F0E6;
 $shadow-7:                      0px 0px 18px 2px rgba(0, 0, 0, 0.04);
+$shadow-8:                      0px 2px 8px 3px rgba(18, 18, 18, 0.25);
+$shadow-9:                      0px 0px 9px rgba(0, 0, 0, 0.054469), 0px 4px 14px 10px rgba(0, 0, 0, 0.1), inset 0px -3px 0px #272727;
+$shadow-10:                     0px 1px 0px #ECE9E2;
 $spacer-mobile:                 5px;
 
 $link-color:                              $secondary;

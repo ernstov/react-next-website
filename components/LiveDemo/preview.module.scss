@@ -185,3 +185,154 @@ $ldSpacer: 2rem;
   font-weight: 600;
   color: $gray-8;
 }
+
+.previewDateDemo {
+  white-space: nowrap;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: rgba($white, 0.6);
+  margin-right: 1rem;
+}
+
+.previewDemo {
+  border-radius: 3px;
+  background-color: $black;
+  padding: 1.4rem;
+
+  @include media-breakpoint-down(sm) {
+    border-radius: 0;
+    border-bottom: 1px solid $fblack;
+  }
+}
+
+.previewTitleDemo {
+  h3 {
+    font-size: 1rem;
+    color: $primary;
+    font-weight: 600;
+    margin-bottom: 0;
+  }
+
+  span {
+    font-weight: 500;
+    font-size: 0.8125rem;
+    color: $gray-22;
+    display: block;
+  }
+}
+
+.previewDemoContent {
+  color: $gray-23;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-weight: 500;
+  font-size: 0.875rem;
+}
+
+.previewImgDemo {
+  width: 60px;
+  height: 45px;
+  margin-left: 1rem;
+
+  img {
+    object-fit: cover;
+  }
+}
+
+.previewSourceLinkDemo {
+  display: flex;
+  align-items: center;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-right: 1rem;
+
+  img {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    margin-right: 0.25rem;
+  }
+
+  a {
+    color: $white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    transition: opacity $transition ease;
+
+    svg {
+      width: 14px;
+      height: auto;
+      margin-left: 0.25rem;
+    }
+
+    &:hover {
+      opacity: 0.5;
+    }
+  }
+}
+
+.previewTagDemo {
+  background-color: $blackAdv;
+  color: $gray-8;
+  font-size: 0.5468rem;
+  font-weight: 600;
+  white-space: nowrap;
+  text-transform: uppercase;
+  user-select: none;
+  letter-spacing: 0.1em;
+  padding: 0.25rem 0.5rem;
+  margin-right: 0.25rem;
+}
+
+.previewRowTagsDemo {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.previewRowDateDemo {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+
+  > div {
+    width: 50%;
+  }
+}
+
+.previewFeedback {
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+
+  &:global(.positive){
+    color: $secondary;
+  }
+
+  &:global(.negative){
+    color: $error;
+  }
+}
+
+.previewLabelDemo {
+  background-color: $primary;
+  padding: 0 0.5rem;
+  border-radius: 3px;
+  color: $blackAdv;
+  font-size: 0.5625rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  line-height: 19px;
+  height: 19px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-right: 5px;
+}
+
+.previewDemoSkeleton {
+  border-radius: 3px;
+  background-color: $black;
+  padding: 1.4rem;
+}

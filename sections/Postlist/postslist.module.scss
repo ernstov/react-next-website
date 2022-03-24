@@ -21,29 +21,40 @@
 
 .blogHeader {
   width: 100%;
-  height: 220px;
-  background: url("/img/wire-bg.png") center center;
-  background-size: cover;
+  height: 80px;
+  background-color: $blackAdv;
   position: relative;
-  border-bottom: 1px solid rgba($dark-1, 0.5);
+  display: flex;
+  align-items: flex-end;
+  color: $cover-2;
 
-  img {
-    width: 380px;
+  span {
+    font-weight: 700;
+    padding-left: 2rem;
     display: block;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: -17px;
+    height: 3.175rem;
+    font-size: 3.4375rem;
+    line-height: 3.175rem;
+    margin-bottom: -7px;
+    cursor: pointer;
   }
 
-  @include media-breakpoint-down(md) {
-    height: 150px;
+  @include media-breakpoint-down(sm) {
+    height: 67px;
+    text-align: center;
 
-    img {
-      width: 300px;
-      bottom: -14px;
+    span {
+      padding-left: 0;
     }
   }
+}
+
+.blogLoader {
+  width: 100%;
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .blogPageTitle {
@@ -72,8 +83,18 @@
 
 .blogContainer {
   margin: 0 auto;
-  max-width: 760px;
+  max-width: 1040px;
+  padding-left: $gutter/2;
+  padding-right: $gutter/2;
   width: 100%;
+
+  @include media-breakpoint-down(lg) {
+    max-width: 800px;
+  }
+
+  @include media-breakpoint-down(md) {
+    max-width: 680px;
+  }
 
   @include media-breakpoint-down(sm) {
     padding: 0 15px;
@@ -94,51 +115,87 @@
   }
 }
 
-.tagsWrapper {
-  max-width: 320px;
-  width: 100%;
-  background: rgba(255, 255, 255, 0.598585);
-  border: 1px solid #d1d1d1;
-  border-radius: 8px;
-  padding: 24px 32px 18px;
+.tagsContainer {
+  border-left: 4px solid $primary;
+  padding-left: 10px;
+  margin-top: 2rem;
 
-  :global(.tags-wrapper__title) {
-    font-family: "Avenir";
-    font-weight: normal;
-    font-size: 14px;
-    color: #818181;
-    margin-bottom: 12px;
+  h3 {
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    color: $gray-24;
+    letter-spacing: 0.05em;
+    padding-left: 5px;
   }
 
   @include media-breakpoint-down(md) {
-    max-width: 400px;
-    margin-bottom: 15px;
-    padding: 20px 30px 18px;
+    width: calc(100% + #{$gutter/2});
   }
 }
 
-.subscribeWrapper {
-  max-width: 355px;
-  width: 100%;
-  background: #fffae1;
-  border: 1px solid #d1d1d1;
-  border-radius: 8px;
-  padding: 26px 37px;
+.tagsWrapper {
+  display: flex;
+  flex-wrap: nowrap;
+  margin-bottom: 4px;
+  min-height: 46px;
+}
 
-  :global(.subscribe-wrapper__text) {
-    font-family: "Avenir";
-    font-weight: normal;
-    font-size: 14px;
-    color: #818181;
-    margin-bottom: 12px;
+.subscribeWrapper {
+  width: 100%;
+  border-radius: 8px;
+  display: flex;
+  align-items: stretch;
+  background-color: $cover-23;
+
+  @include media-breakpoint-down(md) {
+    
+  }
+}
+
+.subscribeForm {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding-right: 3rem;
+
+  @include media-breakpoint-down(md) {
+    flex-direction: column;
+    align-items: center;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+.subscribeIcon {
+  background-color: $cover-24;
+  font-size: 1.8rem;
+  display: flex;
+  align-items: center;
+  padding-left: 1.6rem;
+  padding-right: 1.6rem;
+  color: rgba($blackAdv, 0.1);
+
+  @include media-breakpoint-down(md) {
+    display: none;
+  }
+}
+
+.subscribeInner {
+  padding: 1rem;
+  width: 100%;
+
+  span {
+    display: block;
+    padding-right: 5%;
+    max-width: 500px;
+    border-right: 1px solid $gray-3;
   }
 
   @include media-breakpoint-down(md) {
-    max-width: 400px;
-    padding: 26px 15px;
+    text-align: center;
 
-    :global(.subscribe-wrapper__text) {
-      padding: 0 15px;
+    span {
+      border-right: none;
     }
   }
 }
@@ -202,16 +259,6 @@
   width: 100%;
   padding: 0 20px;
 
-  &:after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 1px;
-    left: 0;
-    bottom: 21px;
-    background: #e2e2e2;
-  }
-
   @include media-breakpoint-down(md) {
     margin-top: 30px;
     padding: 0 5px;
@@ -220,20 +267,15 @@
 
 .blogSectionTitle {
   display: inline-block;
-  font-size: 29px;
-  color: #272727;
+  font-size: 1.375rem;
+  font-weight: 600;
+  color: $dark-8;
   padding: 0 10px;
+  padding-left: 1.8rem;
   position: relative;
   z-index: 10;
 
-  &:after {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    bottom: 4px;
-    left: 0;
-    width: 100%;
-    height: 19px;
-    background: #fcdd8c;
+  @include media-breakpoint-down(md) {
+    padding-left: 0;
   }
 }

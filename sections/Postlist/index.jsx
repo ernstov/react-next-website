@@ -1,90 +1,97 @@
-import React, { useState, useEffect, useContext } from "react";
-import { Badge } from "react-bootstrap";
-import ApiService from '../../services/ApiService'
+import React, { useEffect, useContext, useState } from "react";
 import { ArticlePreview } from '../../components/Blog/ArticlePreview'
 import { v4 as uuidv4 } from 'uuid'
-import uniqBy from 'lodash.uniqby'
 import appConfig from "../../configs/appConfig";
 import Follow from "../Follow";
 import { filterIt } from "../../utils";
 import { Context } from "../../context/context";
-import presetsStyles from "../../styles/global/typography.module.scss"
+import ts from "../../styles/global/typography.module.scss"
+import Button from "../../components/ui/Button"
+import ScrollContainer from 'react-indiana-drag-scroll'
+import Icon, { IconEmail } from "../../components/Icon"
+import Link from "next/link"
 
 import styles from './postslist.module.scss'
 
 const PostList = (props) => {
-  const { app, lang: { Postsnotfound, } } = useContext(Context);
-  const [articlesList, setArticlesList] = useState(null)
-  const [tags, setTags] = useState(null)
-  const [selectedTag, setSelectedTag] = useState(app.tag ? app.tag : null)
-  const { data } = props
-
-  const getArticlesRequest = () => {
-    ApiService.getArticles().then(response => {
-      if (response) {
-        setArticlesList(response)
-        getTags(response)
-      }
-    })
-  }
-
-  const getTags = (articles) => {
-    if (!articles?.length) return
-
-    const tagArrs = articles.map(article => {
-      return article?.blogTags
-    })
-
-    const allTags = tagArrs.flat(1)
-    setTags(uniqBy(allTags, 'name'))
-  }
-
-  useEffect(() => {
-    getArticlesRequest()
-  }, []);
+  const { app, lang: { Postsnotfound, TheWire, Browsebytopic } } = useContext(Context);
+  const { data, tags, posts, tagId, isVisible } = props
+  const [visible, setVisible] = useState(false)
 
   const renderArticles = () => {
     let articles = [];
 
-    articlesList.forEach((article) => {
-      if (selectedTag != null) {
-        const stags = filterIt(article.blogTags, selectedTag, "name");
-        if (stags.length > 0) articles.push(<ArticlePreview {...article} key={uuidv4()} />);
+    posts.forEach((article) => {
+      if (tagId) {
+        const stags = filterIt(article.blogTags, parseInt(tagId), "id");
+        if (stags.length > 0) articles.push(<ArticlePreview className="mb-4" {...article} key={uuidv4()} />);
       } else {
-        articles.push(<ArticlePreview {...article} key={uuidv4()} />);
+        articles.push(<ArticlePreview className="mb-4" {...article} key={uuidv4()} />);
       }
     })
 
     return articles?.length ? articles : <div className="text-center p-4"><span className="">{Postsnotfound}</span></div>;
   }
 
+  useEffect(() => {
+    if (isVisible) {
+      setTimeout(() => {
+        setVisible(true)
+      }, appConfig.entryDelay)
+    }
+  }, [isVisible])
+
+  const getTitle = () => {
+    const stags = filterIt(tags, parseInt(tagId), "id");
+    return stags?.length ? stags[0].name : ""
+  }
+
   return (
-    <div className={`${styles.blog}`}>
+    <div className={`${styles.blog} ${visible ? "active" : ''}`}>
       <div className={`${styles.blogHeader}`}>
-        <img src={`/img/wire-img.svg`} alt="" />
-      </div>
-      <header className={`${styles.blogHeaderWrapper}`}>
-        <h1 className={`${styles.blogPageTitle} ${presetsStyles.textTitle}`}>{data?.pageTitle}</h1>
-        <p className={`${styles.blogSubtitle} ${presetsStyles.textSubTitle}`}>{data?.pageSubtitle}</p>
-      </header>
-      <div className={`${styles.doubleSectionWrapper}`}>
-        <div className={`${styles.tagsWrapper}`}>
-          <h3 className="tags-wrapper__title">{data?.tagsText}</h3>
-          {
-            tags?.length && tags.map((item, i) => <Badge onClick={() => setSelectedTag(item.name == selectedTag ? null : item.name)} className={`mr-2 mb-2 ${item.name == selectedTag ? "active" : ""}`} variant="cover" key={uuidv4()}>{item?.name}</Badge>)
-          }
+        <div className={`${styles.blogContainer}`}>
+          <Link href={`/wire`}><span>{TheWire}</span></Link>
         </div>
+      </div>
+      <div className={`${styles.blogContainer} entry-1`}>
+        <div className={`${styles.tagsContainer}`}>
+          <h3>{Browsebytopic}</h3>
+          <ScrollContainer className={`scroll-container`}>
+            <div className={`${styles.tagsWrapper}`}>
+              {tags?.length && tags.map((item, i) =>
+                <Button
+                  size="sm"
+                  variant="light-simple"
+                  as="link"
+                  link={`/wire/topic/${item.id}`}
+                  className={`mr-2 ${item.id == tagId ? "active" : ""}`}
+                  key={uuidv4()}>{item?.name}
+                </Button>
+              )
+              }
+            </div>
+          </ScrollContainer>
+        </div>
+      </div>
+      <div className={`${styles.blogContainer} entry-3 mt-3 mt-md-5 mb-4`}>
         <div className={`${styles.subscribeWrapper}`}>
-          <p className="subscribe-wrapper__text">{data?.subscribeForm?.title}</p>
-          <Follow data={{ ...appConfig.follow, bg: "white" }} variant={'form-only'} />
+          <div className={`${styles.subscribeIcon}`}>
+            <IconEmail />
+          </div>
+          <div className={`${styles.subscribeForm}`}>
+            <div className={`${styles.subscribeInner}`}>
+              <span className={`${ts.textLg} ${ts.c8}`}>{data?.subscribeForm?.title}</span>
+              </div>
+            <Follow data={{ ...appConfig.follow, bg: "white" }} variant={'form-blog'} />
+          </div>
         </div>
       </div>
-      <section className={`${styles.blogContainer}`}>
+      <section className={`${styles.blogContainer} entry-4`}>
         <div className={`${styles.blogSectionTitleWrapper}`}>
-          <h2 className={`${styles.blogSectionTitle}`}>{selectedTag != null ? selectedTag : data?.articlesTitle}</h2>
+          <h2 className={`${styles.blogSectionTitle}`}>{tagId ? getTitle() : data?.articlesTitle}</h2>
         </div>
         {
-          articlesList?.length && renderArticles()
+          posts?.length ? renderArticles() : <div className={`${styles.blogLoader}`}><Icon variant="loader" /></div>
         }
       </section>
     </div>

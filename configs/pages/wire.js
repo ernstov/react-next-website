@@ -19,7 +19,7 @@ export const page = {
   blog: {
     tagsText: 'Frequent topics',
     subscribeForm: {
-      title: 'Follow along and get content from the Wire delivered straight to your inbox:',
+      title: 'Welcome to Perigon’s blog. 👋🏼 Join us on our journey toward a better media landscape.',
     },
     pageTitle: 'This is the Wire',
     pageSubtitle: 'Perigon’s journey toward a better media landscape',

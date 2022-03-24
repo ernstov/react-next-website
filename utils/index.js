@@ -266,3 +266,118 @@ export const calcPosition = (position, isWrap) => {
 		return isWrap ? position - headerHeightMd : position
 	}
 }
+
+export const capitalizeFirstLetter = (string) => {
+	return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+export const getOffset = (el) => {
+  const rect = el?.getBoundingClientRect();
+  return rect ? {
+    left: rect.left + window.scrollX,
+    top: rect.top + window.scrollY
+  } : {};
+}
+
+export const languages = [
+	{
+		"code": "us",
+		"lang": "en",
+		"country": "United States"
+	},
+	{
+		"code": "gb",
+		"lang": "en",
+		"country": "Great Britain"
+	},
+	{
+		"code": "de",
+		"lang": "de",
+		"country": "Germany"
+	},
+	{
+		"code": "it",
+		"lang": "it",
+		"country": "Italy"
+	},
+	{
+		"code": "fr",
+		"lang": "fr",
+		"country": "France"
+	},
+	{
+		"code": "nl",
+		"lang": "nl",
+		"country": "Netherlands"
+	},
+	{
+		"code": "se",
+		"lang": "sv",
+		"country": "Sweden"
+	},
+	{
+		"code": "dk",
+		"lang": "da",
+		"country": "Denmark"
+	},
+	{
+		"code": "fi",
+		"lang": "fi",
+		"country": "Finland"
+	},
+	{
+		"code": "hu",
+		"lang": "hu",
+		"country": "Hungary"
+	},
+	{
+		"code": "no",
+		"lang": "no",
+		"country": "Norway"
+	},
+	{
+		"code": "pl",
+		"lang": "pl",
+		"country": "Poland"
+	},
+	{
+		"code": "pt",
+		"lang": "pt",
+		"country": "Portugal"
+	},
+	{
+		"code": "ru",
+		"lang": "ru",
+		"country": "Russia"
+	},
+	{
+		"code": "ua",
+		"lang": "uk",
+		"country": "Ukraine"
+	},
+	{
+		"code": "ch",
+		"lang": "en",
+		"country": "Switzerland"
+	},
+	{
+		"code": "br",
+		"lang": "pt",
+		"country": "Brazil"
+	},
+	{
+		"code": "nz",
+		"lang": "en",
+		"country": "New Zealand"
+	},
+	{
+		"code": "mx",
+		"lang": "es",
+		"country": "Mexico"
+	},
+	{
+		"code": "au",
+		"lang": "en",
+		"country": "Australia"
+	}
+]

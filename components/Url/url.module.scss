@@ -1,0 +1,113 @@
+@import "../../styles/base/variables.scss";
+
+.url {
+  min-height: 74px;
+  display: flex;
+  align-items: stretch;
+  padding-bottom: 20px;
+  border-bottom: 1px solid $stroke-4;
+
+  @include media-breakpoint-down(md) {
+    border-bottom: none;
+    width: calc(100% + #{$gutter});
+    margin-left: -$gutter/2;
+    padding-bottom: 0;
+  }
+}
+
+.type {
+  background-color: rgba($secondary, 0.1);
+  color: $secondary;
+  width: 54px;
+  min-height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  line-height: 1;
+  flex-shrink: 0;
+  font-size: 0.8125rem;
+  letter-spacing: 1px;
+  border-radius: 3px;
+  margin-right: 10px;
+
+  @include media-breakpoint-down(md) {
+    display: none;
+  }
+}
+
+.input {
+  border: none;
+  background-color: $white;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  position: relative;
+  border-radius: 3px;
+  overflow-wrap: anywhere;
+
+  @include media-breakpoint-down(md) {
+    background-color: $cover-14;
+
+    input {
+      white-space: pre-wrap;
+    }
+  }
+}
+
+.inputText {
+  border: none;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  outline: none;
+  font-weight: 500;
+  padding-left: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 1rem;
+  padding-right: 70px;
+}
+
+.copy {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  width: 60px;
+  overflow: hidden;
+  white-space: nowrap;
+  height: 34px;
+  transform: translateY(-50%);
+  font-weight: 600;
+  font-size: 0.8125rem;
+  color: $dark-7;
+  cursor: pointer;
+  background-color: $gray-21;
+  border: 1px solid $stroke-1;
+  border-radius: 3px;
+  padding-left: 10px;
+  padding-right: 10px;
+  transition: all $transition ease;
+
+  span {
+    display: block;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    transition: transform $transition ease;
+  }
+
+  &:global(.copied) {
+    span {
+      transform: translateY(-100%);
+    }
+  }
+
+  &:hover {
+    background-color: $secondary;
+    color: $white;
+  }
+}

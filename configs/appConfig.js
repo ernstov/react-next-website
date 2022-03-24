@@ -44,6 +44,7 @@ const app = {
         { name: "About", link: "/about/overview" },
         { name: "FAQs", link: "/about/faqs" },
         { name: "Contact", link: "/about/contact" },
+        { name: "Wire", link: "/wire" },
       ]
     }
   ],
@@ -77,6 +78,12 @@ const app = {
         { name: "Documentation", link: "https://docs.goperigon.com/" },
         { name: "Get Started", link: "/sign-in" },
       ]
+    },
+    {
+      name: "Wire",
+      link: "/wire",
+      show: 0,
+      icon: "wire",
     },
     // {
     //   name: "About", link: "/about/overview", show: 0,
@@ -203,6 +210,7 @@ const app = {
           { name: "About", link: "/about/overview" },
           { name: "FAQs", link: "/about/faqs" },
           { name: "Contact", link: "/about/contact" },
+          { name: "Wire", link: "/wire" },
         ]
       }
     ],
@@ -252,7 +260,7 @@ const app = {
     title: "Follow our journey:",
     placeholder: "your@email.com",
     error: "Please type the correct email",
-    message: "Thank You. You are subscribed.",
+    message: "Thanks for subscribing!",
     button: {
       name: "Subscribe",
       action: "https://perigon.us2.list-manage.com/subscribe/post?u=dd74d2ac64673e2e30f038e2b&amp;id=3a2aa0376b",
@@ -263,10 +271,25 @@ const app = {
     { name: "twitter", isText: true, link: "https://twitter.com/intent/tweet?url=", icon: "twitter" },
     { name: "facebook", link: "https://www.facebook.com/sharer/sharer.php?u=", icon: "square-facebook" },
     { name: "printerest", link: "http://pinterest.com/pin/create/link/?url=", icon: "printerest" },
+  ],
+
+  shareBlog: [
+    { name: "twitter", isText: true, link: "https://twitter.com/intent/tweet?url=", icon: "twitter-outline" },
+    { name: "facebook", link: "https://www.facebook.com/sharer/sharer.php?u=", icon: "facebook-outline" },
+    { name: "linkedin", link: "https://www.linkedin.com/sharing/share-offsite/?url=", icon: "linked-outline" },
   ]
 }
 
 export const headerHeight = app.headerHeight
 export const headerHeightMd = app.headerHeightMd
+
+export const sourceGroups = [
+  { value: "top10", label: "Top 10 sources" },
+  { value: "top100", label: "Top 100 sources" },
+  { value: "top25crypto", label: "Top 25 sources in crypto" },
+  { value: "top25finance", label: "Top 25 sources in finance" },
+  { value: "top50tech", label: "Top 50 sources in tech" },
+]
+
 
 export default app;

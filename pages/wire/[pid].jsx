@@ -1,15 +1,11 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect } from 'react'
 import Head from 'next/head'
 import appConfig from "../../configs/appConfig"
 import Footer from "../../components/Footer"
-import {  isWrap, filterIt } from '../../utils'
+import {  isWrap } from '../../utils'
 import PostViewer from "../../sections/PostViewer"
-import Hero from "../../sections/Hero"
-import { Context } from "../../context/context"
-import { useRouter } from "next/router"
 import VisibilitySensor from '../../utils/react-visibility-sensor'
 import TagManager from 'react-gtm-module'
-import { page } from "../../configs/pages/post"
 import ApiService from '../../services/ApiService'
 
 const tagManagerArgs = {
@@ -20,31 +16,12 @@ const tagManagerArgs = {
   },
 }
 
-const Post = () => {
+const Post = ({data}) => {
 
-  const { app, lang: { home } } = useContext(Context);
-  const router = useRouter();
-  const [post, setPost] = useState({});
   const [wrap, setWrap] = useState(true)
-  const postId = router.query.pid;
-
-  useEffect(()=>{
-    if(postId) {
-      getArticleRequest(postId)
-    }
-  }, [postId])
-
-  const getArticleRequest = (id) => {
-    ApiService.getArticle(id).then(response => {
-      if (response) {
-        setPost(response[0])
-      }
-    })
-  }
 
   const sections = [
-    { component: Hero, props: { data: { ...page.hero, title: post?.title, description: post?.subTitle } } },
-    { component: PostViewer, props: { data: post} },
+    { component: PostViewer, props: { data: data} },
     { component: Footer, props: { data: { ...appConfig.footer, className: "small-container"} } },
   ]
 
@@ -58,12 +35,12 @@ const Post = () => {
   return (
     <>
       <Head>
-        <title>{appConfig.projectName} - {post?.title}</title>
+        <title>{appConfig.projectName} - {data?.title}</title>
         <link rel="icon" href="/img/favicon.ico" />
-        <meta property="og:title" content={`${appConfig.projectName} - ${post?.title}`}></meta>
-        <meta property="og:description" content={`${post?.subTitle}`}></meta>
-        <meta name="description" content={`${post?.subTitle}`}></meta>
-        <meta property="og:image" content={`/img/${post?.thumbnail?.url}`} id="og"></meta>
+        <meta property="og:title" content={`${data?.title} - ${appConfig.projectName}`}></meta>
+        <meta property="og:description" content={`${data?.subTitle}`}></meta>
+        <meta name="description" content={`${data?.subTitle}`}></meta>
+        <meta property="og:image" content={`${data?.thumbnail?.url}`} id="og"></meta>
       </Head>
       {sections.map((section, i) => (
         <VisibilitySensor minTopValue={100} partialVisibility={true} once={true} key={`p-${i}`}>
@@ -74,6 +51,15 @@ const Post = () => {
       ))}
     </>
   )
+}
+
+export async function getServerSideProps(context) {
+
+  const {pid} = context.query;
+  const res = await ApiService.getArticle(pid)
+  const data = res?.length ? res[0] : {}
+
+  return { props: { data } }
 }
 
 export default Post;

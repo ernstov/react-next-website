@@ -2,16 +2,48 @@ import { useState, useRef, useEffect } from "react"
 import styles from './input.module.scss'
 import * as bootstrapValidate from 'bootstrap-validate'
 import Label from "../Label"
+import moment from "moment"
 
-const Input = ({ variant, className, placeholder, name, onChange, defaultValue, type, required, label }) => {
+const Input = ({ variant, className, placeholder, name, onChange, defaultValue, type, required, label, value, filter }) => {
 
   const [isFocus, setIsFocus] = useState(false)
   const inputR = useRef(null)
   const [valid, setValid] = useState(null)
+  const [v, setV] = useState(value)
+
+  useEffect(() => {
+    setV(value)
+  }, [value])
 
   useEffect(() => {
     validate();
   }, []);
+
+  const onChangeValue = (e) => {
+    if (filter) {
+      switch (filter) {
+        case "date":
+          const te = e.target.value.replace(/[^0-9]/g,'')
+          const p1 = te.slice(0, 4)
+          const p2 = te.slice(4, 6)
+          const p3 = te.slice(6, 8)
+
+          let result = ""
+
+          if(p1) result += (Number(p1) < Number(moment().format('YYYY')) + 1) ? p1 : moment().format('YYYY')
+          if(p2) result += `-${(Number(p2) < 13) ? p2 : 12}`
+          if(p3) result += `-${(Number(p3) < 32) ? p3 : 31}`
+
+          if (onChange) onChange({ target: { value: result }})
+          break;
+        default:
+          if (onChange) onChange(e)
+          break;
+      }
+    } else {
+      if (onChange) onChange(e)
+    }
+  }
 
   const validate = () => {
     switch (name) {
@@ -45,6 +77,10 @@ const Input = ({ variant, className, placeholder, name, onChange, defaultValue, 
       case 'zip':
         bootstrapValidate(inputR.current, 'regex:^(?:[A-Z0-9]+([- ]?[A-Z0-9]+)*)?$:Enter a valid Zip code!', setValidaion);
         break;
+      // case 'startingOn':
+      // case 'endingOn':
+      //   bootstrapValidate(inputR.current, 'regex:^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$:Enter a valid Date!', setValidaion);
+      //   break;
       case 'password':
       case 'password2':
       case 'current-password':
@@ -68,7 +104,8 @@ const Input = ({ variant, className, placeholder, name, onChange, defaultValue, 
           onBlur={() => setIsFocus(false)}
           name={name}
           defaultValue={defaultValue}
-          onChange={onChange}
+          value={v}
+          onChange={onChangeValue}
           required={required ? required : false}
           ref={inputR}
         ></textarea>
@@ -81,7 +118,8 @@ const Input = ({ variant, className, placeholder, name, onChange, defaultValue, 
           onBlur={() => setIsFocus(false)}
           name={name}
           defaultValue={defaultValue}
-          onChange={onChange}
+          value={v}
+          onChange={onChangeValue}
           required={required ? required : false}
           ref={inputR}
         />

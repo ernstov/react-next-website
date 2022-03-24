@@ -1,11 +1,13 @@
-import { useContext } from "react"
+import { useContext, forwardRef } from "react"
 import styles from './button.module.scss'
 import Link from 'next/link'
 import Icon from "../../Icon"
 import { Context } from "../../../context/context"
 import appConfig from "../../../configs/appConfig"
 
-const Button = ({ children, variant, className, onClick, as, link, isActive, disabled, jump, size, ref }) => {
+const Button = (props, ref) => {
+
+  const { children, variant, className, onClick, as, link, isActive, disabled, jump, size } = props
 
   const { scrollB } = useContext(Context)
 
@@ -63,12 +65,20 @@ const Button = ({ children, variant, className, onClick, as, link, isActive, dis
         return `${styles.flatLight} ${size}`
       case "light-simple":
         return `${styles.button} ${styles.lightSimple} ${size}`
+      case "dark-simple":
+        return `${styles.button} ${styles.darkSimple} ${size}`
       case "outline-arrow":
         return `${styles.button} ${styles.outlineArrow} ${styles.arrow} ${size}`
       case "rounded-dark":
         return `${styles.buttonR} ${styles.darkLight} ${size}`
       case "light-adv":
         return `${styles.button} ${styles.lightAdv} ${size}`
+      case "primary-shadow":
+        return `${styles.button} ${styles.primaryShadow} ${size}`
+      case "collapse-advanced":
+        return `${styles.button} ${styles.collapseAdvanced} ${size}`
+      case "white":
+        return `${styles.button} ${styles.white} ${size}`
       case "light":
       default:
         return `${styles.button} ${styles.light} ${size}`
@@ -126,6 +136,10 @@ const Button = ({ children, variant, className, onClick, as, link, isActive, dis
           <div>{children}</div>
           <div className="ml-3"><Icon variant="chevron-up" /></div>
         </button>
+      case "div":
+        return <div ref={ref} disabled={disabled ? disabled : false} onClick={onClickIn} className={`${getStyles()} ${className ? className : ""}`}>
+          {children} {getIcons()}
+        </div>
       default:
         return <button ref={ref} disabled={disabled ? disabled : false} onClick={onClickIn} className={`${getStyles()} ${className ? className : ""}`}>
           {children} {getIcons()}
@@ -136,4 +150,6 @@ const Button = ({ children, variant, className, onClick, as, link, isActive, dis
   return render();
 }
 
-export default Button;
+const forwardedButton = forwardRef(Button);
+
+export default forwardedButton;

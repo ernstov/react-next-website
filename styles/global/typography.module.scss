@@ -384,6 +384,10 @@
 .textMediumM {
   font-size: 0.9375rem;
   font-weight: 500;
+
+  strong {
+    font-weight: 600;
+  }
 }
 
 .textMediumD {
@@ -395,6 +399,12 @@
 .textMediumLgt {
   font-size: 0.9375rem;
   color: $gray-5;
+}
+
+.textMediumLgt2 {
+  font-size: 0.9375rem;
+  color: $dark-7;
+  font-weight: 500;
 }
 
 .textRomanSm {
@@ -481,11 +491,6 @@
   font-family: $font-family-secondary;
 }
 
-.textMediumLgt {
-  font-size: 0.9375rem;
-  color: $gray-5;
-}
-
 .textBook {
   font-size: 0.875rem;
   color: $gray-5;
@@ -560,8 +565,18 @@
 .c7 {
   color: $gray-17;
 }
+.c8 {
+  color: $dark-8;
+}
 .c10 {
   color: $primary;
+}
+.c11 {
+  color: rgba($black, 0.65);
+}
+
+.op07 {
+  opacity: 0.7;
 }
 
 @include media-breakpoint-down(lg) {

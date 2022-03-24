@@ -7,6 +7,7 @@ import Router, { useRouter } from "next/router"
 import { LayoutBase } from "../components/Layout"
 import Scrollbar from "react-smooth-scrollbar"
 import Header from "../components/Header"
+import HeaderDemo from "../components/Header/HeaderDemo"
 import Sidebar from "../components/Sidebar"
 import "../styles/main.scss"
 import BottomMenu from "../components/BottomMenu"
@@ -16,6 +17,7 @@ import "notyf/notyf.min.css"
 import TagManager from 'react-gtm-module'
 import UserBillingService from "../services/UserBillingService"
 import Loader from "../components/Loader"
+import moment from "moment"
 
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -51,6 +53,10 @@ export default function App({ Component, pageProps }) {
     user: null,
     trands: [],
     blog: [],
+    selectedFilters: {sortBy: "Time", showResults: true, showFilter: false, domains: [], startingOn: moment().subtract("1", "days").format("YYYY-MM-DD")},
+    isActiveFilter: false,
+    categories: [],
+    topics: []
   });
 
   const isAuth = () => !!app.user
@@ -62,7 +68,20 @@ export default function App({ Component, pageProps }) {
     UserBillingService.getUser()
       .then(user => dispatchApp({ type: "SET_USER", data: { user } }))
       .finally(() => setCheckedUserState(true))
+
+      onResize()
+
+      window.addEventListener("resize", onResize)
+
+      return () => {
+        window.removeEventListener("resize", onResize)
+      }
   }, [])
+
+  const onResize = () => {
+    var doc = document.documentElement
+    doc.style.setProperty('--vh', (window.innerHeight * .01) + 'px');
+  }
 
   useEffect(() => {
     if (checkedUserState) {
@@ -145,6 +164,10 @@ export default function App({ Component, pageProps }) {
     return !!router.pathname?.includes("/account")
   }
 
+  const isDemo = () => {
+    return !!router.pathname?.includes("/data-solutions/demo")
+  }
+
   const isAdmin = () => {
     return !!router.pathname?.includes("/admin")
   }
@@ -153,10 +176,19 @@ export default function App({ Component, pageProps }) {
     return !!router.pathname?.includes("/documentation")
   }
 
-  return <Context.Provider value={{ app, dispatchApp, lang, scrollB, isMobile }}>
-    <LayoutBase isSmoothScroll={smooth} variant={isAccount() ? 'account' : ""} isWrap={wrap && !isHome()}>
+  const getLayoutVariant = () => {
+
+    if(isAccount()) return 'account'
+    if(isDemo()) return 'demo'
+
+    return ''
+  }
+
+  return <Context.Provider value={{ app, dispatchApp, lang, scrollB, isMobile, checkedUserState }}>
+    <LayoutBase isSmoothScroll={smooth} variant={getLayoutVariant()} isWrap={wrap && !isHome()}>
       {isLoader && <Loader loaderState={loaderState} />}
-      {(wrap && !isHome()) && <Header path={router.pathname} variant={`advanced`} isLoggedIn={isAuth()} />}
+      {(wrap && !isHome() && !isDemo()) && <Header path={router.pathname} variant={`advanced`} isLoggedIn={isAuth()} />}
+      {(wrap && isDemo()) && <HeaderDemo path={router.pathname} isLoggedIn={isAuth()} />}
       {isHome() && <BottomMenu path={router.pathname} data={appConfig.bottomMenu} />}
       {isSidebar() && <Sidebar isWrap={wrap} variant={getSidebarVariant()} />}
       <Scrollbar damping={0.2} className="scoll-bar" ref={e => { if (e && !scrollB.current) { scrollB.current = e; } }}>

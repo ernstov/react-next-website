@@ -127,6 +127,11 @@ const ApiService = {
     return res.json()
   },
 
+  async getArticleByTopic(topic) {
+    const res = await fetch(`${appConfig.blogApi}/blogs?blogTags=${topic}`)
+    return res.json()
+  },
+
   async getPage(page) {
     const res = await fetch(`${appConfig.blogApi}/pages?alias=${page}`)
     return res.json()
