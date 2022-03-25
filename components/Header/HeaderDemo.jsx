@@ -46,7 +46,7 @@ const HeaderDemo = ({ variant }) => {
               </Col>
               <Col xs={3}>
                 <div className={`${styles.headerActionsDemo}`}>
-                  <Button className={`api-button`} variant="dark-simple" size={"tn"} link={`/sign-in`}><IconLock className={`${styles.headerIcon}`} />{GetAPIKey}</Button>
+                  <Button className={`api-button`} variant="dark-simple" size={"tn"} as="link" link={`/sign-in`}><IconLock className={`${styles.headerIcon}`} />{GetAPIKey}</Button>
                   <MenuUser dark />
                 </div>
               </Col>

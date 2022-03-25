@@ -20,7 +20,7 @@ import { numberWithCommas, filterIt, capitalizeFirstLetter } from "../../utils"
 import PreviewDemoSkeleton from "../../components/LiveDemo/PreviewDemoSkeleton"
 import { SkeletonTheme } from 'react-loading-skeleton'
 import ResponseSkeleton from '../../components/LiveDemo/ResponseSkeleton'
-import Router, { useRouter } from "next/router"
+import { useRouter } from "next/router"
 
 const Response = dynamic(() => import('../../components/LiveDemo/Response'), {
   ssr: false
@@ -66,6 +66,7 @@ const DemoViewer = ({ data, isVisible }) => {
   const { from, to, showNumResults, sortBy, q, location, province, city, language, sourceGroup, exclude, include, category, topic, showReprints, content, type, apiKey, title } = router.query;
   const [key, setKey] = useState(null)
   const [isEnable, setIsEnable] = useState(false)
+  const [error, setError] = useState("")
 
   useEffect(() => {
     if (router.isReady && checkedUserState) {
@@ -221,8 +222,10 @@ const DemoViewer = ({ data, isVisible }) => {
 
     DemoService
       .getContent(tq ? tq : query, selectedTypes[0] == AllContent ? "all" : "headlines", k ? k : key ? key : app.user?.apiKey)
-      .then(({ articles, numResults, status, clusters }) => {
+      .then(({ articles, numResults, status, clusters, message }) => {
         if (status == 200) {
+
+          setError("")
 
           if (selectedTypes[0] == AllContent) {
             articles.forEach(article => { delete article.cluster })
@@ -244,6 +247,18 @@ const DemoViewer = ({ data, isVisible }) => {
           }
 
           setIsLoading(false)
+
+          setTimeout(() => {
+            setIsButtonDisabled(false)
+          }, 5000)
+        }else{
+          if(message) {
+            dispatchApp({ type: 'SET_APP_VALUES', data: { demoError: message }})
+
+            setTimeout(()=>{
+              dispatchApp({ type: 'SET_APP_VALUES', data: { demoError: "" }})
+            }, 3000)
+          }
 
           setTimeout(() => {
             setIsButtonDisabled(false)

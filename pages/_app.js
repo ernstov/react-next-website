@@ -18,6 +18,7 @@ import TagManager from 'react-gtm-module'
 import UserBillingService from "../services/UserBillingService"
 import Loader from "../components/Loader"
 import moment from "moment"
+import DemoError from "../sections/DemoViewer/Error"
 
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -56,7 +57,8 @@ export default function App({ Component, pageProps }) {
     selectedFilters: {sortBy: "Time", showResults: true, showFilter: false, domains: [], startingOn: moment().subtract("1", "days").format("YYYY-MM-DD")},
     isActiveFilter: false,
     categories: [],
-    topics: []
+    topics: [],
+    demoError: ""
   });
 
   const isAuth = () => !!app.user
@@ -195,6 +197,7 @@ export default function App({ Component, pageProps }) {
         <div><Component {...pageProps} path={router.pathname} /></div>
         {(isAccount() || isDocumentation()) && <Agreement />}
       </Scrollbar>
+      <DemoError/>
     </LayoutBase>
   </Context.Provider>
 }
