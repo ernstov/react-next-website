@@ -24,7 +24,7 @@
     padding-left: 1rem;
     padding-right: 1rem;
 
-    :global(svg) {
+    > :global(svg) {
       margin-right: 0.5rem;
       font-size: 0.75rem;
     }
@@ -343,6 +343,25 @@
     color: $white;
     background-color: $secondary;
     border-color: $secondary;
+    box-shadow: none;
+  }
+}
+
+.secondaryShadow {
+  background-color: $secondary;
+  color: $white;
+  border-color: $secondary;
+  box-shadow: inset 0px -2.5px 0px $secondary-adv;
+
+  :global(svg){
+    font-size: 1rem;
+  }
+
+  &:hover, &:global([disabled]) {
+    color: $secondary;
+    opacity: 1;
+    background-color: $secondary-light;
+    border-color: $secondary-light;
     box-shadow: none;
   }
 }

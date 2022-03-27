@@ -21,6 +21,7 @@
     "bootstrap": "^4.6.0",
     "bootstrap-validate": "^2.2.0",
     "clsx": "^1.1.1",
+    "json2csv": "^5.0.7",
     "lodash.uniqby": "^4.7.0",
     "lottie-web": "^5.8.1",
     "moment": "^2.29.1",

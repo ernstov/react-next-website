@@ -109,3 +109,58 @@ $loader-transition: 500ms;
     }
   }
 }
+
+.dotPulse {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+
+  > div {
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    background-color: $secondary;
+    animation: dotPulse 1.5s infinite linear;
+    animation-delay: .25s;
+    transform-origin: center center;
+  }
+
+  &::before, &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    transform-origin: center center;
+    background-color: $secondary;
+  }
+
+  &::before {
+    left: -15px;
+    animation: dotPulse 1.5s infinite linear;
+    animation-delay: 0s;
+  }
+
+  &::after {
+    right: -15px;
+    animation: dotPulse 1.5s infinite linear;
+    animation-delay: 0.5s;
+  }
+}
+
+@keyframes dotPulse {
+  0% {
+    transform: scale(0);
+  }
+  30% {
+    transform: scale(1);
+  }
+  60%,
+  100% {
+    transform: scale(0);
+  }
+}

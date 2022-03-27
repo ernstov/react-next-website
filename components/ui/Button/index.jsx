@@ -75,6 +75,8 @@ const Button = (props, ref) => {
         return `${styles.button} ${styles.lightAdv} ${size}`
       case "primary-shadow":
         return `${styles.button} ${styles.primaryShadow} ${size}`
+      case "secondary-shadow":
+        return `${styles.button} ${styles.secondaryShadow} ${size}`
       case "collapse-advanced":
         return `${styles.button} ${styles.collapseAdvanced} ${size}`
       case "white":

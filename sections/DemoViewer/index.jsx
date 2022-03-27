@@ -7,7 +7,7 @@ import dynamic from 'next/dynamic'
 import { sourceGroups } from "../../configs/appConfig"
 import { Context } from "../../context/context"
 import Button from "../../components/ui/Button"
-import { IconRefresh } from "../../components/Icon"
+import { IconRefresh, IconExport } from "../../components/Icon"
 import Query from "../../components/ui/Query"
 import Url from "../../components/Url"
 import FilterComp from "./Filter"
@@ -21,6 +21,8 @@ import PreviewDemoSkeleton from "../../components/LiveDemo/PreviewDemoSkeleton"
 import { SkeletonTheme } from 'react-loading-skeleton'
 import ResponseSkeleton from '../../components/LiveDemo/ResponseSkeleton'
 import { useRouter } from "next/router"
+import DotPulse from "../../components/Loader/DotPulse"
+import { Parser, AsyncParser } from "json2csv"
 
 const Response = dynamic(() => import('../../components/LiveDemo/Response'), {
   ssr: false
@@ -47,7 +49,9 @@ const DemoViewer = ({ data, isVisible }) => {
     EditFilters,
     Advancedsearchtips,
     results,
-    NotFound
+    NotFound,
+    Export,
+    ft3
   } } = useContext(Context);
 
   const [selectedTypes, setSelectedTypes] = useState([AllContent, HeadlineorArticle])
@@ -67,6 +71,9 @@ const DemoViewer = ({ data, isVisible }) => {
   const [key, setKey] = useState(null)
   const [isEnable, setIsEnable] = useState(false)
   const [error, setError] = useState("")
+  const [isExport, setIsExport] = useState(false)
+  const [is200Compile, setIs200Compile] = useState(false)
+  const [is400Compile, setIs400Compile] = useState(false)
 
   useEffect(() => {
     if (router.isReady && checkedUserState) {
@@ -97,16 +104,16 @@ const DemoViewer = ({ data, isVisible }) => {
         if (content) setSelectedTypes(cur => cur.map((c, i) => i == 0 ? typeof content != "string" ? capitalizeFirstLetter(content[0]) : capitalizeFirstLetter(content) : c))
         if (type) setSelectedTypes(cur => cur.map((c, i) => i == 1 ? typeof type != "string" ? capitalizeFirstLetter(type[0]) : capitalizeFirstLetter(type) : c))
         if (apiKey) setKey(apiKey)
-        
+
         if (title) {
           setQueryString(title)
           setSelectedTypes(current => current.map((ci, i) => i == 1 ? Headline : ci))
         }
 
-        setTimeout(()=>{
+        setTimeout(() => {
           setIsEnable(true)
         }, 1000)
-      }else{
+      } else {
         onSearch()
       }
     }
@@ -183,7 +190,7 @@ const DemoViewer = ({ data, isVisible }) => {
 
     setQuery(tempQuery)
 
-    if(isEnable) {
+    if (isEnable) {
       onSearch(key, tempQuery)
       setIsEnable(false)
     }
@@ -193,6 +200,103 @@ const DemoViewer = ({ data, isVisible }) => {
   const getSourceGroup = (value) => {
     const search = filterIt(sourceGroups, value, "value")
     return value ? search?.length ? search[0].label : null : null
+  }
+
+  const convert = (data, fields) => {
+    const p = new Promise((resolve, reject) => {
+      const json2csvParser = new Parser(fields);
+      const csv = json2csvParser.parse(data);
+
+      csv ? resolve(csv) : reject()
+    })
+
+    return p
+  };
+
+  const onExport200 = () => {
+
+    setIs200Compile(true)
+
+    DemoService
+      .getContentAll(query, selectedTypes[0] == AllContent ? "all" : "headlines", key ? key : app.user?.apiKey, 2)
+      .then((results) => {
+
+        let articles = []
+
+        if (selectedTypes[0] == AllContent) {
+          results.map((result) => {
+            articles = [...articles, ...result.articles]
+          })
+        } else {
+
+          results.map((result) => {
+            result.clusters.forEach((cluster) => {
+              articles = [...articles, ...cluster.hits]
+            })
+          })
+        }
+
+        convert(articles.slice(0, 200)).then((csv) => {
+          sendFile(csv)
+          setIs200Compile(false)
+        })
+      })
+  }
+
+  const onExport400 = () => {
+
+    setIs400Compile(true)
+
+    DemoService
+      .getContentAll(query, selectedTypes[0] == AllContent ? "all" : "headlines", key ? key : app.user?.apiKey, 4)
+      .then((results) => {
+
+        let articles = []
+
+        if (selectedTypes[0] == AllContent) {
+          results?.map((result) => {
+            if (result.message) {
+              dispatchApp({ type: 'SET_APP_VALUES', data: { demoError: result.message } })
+
+              setTimeout(() => {
+                dispatchApp({ type: 'SET_APP_VALUES', data: { demoError: "" } })
+              }, 3000)
+            } else {
+              if (result.articles) articles = [...articles, ...result.articles.map(h=>({url:h.url, pubDate: h.pubDate, title: h.title}))]
+            }
+          })
+        } else {
+
+          results?.map((result) => {
+            result.clusters.forEach((cluster) => {
+              if (result.message) {
+                dispatchApp({ type: 'SET_APP_VALUES', data: { demoError: result.message } })
+
+                setTimeout(() => {
+                  dispatchApp({ type: 'SET_APP_VALUES', data: { demoError: "" } })
+                }, 3000)
+              } else {
+                if (result.articles) articles = [...articles, ...cluster.hits.map(h=>({url:h.url, pubDate: h.pubDate, title: h.title}))]
+              }
+            })
+          })
+        }
+
+        convert(articles.slice(0, 400)).then((csv) => {
+          sendFile(csv)
+          setIs400Compile(false)
+        })
+      })
+  }
+
+  const sendFile = (file) => {
+    const dataStr = "data:csv/json;charset=utf-8," + encodeURIComponent(file);
+    const aLink = document.createElement('a');
+    aLink.download = "export.csv";
+    aLink.href = dataStr;
+
+    var event = new MouseEvent('click');
+    aLink.dispatchEvent(event);
   }
 
   const onSearch = (k, tq) => {
@@ -251,12 +355,12 @@ const DemoViewer = ({ data, isVisible }) => {
           setTimeout(() => {
             setIsButtonDisabled(false)
           }, 5000)
-        }else{
-          if(message) {
-            dispatchApp({ type: 'SET_APP_VALUES', data: { demoError: message }})
+        } else {
+          if (message) {
+            dispatchApp({ type: 'SET_APP_VALUES', data: { demoError: message } })
 
-            setTimeout(()=>{
-              dispatchApp({ type: 'SET_APP_VALUES', data: { demoError: "" }})
+            setTimeout(() => {
+              dispatchApp({ type: 'SET_APP_VALUES', data: { demoError: "" } })
             }, 3000)
           }
 
@@ -403,6 +507,65 @@ const DemoViewer = ({ data, isVisible }) => {
     }).length
   }
 
+  const renderExport = () => (
+    <Container fluid className="p-0">
+      <Row className="mb-3">
+        <Col xs={7}>
+          <div className={`${ts.textSubTitleHero2}`}>Full article data</div>
+          <div className={`${ts.textMediumM}`}>Max 200 articles</div>
+        </Col>
+        <Col className="text-right" xs={5}>
+          <Button
+            as="div"
+            size="sm"
+            disabled={is200Compile}
+            className={`${styles.exportButton}`}
+            onClick={onExport200}
+            variant="secondary-shadow"
+          >
+            {is200Compile ?
+              <DotPulse className="m-0" />
+              :
+              <>
+                <div className={`${styles.exportIconButton}`}><IconExport /></div> CSV
+              </>
+            }
+
+          </Button>
+        </Col>
+      </Row>
+      <Row className="mb-3">
+        <Col xs={7}>
+          <div className={`${ts.textSubTitleHero2}`}>Date, headline & URL</div>
+          <div className={`${ts.textMediumM}`}>Max 400 articles</div>
+        </Col>
+        <Col className="text-right" xs={5}>
+          <Button
+            as="div"
+            size="sm"
+            disabled={is400Compile}
+            className={`${styles.exportButton}`}
+            onClick={onExport400}
+            variant="secondary-shadow"
+          >
+            {is400Compile ?
+              <DotPulse className="m-0" />
+              :
+              <>
+                <div className={`${styles.exportIconButton}`}><IconExport /></div> CSV
+              </>
+            }
+          </Button>
+        </Col>
+      </Row>
+      <Row>
+        <Col xs={12}>
+          <div className={`${ts.textMediumM} ${ts.c12}`}>Need a larger sample or custom export? Please email us: <a href="mailto:data@goperigon.com">data@goperigon.com</a></div>
+        </Col>
+      </Row>
+    </Container>
+  )
+
   return (
     <div className={`${styles.demoViewer} ${visible ? "active" : ""}`}>
       <ScrollBarWrapper>
@@ -484,7 +647,24 @@ const DemoViewer = ({ data, isVisible }) => {
                   <Url link={`api.goperigon.com/v1/${selectedTypes[0] == AllContent ? "all" : "headlines"}?apiKey=${key ? key : `${app.user?.apiKey ? app.user.apiKey : '[KEY]'}`}${query}`} />
                   <div className={styles.response}>
                     <div className={styles.responseApi}>
-                      <div className={styles.responseTitle}><span className={`${ts.textTitleMd} mr-2`}>{APIResponse}</span> <span className={`${ts.regularD} ${ts.c6}`}>{app.selectedFilters.showResults && <Badge style={{ borderRadius: 4 }} variant="secondary">{numberWithCommas(count)} {results}</Badge>}</span></div>
+                      <div className={styles.responseTitle}>
+                        <span className={`${ts.textTitleMd} mr-2`}>{APIResponse}</span>
+                        <span className={`${ts.regularD} ${ts.c6}`}>{app.selectedFilters.showResults && <Badge style={{ borderRadius: 4 }} variant="secondary">{numberWithCommas(count)} {results}</Badge>}</span>
+                        <Button
+                          as="div"
+                          size="stn"
+                          className="ml-3"
+                          onClick={
+                            () => !isExport ? setIsExport(true) : null
+                          }
+                          variant="light-simple"
+                        >
+                          <div className={`${styles.exportIcon}`}><IconExport className="mr-0 mr-md-2" /></div> <span className="d-none d-md-inline-block">{Export}</span>
+                          <Popup className="d-none d-lg-block mw-400 mnw-350" isActive={isExport} title={ft3} onClose={() => setIsExport(false)}>
+                            {renderExport()}
+                          </Popup>
+                        </Button>
+                      </div>
                       <div className={styles.responseJson}>
                         {isLoading ?
                           <ResponseSkeleton />
@@ -492,6 +672,7 @@ const DemoViewer = ({ data, isVisible }) => {
                           <Response tabSize={2} showGutter={false} fontSize={13} theme="tmtcustom-cover" data={json} />
                         }
                       </div>
+
                     </div>
                     <div className={styles.responsePreview}>
                       <div className={styles.responsePreviewTitle}>
@@ -531,6 +712,9 @@ const DemoViewer = ({ data, isVisible }) => {
       </Popup>
       <Popup className="d-block d-lg-none" titleSize="lg" title={Advancedsearchtips} isActive={isInfo} onClose={() => setIsInfo(false)}>
         {renderInfo()}
+      </Popup>
+      <Popup className="d-block d-lg-none" title={ft3} isActive={isExport} onClose={() => setIsExport(false)}>
+        {renderExport()}
       </Popup>
     </div>
   );

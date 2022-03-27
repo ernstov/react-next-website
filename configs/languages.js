@@ -169,7 +169,9 @@ const languages = {
     TheWire: "The Wire",
     Browsebytopic: "Browse by topic",
     by: "by",
-    Findmoreabout: "Find more about"
+    Findmoreabout: "Find more about",
+    Export: "Export",
+    ft3: "Download a sample of your results"
   }
 }
 

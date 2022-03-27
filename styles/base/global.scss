@@ -100,6 +100,10 @@ body .scroll-content {
   max-width: 1000px !important;
 }
 
+.mnw-350 {
+  min-width: 350px !important;
+}
+
 .border-bottom-half {
   &::after {
     content: "";
