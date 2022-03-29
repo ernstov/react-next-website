@@ -36,7 +36,7 @@ const HeaderDemo = ({ variant }) => {
           <Container fluid>
             <Row>
               <Col xs={3}>
-                <Button className={`documentation-button`} as={"link"} variant="dark-simple" size={"tn"} link={`/documentation`}><IconFolder className={`${styles.headerIcon}`} />{Documentation}</Button>
+                <Button className={`documentation-button`} as={"link"} variant="dark-simple" size={"tn"} link={`https://docs.goperigon.com`}><IconFolder className={`${styles.headerIcon}`} />{Documentation}</Button>
                 <div className={styles.menuTogglerDemo}>
                   <MenuToggler isActiveMobile={isActiveMobile} setIsActiveMobile={() => setIsActiveMobile(!isActiveMobile)} />
                 </div>
@@ -46,7 +46,7 @@ const HeaderDemo = ({ variant }) => {
               </Col>
               <Col xs={3}>
                 <div className={`${styles.headerActionsDemo}`}>
-                  <Button className={`api-button`} variant="dark-simple" size={"tn"} as="link" link={`/sign-in`}><IconLock className={`${styles.headerIcon}`} />{GetAPIKey}</Button>
+                  {!app.user && <Button className={`api-button`} variant="dark-simple" size={"tn"} as="link" link={`/sign-in`}><IconLock className={`${styles.headerIcon}`} />{GetAPIKey}</Button>}
                   <MenuUser dark />
                 </div>
               </Col>
