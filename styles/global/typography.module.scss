@@ -585,6 +585,10 @@
   opacity: 0.7;
 }
 
+.fw600 {
+  font-weight: 600;
+}
+
 @include media-breakpoint-down(lg) {
   .textSubTitle {font-size: 1.125rem;}
   .textTitleSemi {font-size: 2rem;}

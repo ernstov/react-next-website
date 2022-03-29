@@ -7,7 +7,7 @@ import dynamic from 'next/dynamic'
 import { sourceGroups } from "../../configs/appConfig"
 import { Context } from "../../context/context"
 import Button from "../../components/ui/Button"
-import { IconRefresh, IconExport } from "../../components/Icon"
+import { IconRefresh, IconExport, IconNoResults } from "../../components/Icon"
 import Query from "../../components/ui/Query"
 import Url from "../../components/Url"
 import FilterComp from "./Filter"
@@ -49,9 +49,12 @@ const DemoViewer = ({ data, isVisible }) => {
     EditFilters,
     Advancedsearchtips,
     results,
-    NotFound,
     Export,
-    ft3
+    ft3,
+    Noresultsfound,
+    Tryadjusting,
+    Demounavailable,
+    Contactus
   } } = useContext(Context);
 
   const [selectedTypes, setSelectedTypes] = useState([AllContent, HeadlineorArticle])
@@ -70,10 +73,10 @@ const DemoViewer = ({ data, isVisible }) => {
   const { from, to, showNumResults, sortBy, q, location, province, city, language, sourceGroup, exclude, include, category, topic, showReprints, content, type, apiKey, title } = router.query;
   const [key, setKey] = useState(null)
   const [isEnable, setIsEnable] = useState(false)
-  const [error, setError] = useState("")
   const [isExport, setIsExport] = useState(false)
   const [is200Compile, setIs200Compile] = useState(false)
   const [is400Compile, setIs400Compile] = useState(false)
+  const [notification, setNotification] = useState("")
 
   useEffect(() => {
     if (router.isReady && checkedUserState) {
@@ -262,7 +265,7 @@ const DemoViewer = ({ data, isVisible }) => {
                 dispatchApp({ type: 'SET_APP_VALUES', data: { demoError: "" } })
               }, 3000)
             } else {
-              if (result.articles) articles = [...articles, ...result.articles.map(h=>({url:h.url, pubDate: h.pubDate, title: h.title}))]
+              if (result.articles) articles = [...articles, ...result.articles.map(h => ({ url: h.url, pubDate: h.pubDate, title: h.title }))]
             }
           })
         } else {
@@ -276,7 +279,7 @@ const DemoViewer = ({ data, isVisible }) => {
                   dispatchApp({ type: 'SET_APP_VALUES', data: { demoError: "" } })
                 }, 3000)
               } else {
-                if (result.articles) articles = [...articles, ...cluster.hits.map(h=>({url:h.url, pubDate: h.pubDate, title: h.title}))]
+                if (result.articles) articles = [...articles, ...cluster.hits.map(h => ({ url: h.url, pubDate: h.pubDate, title: h.title }))]
               }
             })
           })
@@ -300,6 +303,7 @@ const DemoViewer = ({ data, isVisible }) => {
   }
 
   const onSearch = (k, tq) => {
+    setNotification("")
     setIsLoading(true);
     setIsButtonDisabled(true)
     setIsAnimLoading(true)
@@ -329,13 +333,12 @@ const DemoViewer = ({ data, isVisible }) => {
       .then(({ articles, numResults, status, clusters, message }) => {
         if (status == 200) {
 
-          setError("")
-
           if (selectedTypes[0] == AllContent) {
             articles.forEach(article => { delete article.cluster })
             setCount(numResults)
             setArticles(articles)
             setJson(articles)
+            if (!articles.length) setNotification("empty")
           } else {
             const arts = []
             const c = 0
@@ -345,6 +348,7 @@ const DemoViewer = ({ data, isVisible }) => {
               c += cluster.count
             })
 
+            if (!arts.length) setNotification("empty")
             setArticles(arts)
             setJson(clusters)
             setCount(c)
@@ -356,6 +360,9 @@ const DemoViewer = ({ data, isVisible }) => {
             setIsButtonDisabled(false)
           }, 5000)
         } else {
+          setIsLoading(false)
+          setNotification("connection")
+
           if (message) {
             dispatchApp({ type: 'SET_APP_VALUES', data: { demoError: message } })
 
@@ -505,6 +512,24 @@ const DemoViewer = ({ data, isVisible }) => {
         app.selectedFilters[elm] != ''
       ) ? true : false
     }).length
+  }
+
+  const renderNotification = () => {
+
+    switch (notification) {
+      case "connection":
+        return <div className={`${styles.responseNotification}`}>
+          <IconNoResults />
+          <div className={ts.fw600}>{Demounavailable}</div>
+          <div>{Contactus} - <a href="mailto:data@goperigon.com">data@goperigon.com</a></div>
+        </div>
+      case "empty":
+        return <div className={`${styles.responseNotification}`}>
+          <IconNoResults />
+          <div className={ts.fw600}>{Noresultsfound}</div>
+          <div>{Tryadjusting}</div>
+        </div>
+    }
   }
 
   const renderExport = () => (
@@ -665,11 +690,14 @@ const DemoViewer = ({ data, isVisible }) => {
                           </Popup>
                         </Button>
                       </div>
-                      <div className={styles.responseJson}>
+                      <div className={`${styles.responseJson} ${notification ? "center" : ""}`}>
                         {isLoading ?
                           <ResponseSkeleton />
                           :
-                          <Response tabSize={2} showGutter={false} fontSize={13} theme="tmtcustom-cover" data={json} />
+                          notification ?
+                            renderNotification()
+                            :
+                            <Response tabSize={2} showGutter={false} fontSize={13} theme="tmtcustom-cover" data={json} />
                         }
                       </div>
 
@@ -688,13 +716,12 @@ const DemoViewer = ({ data, isVisible }) => {
                             )
                           }
                         </SkeletonTheme>
-                        {articles?.length ? articles.map((article, i) => (
+                        {(!isLoading && articles?.length > 0) && articles.map((article, i) => (
                           <div key={`adi-${i}`} className="mb-0 mb-lg-1">
                             <PreviewDemo data={article} />
                           </div>
-                        )) :
-                          <div className={`${styles.emptyResult}`}>{NotFound}</div>
-                        }
+                        ))}
+                        {((!articles?.length || notification) && !isLoading) && <div className={`${styles.emptyResult}`}>{Noresultsfound}</div>}
                       </div>
                     </div>
                   </div>

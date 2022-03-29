@@ -171,7 +171,11 @@ const languages = {
     by: "by",
     Findmoreabout: "Find more about",
     Export: "Export",
-    ft3: "Download a sample of your results"
+    ft3: "Download a sample of your results",
+    Noresultsfound: "No results found",
+    Tryadjusting: "Try adjusting your search criteria",
+    Demounavailable: "Demo currently unavailable",
+    Contactus: "Contact us"
   }
 }
 
