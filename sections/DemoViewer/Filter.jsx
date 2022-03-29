@@ -182,7 +182,7 @@ const Filter = ({ isDisableTitle }) => {
           isMulti
           maxHeight={350}
           hideSelectedOptions={false}
-          options={[...languages.map((elm) => ({ label: `${elm.country} (${elm.code})`, value: elm.code }))]}
+          options={[...languages.map((elm) => ({ label: `${elm.country} (${elm.lang})`, value: elm.lang }))]}
           components={{
             MultiValue: customMultiValue,
             Option: customOptionAdv,
