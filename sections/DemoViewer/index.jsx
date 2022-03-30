@@ -151,7 +151,7 @@ const DemoViewer = ({ data, isVisible }) => {
 
           setTimeout(() => {
             dispatchApp({ type: 'SET_APP_VALUES', data: { demoNotification: "" } })
-          }, 3000)
+          }, 10000)
         }
       }
     }
