@@ -11,8 +11,13 @@ color: #333;\
 width: 1px;\
 background: #e8e8e8;\
 }\
-.ace-tmtcustom-cover .ace_fold {\
-background-color: #6B72E6;\
+.ace-tmtcustom-cover .ace_line .ace_fold {\
+border: none;\
+background-image: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAMCAYAAACX8hZLAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAGdJREFUeNpiYBgFlAArK6sEIG4gU28DSD+6OBOaovlAaj6F7pwPNQcOGKGGKwCp9UBsABV/AMWkAgUoBoELQBx47NixB0wDER8gr/6nME7+owcXik+AXksEUokUujURas4oIA8ABBgA0TIe0Hrkd3AAAAAASUVORK5CYII=\");\
+transition: opacity 300ms ease;\
+}\
+.ace-tmtcustom-cover .ace_line .ace_fold:hover {\
+opacity:0.5;\
 }\
 .ace-tmtcustom-cover {\
 color: black;\

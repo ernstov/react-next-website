@@ -697,7 +697,14 @@ const DemoViewer = ({ data, isVisible }) => {
                           notification ?
                             renderNotification()
                             :
-                            <Response tabSize={2} showGutter={false} fontSize={13} theme="tmtcustom-cover" data={json} />
+                            <Response
+                              tabSize={2}
+                              showGutter={false}
+                              fontSize={13}
+                              theme="tmtcustom-cover"
+                              folds={['keywords', 'entities', 'hits']}
+                              data={json}
+                            />
                         }
                       </div>
 
