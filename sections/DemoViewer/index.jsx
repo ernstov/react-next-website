@@ -22,7 +22,9 @@ import { SkeletonTheme } from 'react-loading-skeleton'
 import ResponseSkeleton from '../../components/LiveDemo/ResponseSkeleton'
 import { useRouter } from "next/router"
 import DotPulse from "../../components/Loader/DotPulse"
-import { Parser, AsyncParser } from "json2csv"
+import { Parser } from "json2csv"
+import { setCookie, getCookie } from "../../utils"
+import moment from "moment"
 
 const Response = dynamic(() => import('../../components/LiveDemo/Response'), {
   ssr: false
@@ -54,7 +56,8 @@ const DemoViewer = ({ data, isVisible }) => {
     Noresultsfound,
     Tryadjusting,
     Demounavailable,
-    Contactus
+    Contactus,
+    APIrequestsareprocessed
   } } = useContext(Context);
 
   const [selectedTypes, setSelectedTypes] = useState([AllContent, HeadlineorArticle])
@@ -117,7 +120,39 @@ const DemoViewer = ({ data, isVisible }) => {
           setIsEnable(true)
         }, 1000)
       } else {
-        onSearch()
+
+        const cQuery = getCookie("query")
+        const cQueryType = getCookie("queryType")
+        const cQueryHeadline = getCookie("queryHeadline")
+        const cQueryKey = getCookie("queryKey")
+        const cQueryString = getCookie("queryString")
+  
+        setSelectedTypes([cQueryType ? cQueryType : AllContent, cQueryHeadline ? cQueryHeadline : HeadlineorArticle])
+        setQuery(cQuery ? cQuery : `&sortBy=date&from=${app.selectedFilters.startingOn}&showNumResults=true&q=coronavirus AND Pfizer AND vaccin*`)
+        setQueryString(cQueryString ? cQueryString : "coronavirus AND Pfizer AND vaccin*")
+        setKey(cQueryKey ? cQueryKey : null)
+
+        onSearch(cQueryKey ? cQueryKey : null, cQuery ? cQuery : null, cQueryType ? cQueryType : null, true)
+      }
+
+      const sub = app.user?.subscription
+
+      if (sub && app.user.verified && (sub.stripeSubscriptionStatus == 'trialing' || sub.stripeSubscriptionStatus == 'active')) {
+        const isShowBefore = getCookie("isShowBeforeApiNotification")
+
+        if (!isShowBefore) {
+          dispatchApp({ type: 'SET_APP_VALUES', data: { demoNotification: APIrequestsareprocessed } })
+
+          const a = moment().endOf('month');
+          const b = moment();
+          const remains = a.diff(b, 'days')
+
+          setCookie("isShowBeforeApiNotification", true, remains)
+
+          setTimeout(() => {
+            dispatchApp({ type: 'SET_APP_VALUES', data: { demoNotification: "" } })
+          }, 3000)
+        }
       }
     }
   }, [router, checkedUserState])
@@ -302,7 +337,7 @@ const DemoViewer = ({ data, isVisible }) => {
     aLink.dispatchEvent(event);
   }
 
-  const onSearch = (k, tq) => {
+  const onSearch = (k, tq, ttype, isFirst) => {
     setNotification("")
     setIsLoading(true);
     setIsButtonDisabled(true)
@@ -328,12 +363,20 @@ const DemoViewer = ({ data, isVisible }) => {
         dispatchApp({ type: 'SET_APP_VALUES', data: { topics: result?.length ? result.map((topic) => ({ value: topic.name, label: topic.name })) : [] } })
       })
 
+    if (!isFirst) {
+      setCookie("query", tq ? tq : query, 365)
+      setCookie("queryType", selectedTypes[0], 365)
+      setCookie("queryHeadline", selectedTypes[1], 365)
+      setCookie("queryKey", k ? k : key ? key : app.user?.apiKey, 365)
+      setCookie("queryString", queryString, 365)
+    }
+
     DemoService
-      .getContent(tq ? tq : query, selectedTypes[0] == AllContent ? "all" : "headlines", k ? k : key ? key : app.user?.apiKey)
+      .getContent(tq ? tq : query, ttype ? ttype == AllContent ? "all" : "headlines" : selectedTypes[0] == AllContent ? "all" : "headlines", k ? k : key ? key : app.user?.apiKey)
       .then(({ articles, numResults, status, clusters, message }) => {
         if (status == 200) {
 
-          if (selectedTypes[0] == AllContent) {
+          if ((selectedTypes[0] == AllContent) || (ttype & ttype == AllContent)) {
             articles.forEach(article => { delete article.cluster })
             setCount(numResults)
             setArticles(articles)

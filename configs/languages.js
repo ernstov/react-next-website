@@ -175,7 +175,8 @@ const languages = {
     Noresultsfound: "No results found",
     Tryadjusting: "Try adjusting your search criteria",
     Demounavailable: "Demo currently unavailable",
-    Contactus: "Contact us"
+    Contactus: "Contact us",
+    APIrequestsareprocessed: "API requests are processed using your account's API key"
   }
 }
 

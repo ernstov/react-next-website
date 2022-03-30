@@ -19,6 +19,7 @@ import UserBillingService from "../services/UserBillingService"
 import Loader from "../components/Loader"
 import moment from "moment"
 import DemoError from "../sections/DemoViewer/Error"
+import DemoNotification from "../sections/DemoViewer/Notification"
 
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -198,6 +199,7 @@ export default function App({ Component, pageProps }) {
         {(isAccount() || isDocumentation()) && <Agreement />}
       </Scrollbar>
       <DemoError/>
+      <DemoNotification/>
     </LayoutBase>
   </Context.Provider>
 }

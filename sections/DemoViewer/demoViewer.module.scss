@@ -363,6 +363,10 @@
   align-items: center;
   transition: all $transition ease;
 
+  &:global(.notification){
+    background-color: $secondary;
+  }
+
   &:global(.active){
     opacity: 1;
     pointer-events: all;
