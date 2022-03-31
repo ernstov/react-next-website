@@ -55,11 +55,14 @@ export default function App({ Component, pageProps }) {
     user: null,
     trands: [],
     blog: [],
-    selectedFilters: {sortBy: "Time", showResults: true, showFilter: false, domains: [], startingOn: moment().subtract("1", "days").format("YYYY-MM-DD")},
+    selectedFilters: { sortBy: "Time", showResults: true, showFilter: false, domains: [], startingOn: moment().subtract("1", "days").format("YYYY-MM-DD") },
     isActiveFilter: false,
     categories: [],
     topics: [],
-    demoError: ""
+    demoError: "",
+    isButtonDisabled: false,
+    isAnimLoading: false,
+    trigerSearch: false,
   });
 
   const isAuth = () => !!app.user
@@ -72,13 +75,13 @@ export default function App({ Component, pageProps }) {
       .then(user => dispatchApp({ type: "SET_USER", data: { user } }))
       .finally(() => setCheckedUserState(true))
 
-      onResize()
+    onResize()
 
-      window.addEventListener("resize", onResize)
+    window.addEventListener("resize", onResize)
 
-      return () => {
-        window.removeEventListener("resize", onResize)
-      }
+    return () => {
+      window.removeEventListener("resize", onResize)
+    }
   }, [])
 
   const onResize = () => {
@@ -181,8 +184,8 @@ export default function App({ Component, pageProps }) {
 
   const getLayoutVariant = () => {
 
-    if(isAccount()) return 'account'
-    if(isDemo()) return 'demo'
+    if (isAccount()) return 'account'
+    if (isDemo()) return 'demo'
 
     return ''
   }
@@ -198,8 +201,8 @@ export default function App({ Component, pageProps }) {
         <div><Component {...pageProps} path={router.pathname} /></div>
         {(isAccount() || isDocumentation()) && <Agreement />}
       </Scrollbar>
-      <DemoError/>
-      <DemoNotification/>
+      <DemoError />
+      <DemoNotification />
     </LayoutBase>
   </Context.Provider>
 }

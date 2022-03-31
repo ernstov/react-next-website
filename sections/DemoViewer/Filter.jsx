@@ -1,10 +1,10 @@
-import { useEffect, useState, useContext, useMemo } from "react"
+import { useContext } from "react"
 import styles from './demoViewer.module.scss'
 import ts from '../../styles/global/typography.module.scss'
 import ps from '../../styles/global/presets.module.scss'
 import { sourceGroups } from "../../configs/appConfig"
 import { Context } from "../../context/context"
-import { IconFilter, IconRemove, IconPlusOutline } from "../../components/Icon"
+import { IconFilter, IconRemove, IconPlusOutline, IconRefresh } from "../../components/Icon"
 import CollapseAdvanced from "../../components/ui/CollapseAdvanced"
 import Input from "../../components/ui/Input"
 import Select, { createFilter } from "react-select"
@@ -42,7 +42,8 @@ const Filter = ({ isDisableTitle }) => {
     Relevance,
     Show,
     ofResults,
-    FilterReprints
+    FilterReprints,
+    Search
   } } = useContext(Context);
 
   const addFilter = (filterName, value) => {
@@ -84,6 +85,14 @@ const Filter = ({ isDisableTitle }) => {
         app.selectedFilters[elm] != ''
       ) ? true : false
     }).length
+  }
+
+  const onSearch = () => {
+    dispatchApp({ type: 'SET_APP_VALUES', data: { trigerSearch: true, isActiveFilter: false } })
+
+    setTimeout(()=>{
+      dispatchApp({ type: 'SET_APP_VALUES', data: { trigerSearch: false } })
+    }, 300)
   }
 
   return (
@@ -142,7 +151,7 @@ const Filter = ({ isDisableTitle }) => {
           className={`${ps.selectLight} white adv mb-3`}
           classNamePrefix={'acr-select'}
           placeholder={Allcountries}
-          options={[{ label: Allcountries, value: Allcountries }, ...languages.map((country)=>({value: country.code, label: country.country}))]}
+          options={[{ label: Allcountries, value: Allcountries }, ...languages.map((country) => ({ value: country.code, label: country.country }))]}
           components={{
             SingleValue: customSingleValue,
             MenuList: scrollBar,
@@ -332,6 +341,17 @@ const Filter = ({ isDisableTitle }) => {
           label={FilterReprints}
           type="checkbox"
         />
+      </div>
+      <div className={`${styles.sidebarSearch} ${calcFilters() > 0 ? "active" : ""}`}>
+        <Button
+          onClick={onSearch}
+          size="spc"
+          className="w-100 justify-content-center mt-2"
+          variant="primary-shadow"
+          disabled={app.isButtonDisabled}
+        >
+          {Search} <IconRefresh className={`${ps.ml05} ${app.isAnimLoading ? "anim-rotate" : ""}`} />
+        </Button>
       </div>
     </div>
   );

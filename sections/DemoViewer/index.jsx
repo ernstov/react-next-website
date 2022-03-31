@@ -69,8 +69,6 @@ const DemoViewer = ({ data, isVisible }) => {
   const [count, setCount] = useState(0)
   const [articles, setArticles] = useState([])
   const [json, setJson] = useState([])
-  const [isButtonDisabled, setIsButtonDisabled] = useState(false)
-  const [isAnimLoading, setIsAnimLoading] = useState(false)
   const [queryString, setQueryString] = useState("coronavirus AND Pfizer AND vaccin*")
   const router = useRouter();
   const { from, to, showNumResults, sortBy, q, location, province, city, language, sourceGroup, exclude, include, category, topic, showReprints, content, type, apiKey, title } = router.query;
@@ -126,7 +124,7 @@ const DemoViewer = ({ data, isVisible }) => {
         const cQueryHeadline = getCookie("queryHeadline")
         const cQueryKey = getCookie("queryKey")
         const cQueryString = getCookie("queryString")
-  
+
         setSelectedTypes([cQueryType ? cQueryType : AllContent, cQueryHeadline ? cQueryHeadline : HeadlineorArticle])
         setQuery(cQuery ? cQuery : `&sortBy=date&from=${app.selectedFilters.startingOn}&showNumResults=true&q=coronavirus AND Pfizer AND vaccin*`)
         setQueryString(cQueryString ? cQueryString : "coronavirus AND Pfizer AND vaccin*")
@@ -156,6 +154,12 @@ const DemoViewer = ({ data, isVisible }) => {
       }
     }
   }, [router, checkedUserState])
+
+  useEffect(() => {
+    if (app.trigerSearch) {
+      onSearch()
+    }
+  }, [app.trigerSearch])
 
   useEffect(() => {
     if (!isFilterType) setIsFilterType(false)
@@ -340,8 +344,8 @@ const DemoViewer = ({ data, isVisible }) => {
   const onSearch = (k, tq, ttype, isFirst) => {
     setNotification("")
     setIsLoading(true);
-    setIsButtonDisabled(true)
-    setIsAnimLoading(true)
+    dispatchApp({ type: 'SET_APP_VALUES', data: { isButtonDisabled: true } })
+    dispatchApp({ type: 'SET_APP_VALUES', data: { isAnimLoading: true } })
     setArticles([])
 
     DemoService
@@ -400,7 +404,7 @@ const DemoViewer = ({ data, isVisible }) => {
           setIsLoading(false)
 
           setTimeout(() => {
-            setIsButtonDisabled(false)
+            dispatchApp({ type: 'SET_APP_VALUES', data: { isButtonDisabled: false} })
           }, 5000)
         } else {
           setIsLoading(false)
@@ -415,13 +419,13 @@ const DemoViewer = ({ data, isVisible }) => {
           }
 
           setTimeout(() => {
-            setIsButtonDisabled(false)
+            dispatchApp({ type: 'SET_APP_VALUES', data: { isButtonDisabled: false} })
           }, 5000)
         }
       })
 
     setTimeout(() => {
-      setIsAnimLoading(false)
+      dispatchApp({ type: 'SET_APP_VALUES', data: { isAnimLoading: false} })
     }, 2000)
   }
 
@@ -697,9 +701,9 @@ const DemoViewer = ({ data, isVisible }) => {
                     onClick={onSearch}
                     size="spc"
                     variant="primary-shadow"
-                    disabled={isButtonDisabled}
+                    disabled={app.isButtonDisabled}
                   >
-                    {Search} <IconRefresh className={`${ps.ml05} ${isAnimLoading ? "anim-rotate" : ""}`} />
+                    {Search} <IconRefresh className={`${ps.ml05} ${app.isAnimLoading ? "anim-rotate" : ""}`} />
                   </Button>
                 </div>
               </div>

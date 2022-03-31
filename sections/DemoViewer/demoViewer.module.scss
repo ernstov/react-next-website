@@ -434,3 +434,20 @@
     font-size: 1rem;
   }
 }
+
+.sidebarSearch {
+  display: none;
+  //pointer-events: none;
+  opacity: 0;
+  transform: translateY(20px);
+
+  &:global(.active){
+    opacity: 1;
+    transform: translateY(0);
+    //pointer-events: all;
+  }
+
+  @include media-breakpoint-down(md) {
+    display: flex;
+  }
+}

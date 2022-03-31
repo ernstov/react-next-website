@@ -73,7 +73,7 @@ const HeaderDemo = ({ variant }) => {
             title={Filters}
             icon={<IconFilter />}
           >
-            <Filter isDisableTitle/>
+            <Filter isDisableTitle onClickSearch={()=>setIsActiveMobile(false)}/>
           </MenuContainer>
         </div>
     }
