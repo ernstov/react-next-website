@@ -2,10 +2,8 @@ import { useState, useContext, useEffect } from "react"
 import { Container, Row, Col, Badge } from "react-bootstrap"
 import Block from "../../components/Block"
 import styles from './plans.module.scss'
-import typographyStyles from "../../styles/global/typography.module.scss"
 import AvancedSwitch from "../../components/ui/AdvancedSwitch"
 import { Context } from "../../context/context"
-import Particles from '../../components/Particles'
 import appConfig from "../../configs/appConfig"
 import { Navigation, Pagination } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react';
