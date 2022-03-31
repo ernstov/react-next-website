@@ -24,6 +24,7 @@ const app = {
       links: [
         { name: "News API", link: "/data-solutions/news-api" },
         { name: "Pricing", link: "/data-solutions/pricing" },
+        { name: "API Live Demo", link: "/data-solutions/demo" },
         { name: "Documentation", link: "https://docs.goperigon.com/" },
         { name: "Business Account", link: "/account/overview" },
       ],
@@ -43,8 +44,8 @@ const app = {
       label: "Perigon", links: [
         { name: "About", link: "/about/overview" },
         { name: "FAQs", link: "/about/faqs" },
+        { name: "The Wire", link: "/wire" },
         { name: "Contact", link: "/about/contact" },
-        { name: "Wire", link: "/wire" },
       ]
     }
   ],
@@ -75,6 +76,7 @@ const app = {
           ]
         },
         { name: "Pricing", link: "/data-solutions/pricing" },
+        { name: "Live Demo", link: "/data-solutions/demo" },
         { name: "Documentation", link: "https://docs.goperigon.com/" },
         { name: "Get Started", link: "/sign-in" },
       ]
@@ -194,6 +196,7 @@ const app = {
         label: "For business", links: [
           { name: "News API", link: "/data-solutions/news-api" },
           { name: "Pricing", link: "/data-solutions/pricing" },
+          { name: "API Live Demo", link: "/data-solutions/demo" },
           { name: "Documentation", link: "https://docs.goperigon.com/" },
           { name: "Business Account", link: "/account/overview" },
           { name: "Media Monitoring", link: "/data-solutions/use-cases/media-monitoring" },
@@ -209,8 +212,8 @@ const app = {
           { name: "Home", link: "/" },
           { name: "About", link: "/about/overview" },
           { name: "FAQs", link: "/about/faqs" },
+          { name: "The Wire", link: "/wire" },
           { name: "Contact", link: "/about/contact" },
-          { name: "Wire", link: "/wire" },
         ]
       }
     ],

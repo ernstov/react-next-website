@@ -45,14 +45,14 @@ const Footer = ({ data, isVisible }) => {
                     <div className={`${styles.listsRow}`}>
                       <ul>
                         {sect.links.map((nav, z) => (
-                          i != 1 ? renderLink(nav, i, z) : z < 4 && renderLink(nav, i, z)
+                          i != 1 ? renderLink(nav, i, z) : z < 5 && renderLink(nav, i, z)
                         ))}
                       </ul>
 
                       {i == 1 &&
                         <ul className="pl-0 pl-md-5">
                           {sect.links.map((nav, z) => (
-                            z > 3 && renderLink(nav, i, z)
+                            z > 4 && renderLink(nav, i, z)
                           ))}
                         </ul>
                       }
