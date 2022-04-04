@@ -6,7 +6,7 @@ import typographyStyles from "../../styles/global/typography.module.scss"
 import { IconPost, IconRect } from '../Icon'
 
 export const ArticlePreview = React.memo((props) => {
-  const { title, subTitle, created_at, alias, blogTags, className, timeToRead, thumbnail: { url } } = props
+  const { title, subTitle, created_at, alias, blogTags, className, timeToRead, thumbnail } = props
 
   return (
     <article className={`${styles.blogArticle} ${className ? className : ""}`}>
@@ -21,16 +21,16 @@ export const ArticlePreview = React.memo((props) => {
           <h3 className="blog-article__title">{title}</h3>
         </Link>
         <p className="blog-article__description">{subTitle}</p>
-        {blogTags && 
+        {blogTags &&
           <div className={`${styles.blogTagsList}`}>
-            {blogTags.map((tag, i)=>(
+            {blogTags.map((tag, i) => (
               <div key={`fd-${i}`} className={`${styles.blogTag} mr-2`}>{tag.name}</div>
             ))}
           </div>
         }
       </div>
       <Link href={`/wire/${alias}`}>
-        {url && <div className="blog-article__cover-wrapper"><img className="blog-article__cover" src={url} alt="cover" /></div>}
+        <div className="blog-article__cover-wrapper">{thumbnail && <img className="blog-article__cover" src={thumbnail?.url} alt="cover" />}</div>
       </Link>
     </article>
   )
