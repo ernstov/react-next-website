@@ -12,7 +12,6 @@ module.exports = (phase, { defaultConfig }) => {
       return [
         {
           source: '/:path*',
-          destination: '/:path*',
           has: [
             {
               type: "host",
