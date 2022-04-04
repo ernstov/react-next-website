@@ -105,7 +105,7 @@ const PostViewer = ({ isVisible, data }) => {
           <div>
             {data.blog_author && <BlogAuthor data={data.blog_author} />}
           </div>
-          <div className={`${styles.postThumb}`} style={{ backgroundImage: `url(${data.thumbnail.url})` }}></div>
+          {data.thumbnail && <div className={`${styles.postThumb}`} style={{ backgroundImage: `url(${data.thumbnail?.url})` }}></div>}
           <div className={`${styles.blogContent}`}>
             <ReactMarkdown plugins={[gfm]} allowDangerousHtml={true}>{data.body}</ReactMarkdown>
           </div>
