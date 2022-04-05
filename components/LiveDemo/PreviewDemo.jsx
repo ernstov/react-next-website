@@ -50,7 +50,7 @@ const Preview = ({ data, relatedCount }) => {
           <div className={`${styles.previewDateDemo}`}>{moment(pubDate).format('MMM D, YYYY ∙ h:mmA')}</div>
           <div>
             <ScrollContainer className={`scroll-container`}>
-              {topics?.length &&
+              {topics?.length > 0 &&
                 <div className={`${styles.previewRowTagsDemo}`}>
                   {topics.map((topic, i) => (
                     <div className={`${styles.previewTagDemo}`} key={`ti-${i}`}>{topic.name}</div>

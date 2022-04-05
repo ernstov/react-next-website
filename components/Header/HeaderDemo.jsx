@@ -59,8 +59,8 @@ const HeaderDemo = ({ variant }) => {
             title={APIMenu}
             icon={<IconMenu />}
           >
-            <Button className="w-100 justify-content-start mb-2" as={"link"} variant="light-simple" size={"tn"} link={`/documentation`}><IconFolder className={`${styles.headerIcon}`} />{Documentation}</Button>
-            <Button className="w-100 justify-content-start mb-2" as={"link"} variant="light-simple" size={"tn"} link={`/documentation`}><IconInfoFill className={`${styles.headerIcon}`} />{Advancedsearchtips}</Button>
+            <Button className="w-100 justify-content-start mb-2" as={"url"} variant="light-simple" size={"tn"} link={`https://docs.goperigon.com`}><IconFolder className={`${styles.headerIcon}`} />{Documentation}</Button>
+            <Button className="w-100 justify-content-start mb-2" as={"url"} variant="light-simple" size={"tn"} link={`https://docs.goperigon.com/docs/search-concepts`}><IconInfoFill className={`${styles.headerIcon}`} />{Advancedsearchtips}</Button>
             <Button className="w-100 justify-content-start mb-2" as={"link"} variant="light-simple" size={"tn"} link={`/sign-in`}><IconLock className={`${styles.headerIcon}`} />{GetAPIKey}</Button>
             <Button className="w-100 justify-content-start mb-4" as={"link"} variant="light-simple" size={"tn"} link={`/sign-in`}><IconAccount className={`${styles.headerIcon}`} />{Myaccount}</Button>
 
