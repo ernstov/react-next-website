@@ -23,7 +23,7 @@ import ResponseSkeleton from '../../components/LiveDemo/ResponseSkeleton'
 import { useRouter } from "next/router"
 import DotPulse from "../../components/Loader/DotPulse"
 import { Parser } from "json2csv"
-import { setCookie, getCookie } from "../../utils"
+import { setCookie, getCookie, validURL } from "../../utils"
 import moment from "moment"
 
 const Response = dynamic(() => import('../../components/LiveDemo/Response'), {
@@ -71,7 +71,7 @@ const DemoViewer = ({ data, isVisible }) => {
   const [json, setJson] = useState([])
   const [queryString, setQueryString] = useState("coronavirus AND Pfizer AND vaccin*")
   const router = useRouter();
-  const { from, to, showNumResults, sortBy, q, location, province, city, language, sourceGroup, exclude, include, category, topic, showReprints, content, type, apiKey, title } = router.query;
+  const { from, to, showNumResults, sortBy, q, country, state, city, language, sourceGroup, excludeSource, source, category, topic, showReprints, content, type, apiKey, title } = router.query;
   const [key, setKey] = useState(null)
   const [isEnable, setIsEnable] = useState(false)
   const [isExport, setIsExport] = useState(false)
@@ -81,32 +81,40 @@ const DemoViewer = ({ data, isVisible }) => {
 
   useEffect(() => {
     if (router.isReady && checkedUserState) {
-      if (from || to || showNumResults || sortBy || location || province || city || language || sourceGroup || exclude || include || category || topic || showReprints || q || content || type || apiKey || title) {
+      if (from || to || showNumResults || sortBy || country || state || city || language || sourceGroup || excludeSource || source || category || topic || showReprints || q || content || type || apiKey || title) {
         if (from) addFilter("startingOn", typeof from != "string" ? from[0] : from)
         if (to) addFilter("endingOn", typeof to != "string" ? to[0] : to)
         if (showNumResults == "true") addFilter("showResults", true)
         if (showNumResults == "false") addFilter("showResults", false)
         if (sortBy) addFilter("sortBy", typeof sortBy != "string" ? sortBy[0].toLowerCase() == "date" ? "Time" : "Relevance" : sortBy.toLowerCase() == "date" ? "Time" : "Relevance")
-        if (location) addFilter("country", typeof location != "string" ? location[0] : location)
-        if (province) addFilter("province", typeof province != "string" ? province[0] : province)
+        if (country) addFilter("country", typeof country != "string" ? country[0] : country)
+        if (state) addFilter("province", typeof state != "string" ? state[0].toUpperCase() : state.toUpperCase())
         if (city) addFilter("city", typeof city != "string" ? city[0] : city)
         if (language) addFilter("language", typeof language != "string" ? language.map(l => ({ value: l })) : [{ value: language }])
         if (sourceGroup) addFilter("sourceGroups", typeof sourceGroup != "string" ? { value: sourceGroup[0], label: getSourceGroup(sourceGroup[0]) } : { value: sourceGroup, label: getSourceGroup(sourceGroup) })
-        if (exclude) {
+        if (excludeSource) {
           addFilter("sourceInclude", "Exclude")
-          addFilter("domains", typeof exclude != "string" ? exclude : [exclude])
+          if (typeof excludeSource != "string") {
+            addFilter("domains", excludeSource.filter((s)=> validURL(s)))
+          } else {
+            if(validURL(excludeSource)) addFilter("domains", [excludeSource])
+          }
         }
-        if (include && !sourceGroup) {
+        if (source && !sourceGroup) {
           addFilter("sourceInclude", "Include")
-          addFilter("domains", typeof include != "string" ? include : [include])
+          if (typeof source != "string") {
+            addFilter("domains", source.filter((s)=> validURL(s)))
+          } else {
+            if(validURL(source)) addFilter("domains", [source])
+          }
         }
         if (category) addFilter("categories", typeof category != "string" ? category.map(c => ({ value: c })) : [{ value: category }])
         if (topic) addFilter("topics", typeof topic != "string" ? topic.map(t => ({ value: t })) : [{ value: topic }])
         if (showReprints == "false") addFilter("showFilter", true)
         if (q) setQueryString(typeof q != "string" ? q[0] : q)
 
-        if (content) setSelectedTypes(cur => cur.map((c, i) => i == 0 ? typeof content != "string" ? capitalizeFirstLetter(content[0]) : capitalizeFirstLetter(content) : c))
-        if (type) setSelectedTypes(cur => cur.map((c, i) => i == 1 ? typeof type != "string" ? capitalizeFirstLetter(type[0]) : capitalizeFirstLetter(type) : c))
+        if (content) setSelectedTypes(cur => cur.map((c, i) => i == 0 ? content == "headlines" ? "Headline Clusters" : c : c))
+        if (type) setSelectedTypes(cur => cur.map((c, i) => i == 1 ? (type == HeadlineorArticle.toLowerCase()) || type == Headline.toLowerCase() ? capitalizeFirstLetter(type) : c : c))
         if (apiKey) setKey(apiKey)
 
         if (title) {
@@ -404,7 +412,7 @@ const DemoViewer = ({ data, isVisible }) => {
           setIsLoading(false)
 
           setTimeout(() => {
-            dispatchApp({ type: 'SET_APP_VALUES', data: { isButtonDisabled: false} })
+            dispatchApp({ type: 'SET_APP_VALUES', data: { isButtonDisabled: false } })
           }, 5000)
         } else {
           setIsLoading(false)
@@ -419,13 +427,13 @@ const DemoViewer = ({ data, isVisible }) => {
           }
 
           setTimeout(() => {
-            dispatchApp({ type: 'SET_APP_VALUES', data: { isButtonDisabled: false} })
+            dispatchApp({ type: 'SET_APP_VALUES', data: { isButtonDisabled: false } })
           }, 5000)
         }
       })
 
     setTimeout(() => {
-      dispatchApp({ type: 'SET_APP_VALUES', data: { isAnimLoading: false} })
+      dispatchApp({ type: 'SET_APP_VALUES', data: { isAnimLoading: false } })
     }, 2000)
   }
 

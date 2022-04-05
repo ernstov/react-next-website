@@ -1,4 +1,4 @@
-import { useState, useContext } from "react"
+import { useState, useContext, useEffect } from "react"
 import styles from './selectButtons.module.scss'
 import Button from "../Button"
 import { Context } from "../../../context/context"
@@ -12,12 +12,16 @@ const SelectButtons = ({ options, onChange, value }) => {
 
   const [v, setV] = useState(value)
 
+  useEffect(() => {
+    setV(value)
+  }, [value])
+
   return <div className={`${styles.selectButtons}`}>
     {options.map((option, i) => (
       <Button
         variant="light-simple"
         className={`${styles.selectButton} ${v == option ? "active" : ""}`}
-        onClick={() => setV(option) } 
+        onClick={() => setV(option)}
         key={`${shortid.generate()}`}
         size="spc"
       >
