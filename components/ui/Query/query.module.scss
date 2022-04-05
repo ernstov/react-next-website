@@ -2,7 +2,7 @@
 
 .query {
   width: 100%;
-  background-color: $white;
+  background-color: $cover-32;
   border: 1px solid $stroke-1;
   height: $btn-height-spc;
   border-radius: $btn-radius;
@@ -19,6 +19,7 @@
 
   input {
     border-color: transparent;
+    background-color: transparent;
     width: 100%;
     outline: none;
     height: 100%;

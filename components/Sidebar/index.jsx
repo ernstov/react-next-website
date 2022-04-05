@@ -7,7 +7,8 @@ import appConfig from "../../configs/appConfig"
 import { useRouter } from "next/router"
 import { Context } from "../../context/context"
 import typographyStyles from "../../styles/global/typography.module.scss"
-import AuthService from "../../services/AuthService";
+import AuthService from "../../services/AuthService"
+import { setCookie } from "../../utils"
 
 const Sidebar = ({ variant, isVisible, isWrap }) => {
 
@@ -32,6 +33,7 @@ const Sidebar = ({ variant, isVisible, isWrap }) => {
     AuthService.logout().then(() => {
       dispatchApp({ type: 'SET_USER', data: { user: undefined } })
       router.push("/sign-in")
+      setCookie("queryKey", "")
     })
     .catch((e) => console.log(e))
   }

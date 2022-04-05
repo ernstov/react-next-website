@@ -88,9 +88,11 @@ const Preview = ({ data, relatedCount }) => {
           </div>
         }
         <div className={`${styles.previewRowCharacters2}`}>
-          <div>
-            <div>{getIcon()}</div><span className={`${styles.previewCharactersStrong}`}>{Mostly} {getSentiment()} {sentimentT}</span>
-          </div>
+          {getSentiment() &&
+            <div>
+              <div>{getIcon()}</div><span className={`${styles.previewCharactersStrong} ${getSentiment()?.toLowerCase()}`}>{Mostly} {getSentiment()}</span>
+            </div>
+          }
           <div className={`${styles.previewLabels} ml-1`}>
             {labels.map((label, i) => (
               <div className={`${styles.previewLabelDemo}`} key={`lti-${i}`}>{label.name}</div>

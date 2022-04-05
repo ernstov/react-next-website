@@ -12,6 +12,7 @@
     width: calc(100% + #{$gutter});
     margin-left: -$gutter/2;
     padding-bottom: 0;
+    min-height: 56px;
   }
 }
 
@@ -38,7 +39,7 @@
 
 .input {
   border: none;
-  background-color: $white;
+  background-color: $cover-32;
   width: 100%;
   display: flex;
   align-items: center;
@@ -47,8 +48,6 @@
   overflow-wrap: anywhere;
 
   @include media-breakpoint-down(md) {
-    background-color: $cover-14;
-
     input {
       white-space: pre-wrap;
     }
@@ -72,6 +71,8 @@
   @include media-breakpoint-down(sm) {
     overflow: scroll;
     white-space: nowrap;
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
 }
 

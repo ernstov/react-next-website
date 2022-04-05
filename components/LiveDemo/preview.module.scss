@@ -39,7 +39,7 @@ $ldSpacer: 2rem;
 .previewRowTitle {
   display: flex;
   margin-top: 0.25rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.3rem;
 }
 
 .previewTitle {
@@ -100,7 +100,7 @@ $ldSpacer: 2rem;
 .previewAuthor {
   display: flex;
   align-items: center;
-  font-size: 0.9375rem;
+  font-size: 0.875rem;
   font-weight: 600;
 
   img {
@@ -110,7 +110,7 @@ $ldSpacer: 2rem;
   }
 
   span {
-    color: $gray-8;
+    color: $gray-23;
     text-decoration: none;
     display: flex;
     align-items: center;
@@ -183,7 +183,14 @@ $ldSpacer: 2rem;
 
 .previewCharactersStrong {
   font-weight: 600;
-  color: $gray-8;
+  color: $gray-22;
+
+  &:global(.negative){
+    color: $error-light;
+  }
+  &:global(.positive){
+    color: $secondary-t;
+  }
 }
 
 .previewDateDemo {
@@ -196,7 +203,7 @@ $ldSpacer: 2rem;
 
 .previewDemo {
   border-radius: 3px;
-  background-color: $black;
+  background-color: $blackAdv;
   padding: 1.4rem;
 
   @include media-breakpoint-down(sm) {
@@ -223,10 +230,10 @@ $ldSpacer: 2rem;
 
 .previewDemoContent {
   color: $gray-23;
-  margin-top: 5px;
+  margin-top: 3px;
   margin-bottom: 5px;
   font-weight: 500;
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
 }
 
 .previewImgDemo {
@@ -273,8 +280,8 @@ $ldSpacer: 2rem;
 }
 
 .previewTagDemo {
-  background-color: $blackAdv;
-  color: $gray-8;
+  background-color: $black;
+  color: $cover-31;
   font-size: 0.5468rem;
   font-weight: 600;
   white-space: nowrap;
@@ -283,6 +290,7 @@ $ldSpacer: 2rem;
   letter-spacing: 0.1em;
   padding: 0.25rem 0.5rem;
   margin-right: 0.25rem;
+  border-radius: 3px;
 }
 
 .previewRowTagsDemo {

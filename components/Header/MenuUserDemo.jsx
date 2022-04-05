@@ -12,7 +12,6 @@ const MenuUserDemo = ({dark}) => {
     <div className={`${styles.menuUserDemo}`}>
       {app.user ?
         <div onClick={() => router.push("/account/overview")} className={`${styles.userDetails}`} role="button">
-          <span className={`${typographyStyles.titleDemi} mr-3 ${dark ? typographyStyles.c13 : ""}`}>{app.user.firstName}</span>
           <div className={`${styles.userAvatar}`}>{app.user.firstName && app.user.firstName[0]}</div>
         </div>
         :
