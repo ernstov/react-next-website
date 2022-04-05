@@ -81,7 +81,7 @@ const DemoViewer = ({ data, isVisible }) => {
 
   useEffect(() => {
     if (router.isReady && checkedUserState) {
-      if (from || to || showNumResults || sortBy || country || state || city || language || sourceGroup || excludeSource || source || category || topic || showReprints || q || content || type || apiKey || title) {
+      if (from || to || showNumResults || sortBy || country || state || city || language || sourceGroup || excludeSource || source || category || topic || showReprints || typeof q == "string" || content || type || apiKey || title) {
         if (from) addFilter("startingOn", typeof from != "string" ? from[0] : from)
         if (to) addFilter("endingOn", typeof to != "string" ? to[0] : to)
         if (showNumResults == "true") addFilter("showResults", true)
@@ -111,7 +111,7 @@ const DemoViewer = ({ data, isVisible }) => {
         if (category) addFilter("categories", typeof category != "string" ? category.map(c => ({ value: c })) : [{ value: category }])
         if (topic) addFilter("topics", typeof topic != "string" ? topic.map(t => ({ value: t })) : [{ value: topic }])
         if (showReprints == "false") addFilter("showFilter", true)
-        if (q) setQueryString(typeof q != "string" ? q[0] : q)
+        if (typeof q == "string") setQueryString(q)
 
         if (content) setSelectedTypes(cur => cur.map((c, i) => i == 0 ? content == "headlines" ? "Headline Clusters" : c : c))
         if (type) setSelectedTypes(cur => cur.map((c, i) => i == 1 ? (type == HeadlineorArticle.toLowerCase()) || type == Headline.toLowerCase() ? capitalizeFirstLetter(type) : c : c))
