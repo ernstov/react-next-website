@@ -7,7 +7,7 @@
   padding-bottom: $section-spacer * 2;
   position: relative;
 
-  :global(.scroll-content){
+  :global(.scroll-content) {
     padding-top: 20px;
   }
 
@@ -114,7 +114,7 @@
   display: flex;
   align-items: center;
 
-  :global(.badge){
+  :global(.badge) {
     font-size: 1.05rem;
     line-height: 1.05rem;
   }
@@ -173,7 +173,7 @@
   margin-top: 1rem;
   overflow: hidden;
 
-  &:global(.center){
+  &:global(.center) {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -275,7 +275,7 @@
       width: 100%;
       margin-right: 15px;
 
-      &:last-child{
+      &:last-child {
         margin-right: 0;
       }
     }
@@ -311,7 +311,6 @@
 
   @include media-breakpoint-down(md) {
     flex-direction: column;
-    
   }
 }
 
@@ -365,11 +364,11 @@
   align-items: center;
   transition: all $transition ease;
 
-  &:global(.notification){
+  &:global(.notification) {
     background-color: $secondary;
   }
 
-  &:global(.active){
+  &:global(.active) {
     opacity: 1;
     pointer-events: all;
     transform: translateX(-50%) translateY(0);
@@ -443,7 +442,7 @@
   opacity: 0;
   transform: translateY(20px);
 
-  &:global(.active){
+  &:global(.active) {
     opacity: 1;
     transform: translateY(0);
     //pointer-events: all;
@@ -451,5 +450,80 @@
 
   @include media-breakpoint-down(md) {
     display: flex;
+  }
+}
+
+.shareLink {
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  margin-left: 0.25rem;
+  line-height: 1;
+  cursor: pointer;
+  transform: translateY(2px);
+
+  svg {
+    font-size: 0.875rem;
+    margin-right: 0.25rem;
+  }
+}
+
+.shareInput {
+  background-color: $white;
+  border: none;
+  width: 100%;
+  font-size: 1rem;
+  outline: none;
+  height: $btn-height-sm;
+  display: flex;
+  align-items: center;
+  border-radius: $btn-radius;
+  border: 1px solid $stroke-1;
+  box-shadow: $shadow-10;
+  color: $blackAdv;
+  font-weight: 600;
+  cursor: grab;
+  width: calc(100% - 115px);
+  white-space: nowrap;
+
+  span {
+    display: block;
+    flex-shrink: 0;
+    padding: 0 1rem;
+    margin-right: 1rem;
+  }
+}
+
+.shareInputRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.shareButton {
+  font-size: 1rem;
+  font-weight: 600;
+  width: 105px;
+  overflow: hidden;
+  display: block;
+
+  &:global(.sm) {
+    font-size: 1rem;
+  }
+
+  span {
+    display: block;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    transition: transform $transition ease;
+  }
+
+  &:global(.copied) {
+    span {
+      transform: translateY(-100%);
+    }
   }
 }

@@ -7,7 +7,7 @@ import dynamic from 'next/dynamic'
 import { sourceGroups } from "../../configs/appConfig"
 import { Context } from "../../context/context"
 import Button from "../../components/ui/Button"
-import { IconRefresh, IconExport, IconNoResults } from "../../components/Icon"
+import { IconRefresh, IconExport, IconNoResults, IconShare, IconBookmark } from "../../components/Icon"
 import Query from "../../components/ui/Query"
 import Url from "../../components/Url"
 import FilterComp from "./Filter"
@@ -25,6 +25,7 @@ import DotPulse from "../../components/Loader/DotPulse"
 import { Parser } from "json2csv"
 import { setCookie, getCookie, validURL } from "../../utils"
 import moment from "moment"
+import ScrollContainer from 'react-indiana-drag-scroll'
 
 const Response = dynamic(() => import('../../components/LiveDemo/Response'), {
   ssr: false
@@ -57,7 +58,11 @@ const DemoViewer = ({ data, isVisible }) => {
     Tryadjusting,
     Demounavailable,
     Contactus,
-    APIrequestsareprocessed
+    APIrequestsareprocessed,
+    Share,
+    ft4,
+    CopyURL,
+    Copied
   } } = useContext(Context);
 
   const [selectedTypes, setSelectedTypes] = useState([AllContent, HeadlineorArticle])
@@ -78,6 +83,9 @@ const DemoViewer = ({ data, isVisible }) => {
   const [is200Compile, setIs200Compile] = useState(false)
   const [is400Compile, setIs400Compile] = useState(false)
   const [notification, setNotification] = useState("")
+  const [isShare, setIsShare] = useState(false)
+  const [link, setLink] = useState("")
+  const [isCopied, setIsCopied] = useState(false)
 
   useEffect(() => {
     if (router.isReady && checkedUserState) {
@@ -95,17 +103,17 @@ const DemoViewer = ({ data, isVisible }) => {
         if (excludeSource) {
           addFilter("sourceInclude", "Exclude")
           if (typeof excludeSource != "string") {
-            addFilter("domains", excludeSource.filter((s)=> validURL(s)))
+            addFilter("domains", excludeSource.filter((s) => validURL(s)))
           } else {
-            if(validURL(excludeSource)) addFilter("domains", [excludeSource])
+            if (validURL(excludeSource)) addFilter("domains", [excludeSource])
           }
         }
         if (source && !sourceGroup) {
           addFilter("sourceInclude", "Include")
           if (typeof source != "string") {
-            addFilter("domains", source.filter((s)=> validURL(s)))
+            addFilter("domains", source.filter((s) => validURL(s)))
           } else {
-            if(validURL(source)) addFilter("domains", [source])
+            if (validURL(source)) addFilter("domains", [source])
           }
         }
         if (category) addFilter("categories", typeof category != "string" ? category.map(c => ({ value: c })) : [{ value: category }])
@@ -168,6 +176,10 @@ const DemoViewer = ({ data, isVisible }) => {
       onSearch()
     }
   }, [app.trigerSearch])
+
+  useEffect(() => {
+    if (window) setLink(window.location.href)
+  }, [])
 
   useEffect(() => {
     if (!isFilterType) setIsFilterType(false)
@@ -569,6 +581,36 @@ const DemoViewer = ({ data, isVisible }) => {
     }).length
   }
 
+  const onBookmark = () => {
+
+    if (window.sidebar && window.sidebar.addPanel) {
+
+      window.sidebar.addPanel(document.title, window.location.href, '');
+
+    } else if (window.external && ('AddFavorite' in window.external)) {
+
+      window.external.AddFavorite(location.href, document.title);
+
+    } else if (window.opera && window.print || window.sidebar && !(window.sidebar instanceof Node)) {
+      triggerBookmark.attr('rel', 'sidebar').attr('title', document.title).attr('href', window.location.href);
+      return true;
+
+    } else {
+      console.log('You can add this page to your bookmarks by pressing ' + (navigator.userAgent.toLowerCase().indexOf('mac') != - 1 ? 'Command/Cmd' : 'CTRL') + ' + D on your keyboard.');
+
+    }
+    return false;
+  }
+
+  const onCopyUrl = () => {
+    navigator.clipboard.writeText(link)
+    setIsCopied(true)
+
+    setTimeout(() => {
+      setIsCopied(false)
+    }, 3000)
+  }
+
   const renderNotification = () => {
 
     switch (notification) {
@@ -641,6 +683,35 @@ const DemoViewer = ({ data, isVisible }) => {
       <Row>
         <Col xs={12}>
           <div className={`${ts.textMediumM} ${ts.c12}`}>Need a larger sample or custom export? Please email us: <a href="mailto:data@goperigon.com">data@goperigon.com</a></div>
+        </Col>
+      </Row>
+    </Container>
+  )
+
+  const renderShare = () => (
+    <Container fluid className="p-0">
+      <Row className="mb-3">
+        <Col>
+          <div className={`${styles.shareInputRow}`}>
+            <div className={`${styles.shareInput}`}>
+              <ScrollContainer><span>{link}&nbsp;&nbsp;&nbsp;&nbsp;</span></ScrollContainer>
+            </div>
+            <Button
+              as="div"
+              size="sm"
+              className={`${styles.shareButton} ${isCopied ? "copied" : ""}`}
+              onClick={onCopyUrl}
+              variant="secondary-shadow"
+            >
+              <span>{CopyURL}</span>
+              <span>{Copied}</span>
+            </Button>
+          </div>
+        </Col>
+      </Row>
+      <Row>
+        <Col xs={12}>
+          <div className={`${ts.textMediumM} ${ts.c12}`}>The link loads this demo with your current search + filters pre-filled <a onClick={onBookmark} className={`${styles.shareLink}`}><IconBookmark />Bookmark</a></div>
         </Col>
       </Row>
     </Container>
@@ -728,8 +799,8 @@ const DemoViewer = ({ data, isVisible }) => {
                   <div className={styles.response}>
                     <div className={styles.responseApi}>
                       <div className={styles.responseTitle}>
-                        <span className={`${ts.textTitleMd} mr-2`}>{APIResponse}</span>
-                        <span className={`${ts.regularD} ${ts.c6}`}>{app.selectedFilters.showResults && <Badge style={{ borderRadius: 4 }} variant="secondary">{numberWithCommas(count)} {results}</Badge>}</span>
+                        <span className={`${ts.textTitleMd} mr-2 d-none d-md-block`}>{APIResponse}</span>
+                        <span className={`${ts.regularD} ${ts.c6} d-flex align-items-center`}>{app.selectedFilters.showResults && <Badge className={`${styles.responseNum}`} style={{ borderRadius: 4 }} variant="secondary">{numberWithCommas(count)} {results}</Badge>}</span>
                         <Button
                           as="div"
                           size="stn"
@@ -742,6 +813,20 @@ const DemoViewer = ({ data, isVisible }) => {
                           <div className={`${styles.exportIcon}`}><IconExport className="mr-0 mr-md-2" /></div> <span className="d-none d-md-inline-block">{Export}</span>
                           <Popup className="d-none d-lg-block mw-400 mnw-350" isActive={isExport} title={ft3} onClose={() => setIsExport(false)}>
                             {renderExport()}
+                          </Popup>
+                        </Button>
+                        <Button
+                          as="div"
+                          size="stn"
+                          className="ml-3"
+                          onClick={
+                            () => !isShare ? setIsShare(true) : null
+                          }
+                          variant="light-simple"
+                        >
+                          <div className={`${styles.exportIcon}`}><IconShare className="mr-0 mr-md-2" /></div> <span className="d-none d-md-inline-block">{Share}</span>
+                          <Popup className="d-none d-lg-block mw-400 mnw-350" isActive={isShare} title={ft4} onClose={() => setIsShare(false)}>
+                            {renderShare()}
                           </Popup>
                         </Button>
                       </div>
@@ -804,6 +889,9 @@ const DemoViewer = ({ data, isVisible }) => {
       </Popup>
       <Popup className="d-block d-lg-none" title={ft3} isActive={isExport} onClose={() => setIsExport(false)}>
         {renderExport()}
+      </Popup>
+      <Popup className="d-block d-lg-none" title={ft4} isActive={isShare} onClose={() => setIsShare(false)}>
+        {renderShare()}
       </Popup>
     </div>
   );
