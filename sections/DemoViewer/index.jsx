@@ -76,7 +76,7 @@ const DemoViewer = ({ data, isVisible }) => {
   const [json, setJson] = useState([])
   const [queryString, setQueryString] = useState("coronavirus AND Pfizer AND vaccin*")
   const router = useRouter();
-  const { from, to, showNumResults, sortBy, q, country, state, city, language, sourceGroup, excludeSource, source, category, topic, showReprints, content, type, apiKey, title } = router.query;
+  const { from, to, showNumResults, sortBy, q, country, state, city, language, sourceGroup, excludeSource, source, category, topic, showReprints, content, type, apiKey, title, medium, paywall, excludeLabel } = router.query;
   const [key, setKey] = useState(null)
   const [isEnable, setIsEnable] = useState(false)
   const [isExport, setIsExport] = useState(false)
@@ -89,7 +89,7 @@ const DemoViewer = ({ data, isVisible }) => {
 
   useEffect(() => {
     if (router.isReady && checkedUserState) {
-      if (from || to || showNumResults || sortBy || country || state || city || language || sourceGroup || excludeSource || source || category || topic || showReprints || typeof q == "string" || content || type || apiKey || title) {
+      if (from || to || showNumResults || sortBy || country || state || city || language || sourceGroup || excludeSource || source || category || topic || showReprints || typeof q == "string" || content || type || apiKey || title || medium || paywall || excludeLabel) {
         if (from) addFilter("startingOn", typeof from != "string" ? from[0] : from)
         if (to) addFilter("endingOn", typeof to != "string" ? to[0] : to)
         if (showNumResults == "true") addFilter("showResults", true)
@@ -118,7 +118,8 @@ const DemoViewer = ({ data, isVisible }) => {
         }
         if (category) addFilter("categories", typeof category != "string" ? category.map(c => ({ value: c })) : [{ value: category }])
         if (topic) addFilter("topics", typeof topic != "string" ? topic.map(t => ({ value: t })) : [{ value: topic }])
-        if (showReprints == "false") addFilter("showFilter", true)
+        if (showReprints == "false") addFilter("noReprints", false)
+        if (paywall == "false") addFilter("noPaywalled", true)
         if (typeof q == "string") setQueryString(q)
 
         if (content) setSelectedTypes(cur => cur.map((c, i) => i == 0 ? content == "headlines" ? "Headline Clusters" : c : c))
@@ -128,6 +129,33 @@ const DemoViewer = ({ data, isVisible }) => {
         if (title) {
           setQueryString(title)
           setSelectedTypes(current => current.map((ci, i) => i == 1 ? Headline : ci))
+        }
+
+        if (medium && typeof medium == "string") {
+          if (medium.toLowerCase() == "article") {
+            addFilter("includeArticle", true)
+            addFilter("includeVideo", false)
+          }
+
+          if (medium.toLowerCase() == "video") {
+            addFilter("includeArticle", false)
+            addFilter("includeVideo", true)
+          }
+        }
+
+        if (excludeLabel) {
+          let labels = []
+          if (typeof excludeLabel == "string") {
+            labels.push(excludeLabel)
+          } else {
+            labels = excludeLabel
+          }
+
+          labels.map((label) => {
+            if (label == "Non-news") addFilter("noNonnews", true)
+            if (label == "Opinion") addFilter("noOpinions", true)
+            if (label == "Paid News") addFilter("noPaidNews", true)
+          })
         }
 
         setTimeout(() => {
@@ -204,7 +232,13 @@ const DemoViewer = ({ data, isVisible }) => {
       topics,
       sortBy,
       showResults,
-      showFilter
+      noReprints,
+      includeVideo,
+      includeArticle,
+      noPaywalled,
+      noNonnews,
+      noOpinions,
+      noPaidNews,
     } = app.selectedFilters
 
     if (startingOn) tempQuery += `&from=${startingOn}`
@@ -215,7 +249,11 @@ const DemoViewer = ({ data, isVisible }) => {
     if (sourceGroups) tempQuery += `&sourceGroup=${sourceGroups.value}`
     if (domain) tempQuery += `&${sourceInclude ? sourceInclude == "Include" ? "source" : "excludeSource" : 'source'}=${domain}`
     if (showResults) tempQuery += `&showNumResults=${showResults}`
-    if (showFilter) tempQuery += `&showReprints=${!showFilter}`
+    if (noReprints == false) tempQuery += `&showReprints=false`
+    if (noPaywalled) tempQuery += `&paywall=false`
+    if (noNonnews) tempQuery += `&excludeLabel=Non-news`
+    if (noOpinions) tempQuery += `&excludeLabel=Opinion`
+    if (noPaidNews) tempQuery += `&excludeLabel=Paid News`
     if (sortBy) tempQuery += `&sortBy=${sortBy == "Time" ? "date" : "relevance"}`
 
     if (domains?.length) {
@@ -248,6 +286,11 @@ const DemoViewer = ({ data, isVisible }) => {
 
     if ((selectedTypes[1] == Headline) && queryString) {
       tempQuery += `&title=${queryString}`
+    }
+
+    if (!includeVideo || !includeArticle) {
+      if (includeVideo) tempQuery += `&medium=Video`
+      if (includeArticle) tempQuery += `&medium=Article`
     }
 
     setQuery(tempQuery)

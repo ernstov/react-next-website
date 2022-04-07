@@ -43,7 +43,15 @@ const Filter = ({ isDisableTitle }) => {
     Show,
     ofResults,
     FilterReprints,
-    Search
+    Search,
+    Articles,
+    Videos,
+    Refineresults,
+    NoReprints,
+    NoPaywalledSources,
+    NoNonnews,
+    NoOpinions,
+    NoPaidNews,
   } } = useContext(Context);
 
   const addFilter = (filterName, value) => {
@@ -76,21 +84,33 @@ const Filter = ({ isDisableTitle }) => {
   }
 
   const calcFilters = () => {
-    return Object.keys(app.selectedFilters).filter((elm) => {
+    const activeFilters = Object.keys(app.selectedFilters).filter((elm) => {
       return (
         elm != "sortBy" &&
         elm != "showResults" &&
-        elm != "showFilter" &&
+        elm != "noReprints" &&
+        elm != "includeArticle" &&
+        elm != "includeVideo" &&
         !(elm == "domains" && app.selectedFilters.domains.length > 0) &&
         app.selectedFilters[elm] != ''
       ) ? true : false
-    }).length
+    })
+
+    if (!app.selectedFilters.includeArticle || !app.selectedFilters.includeVideo) {
+      return activeFilters.length + 1
+    }
+
+    if (app.selectedFilters.noReprints == false) {
+      return activeFilters.length + 1
+    }
+
+    return activeFilters.length
   }
 
   const onSearch = () => {
     dispatchApp({ type: 'SET_APP_VALUES', data: { trigerSearch: true, isActiveFilter: false } })
 
-    setTimeout(()=>{
+    setTimeout(() => {
       dispatchApp({ type: 'SET_APP_VALUES', data: { trigerSearch: false } })
     }, 300)
   }
@@ -203,12 +223,14 @@ const Filter = ({ isDisableTitle }) => {
         className={`mb-2`}
         title={SourceMedia}
         style={{ zIndex: 17 }}
-        isClearable={app.selectedFilters.sourceGroups || app.selectedFilters.sourceInclude || app.selectedFilters.domain || (app.selectedFilters.domains?.length ? true : false)}
+        isClearable={app.selectedFilters.sourceGroups || app.selectedFilters.sourceInclude || app.selectedFilters.domain || (app.selectedFilters.domains?.length ? true : false) || (!app.selectedFilters.includeArticle || !app.selectedFilters.includeVideo)}
         onClear={() => {
           onClear("sourceGroups");
           onClear("sourceInclude");
           onClear("domain");
           onClear("domains");
+          addFilter("includeArticle", true)
+          addFilter("includeVideo", true)
         }}
       >
         <Select
@@ -258,6 +280,32 @@ const Filter = ({ isDisableTitle }) => {
           />
         </div>
         <Button onClick={onAddDomain} variant="white" size="stn"><IconPlusOutline /> {Addanother}</Button>
+        <div className={`${styles.includeFilter}`}>
+          <div><span className={`${ts.titleSmallD} ${ts.c11}`}>{Include}</span></div>
+          <div>
+            <Form.Check
+              className="custom-checkbox-sd"
+              value={Articles}
+              custom
+              checked={app.selectedFilters.includeArticle}
+              onChange={e => addFilter("includeArticle", e.target.checked ? true : app.selectedFilters.includeVideo ? false : true)}
+              id={Articles}
+              label={Articles}
+              type="checkbox"
+            />
+            <Form.Check
+              className="custom-checkbox-sd"
+              value={Videos}
+              custom
+              checked={app.selectedFilters.includeVideo}
+              onChange={e => addFilter("includeVideo", e.target.checked ? true : app.selectedFilters.includeArticle ? false : true)}
+              id={Videos}
+              label={Videos}
+              type="checkbox"
+            />
+          </div>
+        </div>
+
       </CollapseAdvanced>
       <CollapseAdvanced
         className={`mb-2`}
@@ -312,6 +360,59 @@ const Filter = ({ isDisableTitle }) => {
           }}
         />
       </CollapseAdvanced>
+      <div className={`${ps.blockFilter} mb-2`}>
+        <div className="mb-2"><span className={`${ts.titleSmallD} ${ts.c11}`}>{Refineresults}</span></div>
+        <Form.Check
+          className="custom-checkbox-sd mb-2"
+          value={NoReprints}
+          custom
+          checked={app.selectedFilters.noReprints}
+          onChange={e => addFilter("noReprints", e.target.checked)}
+          id={NoReprints}
+          label={NoReprints}
+          type="checkbox"
+        />
+        <Form.Check
+          className="custom-checkbox-sd mb-2"
+          value={NoPaywalledSources}
+          custom
+          checked={app.selectedFilters.noPaywalled}
+          onChange={e => addFilter("noPaywalled", e.target.checked)}
+          id={NoPaywalledSources}
+          label={NoPaywalledSources}
+          type="checkbox"
+        />
+        <Form.Check
+          className="custom-checkbox-sd mb-2"
+          value={NoNonnews}
+          custom
+          checked={app.selectedFilters.noNonnews}
+          onChange={e => addFilter("noNonnews", e.target.checked)}
+          id={NoNonnews}
+          label={NoNonnews}
+          type="checkbox"
+        />
+        <Form.Check
+          className="custom-checkbox-sd mb-2"
+          value={NoOpinions}
+          custom
+          checked={app.selectedFilters.noOpinions}
+          onChange={e => addFilter("noOpinions", e.target.checked)}
+          id={NoOpinions}
+          label={NoOpinions}
+          type="checkbox"
+        />
+        <Form.Check
+          className="custom-checkbox-sd mb-2"
+          value={NoPaidNews}
+          custom
+          checked={app.selectedFilters.noPaidNews}
+          onChange={e => addFilter("noPaidNews", e.target.checked)}
+          id={NoPaidNews}
+          label={NoPaidNews}
+          type="checkbox"
+        />
+      </div>
       <div className={`${ps.blockFilter}`}>
         <div className="mb-2"><span className={`${ts.titleSmallD} ${ts.c11}`}>{Sortby}</span></div>
         <Radio
@@ -329,16 +430,6 @@ const Filter = ({ isDisableTitle }) => {
           onChange={e => addFilter("showResults", e.target.checked)}
           id={ofResults}
           label={ofResults}
-          type="checkbox"
-        />
-        <Form.Check
-          className="custom-checkbox-sd"
-          value={FilterReprints}
-          custom
-          checked={app.selectedFilters.showFilter}
-          onChange={e => addFilter("showFilter", e.target.checked)}
-          id={FilterReprints}
-          label={FilterReprints}
           type="checkbox"
         />
       </div>

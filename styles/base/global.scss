@@ -425,9 +425,9 @@ body .scroll-content {
     &::before{
       width: 1rem;
       height: 1rem;
-      top: 0;
+      top: 1px;
       left: -1.6rem;
-      border-radius: 2px;
+      border-radius: 3px;
       border: $blackAdv solid 2px;
       background-color: transparent;
     }
@@ -435,9 +435,9 @@ body .scroll-content {
     &::after{
       width: 1rem;
       height: 1rem;
-      top: 0;
+      top: 1px;
       left: -1.6rem;
-      border-radius: 4px;
+      border-radius: 3px;
     }
   }
 }

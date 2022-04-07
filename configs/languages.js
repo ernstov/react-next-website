@@ -179,7 +179,15 @@ const languages = {
     APIrequestsareprocessed: "API requests are processed using your account's API key",
     Share: "Share",
     ft4: "Share a direct link",
-    CopyURL: "Copy URL"
+    CopyURL: "Copy URL",
+    Articles: "Articles",
+    Videos: "Videos",
+    Refineresults: "Refine results",
+    NoReprints: "No Reprints",
+    NoPaywalledSources: "No Paywalled Sources",
+    NoNonnews : "No Non-news",
+    NoOpinions: "No Opinions",
+    NoPaidNews: "No Paid News"
   }
 }
 
