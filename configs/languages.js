@@ -176,7 +176,10 @@ const languages = {
     Tryadjusting: "Try adjusting your search criteria",
     Demounavailable: "Demo currently unavailable",
     Contactus: "Contact us",
-    APIrequestsareprocessed: "API requests are processed using your account's API key"
+    APIrequestsareprocessed: "API requests are processed using your account's API key",
+    Share: "Share",
+    ft4: "Share a direct link",
+    CopyURL: "Copy URL"
   }
 }
 
