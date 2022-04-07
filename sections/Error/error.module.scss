@@ -1,0 +1,42 @@
+@import "../../styles/base/variables.scss";
+
+.error {
+  width: 100%;
+  max-width: 873px;
+  padding: 0 $gutter/2;
+  margin: 0 auto;
+
+  @include media-breakpoint-down(md) {
+
+  }
+}
+
+.textTitle {
+  color: $black;
+  font-weight: 600;
+  font-size: 45px;
+  font-family:  $font-family-base;
+  line-height: 51px;
+}
+
+.subTextTitle {
+  color: $blackAdv;
+  font-family:  $font-family-secondary;
+  font-size: 17px;
+  line-height: 23px;
+  margin-top: 8px;
+}
+
+.buttons {
+  margin-top: 30px;
+}
+
+.img {
+  max-width: 485.5px;
+  max-height: 387.81px;
+
+  @include media-breakpoint-down(md) {
+    max-width: 271px !important;
+    width: 100%;
+  }
+}
