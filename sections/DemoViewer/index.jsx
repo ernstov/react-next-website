@@ -230,11 +230,11 @@ const DemoViewer = ({ data, isVisible }) => {
       })
     }
 
-    if (selectedTypes[1] == HeadlineorArticle) {
+    if ((selectedTypes[1] == HeadlineorArticle) && queryString) {
       tempQuery += `&q=${queryString}`
     }
 
-    if (selectedTypes[1] == Headline) {
+    if ((selectedTypes[1] == Headline) && queryString) {
       tempQuery += `&title=${queryString}`
     }
 
