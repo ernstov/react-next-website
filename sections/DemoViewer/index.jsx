@@ -592,7 +592,7 @@ const DemoViewer = ({ data, isVisible }) => {
         </Row>
         <Row className="mt-3">
           <Col className="mt-2">
-            <div><span className={`${ts.c6}`}>Tesla NOT <strong>“Elon Musk”</strong></span></div>
+            <div><span className={`${ts.c6}`}>Tesla AND NOT <strong>“Elon Musk”</strong></span></div>
             <div><span>Find content where <i>Tesla</i> is mentioned, but not <i>“Elon Musk”</i></span></div>
           </Col>
         </Row>
