@@ -305,18 +305,22 @@
   border: 1px solid $cover-14;
   border-radius: 4px;
   padding: 0.5rem 1rem;
+  font-weight: 600;
   display: flex;
   align-items: center;
   justify-content: center;
+  white-space: nowrap;
 
   @include media-breakpoint-down(md) {
     flex-direction: column;
+    padding: 0.5rem 0.5rem;
   }
 }
 
 .textInfo {
+
   @include media-breakpoint-down(md) {
-    font-size: 0.75rem;
+    font-size: 0.875rem;
 
     :global(.mt-2) {
       margin-top: 3px !important;
@@ -325,6 +329,12 @@
     :global(.mt-3) {
       margin-top: 5px !important;
     }
+  }
+}
+
+.titleInfo {
+  @include media-breakpoint-down(md) {
+    font-size: 0.9375rem;
   }
 }
 
@@ -546,5 +556,11 @@
         }
       }
     }
+  }
+}
+
+.andorColumn {
+  @include media-breakpoint-down(sm) {
+    padding-right: 0;
   }
 }

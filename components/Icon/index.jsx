@@ -629,3 +629,37 @@ export const IconBookmark = ({ className }) => (
     <path d="M7.99828 10.8664C8.10457 10.9555 8.24114 11 8.37771 11C8.46876 11 8.55981 10.9852 8.65085 10.9406C8.86332 10.8366 8.99989 10.6287 8.99989 10.406V2C8.99989 0.895432 8.10446 0 6.99989 0H2C0.895429 0 0 0.895431 0 2V10.3911C0 10.6139 0.13657 10.8218 0.349048 10.9258C0.561525 11.0298 0.804389 11.0001 0.986488 10.8515C0.986488 10.8515 1.00163 10.8515 1.00163 10.8367L4.49237 8.26855L7.99828 10.8664Z" fill="#227C9D" />
   </svg>
 )
+
+export const IconMinusCircle = ({ className }) => (
+  <svg name="icon-minus" className={`${styles.appIcon} ${className ? className : ""}`} xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="14px" height="14px" viewBox="0 0 14 14">
+    <path d="M7,0C3.1,0,0,3.1,0,7c0,3.9,3.1,7,7,7c3.9,0,7-3.1,7-7C14,3.1,10.9,0,7,0z M9.7,7.6H4.3C4,7.6,3.7,7.4,3.7,7S4,6.4,4.3,6.4h5.3c0.4,0,0.6,0.3,0.6,0.6S10,7.6,9.7,7.6z" />
+  </svg>
+)
+
+export const IconPlusCircle = ({ className }) => (
+  <svg name="icon-plus" className={`${styles.appIcon} ${className ? className : ""}`} xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="13.8px" height="13.8px" viewBox="0 0 13.8 13.8">
+    <path d="M6.9,0C3.1,0,0,3.1,0,6.9s3.1,6.9,6.9,6.9s6.9-3.1,6.9-6.9S10.7,0,6.9,0z M9.5,7.5h-2v2c0,0.4-0.3,0.6-0.6,0.6S6.2,9.8,6.2,9.5v-2h-2c-0.4,0-0.6-0.3-0.6-0.6s0.3-0.6,0.6-0.6h2v-2c0-0.4,0.3-0.6,0.6-0.6s0.6,0.3,0.6,0.6v2h2c0.4,0,0.6,0.3,0.6,0.6S9.8,7.5,9.5,7.5z" />
+  </svg>
+)
+
+export const IconVideo = ({ className }) => (
+  <svg name="icon-video" className={`${styles.appIcon} ${className ? className : ""}`} xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20px" height="15px" viewBox="0 0 20 15">
+    <g>
+      <g transform="translate(-1168.000000, -1259.000000)">
+        <g transform="translate(307.000000, 153.000000)">
+          <g transform="translate(706.000000, 85.000000)">
+            <g transform="translate(0.000000, 861.000000)">
+              <g transform="translate(23.000000, 25.000000)">
+                <g transform="translate(132.000000, 135.000000)">
+                  <path d="M16.4,0.3c-4.3-0.4-8.6-0.4-12.9,0C2.1,0.5,0.5,2,0.3,3.6v0c-0.4,2.6-0.4,5.2,0,7.8
+								c0.2,1.6,1.8,3.1,3.3,3.3c4.3,0.4,8.6,0.4,12.9,0c1.5-0.2,3.1-1.7,3.3-3.3c0.4-2.6,0.4-5.2,0-7.8C19.5,2,17.9,0.5,16.4,0.3
+								L16.4,0.3z M12,8.3l-3.3,2.1C8,10.9,7.5,10.6,7.5,9.7V5.3c0-0.8,0.5-1.1,1.2-0.7L12,6.7C12.7,7.1,12.7,7.9,12,8.3L12,8.3z"/>
+                </g>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </svg>
+)

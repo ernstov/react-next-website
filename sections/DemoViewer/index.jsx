@@ -118,13 +118,13 @@ const DemoViewer = ({ data, isVisible }) => {
         }
         if (category) addFilter("categories", typeof category != "string" ? category.map(c => ({ value: c })) : [{ value: category }])
         if (topic) addFilter("topics", typeof topic != "string" ? topic.map(t => ({ value: t })) : [{ value: topic }])
-        if (showReprints == "false") addFilter("noReprints", false)
+        if (showReprints == "false") addFilter("noReprints", true)
         if (paywall == "false") addFilter("noPaywalled", true)
         if (typeof q == "string") setQueryString(q)
 
         if (content) setSelectedTypes(cur => cur.map((c, i) => i == 0 ? content == "headlines" ? "Headline Clusters" : c : c))
         if (type) setSelectedTypes(cur => cur.map((c, i) => i == 1 ? (type == HeadlineorArticle.toLowerCase()) || type == Headline.toLowerCase() ? capitalizeFirstLetter(type) : c : c))
-        if (apiKey) setKey(apiKey)
+        if (apiKey && apiKey != "[KEY]") setKey(apiKey)
 
         if (title) {
           setQueryString(title)
@@ -163,14 +163,14 @@ const DemoViewer = ({ data, isVisible }) => {
         }, 1000)
       } else {
 
-        const cQuery = getCookie("query")
         const cQueryType = getCookie("queryType")
         const cQueryHeadline = getCookie("queryHeadline")
         const cQueryKey = getCookie("queryKey")
         const cQueryString = getCookie("queryString")
+        const cQuery = `&sortBy=date&from=${app.selectedFilters.startingOn}&showNumResults=true&q=${cQueryString ? cQueryString : 'coronavirus AND Pfizer AND vaccin*'}`
 
         setSelectedTypes([cQueryType ? cQueryType : AllContent, cQueryHeadline ? cQueryHeadline : HeadlineorArticle])
-        setQuery(cQuery ? cQuery : `&sortBy=date&from=${app.selectedFilters.startingOn}&showNumResults=true&q=coronavirus AND Pfizer AND vaccin*`)
+        setQuery(cQuery)
         setQueryString(cQueryString ? cQueryString : "coronavirus AND Pfizer AND vaccin*")
         setKey(cQueryKey ? cQueryKey : null)
 
@@ -206,7 +206,7 @@ const DemoViewer = ({ data, isVisible }) => {
   }, [app.trigerSearch])
 
   useEffect(() => {
-    if (window) setLink(window.location.href)
+    if (window) setLink(window.location.href.split('?')[0])
   }, [])
 
   useEffect(() => {
@@ -249,7 +249,7 @@ const DemoViewer = ({ data, isVisible }) => {
     if (sourceGroups) tempQuery += `&sourceGroup=${sourceGroups.value}`
     if (domain) tempQuery += `&${sourceInclude ? sourceInclude == "Include" ? "source" : "excludeSource" : 'source'}=${domain}`
     if (showResults) tempQuery += `&showNumResults=${showResults}`
-    if (noReprints == false) tempQuery += `&showReprints=false`
+    if (noReprints) tempQuery += `&showReprints=false`
     if (noPaywalled) tempQuery += `&paywall=false`
     if (noNonnews) tempQuery += `&excludeLabel=Non-news`
     if (noOpinions) tempQuery += `&excludeLabel=Opinion`
@@ -535,15 +535,15 @@ const DemoViewer = ({ data, isVisible }) => {
 
   const renderInfo = () => {
     return <div className={`${ts.textMediumM} ${styles.textInfo}`}>
-      Narrow results by using boolean operators in your query:
+      <div className={`mb-3 ${styles.titleInfo}`}><span>Narrow results by using boolean operators in your query:</span></div>
       <Container fluid className="p-0 mt-2">
         <Row className="align-items-center">
-          <Col xs={5}>
+          <Col className={`${styles.andorColumn}`} xs={3} sm={5}>
             <div className={`${styles.queryBlock}`}>
               <span>AND</span> <span className="d-none d-lg-inline ml-1 mr-1">∙</span> <span>OR</span> <span className="d-none d-lg-inline ml-1 mr-1">∙</span> <span>NOT</span>
             </div>
           </Col>
-          <Col xs={7}>
+          <Col sm ={7} xs={9}>
             <div>
               <div>
                 <strong>AND</strong>: Results include both terms
@@ -558,12 +558,12 @@ const DemoViewer = ({ data, isVisible }) => {
           </Col>
         </Row>
         <Row className="align-items-center mt-2">
-          <Col xs={5}>
+          <Col className={`${styles.andorColumn}`} xs={3} sm={5}>
             <div className={`${styles.queryBlock}`}>
               Quotes “”
             </div>
           </Col>
-          <Col xs={7}>
+          <Col sm ={7} xs={9}>
             <div>
               <div>
                 Find exact-phrase matches
@@ -572,12 +572,12 @@ const DemoViewer = ({ data, isVisible }) => {
           </Col>
         </Row>
         <Row className="align-items-center mt-2">
-          <Col xs={5}>
+          <Col className={`${styles.andorColumn}`} xs={3} sm={5}>
             <div className={`${styles.queryBlock}`}>
               Asterisks *
             </div>
           </Col>
-          <Col xs={7}>
+          <Col sm ={7} xs={9}>
             <div>
               <div>
                 Include variants of the keyword
@@ -585,8 +585,8 @@ const DemoViewer = ({ data, isVisible }) => {
             </div>
           </Col>
         </Row>
-        <Row className="mt-3">
-          <Col>
+        <Row>
+          <Col className="pb-3 pb-sm-0 pt-3 pt-sm-3">
             <strong>🔎 Examples</strong>
           </Col>
         </Row>
@@ -597,7 +597,7 @@ const DemoViewer = ({ data, isVisible }) => {
           </Col>
         </Row>
         <Row className="mt-3">
-          <Col className="mt-2">
+          <Col className="mt-3">
             <div><span className={`${ts.c6}`}><strong>“Climate Change”</strong> AND <strong>Penguin*</strong></span></div>
             <div><span>Find content where both <i>“Climate Change”</i> and any variation of the word <i>Penguin</i> is mentioned</span></div>
           </Col>
@@ -646,7 +646,7 @@ const DemoViewer = ({ data, isVisible }) => {
   }
 
   const onCopyUrl = () => {
-    navigator.clipboard.writeText(link)
+    navigator.clipboard.writeText(`${link}/${key ? `?apiKey=${key}` : '?apiKey=[KEY]'}${query}`)
     setIsCopied(true)
 
     setTimeout(() => {
@@ -737,7 +737,7 @@ const DemoViewer = ({ data, isVisible }) => {
         <Col>
           <div className={`${styles.shareInputRow}`}>
             <div className={`${styles.shareInput}`}>
-              <ScrollContainer><span>{link}&nbsp;&nbsp;&nbsp;&nbsp;</span></ScrollContainer>
+              <ScrollContainer><span>{`${link}/${key ? `?apiKey=${key}` : '?apiKey=[KEY]'}${query}`}&nbsp;&nbsp;&nbsp;&nbsp;</span></ScrollContainer>
             </div>
             <Button
               as="div"
@@ -908,7 +908,7 @@ const DemoViewer = ({ data, isVisible }) => {
                         </SkeletonTheme>
                         {(!isLoading && articles?.length > 0) && articles.map((article, i) => (
                           <div key={`adi-${i}`} className="mb-0 mb-lg-1">
-                            <PreviewDemo data={article} />
+                            <PreviewDemo onChange={()=> setIsEnable(true)} data={article} />
                           </div>
                         ))}
                         {((!articles?.length || notification) && !isLoading) && <div className={`${styles.emptyResult}`}>{Noresultsfound}</div>}

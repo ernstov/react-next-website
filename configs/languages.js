@@ -185,9 +185,18 @@ const languages = {
     Refineresults: "Refine results",
     NoReprints: "No Reprints",
     NoPaywalledSources: "No Paywalled Sources",
-    NoNonnews : "No Non-news",
+    NoNonnews: "No Non-news",
     NoOpinions: "No Opinions",
-    NoPaidNews: "No Paid News"
+    NoPaidNews: "No Paid News",
+    label: "label",
+    Excludefromresults: "Exclude from results",
+    Video: "Video",
+    Medium: "Medium",
+    Showonlyvideos: "Show only videos",
+    Excludevideos: "Exclude videos",
+    Topic: "Topic",
+    Removefromquery: "Remove from query",
+    Addtoquery: "Add to query",
   }
 }
 

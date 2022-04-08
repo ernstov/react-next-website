@@ -555,3 +555,45 @@
   padding: 1rem;
   border-radius: $btn-radius;
 }
+
+.removeRow {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 0.875rem;
+  padding: 0.7rem 1rem;
+  font-weight: 600;
+  color: $blackAdv;
+  transition: opacity $transition ease;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  svg {
+    margin-right: 0.5rem;
+    font-size: 0.875rem;
+    color: $error;
+  }
+}
+
+.addRow {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 0.875rem;
+  padding: 0.7rem 1rem;
+  font-weight: 600;
+  color: $blackAdv;
+  transition: opacity $transition ease;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  svg {
+    margin-right: 0.5rem;
+    font-size: 0.875rem;
+    color: $blackAdv;
+  }
+}

@@ -185,10 +185,10 @@ $ldSpacer: 2rem;
   font-weight: 600;
   color: $gray-22;
 
-  &:global(.negative){
+  &:global(.negative) {
     color: $error-light;
   }
-  &:global(.positive){
+  &:global(.positive) {
     color: $secondary-t;
   }
 }
@@ -280,20 +280,44 @@ $ldSpacer: 2rem;
 }
 
 .previewTagDemo {
-  background-color: $black;
-  color: $cover-31;
-  font-size: 0.5468rem;
-  font-weight: 600;
-  white-space: nowrap;
-  text-transform: uppercase;
-  user-select: none;
-  letter-spacing: 0.1em;
-  padding: 0.25rem 0.5rem;
-  margin-right: 0.25rem;
-  border-radius: 3px;
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  > span {
+    background-color: $black;
+    border: 1px solid $black;
+    color: $cover-31;
+    font-size: 0.5468rem;
+    font-weight: 600;
+    white-space: nowrap;
+    text-transform: uppercase;
+    user-select: none;
+    letter-spacing: 0.1em;
+    padding: 0.20rem 0.5rem;
+    margin-right: 0.25rem;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all $transition ease;
+  }
+
+  &:global(.active) {
+    > span {
+      background-color: transparent;
+      color: $cover-2;
+      border-color: $stroke-8;
+    }
+  }
 }
 
 .previewRowTagsDemo {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  position: relative;
+}
+
+.previewRowTagsDemoInner {
   display: flex;
   align-items: center;
   width: 100%;
@@ -303,12 +327,13 @@ $ldSpacer: 2rem;
   display: flex;
   align-items: center;
   margin-bottom: 0.5rem;
+  position: relative;
 
   > div {
     width: 155px;
 
-    &:last-child{
-      width:calc(100% -  155px);
+    &:last-child {
+      width: calc(100% - 155px);
     }
   }
 }
@@ -318,33 +343,66 @@ $ldSpacer: 2rem;
   display: flex;
   align-items: center;
 
-  &:global(.positive){
+  &:global(.positive) {
     color: $secondary;
   }
 
-  &:global(.negative){
+  &:global(.negative) {
     color: $error;
   }
 }
 
 .previewLabelDemo {
-  background-color: $primary;
-  padding: 0 0.5rem;
-  border-radius: 3px;
-  color: $blackAdv;
-  font-size: 0.5625rem;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  line-height: 19px;
-  height: 19px;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin-right: 5px;
+  position: relative;
+
+  > span {
+    border: 1px solid $primary;
+    background-color: $primary;
+    padding: 0 0.5rem;
+    border-radius: 3px;
+    color: $blackAdv;
+    font-size: 0.5625rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    line-height: 19px;
+    height: 19px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-right: 5px;
+    cursor: pointer;
+
+    &:global(.active) {
+      background-color: transparent;
+      color: $cover-2;
+      border-color: $stroke-8;
+    }
+  }
 }
 
 .previewDemoSkeleton {
   border-radius: 3px;
   background-color: $black;
   padding: 1.4rem;
+}
+
+.previewVideo {
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-left: 0.25rem;
+
+  > span {
+    font-weight: 600;
+    color: $cover-2;
+    cursor: pointer;
+    transition: color $transition ease;
+
+    svg {
+      cursor: pointer;
+      color: $cover-2;
+      font-size: 1.125rem;
+      margin-right: 0.4rem;
+    }
+  }
 }

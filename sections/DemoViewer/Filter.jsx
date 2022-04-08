@@ -63,7 +63,6 @@ const Filter = ({ isDisableTitle }) => {
   }
 
   const onClear = (filterName) => {
-
     dispatchApp({ type: 'SET_DEMO_FILTER', data: { [filterName]: filterName == "domains" ? [] : '' } })
   }
 
@@ -337,7 +336,7 @@ const Filter = ({ isDisableTitle }) => {
         className={`mb-2`}
         title={Topic}
         style={{ zIndex: 15 }}
-        isClearable={app.selectedFilters.topics}
+        isClearable={app.selectedFilters.topics.length > 0}
         onClear={() => {
           onClear("topics");
         }}

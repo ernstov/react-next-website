@@ -1,18 +1,43 @@
-import React, { useContext, useState } from "react"
+import React, { useContext, useState, useRef } from "react"
 import { Context } from "../../context/context"
 import styles from './preview.module.scss'
 import Icon from "../Icon"
 import { useEffect } from "react"
 import appConfig from "../../configs/appConfig"
+import ps from "../../styles/global/presets.module.scss"
 import moment from "moment"
 import ScrollContainer from 'react-indiana-drag-scroll'
-import { IconPositive, IconNegative, IconNeutral } from "../Icon"
+import { IconPositive, IconNegative, IconNeutral, IconMinusCircle, IconVideo, IconPlusCircle } from "../Icon"
+import Popup from "../../components/Popup"
+import { filterIt } from "../../utils"
 
-const Preview = ({ data, relatedCount }) => {
+const Preview = ({ data, onChange }) => {
 
-  const { lang: { Mostly, sentimentT } } = useContext(Context)
+  const { app, dispatchApp, lang: { Mostly, label, Excludefromresults, Video, Medium, Showonlyvideos, Excludevideos, Topic, Addtoquery, Removefromquery } } = useContext(Context)
   const [sourceImg, setSourceImg] = useState("")
-  const { source, authorsByline, imageUrl, title, summary, topics, sentiment, pubDate, content, url, labels } = data
+  const { source, authorsByline, imageUrl, title, summary, topics, sentiment, pubDate, content, url, labels, medium } = data
+  const [activeLabels, setActiveLabels] = useState(labels.map(() => false))
+  const [activeTopic, setActiveTopic] = useState(topics.map(() => false))
+  const [activeVideo, setActiveVideo] = useState(false)
+  const [windowWidth, setWindowWidth] = useState(0)
+  const isChange = useRef(false)
+
+  useEffect(() => {
+    setActiveLabels(labels.map(() => false))
+  }, [labels])
+
+  useEffect(() => {
+    setWindowWidth(window.innerWidth)
+  }, [])
+
+  useEffect(() => {
+    if (onChange && isChange.current) {
+      setTimeout(() => {
+        onChange()
+        isChange.current = false
+      }, 500)
+    }
+  }, [app.selectedFilters.noNonnews, app.selectedFilters.noOpinions, app.selectedFilters.includeArticle, app.selectedFilters.includeVideo, app.selectedFilters.topics])
 
   useEffect(() => {
     if (source?.domain) {
@@ -31,6 +56,13 @@ const Preview = ({ data, relatedCount }) => {
     }
   }
 
+  const isTopicAvailable = (topic) => {
+    if (!app.selectedFilters.topics) return false
+
+    const result = filterIt(app.selectedFilters.topics, topic, "value")
+    return result.length > 0 ? true : false
+  }
+
   const getIcon = () => {
     switch (getSentiment()) {
       case "Neutral":
@@ -43,21 +75,73 @@ const Preview = ({ data, relatedCount }) => {
     }
   }
 
+  const onExcludeLabel = (label) => {
+    if (label == "Non-news") dispatchApp({ type: 'SET_DEMO_FILTER', data: { noNonnews: true } })
+    if (label == "Opinion") dispatchApp({ type: 'SET_DEMO_FILTER', data: { noOpinions: true } })
+
+    setActiveLabels(c => c.map(() => false))
+    isChange.current = true
+  }
+
+  const onShowOnlyVideo = () => {
+    dispatchApp({ type: 'SET_DEMO_FILTER', data: { includeArticle: false, includeVideo: true } })
+    setActiveVideo(false)
+    isChange.current = true
+  }
+
+  const onExcludeVideo = () => {
+    dispatchApp({ type: 'SET_DEMO_FILTER', data: { includeArticle: true, includeVideo: false } })
+    setActiveVideo(false)
+    isChange.current = true
+  }
+
+  const onRemoveTopic = (topicName) => {
+    dispatchApp({ type: 'SET_DEMO_FILTER', data: { topics: app.selectedFilters.topics.filter((c) => c.value != topicName) } })
+    setActiveTopic(c => c.map(() => false))
+    isChange.current = true
+  }
+
+  const onAddTopic = (topicName) => {
+    dispatchApp({ type: 'SET_DEMO_FILTER', data: { topics: [...app.selectedFilters.topics, { value: topicName, label: topicName }] } })
+    setActiveTopic(c => c.map(() => false))
+    isChange.current = true
+  }
+
   return <div className={`${styles.previewDemo}`}>
     {data &&
       <>
         <div className={`${styles.previewRowDateDemo}`}>
           <div className={`${styles.previewDateDemo}`}>{moment(pubDate).format('MMM D, YYYY ∙ h:mmA')}</div>
           <div>
-            <ScrollContainer className={`scroll-container`}>
-              {topics?.length > 0 &&
-                <div className={`${styles.previewRowTagsDemo}`}>
-                  {topics.map((topic, i) => (
-                    <div className={`${styles.previewTagDemo}`} key={`ti-${i}`}>{topic.name}</div>
-                  ))}
-                </div>
-              }
-            </ScrollContainer>
+
+            {topics?.length > 0 &&
+              <div className={`${styles.previewRowTagsDemo}`}>
+                <ScrollContainer vertical={false} className={`scroll-container`}>
+                  <div className={`${styles.previewRowTagsDemoInner}`}>
+                    {topics.map((topic, i) => (
+                      <div className={`${styles.previewTagDemo} ${activeTopic[i] ? 'active' : ''}`} key={`ti-${i}`}>
+                        <span onClick={() => setActiveTopic(c => c.map((lb, z) => z == i ? !lb : false))}>{topic.name}</span>
+                      </div>
+                    ))}
+                  </div>
+                </ScrollContainer>
+                {topics.map((topic, i) => (
+                  <Popup
+                    key={`tfi-${i}`}
+                    variant="small"
+                    isActive={activeTopic[i]}
+                    title={Topic}
+                    position={windowWidth < 500 ? "right" : "left"}
+                  >
+                    {isTopicAvailable(topic.name) ?
+                      <div className={`${ps.removeRow}`} onClick={() => onRemoveTopic(topic.name)}><IconMinusCircle /> {Removefromquery}</div>
+                      :
+                      <div className={`${ps.addRow}`} onClick={() => onAddTopic(topic.name)}><IconPlusCircle /> {Addtoquery}</div>
+                    }
+                  </Popup>
+                ))}
+              </div>
+            }
           </div>
         </div>
         <div className={`${styles.previewRowTitle}`}>
@@ -93,11 +177,34 @@ const Preview = ({ data, relatedCount }) => {
               <div>{getIcon()}</div><span className={`${styles.previewCharactersStrong} ${getSentiment()?.toLowerCase()}`}>{Mostly} {getSentiment()}</span>
             </div>
           }
-          <div className={`${styles.previewLabels} ml-1`}>
-            {labels.map((label, i) => (
-              <div className={`${styles.previewLabelDemo}`} key={`lti-${i}`}>{label.name}</div>
-            ))}
-          </div>
+          {labels?.length > 0 &&
+            <div className={`${styles.previewLabels} ml-1`}>
+              {labels.map((l, i) => (
+                <div className={`${styles.previewLabelDemo}`} key={`lti-${i}`}>
+                  <span className={`${activeLabels[i] ? 'active' : ''}`} onClick={() => setActiveLabels(c => c.map((lb, z) => z == i ? !lb : lb))}>{l.name}</span>
+                  <Popup
+                    variant="small"
+                    isActive={activeLabels[i]}
+                    title={label}
+                  >
+                    <div className={`${ps.removeRow}`} onClick={() => onExcludeLabel(l.name)}><IconMinusCircle /> {Excludefromresults}</div>
+                  </Popup>
+                </div>
+              ))}
+            </div>
+          }
+          {medium == "Video" && <div className={`${styles.previewVideo}`}>
+            <span onClick={() => setActiveVideo(!activeVideo)}><IconVideo />{Video}</span>
+            <Popup
+              variant="small"
+              isActive={activeVideo}
+              title={Medium}
+              position={windowWidth < 500 ? "right" : "left"}
+            >
+              <div className={`${ps.addRow} border-bottom`} onClick={() => onShowOnlyVideo()}><IconPlusCircle /> {Showonlyvideos}</div>
+              <div className={`${ps.removeRow}`} onClick={() => onExcludeVideo()}><IconMinusCircle /> {Excludevideos}</div>
+            </Popup>
+          </div>}
         </div>
       </>
     }
