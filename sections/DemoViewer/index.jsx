@@ -639,7 +639,7 @@ const DemoViewer = ({ data, isVisible }) => {
       return true;
 
     } else {
-      console.log('You can add this page to your bookmarks by pressing ' + (navigator.userAgent.toLowerCase().indexOf('mac') != - 1 ? 'Command/Cmd' : 'CTRL') + ' + D on your keyboard.');
+      alert('You can add this page to your bookmarks by pressing ' + (navigator.userAgent.toLowerCase().indexOf('mac') != - 1 ? 'Command/Cmd' : 'CTRL') + ' + D on your keyboard.');
 
     }
     return false;
@@ -737,7 +737,7 @@ const DemoViewer = ({ data, isVisible }) => {
         <Col>
           <div className={`${styles.shareInputRow}`}>
             <div className={`${styles.shareInput}`}>
-              <ScrollContainer><span>{`${link}/${key ? `?apiKey=${key}` : '?apiKey=[KEY]'}${query}`}&nbsp;&nbsp;&nbsp;&nbsp;</span></ScrollContainer>
+              <ScrollContainer><span>{`${link}/?${query.slice(1, query.length)}`}&nbsp;&nbsp;&nbsp;&nbsp;</span></ScrollContainer>
             </div>
             <Button
               as="div"
