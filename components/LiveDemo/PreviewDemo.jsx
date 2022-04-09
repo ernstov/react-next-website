@@ -13,11 +13,12 @@ import { filterIt } from "../../utils"
 
 const Preview = ({ data, onChange }) => {
 
-  const { app, dispatchApp, lang: { Mostly, label, Excludefromresults, Video, Medium, Showonlyvideos, Excludevideos, Topic, Addtoquery, Removefromquery } } = useContext(Context)
+  const { app, dispatchApp, lang: { Mostly, label, Excludefromresults, Video, Medium, Showonlyvideos, Excludevideos, Topic, Addtoquery, Removefromquery, Category } } = useContext(Context)
   const [sourceImg, setSourceImg] = useState("")
-  const { source, authorsByline, imageUrl, title, summary, topics, sentiment, pubDate, content, url, labels, medium } = data
+  const { source, authorsByline, imageUrl, title, summary, topics, sentiment, pubDate, content, url, labels, medium, categories } = data
   const [activeLabels, setActiveLabels] = useState(labels.map(() => false))
   const [activeTopic, setActiveTopic] = useState(topics.map(() => false))
+  const [activeCategory, setActiveCategory] = useState(categories.map(() => false))
   const [activeVideo, setActiveVideo] = useState(false)
   const [windowWidth, setWindowWidth] = useState(0)
   const isChange = useRef(false)
@@ -54,6 +55,13 @@ const Preview = ({ data, onChange }) => {
       const result = Object.keys(sentiment).reduce((a, b) => sentiment[a] > sentiment[b] ? a : b)
       return result.charAt(0).toUpperCase() + result.slice(1)
     }
+  }
+
+  const isCategoryAvailable = (category) => {
+    if (!app.selectedFilters.categories) return false
+
+    const result = filterIt(app.selectedFilters.categories, category, "value")
+    return result.length > 0 ? true : false
   }
 
   const isTopicAvailable = (topic) => {
@@ -95,6 +103,18 @@ const Preview = ({ data, onChange }) => {
     isChange.current = true
   }
 
+  const onRemoveCategory = (categoryName) => {
+    dispatchApp({ type: 'SET_DEMO_FILTER', data: { categories: app.selectedFilters.categories.filter((c) => c.value != categoryName) } })
+    setActiveCategory(c => c.map(() => false))
+    isChange.current = true
+  }
+
+  const onAddCategory = (categoryName) => {
+    dispatchApp({ type: 'SET_DEMO_FILTER', data: { categories: [...app.selectedFilters.categories, { value: categoryName, label: categoryName }] } })
+    setActiveCategory(c => c.map(() => false))
+    isChange.current = true
+  }
+
   const onRemoveTopic = (topicName) => {
     dispatchApp({ type: 'SET_DEMO_FILTER', data: { topics: app.selectedFilters.topics.filter((c) => c.value != topicName) } })
     setActiveTopic(c => c.map(() => false))
@@ -114,18 +134,48 @@ const Preview = ({ data, onChange }) => {
           <div className={`${styles.previewDateDemo}`}>{moment(pubDate).format('MMM D, YYYY ∙ h:mmA')}</div>
           <div>
 
-            {topics?.length > 0 &&
+            {(topics?.length > 0 || categories?.length > 0) &&
               <div className={`${styles.previewRowTagsDemo}`}>
                 <ScrollContainer vertical={false} className={`scroll-container`}>
                   <div className={`${styles.previewRowTagsDemoInner}`}>
-                    {topics.map((topic, i) => (
+                    {categories?.map((category, i) => (
+                      <div className={`${styles.previewTagDemo} ${activeCategory[i] ? 'active' : ''}`} key={`ti-${i}`}>
+                        <span onClick={() => {
+                          setActiveTopic(topics.map(() => false))
+                          setActiveCategory(c => c.map((lb, z) => z == i ? !lb : false))
+                        }}>
+                          {category.name}
+                        </span>
+                      </div>
+                    ))}
+                    {topics?.map((topic, i) => (
                       <div className={`${styles.previewTagDemo} ${activeTopic[i] ? 'active' : ''}`} key={`ti-${i}`}>
-                        <span onClick={() => setActiveTopic(c => c.map((lb, z) => z == i ? !lb : false))}>{topic.name}</span>
+                        <span onClick={() => {
+                          setActiveCategory(categories.map(() => false))
+                          setActiveTopic(c => c.map((lb, z) => z == i ? !lb : false))
+                        }}>
+                          {topic.name}
+                        </span>
                       </div>
                     ))}
                   </div>
                 </ScrollContainer>
-                {topics.map((topic, i) => (
+                {categories?.map((category, i) => (
+                  <Popup
+                    key={`tfic-${i}`}
+                    variant="small"
+                    isActive={activeCategory[i]}
+                    title={Category}
+                    position={windowWidth < 500 ? "right" : "left"}
+                  >
+                    {isCategoryAvailable(category.name) ?
+                      <div className={`${ps.removeRow}`} onClick={() => onRemoveCategory(category.name)}><IconMinusCircle /> {Removefromquery}</div>
+                      :
+                      <div className={`${ps.addRow}`} onClick={() => onAddCategory(category.name)}><IconPlusCircle /> {Addtoquery}</div>
+                    }
+                  </Popup>
+                ))}
+                {topics?.map((topic, i) => (
                   <Popup
                     key={`tfi-${i}`}
                     variant="small"

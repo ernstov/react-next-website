@@ -310,7 +310,7 @@ const Filter = ({ isDisableTitle }) => {
         className={`mb-2`}
         title={Category}
         style={{ zIndex: 16 }}
-        isClearable={app.selectedFilters.categories}
+        isClearable={app.selectedFilters.categories.length > 0}
         onClear={() => {
           onClear("categories");
         }}
