@@ -61,6 +61,7 @@ export default function App({ Component, pageProps }) {
       noReprints: true,
       domains: [],
       topics: [],
+      categories: [],
       startingOn: moment().subtract("1", "days").format("YYYY-MM-DD"),
       includeArticle: true,
       includeVideo: true,
