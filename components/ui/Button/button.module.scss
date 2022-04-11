@@ -51,7 +51,8 @@
 
   &:global(.spc) {
     height: $btn-height-spc;
-    font-size: 1.0625rem;
+    font-size: 0.9375rem;
+    letter-spacing: 0.03em;
   }
 
   &:global(.md) {

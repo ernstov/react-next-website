@@ -8,23 +8,56 @@
 
 .selectButton {
   width: auto;
+  padding: 0.7rem 1.2rem;
   margin-bottom: 0.5rem;
+  justify-content: flex-start;
+  text-align: left;
+  color: $dark-7;
+  align-items: flex-start;
 
-  &::before{
-    content: '';
+  &:global(.spc) {
+    height: auto;
+    font-size: 0.9375rem;
+    font-weight: 600;
+
+    span {
+      font-size: 0.875rem;
+      color: $grey-26;
+
+      strong {
+        color: $grey-27;
+        font-weight: 600;
+      }
+    }
+  }
+
+  &::before {
+    content: "";
     width: 14px;
     height: 14px;
-    border: 1px solid $blackAdv;
-    margin-right: 0.5rem;
+    transform: translateY(2px);
+    border: 2px solid $blackAdv;
+    margin-right: 0.6rem;
     border-radius: 50%;
+    flex-shrink: 0;
     transition: all $transition ease;
   }
 
-  &:global(.active){
+  &:global(.active) {
     background-color: $blackAdv;
     color: $white;
 
-    &::before{
+    &:global(.spc) {
+      span {
+        color: $grey-28;
+
+        strong {
+          color: $primary;
+        }
+      }
+    }
+
+    &::before {
       border-width: 4px;
       border-color: $cover-2;
     }
@@ -33,4 +66,6 @@
 
 .saveButton {
   margin-top: 0.5rem;
+  padding-left: 1.6rem;
+  padding-right: 1.6rem;
 }

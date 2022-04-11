@@ -8,7 +8,7 @@ import { Container, Row, Col } from "react-bootstrap"
 
 const Query = ({ placeholder, info, onInfoOpen, onChange, value, onEnterPress }) => {
 
-  const { lang: { UsingAdvancedSearch, Advancedsearchtips } } = useContext(Context)
+  const { lang: { AdvancedSearch, Refiningyoursearch } } = useContext(Context)
   const [isSearchTips, setIsSearchTips] = useState(false)
   const [windowWidth, setWindowWidth] = useState(0)
 
@@ -39,8 +39,7 @@ const Query = ({ placeholder, info, onInfoOpen, onChange, value, onEnterPress })
             className="d-none d-lg-block"
             position={windowWidth > 1600 ? "center" : "right"}
             isActive={isSearchTips}
-            titleSize="lg"
-            title={Advancedsearchtips}
+            title={Refiningyoursearch}
             onClose={() => setIsSearchTips(false)}
           >
             {info()}
@@ -48,7 +47,7 @@ const Query = ({ placeholder, info, onInfoOpen, onChange, value, onEnterPress })
         }
       </div>
       <span>
-        {UsingAdvancedSearch}
+        {AdvancedSearch}
       </span>
     </div>
   </div>
