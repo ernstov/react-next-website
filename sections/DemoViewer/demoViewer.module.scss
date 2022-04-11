@@ -43,8 +43,8 @@
 }
 
 .t1 {
-  margin-left: 1rem;
-  margin-right: 1rem;
+  margin-left: 0.7rem;
+  margin-right: 0.7rem;
 }
 
 .queryRow {
@@ -321,14 +321,6 @@
 
   @include media-breakpoint-down(md) {
     font-size: 0.875rem;
-
-    :global(.mt-2) {
-      margin-top: 3px !important;
-    }
-
-    :global(.mt-3) {
-      margin-top: 5px !important;
-    }
   }
 }
 

@@ -20,12 +20,15 @@ const SelectButtons = ({ options, onChange, value }) => {
     {options.map((option, i) => (
       <Button
         variant="light-simple"
-        className={`${styles.selectButton} ${v == option ? "active" : ""}`}
-        onClick={() => setV(option)}
+        className={`${styles.selectButton} ${v == option.value ? "active" : ""}`}
+        onClick={() => setV(option.value)}
         key={`${shortid.generate()}`}
         size="spc"
       >
-        {option}
+        <div>
+          <div>{option.value}</div>
+          {option.description && <span dangerouslySetInnerHTML={{ __html: option.description }}></span>}
+        </div>
       </Button>
     ))}
 

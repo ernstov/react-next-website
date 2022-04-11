@@ -135,11 +135,11 @@ const languages = {
     Cancel: "Cancel",
     UsingAdvancedSearch: "Using Advanced Search",
     forT: "for",
-    ft1: "Use 'All Content' for individual results, or search 'Headline Clusters' to find related stories/events grouped together",
+    ft1: "Choose an API endpoint",
     HeadlineClusters: "Headline Clusters",
     Save: "Save",
     Headline: "Headline",
-    ft2: "Search the headline & article body for your query, or just the headline text",
+    ft2: "Select the fields to search",
     Advancedsearchtips: "Advanced search tips",
     where: "where",
     EditFilters: "Edit Filters",
@@ -197,6 +197,8 @@ const languages = {
     Topic: "Topic",
     Removefromquery: "Remove from query",
     Addtoquery: "Add to query",
+    Refiningyoursearch: "Refining your search",
+    AdvancedSearch: "Advanced Search",
   }
 }
 

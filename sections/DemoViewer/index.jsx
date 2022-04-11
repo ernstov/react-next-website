@@ -50,7 +50,7 @@ const DemoViewer = ({ data, isVisible }) => {
     Headline,
     where,
     EditFilters,
-    Advancedsearchtips,
+    Refiningyoursearch,
     results,
     Export,
     ft3,
@@ -514,7 +514,7 @@ const DemoViewer = ({ data, isVisible }) => {
         setSelectedTypes(current => current.map((ci, i) => i == 0 ? e : ci))
         setIsFilterType(false)
       }}
-      options={[AllContent, HeadlineClusters]}
+      options={[{ value: AllContent, description: `<strong>v1/all</strong> Individual articles` }, { value: HeadlineClusters, description: `<strong>v1/headlines</strong> Clusters` }]}
     />
   }
 
@@ -525,7 +525,7 @@ const DemoViewer = ({ data, isVisible }) => {
         setSelectedTypes(current => current.map((ci, i) => i == 1 ? e : ci))
         setIsFilterHeadline(false)
       }}
-      options={[HeadlineorArticle, Headline]}
+      options={[{ value: HeadlineorArticle, description: "Title, description, content" }, { value: Headline, description: "Title field only" }]}
     />
   }
 
@@ -538,32 +538,48 @@ const DemoViewer = ({ data, isVisible }) => {
       <div className={`mb-3 ${styles.titleInfo}`}><span>Narrow results by using boolean operators in your query:</span></div>
       <Container fluid className="p-0 mt-2">
         <Row className="align-items-center">
-          <Col className={`${styles.andorColumn}`} xs={3} sm={5}>
+          <Col className={`${styles.andorColumn}`} xs={4} sm={4}>
             <div className={`${styles.queryBlock}`}>
-              <span>AND</span> <span className="d-none d-lg-inline ml-1 mr-1">∙</span> <span>OR</span> <span className="d-none d-lg-inline ml-1 mr-1">∙</span> <span>NOT</span>
+              <span>AND</span>
             </div>
           </Col>
-          <Col sm ={7} xs={9}>
+          <Col className="pl-0" sm={8} xs={8}>
             <div>
-              <div>
-                <strong>AND</strong>: Results include both terms
-              </div>
-              <div>
-                <strong>OR</strong>: Results include one or both terms
-              </div>
-              <div>
-                <strong>NOT</strong>: Excludes results with the term
-              </div>
+                Results include both terms
             </div>
           </Col>
         </Row>
         <Row className="align-items-center mt-2">
-          <Col className={`${styles.andorColumn}`} xs={3} sm={5}>
+          <Col className={`${styles.andorColumn}`} xs={4} sm={4}>
+            <div className={`${styles.queryBlock}`}>
+              <span>OR</span>
+            </div>
+          </Col>
+          <Col className="pl-0" sm={8} xs={8}>
+            <div>
+              Results include one or both terms
+            </div>
+          </Col>
+        </Row>
+        <Row className="align-items-center mt-2">
+          <Col className={`${styles.andorColumn}`} xs={4} sm={4}>
+            <div className={`${styles.queryBlock}`}>
+              <span>NOT</span>
+            </div>
+          </Col>
+          <Col className="pl-0" sm={8} xs={8}>
+            <div>
+            Excludes results with the term
+            </div>
+          </Col>
+        </Row>
+        <Row className="align-items-center mt-2">
+          <Col className={`${styles.andorColumn}`} xs={4} sm={4}>
             <div className={`${styles.queryBlock}`}>
               Quotes “”
             </div>
           </Col>
-          <Col sm ={7} xs={9}>
+          <Col className="pl-0" sm={8} xs={8}>
             <div>
               <div>
                 Find exact-phrase matches
@@ -572,12 +588,12 @@ const DemoViewer = ({ data, isVisible }) => {
           </Col>
         </Row>
         <Row className="align-items-center mt-2">
-          <Col className={`${styles.andorColumn}`} xs={3} sm={5}>
+          <Col className={`${styles.andorColumn}`} xs={4} sm={4}>
             <div className={`${styles.queryBlock}`}>
               Asterisks *
             </div>
           </Col>
-          <Col sm ={7} xs={9}>
+          <Col className="pl-0" sm={8} xs={8}>
             <div>
               <div>
                 Include variants of the keyword
@@ -586,24 +602,24 @@ const DemoViewer = ({ data, isVisible }) => {
           </Col>
         </Row>
         <Row>
-          <Col className="pb-3 pb-sm-0 pt-3 pt-sm-3">
+          <Col className="pt-4 pt-sm-4">
             <strong>🔎 Examples</strong>
           </Col>
         </Row>
-        <Row className="mt-3">
-          <Col className="mt-2">
+        <Row className="mt-2">
+          <Col>
             <div><span className={`${ts.c6}`}>Tesla AND NOT <strong>“Elon Musk”</strong></span></div>
             <div><span>Find content where <i>Tesla</i> is mentioned, but not <i>“Elon Musk”</i></span></div>
           </Col>
         </Row>
         <Row className="mt-3">
-          <Col className="mt-3">
+          <Col>
             <div><span className={`${ts.c6}`}><strong>“Climate Change”</strong> AND <strong>Penguin*</strong></span></div>
             <div><span>Find content where both <i>“Climate Change”</i> and any variation of the word <i>Penguin</i> is mentioned</span></div>
           </Col>
         </Row>
         <Row className="mt-3">
-          <Col className="mt-2">
+          <Col>
             <div><span className={`${ts.c6}`}><strong>Crypto*</strong> OR <strong>Bitcoin</strong> NOT <strong>Ethereum</strong></span></div>
             <div><span>Find content where any variation of the word <i>Crypto</i> or <i>Bitcoin</i> is mentioned, but not <i>Ethereum</i></span></div>
           </Col>
@@ -771,26 +787,27 @@ const DemoViewer = ({ data, isVisible }) => {
                   <Button
                     as="div"
                     size="spc"
+                    className={`${ts.c14}`}
                     onClick={
                       () => !isFilterType ? openPopup("type") : null
                     }
                     variant="light-simple"
                   >
                     {selectedTypes[0]}
-                    <Popup className="d-none d-lg-block" isActive={isFilterType} title={ft1} onClose={() => setIsFilterType(false)}>
+                    <Popup className="d-none d-lg-block mnw-325 mw-325" isActive={isFilterType} title={ft1} onClose={() => setIsFilterType(false)}>
                       {renderTypes()}
                     </Popup>
                   </Button>
-                  <span className={`${ts.titleSmallD} ${styles.t1} ${ts.op07} d-none d-lg-inline`}>{wherethe}</span>
-                  <span className={`${ts.titleSmallD} ${styles.t1} ${ts.op07} d-inline-block d-lg-none`}>{where}</span>
+                  <span className={`${ts.textSubTitleHero2} ${styles.t1} ${ts.op07}`}>{where}</span>
                   <Button
                     as="div"
                     size="spc"
+                    className={`${ts.c14}`}
                     onClick={() => !isFilterHeadline ? openPopup("headline") : null}
                     variant="light-simple"
                   >
                     {selectedTypes[1]}
-                    <Popup className="d-none d-lg-block" isActive={isFilterHeadline} title={ft2} onClose={() => setIsFilterHeadline(false)}>
+                    <Popup className="d-none d-lg-block mnw-325 mw-325" isActive={isFilterHeadline} title={ft2} onClose={() => setIsFilterHeadline(false)}>
                       {renderHeadlines()}
                     </Popup>
                   </Button>
@@ -908,7 +925,7 @@ const DemoViewer = ({ data, isVisible }) => {
                         </SkeletonTheme>
                         {(!isLoading && articles?.length > 0) && articles.map((article, i) => (
                           <div key={`adi-${i}`} className="mb-0 mb-lg-1">
-                            <PreviewDemo onChange={()=> setIsEnable(true)} data={article} />
+                            <PreviewDemo onChange={() => setIsEnable(true)} data={article} />
                           </div>
                         ))}
                         {((!articles?.length || notification) && !isLoading) && <div className={`${styles.emptyResult}`}>{Noresultsfound}</div>}
@@ -927,7 +944,7 @@ const DemoViewer = ({ data, isVisible }) => {
       <Popup className="d-block d-lg-none" isActive={isFilterHeadline} title={ft2} onClose={() => setIsFilterHeadline(false)}>
         {renderHeadlines()}
       </Popup>
-      <Popup className="d-block d-lg-none" titleSize="lg" title={Advancedsearchtips} isActive={isInfo} onClose={() => setIsInfo(false)}>
+      <Popup className="d-block d-lg-none" titleSize="lg" title={Refiningyoursearch} isActive={isInfo} onClose={() => setIsInfo(false)}>
         {renderInfo()}
       </Popup>
       <Popup className="d-block d-lg-none" title={ft3} isActive={isExport} onClose={() => setIsExport(false)}>
