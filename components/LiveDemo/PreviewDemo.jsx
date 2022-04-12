@@ -194,7 +194,7 @@ const Preview = ({ data, onChange }) => {
             }
           </div>
         </div>
-        <div className={`${styles.previewRowTitle}`}>
+        <div className={`${styles.previewRowTitle} justify-content-between`}>
           <div className={`${styles.previewTitleDemo}`}>
             <h3>{title}</h3>
           </div>
