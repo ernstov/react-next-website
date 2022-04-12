@@ -545,7 +545,7 @@ const DemoViewer = ({ data, isVisible }) => {
           </Col>
           <Col className="pl-0" sm={8} xs={8}>
             <div>
-                Results include both terms
+              Results include both terms
             </div>
           </Col>
         </Row>
@@ -569,7 +569,7 @@ const DemoViewer = ({ data, isVisible }) => {
           </Col>
           <Col className="pl-0" sm={8} xs={8}>
             <div>
-            Excludes results with the term
+              Excludes results with the term
             </div>
           </Col>
         </Row>
@@ -784,33 +784,39 @@ const DemoViewer = ({ data, isVisible }) => {
             <Col>
               <div className={styles.actionsRow}>
                 <div className={styles.actionsRowTypes}>
-                  <Button
-                    as="div"
-                    size="spc"
-                    className={`${ts.c14}`}
-                    onClick={
-                      () => !isFilterType ? openPopup("type") : null
-                    }
-                    variant="light-simple"
-                  >
-                    {selectedTypes[0]}
+                  <div className="d-inline-block position-relative">
+                    <Button
+                      as="div"
+                      size="spc"
+                      className={`${ts.c14}`}
+                      onClick={
+                        (e) => {
+                          !isFilterType ? openPopup("type") : setIsFilterType(false)
+                        }
+                      }
+                      variant="light-simple"
+                    >
+                      {selectedTypes[0]}
+                    </Button>
                     <Popup className="d-none d-lg-block mnw-325 mw-325" isActive={isFilterType} title={ft1} onClose={() => setIsFilterType(false)}>
                       {renderTypes()}
                     </Popup>
-                  </Button>
+                  </div>
                   <span className={`${ts.textSubTitleHero2} ${styles.t1} ${ts.op07}`}>{where}</span>
-                  <Button
-                    as="div"
-                    size="spc"
-                    className={`${ts.c14}`}
-                    onClick={() => !isFilterHeadline ? openPopup("headline") : null}
-                    variant="light-simple"
-                  >
-                    {selectedTypes[1]}
+                  <div className="d-inline-block position-relative">
+                    <Button
+                      as="div"
+                      size="spc"
+                      className={`${ts.c14}`}
+                      onClick={(e) => !isFilterHeadline ? openPopup("headline") : setIsFilterHeadline(false)}
+                      variant="light-simple"
+                    >
+                      {selectedTypes[1]}
+                    </Button>
                     <Popup className="d-none d-lg-block mnw-325 mw-325" isActive={isFilterHeadline} title={ft2} onClose={() => setIsFilterHeadline(false)}>
                       {renderHeadlines()}
                     </Popup>
-                  </Button>
+                  </div>
                 </div>
                 <span className={`${ts.titleSmallD} ${styles.t1} ${ts.op07} d-none d-lg-inline-block`}>{forT}</span>
                 <div className={styles.queryRow}>
@@ -861,34 +867,36 @@ const DemoViewer = ({ data, isVisible }) => {
                       <div className={styles.responseTitle}>
                         <span className={`${ts.textTitleMd} mr-2 d-none d-md-block`}>{APIResponse}</span>
                         <span className={`${ts.regularD} ${ts.c6} d-flex align-items-center`}>{app.selectedFilters.showResults && <Badge className={`${styles.responseNum}`} style={{ borderRadius: 4 }} variant="secondary">{numberWithCommas(count)} {results}</Badge>}</span>
-                        <Button
-                          as="div"
-                          size="stn"
-                          className="ml-3"
-                          onClick={
-                            () => !isExport ? setIsExport(true) : null
-                          }
-                          variant="light-simple"
-                        >
-                          <div className={`${styles.exportIcon}`}><IconExport className="mr-0 mr-md-2" /></div> <span className="d-none d-md-inline-block">{Export}</span>
+                        <div className="position-relative ml-2">
+                          <Button
+                            as="div"
+                            size="stn"
+                            onClick={
+                              () => setIsExport(!isExport)
+                            }
+                            variant="light-simple"
+                          >
+                            <div className={`${styles.exportIcon}`}><IconExport className="mr-0 mr-md-2" /></div> <span className="d-none d-md-inline-block">{Export}</span>
+                          </Button>
                           <Popup className="d-none d-lg-block mw-400 mnw-350" isActive={isExport} title={ft3} onClose={() => setIsExport(false)}>
                             {renderExport()}
                           </Popup>
-                        </Button>
-                        <Button
-                          as="div"
-                          size="stn"
-                          className="ml-3"
-                          onClick={
-                            () => !isShare ? setIsShare(true) : null
-                          }
-                          variant="light-simple"
-                        >
-                          <div className={`${styles.exportIcon}`}><IconShare className="mr-0 mr-md-2" /></div> <span className="d-none d-md-inline-block">{Share}</span>
+                        </div>
+                        <div className="position-relative ml-2">
+                          <Button
+                            as="div"
+                            size="stn"
+                            onClick={
+                              () => setIsShare(!isShare)
+                            }
+                            variant="light-simple"
+                          >
+                            <div className={`${styles.exportIcon}`}><IconShare className="mr-0 mr-md-2" /></div> <span className="d-none d-md-inline-block">{Share}</span>
+                          </Button>
                           <Popup className="d-none d-lg-block mw-400 mnw-350" isActive={isShare} title={ft4} onClose={() => setIsShare(false)}>
                             {renderShare()}
                           </Popup>
-                        </Button>
+                        </div>
                       </div>
                       <div className={`${styles.responseJson} ${notification ? "center" : ""}`}>
                         {isLoading ?

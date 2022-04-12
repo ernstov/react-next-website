@@ -31,24 +31,26 @@ const Query = ({ placeholder, info, onInfoOpen, onChange, value, onEnterPress })
   return <div className={`${styles.query}`}>
     <IconSearch className={`querySearchIcon`} />
     <input value={value} onChange={onInputChange} onKeyPress={onKeyPress} placeholder={placeholder} type="text" />
-    <div onClick={(e) => { if(!isSearchTips) setIsSearchTips(true); if (onInfoOpen) onInfoOpen();}} className={`${styles.queryRule}`}>
-      <div className={`${styles.queryInfo}`}>
-        <div><IconInfo /></div>
-        {windowWidth > 880 &&
-          <Popup
-            className="d-none d-lg-block"
-            position={windowWidth > 1600 ? "center" : "right"}
-            isActive={isSearchTips}
-            title={Refiningyoursearch}
-            onClose={() => setIsSearchTips(false)}
-          >
-            {info()}
-          </Popup>
-        }
+    <div className="position-relative h-100">
+      <div onClick={(e) => { setIsSearchTips(!isSearchTips); if (onInfoOpen && !isSearchTips) onInfoOpen(); }} className={`${styles.queryRule}`}>
+        <div className={`${styles.queryInfo}`}>
+          <div><IconInfo /></div>
+        </div>
+        <span>
+          {AdvancedSearch}
+        </span>
       </div>
-      <span>
-        {AdvancedSearch}
-      </span>
+      {windowWidth > 880 &&
+        <Popup
+          className="d-none d-lg-block"
+          position={windowWidth > 1600 ? "center" : "right"}
+          isActive={isSearchTips}
+          title={Refiningyoursearch}
+          onClose={() => setIsSearchTips(false)}
+        >
+          {info()}
+        </Popup>
+      }
     </div>
   </div>
 }
