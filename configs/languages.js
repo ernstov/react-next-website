@@ -199,6 +199,9 @@ const languages = {
     Addtoquery: "Add to query",
     Refiningyoursearch: "Refining your search",
     AdvancedSearch: "Advanced Search",
+    Subscribed: "Subscribed",
+    Contents: "Contents",
+    Backtotop: "Back to top"
   }
 }
 

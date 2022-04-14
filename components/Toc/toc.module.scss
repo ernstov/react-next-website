@@ -1,0 +1,161 @@
+@import "../../styles/base/variables.scss";
+
+.toc {
+  background-color: $gray-21;
+  padding: 1.6rem;
+  border: 1px solid $stroke-1;
+  border-radius: $btn-radius;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.tocTitle {
+  border-bottom: 1px solid rgba($gray-24, 0.15);
+  color: $gray-24;
+  font-weight: 600;
+  font-size: 0.6875rem;
+  line-height: 1;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  padding-bottom: 0.5rem;
+
+  svg {
+    margin-right: 0.5rem;
+    font-size: 0.875rem;
+  }
+
+  span {
+    display: block;
+    transform: translateY(1px);
+  }
+}
+
+.backToTop {
+  position: absolute;
+  bottom: -35px;
+  left: 50%;
+  color: $gray-24;
+  font-size: 0.875rem;
+  font-weight: 600;
+  opacity: 0;
+  cursor: pointer;
+  transform: translateX(-50%) translateY(-15px);
+  transition: transform $transition * 1.5 ease, opacity $transition * 1.5 ease, color $transition ease;
+
+  svg {
+    margin-left: 0.5rem;
+    font-size: 0.7rem;
+  }
+
+  &:global(.active) {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  &:hover {
+    color: $dark;
+  }
+}
+
+.parent {
+  position: relative;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  white-space: nowrap;
+  width: 100%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: calc(100% + 10px);
+  margin-left: -10px;
+  padding: 0.4rem 0;
+  padding-left: 10px;
+  color: $dark-7;
+  cursor: pointer;
+  transition: color $transition ease;
+
+  &::after {
+    content: "";
+    width: 3px;
+    height: 20px;
+    background-color: $secondary;
+    border-radius: 5px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0;
+    transform-origin: center top;
+    left: 0;
+    transition: opacity $transition ease;
+  }
+
+  &:global(.active) {
+    color: $secondary;
+
+    &::after {
+      opacity: 1;
+    }
+  }
+
+  &:hover {
+    color: $secondary;
+  }
+}
+
+.child {
+  font-size: 0.875rem;
+  font-weight: 500;
+  white-space: nowrap;
+  position: relative;
+  color: $dark-7;
+  padding: 0.2rem 0;
+  padding-left: 20px;
+  cursor: pointer;
+  transition: color $transition ease;
+
+  &::after {
+    content: "";
+    width: 3px;
+    height: 20px;
+    background-color: $secondary;
+    border-radius: 5px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0;
+    transform-origin: center top;
+    left: 0;
+    transition: opacity $transition ease;
+  }
+
+  &:global(.active) {
+    color: $secondary;
+
+    &::after {
+      opacity: 1;
+    }
+  }
+
+  &:hover {
+    color: $secondary;
+  }
+}
+
+.tocInner {
+  padding-top: 1rem;
+}
+
+.tocSub {
+  margin-left: -10px;
+  width: calc(100% + 10px);
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height $transition * 2 ease;
+
+  &:global(.active) {
+    max-height: 800px;
+  }
+}

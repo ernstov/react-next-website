@@ -8,4 +8,5 @@ export const page = {
     variant: "blog",
     descriptionCL: "mw-600"
   },
+  subscribeTitle: "👋🏼 Follow Perigon on our journey toward a better media landscape."
 }

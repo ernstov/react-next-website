@@ -3,6 +3,8 @@
 .footer {
   padding-top: $section-spacer;
   overflow: hidden;
+  position: relative;
+  z-index: 1;
 
   &:global(.small-container) {
     :global(.container) {

@@ -18,6 +18,8 @@ import { v4 as uuidv4 } from 'uuid'
 import { IconPost, IconRect } from '../../components/Icon'
 import BlogShareFluid from "../../components/Blog/BlogShareFluid"
 import Link from "next/link"
+import Follow from "../Follow"
+import Toc from "../../components/Toc"
 
 import listStyles from '../Postlist/postslist.module.scss'
 import styles from './postviewer.module.scss'
@@ -68,11 +70,11 @@ const PostViewer = ({ isVisible, data }) => {
   return (
     <div className={`${styles.post} ${data.className ? data.className : ""} ${visible ? "active" : ''}`}>
       <div className={`${listStyles.blogHeader}`}>
-        <div className={`${listStyles.blogContainer}`}>
+        <div className={`${styles.postContainer}`}>
           <Link href="/wire"><span>{TheWire}</span></Link>
         </div>
       </div>
-      <div className={`${listStyles.blogContainer} entry-1`}>
+      <div className={`${styles.postContainer} entry-1`}>
         <div className={`${listStyles.tagsContainer}`}>
           <h3>{Browsebytopic}</h3>
           <ScrollContainer className={`scroll-container`}>
@@ -92,35 +94,45 @@ const PostViewer = ({ isVisible, data }) => {
           </ScrollContainer>
         </div>
       </div>
-      <div ref={container} className={`${listStyles.blogContainer} entry-4 mt-4 mt-md-5`}>
-        <BlogShareFluid container={container} offset={100} data={data} />
-        {!isObjectEmpty(data) ? <>
-          <div className={`${styles.postDate}`}>
-            <div className={`${styles.blogArticleIcon}`}><IconPost /></div>
-            <span className={`${typographyStyles.textMediumLgt2}`}>{dateFormat(data.created_at, "mmm dd, yyyy")}</span>
-            <div className={`${styles.blogArticleRect}`}><IconRect /></div>
-            <span className={`blog-article__time-read ${typographyStyles.textMediumLgt2}`}>{data.timeToRead ? data.timeToRead : "1"}{m} {read}</span>
-          </div>
-          <h3 className={`${styles.postTitle}`}>{data.title}</h3>
-          <div>
-            {data.blog_author && <BlogAuthor data={data.blog_author} />}
-          </div>
-          {data.thumbnail && <div className={`${styles.postThumb}`} style={{ backgroundImage: `url(${data.thumbnail?.url})` }}></div>}
-          <div className={`${styles.blogContent}`}>
-            <ReactMarkdown plugins={[gfm]} allowDangerousHtml={true}>{data.body}</ReactMarkdown>
-          </div>
-          <div>
-            <div className={`${styles.postShare}`}>
-              <BlogShare data={data} />
+      <div className={`${styles.postContainer} ${styles.postContent} entry-4 mt-4 mt-md-5`}>
+        <div ref={container}>
+          <BlogShareFluid container={container} offset={100} data={data} />
+          {!isObjectEmpty(data) ? <>
+            <div className={`${styles.postDate}`}>
+              <div className={`${styles.blogArticleIcon}`}><IconPost /></div>
+              <span className={`${typographyStyles.textMediumLgt2}`}>{dateFormat(data.created_at, "mmm dd, yyyy")}</span>
+              <div className={`${styles.blogArticleRect}`}><IconRect /></div>
+              <span className={`blog-article__time-read ${typographyStyles.textMediumLgt2}`}>{data.timeToRead ? data.timeToRead : "1"}{m} {read}</span>
             </div>
-            <div className={`${styles.postFooter}`}>
-              {data.blogTags && <BlogTags onChange={onTagChange} data={data.blogTags} />}
+            <h1 className={`${styles.postTitle}`}>{data.title}</h1>
+            <div>
+              {data.blog_author && <BlogAuthor data={data.blog_author} />}
             </div>
-          </div> </> :
-          <div className={`${styles.postLoader}`}>
-            <Icon variant="loader" />
+            {data.thumbnail && <div className={`${styles.postThumb}`}>
+              <img src={`${data.thumbnail?.url}`} alt="" />
+            </div>}
+            <div className={`${styles.blogContent}`}>
+              <ReactMarkdown plugins={[gfm]} allowDangerousHtml={true}>{data.body}</ReactMarkdown>
+            </div>
+            <div>
+              <div className={`${styles.postShare}`}>
+                <BlogShare data={data} />
+              </div>
+              <div className={`${styles.postFooter}`}>
+                {data.blogTags && <BlogTags onChange={onTagChange} data={data.blogTags} />}
+              </div>
+            </div> </> :
+            <div className={`${styles.postLoader}`}>
+              <Icon variant="loader" />
+            </div>
+          }
+        </div>
+        <div>
+          <Follow data={{ ...appConfig.follow, bg: "white", title: data.subscribeTitle, className: "mt-4 mt-lg-0" }} variant={'form-blog-vertical'} />
+          <div  className={`${styles.tocContainer}`}>
+            {!isObjectEmpty(data) && <Toc container={container} offset={-140} />}
           </div>
-        }
+        </div>
       </div>
     </div >
   );

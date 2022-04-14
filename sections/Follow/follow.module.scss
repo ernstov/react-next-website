@@ -9,13 +9,13 @@
     max-width: $small-container;
   }
 
-  &:global(.form-only){
+  &:global(.form-only) {
     padding: 0;
     background-color: transparent;
     border: none;
   }
 
-  &:global(.form-blog){
+  &:global(.form-blog) {
     padding: 0;
     background-color: transparent;
     border: none;
@@ -25,13 +25,13 @@
     display: flex;
     justify-content: flex-end;
 
-    :global(.follow-form){
-      &:global(.hide){
+    :global(.follow-form) {
+      &:global(.hide) {
         display: none;
       }
     }
 
-    :global(.follow-input-container){
+    :global(.follow-input-container) {
       border-radius: 4px;
       padding-top: 0;
       padding-bottom: 0;
@@ -40,7 +40,7 @@
       border: none;
       height: $btn-height-sm;
 
-      button{
+      button {
         height: 100%;
         background-color: rgba($secondary, 0.1);
         text-decoration: none;
@@ -64,7 +64,7 @@
       }
     }
 
-    :global(.follow-message){
+    :global(.follow-message) {
       display: inline-flex;
       align-items: center;
       background-color: $cover-25;
@@ -77,6 +77,110 @@
     @include media-breakpoint-down(md) {
       padding-left: 0;
       padding-bottom: 1rem;
+    }
+  }
+
+  &:global(.form-blog-vertical) {
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    max-width: 600px;
+    width: 100%;
+    padding: 1.6rem;
+    display: flex;
+    justify-content: flex-end;
+    background-color: $cover-23;
+    border: 1px solid $stroke-9;
+    box-shadow: $shadow-11;
+
+    :global(.follow-form) {
+      &:global(.hide) {
+        display: none;
+      }
+    }
+
+    :global(.follow-input-container) {
+      padding: 0;
+      border: none;
+      display: flex;
+      flex-direction: column;
+
+      > span {
+        margin-bottom: 0.7rem;
+        color: $dark-8;
+        text-align: center;
+        display: block;
+        font-size: 0.9375rem;
+      }
+
+      input {
+        height: $btn-height-spc;
+        background-color: $white;
+        border-radius: $btn-radius;
+        padding: 0 1rem;
+        font-size: 0.9375rem;
+        margin-bottom: 0.5rem;
+      }
+
+      ::placeholder {
+        color: rgba($dark-8, 0.6);
+      }
+
+      button {
+        position: relative;
+        height: 100%;
+        background-color: $cover-25;
+        color: $secondary;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 2rem;
+        width: 100%;
+        font-size: 0.875rem;
+        height: $btn-height-spc;
+        border-radius: $btn-radius;
+        transition: all $transition ease;
+
+        &:global(.success){
+          pointer-events: none;
+        }
+
+        svg {
+          margin-right: 0.5rem;
+          font-size: 1.125rem;
+        }
+
+        :global(.follow-loader) {
+          position: absolute;
+          top: 50%;
+          right: 15px;
+          transform: translateY(-50%);
+        }
+
+        &:hover {
+          background-color: $secondary;
+          color: $white;
+        }
+      }
+
+      :global(.follow-notification) {
+        bottom: -75px;
+        box-shadow: $shadow-7;
+        background-color: $white;
+        padding: 0.5rem;
+        border-radius: 4px;
+      }
+    }
+
+    :global(.follow-message) {
+      display: inline-flex;
+      align-items: center;
+      background-color: $cover-25;
+      color: $secondary;
+      width: auto;
+      padding: 1rem 3rem;
+      margin: 0 auto;
     }
   }
 
@@ -109,7 +213,7 @@
 
     &:global(.show) {
       transform: translateY(-50%);
-      transition-delay: $transition*2;
+      transition-delay: $transition * 2;
       opacity: 1;
     }
   }
@@ -146,7 +250,7 @@
     max-width: 100%;
   }
 
-  :global(.follow-input-container){
+  :global(.follow-input-container) {
     border: 1px solid $border-color;
     padding: 0.7rem 1.6rem;
     border-radius: 25px;
@@ -175,7 +279,7 @@
         opacity: 0.5;
       }
 
-      &:hover{
+      &:hover {
         text-decoration: none;
       }
     }
@@ -205,13 +309,12 @@
   }
 }
 
-
 .subscribe-form {
   display: flex;
   justify-content: space-between;
   height: 46px;
-  background: #FFFFFF;
-  border: 1px solid #D2CEC4;
+  background: #ffffff;
+  border: 1px solid #d2cec4;
   border-radius: 23px;
   padding-left: 23px;
   padding-right: 22px;
@@ -228,14 +331,14 @@
     font-family: "Avenir Next";
     font-weight: 500;
     font-size: 14px;
-    color: #818181; 
+    color: #818181;
     padding-right: 10px;
 
     &::placeholder {
       font-family: "Avenir Next";
       font-weight: 500;
       font-size: 14px;
-      color: #818181; 
+      color: #818181;
     }
   }
 
@@ -244,7 +347,7 @@
     outline: none;
     background: transparent;
     font-size: 16px;
-    color: #227C9D;
+    color: #227c9d;
     opacity: 0.9;
     color: $secondary;
     text-decoration: underline;
@@ -270,7 +373,7 @@
     }
 
     &.success {
-      color: #227C9D;
+      color: #227c9d;
     }
   }
 

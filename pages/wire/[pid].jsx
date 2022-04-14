@@ -7,6 +7,7 @@ import PostViewer from "../../sections/PostViewer"
 import VisibilitySensor from '../../utils/react-visibility-sensor'
 import TagManager from 'react-gtm-module'
 import ApiService from '../../services/ApiService'
+import { page } from "../../configs/pages/post"
 
 const tagManagerArgs = {
   gtmId: appConfig.gtmId,
@@ -21,7 +22,7 @@ const Post = ({data}) => {
   const [wrap, setWrap] = useState(true)
 
   const sections = [
-    { component: PostViewer, props: { data: data} },
+    { component: PostViewer, props: { data: {...data, subscribeTitle: page.subscribeTitle}} },
     { component: Footer, props: { data: { ...appConfig.footer, className: "small-container"} } },
   ]
 
