@@ -66,27 +66,22 @@ export const page = {
     {
       title: `All local <strong>Crime</strong> news for <strong>Chicago</strong>, <strong>IL</strong> from <strong>yesterday</strong>`,
       id: 1,
-      // url: `api.goperigon.com/v1/all?apiKey=[KEY]&topic=Crime&location=city:Chicago::state:IL&from=${moment().subtract(1, 'days').format('YYYY-MM-DD')}`
     },
     {
-      title: "All news mentioning <strong>SpaceX OR Tesla</strong> from <strong>last week</strong>",
+      title: "News about <strong>SpaceX OR Tesla</strong> from <strong>last week</strong> by <strong>top 100</strong> sources",
       id: 0,
-      // url: `api.goperigon.com/v1/all?apiKey=[KEY]&q=SpaceX OR Tesla&from=${moment().subtract(7, 'days').format('YYYY-MM-DD')}`
     },
     {
-      title: `News about <strong>Startups</strong> from <strong>last month</strong> by <strong>top 100</strong> sources`,
+      title: `News about <strong>Startups</strong> from <strong>last month</strong> by <strong>top 50 tech sources</strong>`,
       id: 2,
-      // url: `api.goperigon.com/v1/all?apiKey=[KEY]&topic=Startups&sourceGroup=top100&from=${moment().subtract(30, 'days').format('YYYY-MM-DD')}`
     },
     {
       title: "All articles by <strong>nbcnews.com, cnbc.com, bbc.co.uk</strong> from <strong>yesterday</strong>",
       id: 3,
-      // url: `api.goperigon.com/v1/all?apiKey=[KEY]&source=nbcnews.com&source=cnbc.com&source=bbc.co.uk&from=${moment().subtract(1, 'days').format('YYYY-MM-DD')}`
     },
     {
       title: "All <strong>Sports</strong> articles from <strong>yesterday</strong>",
       id: 4,
-      // url: `api.goperigon.com/v1/all?apiKey=[KEY]?label=Opinion&category=Sports&topic=Basketball&from=${moment().subtract(1, 'days').format('YYYY-MM-DD')}`
     }
   ]
 }
