@@ -201,7 +201,8 @@ const languages = {
     AdvancedSearch: "Advanced Search",
     Subscribed: "Subscribed",
     Contents: "Contents",
-    Backtotop: "Back to top"
+    Backtotop: "Back to top",
+    Advancedsearch: "Advanced search"
   }
 }
 

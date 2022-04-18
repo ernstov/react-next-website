@@ -50,7 +50,6 @@ const DemoViewer = ({ data, isVisible }) => {
     Headline,
     where,
     EditFilters,
-    Refiningyoursearch,
     results,
     Export,
     ft3,
@@ -62,7 +61,8 @@ const DemoViewer = ({ data, isVisible }) => {
     Share,
     ft4,
     CopyURL,
-    Copied
+    Copied,
+    Advancedsearch
   } } = useContext(Context);
 
   const [selectedTypes, setSelectedTypes] = useState([AllContent, HeadlineorArticle])
@@ -535,7 +535,7 @@ const DemoViewer = ({ data, isVisible }) => {
 
   const renderInfo = () => {
     return <div className={`${ts.textMediumM} ${styles.textInfo}`}>
-      <div className={`mb-3 ${styles.titleInfo}`}><span>Narrow results by using boolean operators in your query:</span></div>
+      <div className={`mb-3 ${styles.titleInfo}`}><span>Refine your search with boolean operators:</span></div>
       <Container fluid className="p-0 mt-2">
         <Row className="align-items-center">
           <Col className={`${styles.andorColumn}`} xs={4} sm={4}>
@@ -609,19 +609,19 @@ const DemoViewer = ({ data, isVisible }) => {
         <Row className="mt-2">
           <Col>
             <div><span className={`${ts.c6}`}>Tesla AND NOT <strong>“Elon Musk”</strong></span></div>
-            <div><span>Find content where <i>Tesla</i> is mentioned, but not <i>“Elon Musk”</i></span></div>
+            <div><span>Results where <i>Tesla</i> is mentioned, but not <i>“Elon Musk”</i></span></div>
           </Col>
         </Row>
         <Row className="mt-3">
           <Col>
             <div><span className={`${ts.c6}`}><strong>“Climate Change”</strong> AND <strong>Penguin*</strong></span></div>
-            <div><span>Find content where both <i>“Climate Change”</i> and any variation of the word <i>Penguin</i> is mentioned</span></div>
+            <div><span>Results where both <i>“Climate Change”</i> and any variation of the word <i>Penguin</i> is mentioned</span></div>
           </Col>
         </Row>
         <Row className="mt-3">
           <Col>
             <div><span className={`${ts.c6}`}><strong>Crypto*</strong> OR <strong>Bitcoin</strong> NOT <strong>Ethereum</strong></span></div>
-            <div><span>Find content where any variation of the word <i>Crypto</i> or <i>Bitcoin</i> is mentioned, but not <i>Ethereum</i></span></div>
+            <div><span>Results where any variation of the word <i>Crypto</i> or <i>Bitcoin</i> is mentioned, but not <i>Ethereum</i></span></div>
           </Col>
         </Row>
       </Container>
@@ -952,7 +952,7 @@ const DemoViewer = ({ data, isVisible }) => {
       <Popup className="d-block d-lg-none" isActive={isFilterHeadline} title={ft2} onClose={() => setIsFilterHeadline(false)}>
         {renderHeadlines()}
       </Popup>
-      <Popup className="d-block d-lg-none" titleSize="lg" title={Refiningyoursearch} isActive={isInfo} onClose={() => setIsInfo(false)}>
+      <Popup className="d-block d-lg-none" titleSize="lg" title={Advancedsearch} isActive={isInfo} onClose={() => setIsInfo(false)}>
         {renderInfo()}
       </Popup>
       <Popup className="d-block d-lg-none" title={ft3} isActive={isExport} onClose={() => setIsExport(false)}>
