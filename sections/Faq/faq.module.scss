@@ -37,7 +37,8 @@
 
   :global(.card-header) {
     padding: 2rem;
-    font-family: $font-family-heavy;
+    font-family: $font-family-base;
+    font-weight: 600;
     font-size: 1.125rem;
     background-color: transparent;
     color: $black;

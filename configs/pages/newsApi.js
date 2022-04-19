@@ -15,12 +15,12 @@ export const page = {
     variant: "lp",
     buttons: [
       {
-        name: "Get API key",
-        link: "/sign-up",
+        name: "Live demo",
+        link: "/data-solutions/demo",
         variant: "primary-arrow",
       },
       {
-        name: "View pricing",
+        name: "Free trial",
         link: "/data-solutions/pricing",
         variant: "outline-arrow",
         className: "d-none d-md-flex"

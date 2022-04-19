@@ -23,12 +23,17 @@ $row-height: 41px;
   justify-content: center;
 
   > * {
-    margin: 0 1rem;
+    margin: 0 0.5rem;
   }
 
   @include media-breakpoint-down(md) {
+    flex-direction: column;
+
     > * {
-      margin: 0 0.5rem;
+      margin: 0.5rem 0.5rem;
+      width: 100%;
+      max-width: 250px;
+
       &:last-child{
         display: none;
       }

@@ -144,8 +144,9 @@ export const globalData = {
       ],
     ],
     buttons: [
-      {name: "Start building", link: "/sign-up", variant: "primary-arrow"},
-      {name: "Documentation", link: "https://docs.goperigon.com/", variant: "outline-arrow"}
+      {name: "Pricing", link: "/data-solutions/pricing", variant: "outline-arrow"},
+      {name: "Documentation", link: "https://docs.goperigon.com/", variant: "outline-arrow"},
+      {name: "Start building", link: "/sign-up", variant: "primary-arrow"}
     ]
   },
   features: {
@@ -167,8 +168,8 @@ export const globalData = {
     },
     buttons: [
       {
-        name: "Test sources with a free trial",
-        link: "/sign-up",
+        name: "Test the live demo",
+        link: "/data-solutions/demo",
         className: "md",
         variant: "primary-arrow",
       },
@@ -199,8 +200,8 @@ export const globalData = {
     },
     buttons: [
       {
-        name: "Test sources with a free trial",
-        link: "/data-solutions/pricing",
+        name: "Test the live demo",
+        link: "/data-solutions/demo",
         className: "md",
         variant: "primary-arrow",
       },

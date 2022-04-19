@@ -46,7 +46,7 @@ const HeaderDemo = ({ variant }) => {
               </Col>
               <Col xs={3}>
                 <div className={`${styles.headerActionsDemo}`}>
-                  {!app.user && <Button className={`api-button`} variant="dark-simple" size={"tn"} as="link" link={`/sign-in`}><IconLock className={`${styles.headerIcon}`} />{GetAPIKey}</Button>}
+                  {!app.user && <Button className={`api-button`} variant="dark-simple" size={"tn"} as="link" link={`/data-solutions/pricing`}><IconLock className={`${styles.headerIcon}`} />{GetAPIKey}</Button>}
                   <MenuUser dark />
                 </div>
               </Col>
@@ -61,7 +61,7 @@ const HeaderDemo = ({ variant }) => {
           >
             <Button className="w-100 justify-content-start mb-2" as={"url"} variant="light-simple" size={"tn"} link={`https://docs.goperigon.com`}><IconFolder className={`${styles.headerIcon}`} />{Documentation}</Button>
             <Button className="w-100 justify-content-start mb-2" as={"url"} variant="light-simple" size={"tn"} link={`https://docs.goperigon.com/docs/search-concepts`}><IconInfoFill className={`${styles.headerIcon}`} />{Advancedsearchtips}</Button>
-            <Button className="w-100 justify-content-start mb-2" as={"link"} variant="light-simple" size={"tn"} link={`/sign-in`}><IconLock className={`${styles.headerIcon}`} />{GetAPIKey}</Button>
+            <Button className="w-100 justify-content-start mb-2" as={"link"} variant="light-simple" size={"tn"} link={`/data-solutions/pricing`}><IconLock className={`${styles.headerIcon}`} />{GetAPIKey}</Button>
             <Button className="w-100 justify-content-start mb-4" as={"link"} variant="light-simple" size={"tn"} link={`/sign-in`}><IconAccount className={`${styles.headerIcon}`} />{Myaccount}</Button>
 
             <Button className="w-100" as={"link"} variant="light-simple" link={`/`}><img className={`${styles.headerButtonLogo}`} src="/img/logo-dark.svg"/></Button>

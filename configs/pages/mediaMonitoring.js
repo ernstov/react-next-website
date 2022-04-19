@@ -19,21 +19,14 @@ export const page = {
     },
     buttons: [
       {
-        name: "Free trial",
-        link: "/sign-up",
+        name: "Live demo",
+        link: "/data-solutions/demo",
         variant: "primary-arrow",
       },
       {
-        name: "View pricing",
-        link: "/data-solutions/pricing",
+        name: "Free trial",
+        link: "/sign-up",
         variant: "outline-arrow",
-        className: "d-none d-md-flex"
-      },
-      {
-        name: "Pricing",
-        link: "/data-solutions/pricing",
-        variant: "outline-arrow",
-        className: "d-flex d-md-none"
       },
     ]
   },
@@ -51,21 +44,14 @@ export const page = {
     },
     buttons: [
       {
-        name: "Free trial",
-        link: "/sign-up",
+        name: "Live demo",
+        link: "/data-solutions/demo",
         variant: "primary-arrow",
-      },
-      {
-        name: "View pricing",
-        link: "/data-solutions/pricing",
-        variant: "outline-arrow",
-        className: "d-none d-md-flex"
       },
       {
         name: "Pricing",
         link: "/data-solutions/pricing",
         variant: "outline-arrow",
-        className: "d-flex d-md-none"
       },
     ]
   },
