@@ -148,6 +148,13 @@
   }
 }
 
+.hand {
+  svg {
+    transform: translateY(-1px);
+    font-size: 1.6rem;
+  }
+}
+
 .link {
   transition: color $transition ease;
   text-decoration: underline;

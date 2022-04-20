@@ -1,7 +1,7 @@
 import { useContext, forwardRef } from "react"
 import styles from './button.module.scss'
 import Link from 'next/link'
-import Icon from "../../Icon"
+import Icon, { IconHand } from "../../Icon"
 import { Context } from "../../../context/context"
 import appConfig from "../../../configs/appConfig"
 
@@ -31,6 +31,8 @@ const Button = (props, ref) => {
         return `${styles.button} ${styles.dark} ${styles.square} ${styles.large} ${size}`
       case "primary-arrow":
         return `${styles.button} ${styles.primary} ${styles.arrow} ${size}`
+      case "primary-hand":
+        return `${styles.button} ${styles.primary} ${styles.hand} ${size}`
       case "primary-arrow-down":
         return `${styles.button} ${styles.primary} ${styles.arrow} ${size}`
       case "primary":
@@ -89,6 +91,8 @@ const Button = (props, ref) => {
 
   const getIcons = () => {
     switch (variant) {
+      case "primary-hand":
+        return <span className="ml-2"><IconHand /></span>
       case "primary-arrow":
         return <span className="ml-3"><Icon variant="chevron-right-bold" /></span>
       case "outline-arrow":

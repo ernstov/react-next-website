@@ -142,33 +142,33 @@ export const page = {
     list: [
       {
         id: "do-i-have-access-to-each-articles-content",
-        question: "Do I have access to each article’s content?",
-        answer: "Yes (in almost every case) the API provides the full body content for each article. You are permitted to use the body of the content for internal purposes (ie. analysis or event detection) only. Perigon is committed to protecting the copyrights of journalists and media sources, so you cannot reprint, replicate, or republish the article’s content without proper permission from the originating source."
-      },
-      {
-        id: "which-media-sources-are-supported",
-        question: "Which media sources are supported?",
-        answer: "Perigon business solutions offer support for over 40,000 sources of all types and sizes. These include major organizations like CNN, Fox News, Reuters, ABC News, New York Post, NBC News, CBS News, Newsweek, and The New York Times. There are also thousands of specialized sources available, like TechCrunch, ESPN, Snopes, Politico, Gadget, Refinery29, NPR, and others. Our solutions also provide access to thousands of local news outlets and broadcasters from around the world. You can create a free trial or use our live demo to test the availability or results for retrieving content published by your desired sources."
+        question: "Do I have access to each article's content?",
+        answer: "The full body content for each article can be made available for each article, but the storage and use of such data is subject to conditions. This feature is generally available for academic, research, or internal (not public) analysis. In some cases, you may publicly expose a small snippet of the article (nothing substantial) along with a link to the original source/article. If you'd like to inquire more, please email <a href='mailto:data@goperigon.com'>data@goperigon.com</a>. For copyright or legal questions, we encourage you to consult appropriate legal counsel in your jurisdiction."
       },
       {
         id: "which-cities-are-supported",
         question: "Which cities are supported?",
-        answer: "In addition to major and niche media sources from around the globe, Perigon also supports local city or regional news publishers and broadcasters. You’ll find comprehensive local coverage for most of the largest cities around the world, along with hundreds of smaller cities. You can create a free trial or use our live demo to test the availability, results, and sources supported for retrieving local news content."
+        answer: "In addition to major and niche media sources from around the globe, Perigon supports local city or regional news publishers and broadcasters. You’ll find comprehensive local coverage for most of the largest cities around the world, along with hundreds of smaller cities. Try our <a href='https://www.goperigon.com/data-solutions/demo'>live demo</a> or <a href='https://www.goperigon.com/sign-up'>start a free trial</a> to test local news access and search for local sources supported by Perigon. Learn more about our <a href='https://docs.goperigon.com/docs/local-news'>local news features here</a>."
+      },
+      {
+        id: "which-media-sources-are-supported",
+        question: "Which media sources are supported?",
+        answer: "Perigon business solutions offer support for over 40,000 sources of all types and sizes. These include major organizations like CNN, Fox News, Reuters, ABC News, New York Post, NBC News, CBS News, Newsweek, and The New York Times. There are also thousands of specialized sources available, like TechCrunch, ESPN, Snopes, Politico, Gadget, Refinery29, NPR, and others. Our solutions also provide access to thousands of local news outlets and broadcasters from around the world. Try our <a href='http://localhost:3000/data-solutions/pricing'>live demo</a> or <a href='https://www.goperigon.com/sign-up'>start a free trial</a> to test for specific media source availability. Learn more about <a href='https://docs.goperigon.com/docs/sources-source-groups'>media sources here</a>."
       },
       {
         id: "which-languages-are-supported",
         question: "Which languages are supported?",
-        answer: "Our API supports 10+ languages, including, but not limited to English, German, French, Italian, Spanish and Russian."
+        answer: "Perigon’s news API supports media in 10+ languages, including, but not limited to English, German, French, Italian, Spanish and Russian. We also support translation. You can view a full list of supported languages and <a href='https://docs.goperigon.com/docs/countries-languages'>learn more here</a>."
       },
       {
         id: "can-i-add-the-media-sources-that-i-want",
         question: "Can I add the media sources that I want?",
-        answer: "We’re happy to explore additional sources for paid plans. There’s typically no cost for requesting the addition of new sources, assuming that they can easily be supported and there is a low number of them. If you have a large number of sources that you’d like to add, or if the sources require more of a custom integration, then we can develop a custom plan to meet your needs. Please email data@goperigon.com with your requirements and a representative will be happy to look into what can be done."
+        answer: "We’re happy to explore the addition of new sources or custom source requests for customers on paid plans. There’s typically no cost for requesting the addition of new sources, assuming that the source can be supported without heavy customization, and that there is a low number of them that you need added. If you have a large number of sources to add, or if the sources require more of a custom integration, then we can develop a plan to meet your needs. Please email <a href='mailto:data@goperigon.com'>data@goperigon.com</a> with your requirements and we’ll be happy to discuss solutions."
       },
       {
         id: "can-you-customize-a-plan",
-        question: "Can you customize a plan?",
-        answer: "Absolutely! Please email data@goperigon.com with your requirements and a representative will be happy to work with you to customize a plan or product solution that meets your needs."
+        question: "Can I customize a plan?",
+        answer: "Absolutely! Please email <a href='mailto:data@goperigon.com'>data@goperigon.com</a> with your requirements and we’ll be happy to work with you to customize a plan or product solution that meets your needs."
       },
     ]
   },

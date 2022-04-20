@@ -171,7 +171,7 @@ export const globalData = {
         name: "Test the live demo",
         link: "/data-solutions/demo",
         className: "md",
-        variant: "primary-arrow",
+        variant: "primary-hand",
       },
     ]
   },
@@ -203,7 +203,7 @@ export const globalData = {
         name: "Test the live demo",
         link: "/data-solutions/demo",
         className: "md",
-        variant: "primary-arrow",
+        variant: "primary-hand",
       },
     ]
   },

@@ -17,7 +17,7 @@ export const page = {
       {
         name: "Live demo",
         link: "/data-solutions/demo",
-        variant: "primary-arrow",
+        variant: "primary-hand",
       },
       {
         name: "Free trial",
