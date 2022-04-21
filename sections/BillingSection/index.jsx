@@ -9,6 +9,9 @@ import UserBillingService from "../../services/UserBillingService"
 import presetsStyles from "../../styles/global/presets.module.scss"
 import moment from "moment"
 import appConfig from "../../configs/appConfig"
+import { startCase } from "lodash"
+
+const PRICE_FORMATTER = Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD'})
 
 const SupportSection = ({ data, isVisible, question, isWrap }) => {
   const [visible, setVisible] = useState(false)
@@ -60,14 +63,6 @@ const SupportSection = ({ data, isVisible, question, isWrap }) => {
       });
   }, [])
 
-  // const sampleData = [
-  //   { date: "09/01/2021", id: "347364287", description: "{Plan Name}, API", amount: "$349.00" },
-  //   { date: "08/01/2021", id: "433384588", description: "{Plan Name}, API", amount: "$349.00" },
-  //   { date: "07/01/2021", id: "482772994", description: "{Plan Name}, API", amount: "$349.00" },
-  //   { date: "06/01/2021", id: "489900239", description: "{Plan Name}, API", amount: "$349.00" },
-  //   { date: "05/23/2021", id: "883557026", description: "Account Setup", amount: "$125.50" },
-  // ]
-
   return (
     <div className={`${styles.billing} ${data.className ? data.className : ""} ${visible ? "active" : ""}`}>
       <Container fluid className="p-0 entry-1">
@@ -103,7 +98,7 @@ const SupportSection = ({ data, isVisible, question, isWrap }) => {
               <thead>
                 <tr>
                   <th>Created At</th>
-                  <th>ID</th>
+                  <th>Status</th>
                   <th>Description</th>
                   <th>Amount</th>
                 </tr>
@@ -112,9 +107,9 @@ const SupportSection = ({ data, isVisible, question, isWrap }) => {
                 {transactions?.length ? transactions.map((item, i) => (
                   <tr key={`fdt-${i}`}>
                     <td>{moment(item.createdAt).format('MMM DD, yyyy LT')}</td>
-                    <td className="op-08">{item.stripeId}</td>
+                    <td className="op-08">{startCase(item.status)}</td>
                     <td className="op-08">{item.description}</td>
-                    <td>{`\$${(item.amount / 100).toLocaleString('en-US', { maximumFractionDigits: 2 })}`}</td>
+                    <td>{PRICE_FORMATTER.format(item.amount / 100)}</td>
                   </tr>
                 )) :
                   <tr>

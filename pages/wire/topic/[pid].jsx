@@ -9,7 +9,7 @@ import VisibilitySensor from '../../../utils/react-visibility-sensor'
 import TagManager from 'react-gtm-module'
 import { page } from "../../../configs/pages/wire"
 import ApiService from '../../../services/ApiService'
-import uniqBy from 'lodash.uniqby'
+import { uniqBy } from 'lodash'
 import { useRouter } from "next/router"
 
 const tagManagerArgs = {

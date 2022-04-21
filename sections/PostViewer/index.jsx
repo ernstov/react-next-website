@@ -12,7 +12,7 @@ import Icon from "../../components/Icon"
 import appConfig from "../../configs/appConfig"
 import ScrollContainer from 'react-indiana-drag-scroll'
 import ApiService from '../../services/ApiService'
-import uniqBy from 'lodash.uniqby'
+import { uniqBy } from 'lodash'
 import Button from "../../components/ui/Button"
 import { v4 as uuidv4 } from 'uuid'
 import { IconPost, IconRect } from '../../components/Icon'
