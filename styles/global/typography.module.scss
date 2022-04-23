@@ -62,8 +62,13 @@
 }
 
 .titleHeavyMedium {
-  font-family: $font-family-heavy;
+  font-weight: 600;
   font-size: 1.1875rem;
+}
+
+.titleLargeHero {
+  font-size: 3.25rem;
+  font-weight: 600;
 }
 
 .titleSmall {
@@ -236,7 +241,7 @@
 .textTitleLg {
   font-size: 2rem;
   line-height: 1.0625em;
-  font-family: $font-family-heavy;
+  font-weight: 600;
 }
 
 .textTitleLg2 {
@@ -464,7 +469,7 @@
 }
 
 .textTitleSmd {
-  font-family: $font-family-heavy;
+  font-weight: 600;
   font-size: 1.125rem;
   margin-bottom: 1rem;
 }
@@ -610,9 +615,11 @@
   .textTitleSemiPrimary {font-size: 1.6875rem;}
   .titleLarge {font-size: 1.8125rem;}
   .subtitleLarge {font-size: 1.3125rem;}
+  .titleLargeHero {font-size: 2.8rem;}
 }
 
 @include media-breakpoint-down(md) {
+  .titleLargeHero {font-size: 2rem;}
   .labelPrimarySem {
     font-size: 2.375rem;
   }

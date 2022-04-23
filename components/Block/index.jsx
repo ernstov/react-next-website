@@ -149,6 +149,19 @@ const Block = ({ data, i, variant, isYearly, children, className }) => {
             </div>
           }
         </div>
+      case "fluid-full":
+        return <div className={`${styles.block} ${className ? className : ""} fluid-full`}>
+          <div className={`block-title`}>
+            {data.title && <h3 className={`${typographyStyles.textTitleLg}`}>{data.title}</h3>}
+            {data.description && <p className={`${typographyStyles.textSubTitleHero} ${data.descriptionCL ? data.descriptionCL : ""} mb-0 mx-auto`}>{data.description}</p>}
+          </div>
+
+          {data.img &&
+            <div className={`block-img ${data.imgClass ? data.imgClass : ""}`}>
+              <img src={data.img} alt="" />
+            </div>
+          }
+        </div>
       case "fluid-dark":
         return <div className={`${styles.block} ${className ? className : ""} fluid-dark`}>
           <div className={`block-title`}>

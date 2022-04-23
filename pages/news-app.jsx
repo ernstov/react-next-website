@@ -4,11 +4,11 @@ import { useState, useEffect } from 'react'
 import appConfig from "../configs/appConfig"
 import Footer from "../components/Footer"
 import {  isWrap } from '../utils'
-import Hero from "../sections/Hero"
-import Stores from "../sections/Stores";
+import Hero from "../sections/Hero/HeroStores"
 import VisibilitySensor from '../utils/react-visibility-sensor'
 import TagManager from 'react-gtm-module'
 import {page} from "../configs/pages/download"
+import Carousel from "../sections/Carousel"
 
 const tagManagerArgs = {
   gtmId: appConfig.gtmId,
@@ -24,7 +24,7 @@ const NewsApp = () => {
 
   const sections = [
     { component: Hero, props: { data: page.hero } },
-    { component: Stores, props: { data: page.stores } },
+    { component: Carousel, props: { data: page.carousel } },
     { component: Footer, props: { data: { ...appConfig.footer, className: "small-container"} } },
   ]
 

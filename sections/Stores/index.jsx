@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {Container, Row, Col} from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import appConfig from "../../configs/appConfig"
 
 import styles from './stores.module.scss'
@@ -28,12 +28,14 @@ const Stores = ({ data, isVisible }) => {
                 </a>
               ))}
             </div>
-            <section className="download-container entry-4">
-              <div className="download-description">
-                <p className="download-description__title">{data?.additional?.title}</p>
-                <p className="download-description__text">{data?.additional?.text}</p>
-              </div>
-            </section>
+            {data?.additional &&
+              <section className="download-container entry-4">
+                <div className="download-description">
+                  <p className="download-description__title">{data?.additional?.title}</p>
+                  <p className="download-description__text">{data?.additional?.text}</p>
+                </div>
+              </section>
+            }
           </Col>
         </Row>
       </Container>

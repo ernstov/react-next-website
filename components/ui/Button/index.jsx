@@ -67,6 +67,8 @@ const Button = (props, ref) => {
         return `${styles.flatLight} ${size}`
       case "light-simple":
         return `${styles.button} ${styles.lightSimple} ${size}`
+      case "light-arrow":
+        return `${styles.button} ${styles.lightArrow} ${size}`
       case "dark-simple":
         return `${styles.button} ${styles.darkSimple} ${size}`
       case "outline-arrow":
@@ -96,6 +98,8 @@ const Button = (props, ref) => {
       case "primary-arrow":
         return <span className="ml-3"><Icon variant="chevron-right-bold" /></span>
       case "outline-arrow":
+        return <span className="ml-3"><Icon variant="chevron-right-bold" /></span>
+      case "light-arrow":
         return <span className="ml-3"><Icon variant="chevron-right-bold" /></span>
       case "primary-arrow-down":
         return <span className="ml-3"><Icon variant="arrow-down" /></span>

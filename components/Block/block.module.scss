@@ -82,6 +82,144 @@
     }
   }
 
+  &:global(.fluid-full) {
+    border-radius: 10px;
+    height: 100%;
+    overflow: hidden;
+    border-color: transparent;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: $gray-21;
+
+    :global(.block-title) {
+      padding: 4rem 3rem;
+      padding-bottom: 1rem;
+      position: relative;
+      z-index: 1;
+      text-align: center;
+
+      p {
+        min-height: 50px;
+      }
+
+      @include media-breakpoint-down(md) {
+        padding-top: 2rem;
+        padding-bottom: 1.6rem;
+      }
+    }
+
+    :global(.block-img) {
+      max-width: 100%;
+      height: auto;
+      padding: 0;
+
+      img {
+        width: 100%;
+        max-width: 100%;
+      }
+
+      &:global(.img1) {
+        text-align: center;
+
+        img {
+          width: 80%;
+          margin-bottom: -7%;
+        }
+      }
+
+      &:global(.img2) {
+        text-align: center;
+
+        img {
+          max-width: calc(100% - 20px);
+          margin-bottom: -10%;
+        }
+      }
+
+      &:global(.img3) {
+        text-align: center;
+
+        img {
+          width: 80%;
+          margin-bottom: 3%;
+        }
+      }
+
+      &:global(.img4) {
+        text-align: center;
+
+        img {
+          max-width: 100%;
+          width: 100%;
+        }
+      }
+
+      &:global(.img5) {
+        text-align: center;
+
+        img {
+          max-width: 100%;
+          width: 100%;
+          margin-bottom: -7%;
+          margin-right: -19%;
+        }
+      }
+
+      @include media-breakpoint-down(sm) {
+        &:global(.img1) {
+          img {
+            width: 90%;
+            margin-bottom: 10px;
+          }
+        }
+  
+        &:global(.img2) {
+          img {
+            max-width: none;
+            width: calc(100% + 40px);
+            margin-left: -20px;
+            margin-bottom: 10px;
+          }
+        }
+  
+        &:global(.img3) {
+          img {
+            width: calc(100% - 20px);
+            margin-bottom: 20px;
+          }
+        }
+  
+        &:global(.img4) {
+          img {
+            max-width: 120%;
+            width: 120%;
+          }
+        }
+  
+        &:global(.img5) {
+          img {
+            max-width: 100%;
+            width: 100%;
+            margin-bottom: 7%;
+            margin-right: -15%;
+          }
+        }
+      }
+    }
+
+    :global(.block-additional) {
+      padding: 4rem;
+      padding-top: 0;
+      padding-bottom: 2rem;
+      text-align: center;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+    }
+  }
+
   &:global(.fluid-dark) {
     border-radius: 8px;
     overflow: hidden;
