@@ -155,6 +155,8 @@ const DemoViewer = ({ data, isVisible }) => {
             if (label == "Non-news") addFilter("noNonnews", true)
             if (label == "Opinion") addFilter("noOpinions", true)
             if (label == "Paid News") addFilter("noPaidNews", true)
+            if (label == "Roundup") addFilter("noRoundups", true)
+            if (label == "Press Release") addFilter("noPressReleases", true)
           })
         }
 
@@ -239,6 +241,8 @@ const DemoViewer = ({ data, isVisible }) => {
       noNonnews,
       noOpinions,
       noPaidNews,
+      noPressReleases,
+      noRoundups
     } = app.selectedFilters
 
     if (startingOn) tempQuery += `&from=${startingOn}`
@@ -254,6 +258,8 @@ const DemoViewer = ({ data, isVisible }) => {
     if (noNonnews) tempQuery += `&excludeLabel=Non-news`
     if (noOpinions) tempQuery += `&excludeLabel=Opinion`
     if (noPaidNews) tempQuery += `&excludeLabel=Paid News`
+    if (noRoundups) tempQuery += `&excludeLabel=Roundup`
+    if (noPressReleases) tempQuery += `&excludeLabel=Press Release`
     if (sortBy) tempQuery += `&sortBy=${sortBy == "Time" ? "date" : "relevance"}`
 
     if (domains?.length) {

@@ -52,6 +52,8 @@ const Filter = ({ isDisableTitle }) => {
     NoNonnews,
     NoOpinions,
     NoPaidNews,
+    NoRoundups,
+    NoPressReleases
   } } = useContext(Context);
 
   const addFilter = (filterName, value) => {
@@ -409,6 +411,26 @@ const Filter = ({ isDisableTitle }) => {
           onChange={e => addFilter("noPaidNews", e.target.checked)}
           id={NoPaidNews}
           label={NoPaidNews}
+          type="checkbox"
+        />
+        <Form.Check
+          className="custom-checkbox-sd mb-2"
+          value={NoRoundups}
+          custom
+          checked={app.selectedFilters.noRoundups}
+          onChange={e => addFilter("noRoundups", e.target.checked)}
+          id={NoRoundups}
+          label={NoRoundups}
+          type="checkbox"
+        />
+        <Form.Check
+          className="custom-checkbox-sd mb-2"
+          value={NoPressReleases}
+          custom
+          checked={app.selectedFilters.noPressReleases}
+          onChange={e => addFilter("noPressReleases", e.target.checked)}
+          id={NoPressReleases}
+          label={NoPressReleases}
           type="checkbox"
         />
       </div>

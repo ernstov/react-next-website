@@ -69,6 +69,8 @@ export default function App({ Component, pageProps }) {
       noNonnews: false,
       noOpinions: false,
       noPaidNews: false,
+      noPressReleases: false,
+      noRoundups: false,
     },
     isActiveFilter: false,
     categories: [],

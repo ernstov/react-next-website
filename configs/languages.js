@@ -202,7 +202,9 @@ const languages = {
     Subscribed: "Subscribed",
     Contents: "Contents",
     Backtotop: "Back to top",
-    Advancedsearch: "Advanced search"
+    Advancedsearch: "Advanced search",
+    NoRoundups: "No Roundups",
+    NoPressReleases: "No Press Releases",
   }
 }
 
