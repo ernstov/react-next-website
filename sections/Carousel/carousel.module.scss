@@ -20,7 +20,12 @@
       height: auto;
     }
     :global(.swiper-pagination) {
-      display: none;
+      padding-right: 200px;
+
+      :global(.swiper-pagination-bullet) {
+        opacity: 1;
+        background-color: $cover-33;
+      }
     }
 
     @include media-breakpoint-down(md) {
@@ -28,7 +33,7 @@
       padding-right: 0;
 
       :global(.swiper-pagination) {
-        display: block;
+        padding-right: 0;
       }
     }
   }
@@ -122,7 +127,7 @@
       margin: 0 5px;
       cursor: pointer;
       border-radius: 50%;
-      background-color: rgba($white, 0.2);
+      background-color: $white;
       transition: all $transition ease;
 
       &:global(.swiper-pagination-bullet-active) {

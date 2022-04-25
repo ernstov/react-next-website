@@ -133,7 +133,7 @@
 
         img {
           max-width: calc(100% - 20px);
-          margin-bottom: -10%;
+          margin-bottom: -7%;
         }
       }
 
@@ -142,7 +142,7 @@
 
         img {
           width: 80%;
-          margin-bottom: 3%;
+          margin-bottom: 6%;
         }
       }
 
@@ -161,7 +161,7 @@
         img {
           max-width: 100%;
           width: 100%;
-          margin-bottom: -7%;
+          margin-bottom: -2%;
           margin-right: -19%;
         }
       }
@@ -177,8 +177,8 @@
         &:global(.img2) {
           img {
             max-width: none;
-            width: calc(100% + 40px);
-            margin-left: -20px;
+            width: calc(100% + 20px);
+            margin-left: -10px;
             margin-bottom: 10px;
           }
         }
@@ -186,21 +186,21 @@
         &:global(.img3) {
           img {
             width: calc(100% - 20px);
-            margin-bottom: 20px;
+            margin-bottom: 15%;
           }
         }
   
         &:global(.img4) {
           img {
-            max-width: 120%;
-            width: 120%;
+            max-width: 130%;
+            width: 130%;
           }
         }
   
         &:global(.img5) {
           img {
-            max-width: 100%;
-            width: 100%;
+            width: 110%;
+            max-width: 110%;
             margin-bottom: 7%;
             margin-right: -15%;
           }

@@ -6,7 +6,7 @@ export const page = {
   hero: {
     title: '360° news',
     description: 'The app that builds perspective, not echo-chambers',
-    className: "pb-5 pt-5",
+    className: "pb-3 pb-md-0  pt-5",
     img: "app-news-hero.png",
     stores: [
       { img: "app-store-badge.png", link: "https://apps.apple.com/us/app/perigon-unbreaking-news/id1514212857" },
@@ -15,7 +15,7 @@ export const page = {
   },
   carousel: {
     variant: "fluid-full",
-    className: "pt-0 pb-5",
+    className: "pb-5",
     slidesLg: 2.5,
     slidesMd: 2.5,
     loop: false,
